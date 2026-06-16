@@ -16,6 +16,36 @@ export const DEFAULT_MARK_COLORS: MarkColors = {
   color3: "#92400E",
 };
 
+/** Canonical lucky-star silhouette — locked geometry from brand spec */
+export const ORIGAMI_LUCKY_STAR_PATH =
+  "M50.00,6.00L77.23,35.38L68.04,81.96L31.96,81.96L22.77,35.38Z";
+
+export type RefinedOrigamiPalette = {
+  hi: string;
+  mid: string;
+  shadow: string;
+  dark: string;
+};
+
+export const REFINED_ORIGAMI_PALETTES = {
+  navy: { hi: "#1A3566", mid: "#1F3B72", shadow: "#070F1E", dark: "#050A16" },
+  gold: { hi: "#FBBF24", mid: "#F59E0B", shadow: "#78350F", dark: "#92400E" },
+  white: { hi: "#FFFFFF", mid: "#F8FAFC", shadow: "#CBD5E1", dark: "#E2E8F0" },
+} as const satisfies Record<string, RefinedOrigamiPalette>;
+
+export function resolveRefinedOrigamiPalette(colors: MarkColors): RefinedOrigamiPalette {
+  const c1 = colors.color1.toUpperCase();
+  if (c1 === "#0F2044" || c1 === "#1A3566" || c1 === "#1F3B72") return REFINED_ORIGAMI_PALETTES.navy;
+  if (c1 === "#F59E0B" || c1 === "#FDE68A" || c1 === "#FBBF24") return REFINED_ORIGAMI_PALETTES.gold;
+  if (c1 === "#FFFFFF" || c1 === "#F8FAFC" || c1 === "#E2E8F0") return REFINED_ORIGAMI_PALETTES.white;
+  return {
+    hi: lighten(colors.color1, 0.12),
+    mid: colors.color1,
+    shadow: colors.color3,
+    dark: colors.color3,
+  };
+}
+
 function lighten(hex: string, amt: number): string {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
@@ -27,6 +57,8 @@ function lighten(hex: string, amt: number): string {
 }
 
 export function getStarPath(style: StarStyle, roundness = 4): string {
+  if (style === "origami") return ORIGAMI_LUCKY_STAR_PATH;
+
   const cx = 50;
   const cy = 50;
   const outerR = style === "geometric" ? 45 : 44;
@@ -67,8 +99,9 @@ export function getStarPath(style: StarStyle, roundness = 4): string {
   return `${d}Z`;
 }
 
-export function getOrigamiFacets(): string {
-  return `
+export function getOrigamiFacets(refined = false): string {
+  if (!refined) {
+    return `
     <path d="M50,6 L61,35 L50,65 Z" fill="rgba(255,255,255,0.10)"/>
     <path d="M50,6 L39,35 L50,65 Z" fill="rgba(0,0,0,0.10)"/>
     <path d="M91,35 L68,54 L61,35 Z" fill="rgba(255,255,255,0.12)"/>
@@ -81,6 +114,21 @@ export function getOrigamiFacets(): string {
     <line x1="61" y1="35" x2="50" y2="65" stroke="rgba(0,0,0,0.12)" stroke-width="0.7"/>
     <line x1="91" y1="35" x2="68" y2="54" stroke="rgba(255,255,255,0.14)" stroke-width="0.7"/>
     <line x1="9" y1="35" x2="32" y2="54" stroke="rgba(0,0,0,0.10)" stroke-width="0.7"/>
+  `;
+  }
+  return `
+    <path d="M50,6 L61,35 L50,65 Z" fill="rgba(255,255,255,0.14)"/>
+    <path d="M50,6 L39,35 L50,65 Z" fill="rgba(0,0,0,0.11)"/>
+    <path d="M91,35 L68,54 L61,35 Z" fill="rgba(255,255,255,0.15)"/>
+    <path d="M9,35 L32,54 L39,35 Z" fill="rgba(0,0,0,0.09)"/>
+    <path d="M77,82 L50,65 L68,54 Z" fill="rgba(255,255,255,0.08)"/>
+    <path d="M23,82 L50,65 L32,54 Z" fill="rgba(0,0,0,0.07)"/>
+    <path d="M50,6 L61,35 L44,26 Z" fill="rgba(255,255,255,0.22)"/>
+    <line x1="50" y1="6" x2="61" y2="35" stroke="rgba(26,53,102,0.25)" stroke-width="0.35" stroke-dasharray="0.6 1.2"/>
+    <line x1="50" y1="6" x2="39" y2="35" stroke="rgba(26,53,102,0.25)" stroke-width="0.35" stroke-dasharray="0.6 1.2"/>
+    <line x1="61" y1="35" x2="50" y2="65" stroke="rgba(26,53,102,0.20)" stroke-width="0.35" stroke-dasharray="0.6 1.2"/>
+    <line x1="91" y1="35" x2="68" y2="54" stroke="rgba(26,53,102,0.20)" stroke-width="0.35" stroke-dasharray="0.6 1.2"/>
+    <line x1="9" y1="35" x2="32" y2="54" stroke="rgba(26,53,102,0.20)" stroke-width="0.35" stroke-dasharray="0.6 1.2"/>
   `;
 }
 

@@ -78,7 +78,9 @@ export async function fetchDashboardOverview(
     };
     return {
       ...data,
-      recentReviews: data.recentReviews.map((r) => mapReview(r as Record<string, unknown>)),
+      recentReviews: data.recentReviews.map((r) =>
+        mapReview(r as unknown as Record<string, unknown>),
+      ),
     };
   } catch {
     return null;
