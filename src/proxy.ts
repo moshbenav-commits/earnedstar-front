@@ -53,6 +53,10 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(login);
   }
 
+  if (user && request.nextUrl.pathname === '/login') {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
+  }
+
   if (user && request.nextUrl.pathname === '/signup') {
     return NextResponse.redirect(new URL('/setup', request.url));
   }

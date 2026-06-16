@@ -39,7 +39,7 @@ export default async function WidgetsPage() {
           </p>
         </div>
 
-        <WidgetBuilder initialWidgets={widgets} apiKey={merchant.api_key} />
+        <WidgetBuilder initialWidgets={widgets} apiKey={merchant.api_key} plan={merchant.plan} />
 
         <section className="card-surface p-6">
           <h2 className="text-lg font-bold text-navy">Origami badge variants (ES-AC-07)</h2>

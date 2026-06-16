@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { InvitationRow } from "@/lib/earnedstar-server";
 import { SendInvitationForm } from "@/components/dashboard/send-invitation-form";
 import { SentRequestsTable } from "@/components/dashboard/sent-requests-table";
+import { canSendSmsInvitations } from "@/lib/plan-enforcement";
 import { cn } from "@/lib/utils";
 
 type Tab = "send" | "sent";
@@ -12,12 +13,15 @@ export function ReviewRequestCampaigns({
   merchantSlug,
   merchantName,
   invitations,
+  plan = "starter",
 }: {
   merchantSlug: string;
   merchantName?: string;
   invitations: InvitationRow[];
+  plan?: string;
 }) {
   const [tab, setTab] = useState<Tab>("send");
+  const smsEnabled = canSendSmsInvitations(plan);
 
   return (
     <div className="space-y-6">
@@ -43,7 +47,14 @@ export function ReviewRequestCampaigns({
       </div>
 
       {tab === "send" ? (
-        <SendInvitationForm merchantSlug={merchantSlug} merchantName={merchantName} />
+        <>
+          {!smsEnabled ? (
+            <p className="text-sm text-text-muted">
+              SMS invitations unlock on Growth plan and above. Email requests are included on Starter.
+            </p>
+          ) : null}
+          <SendInvitationForm merchantSlug={merchantSlug} merchantName={merchantName} smsEnabled={smsEnabled} />
+        </>
       ) : (
         <SentRequestsTable invitations={invitations} merchantSlug={merchantSlug} />
       )}

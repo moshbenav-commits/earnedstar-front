@@ -27,11 +27,14 @@ const TIMING: { days: DelayDays; label: string }[] = [
 export function SendInvitationForm({
   merchantSlug = "meridian-gear",
   merchantName = "Your store",
+  smsEnabled = true,
 }: {
   merchantSlug?: string;
   merchantName?: string;
+  smsEnabled?: boolean;
 }) {
   const router = useRouter();
+  const channels = CHANNELS.filter((c) => c.id !== "sms" || smsEnabled);
   const [channel, setChannel] = useState<Channel>("email");
   const [delayDays, setDelayDays] = useState<DelayDays>(0);
   const [email, setEmail] = useState("");
@@ -161,7 +164,7 @@ export function SendInvitationForm({
           <div>
             <p className="text-sm font-medium text-navy">Channel</p>
             <div className="mt-2 flex flex-wrap gap-2">
-              {CHANNELS.map((c) => (
+              {channels.map((c) => (
                 <button
                   key={c.id}
                   type="button"

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Copy, Trash2 } from "lucide-react";
+import { formatPlanLimit, isAtCap, limitsFor } from "@/lib/plan-enforcement";
 
 export type SavedWidget = {
   id: string;
@@ -24,9 +25,11 @@ const WIDGET_TYPES = [
 export function WidgetBuilder({
   initialWidgets,
   apiKey,
+  plan = "starter",
 }: {
   initialWidgets: SavedWidget[];
   apiKey?: string;
+  plan?: string;
 }) {
   const [widgets, setWidgets] = useState(initialWidgets);
   const [name, setName] = useState("Homepage carousel");
@@ -35,9 +38,12 @@ export function WidgetBuilder({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const widgetLimit = limitsFor(plan).widgets;
+  const atWidgetLimit = isAtCap(widgets.length, widgetLimit);
 
   async function handleCreate(e: React.FormEvent) {
     e.preventDefault();
+    if (atWidgetLimit) return;
     setLoading(true);
     setError(null);
     try {
@@ -84,6 +90,14 @@ export function WidgetBuilder({
             <span className="mt-1 block font-mono text-xs text-text-faint">API key: {apiKey}</span>
           ) : null}
         </p>
+        <p className="mt-3 text-sm font-semibold text-navy">
+          {widgets.length} / {formatPlanLimit(widgetLimit)} widgets on your plan
+        </p>
+        {atWidgetLimit ? (
+          <p className="mt-2 text-sm text-amber-700">
+            Widget limit reached — remove an existing widget or upgrade in Settings.
+          </p>
+        ) : null}
         <form onSubmit={handleCreate} className="mt-6 grid gap-4 sm:grid-cols-2">
           <label className="block text-sm font-medium text-navy">
             Widget name
@@ -120,7 +134,7 @@ export function WidgetBuilder({
             />
           </label>
           <div className="flex items-end">
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading || atWidgetLimit}>
               {loading ? "Saving…" : "Save widget"}
             </Button>
           </div>
