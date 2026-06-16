@@ -52,9 +52,9 @@ export default async function WidgetsPage() {
         </section>
 
         <section className="card-surface p-6">
-          <h2 className="text-lg font-bold text-navy">Photo badge — color variants</h2>
+          <h2 className="text-lg font-bold text-navy">Lucky-star badge — color variants</h2>
           <p className="mt-1 text-sm text-text-secondary">
-            Photoreal leather star with your logo in the center medallion.
+            Navy, gold, and white lucky-star marks with your logo in the center medallion.
           </p>
           <div className="mt-6">
             <EarnedStarPhotoBadgeVariants size={96} logoUrl={previewLogo} />

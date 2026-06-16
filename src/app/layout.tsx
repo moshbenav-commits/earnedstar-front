@@ -17,23 +17,35 @@ const instrument = Instrument_Serif({
   display: "swap",
 });
 
+const siteUrl = "https://earnedstar.com";
+const title = "EarnedStar — Reviews Your Customers Actually Earned";
+const description =
+  "Verified by purchase. Fraud-scored by AI. The only badge that means your reviews are real.";
+
 export const metadata: Metadata = {
   title: {
-    default: "EarnedStar — Reviews Your Customers Actually Earned",
+    default: title,
     template: "%s | EarnedStar",
   },
-  description:
-    "Verified by purchase. Fraud-scored by AI. The only badge that means your reviews are real.",
-  metadataBase: new URL("https://earnedstar.com"),
+  description,
+  metadataBase: new URL(siteUrl),
   manifest: "/site.webmanifest",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "EarnedStar",
+    title,
+    description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
   icons: {
-    icon: [
-      { url: "/brand/photo/earnedstar-photo-logo-32.png", sizes: "32x32", type: "image/png" },
-      { url: "/brand/photo/earnedstar-photo-logo-16.png", sizes: "16x16", type: "image/png" },
-    ],
-    apple: [
-      { url: "/brand/photo/earnedstar-photo-logo-192.png", sizes: "192x192", type: "image/png" },
-    ],
+    icon: [{ url: "/icon", sizes: "32x32", type: "image/png" }],
+    apple: [{ url: "/apple-icon", sizes: "180x180", type: "image/png" }],
   },
 };
 

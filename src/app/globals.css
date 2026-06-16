@@ -176,41 +176,6 @@ body {
   box-shadow: inset 0 0 0 1px rgba(245, 158, 11, 0.25);
 }
 
-/* Photoreal logo platters — cream/stone so 3D marks read on navy */
-.logo-shell-light {
-  background: linear-gradient(145deg, #faf9f6 0%, #f0ede6 100%);
-  border: 1px solid rgba(15, 32, 68, 0.08);
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(15, 32, 68, 0.08);
-}
-
-.logo-shell-dark {
-  background: linear-gradient(145deg, #faf9f6 0%, #f5f2eb 100%);
-  border: 1px solid rgba(245, 158, 11, 0.28);
-  border-radius: 12px;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 4px 20px rgba(0, 0, 0, 0.25),
-    0 0 24px rgba(245, 158, 11, 0.12);
-}
-
-.logo-shell-hero {
-  background: radial-gradient(circle at 40% 35%, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.04) 55%, transparent 100%);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 20px;
-  box-shadow:
-    0 8px 40px rgba(0, 0, 0, 0.35),
-    0 0 60px rgba(245, 158, 11, 0.18);
-  backdrop-filter: blur(6px);
-}
-
-.logo-shell-glow {
-  background: radial-gradient(circle, rgba(250, 249, 246, 0.95) 0%, rgba(240, 237, 230, 0.88) 70%);
-  border: 1px solid rgba(245, 158, 11, 0.35);
-  border-radius: 999px;
-  box-shadow: var(--shadow-gold);
-}
-
 .marquee-mask {
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }

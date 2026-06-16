@@ -1,5 +1,6 @@
 import { StoreProfile } from "@/components/store/store-profile";
 import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
+import { DEFAULT_SHARE_IMAGE_URL } from "@/lib/brand-assets";
 import { fetchStorePageData } from "@/lib/earnedstar-server";
 import { mockBusiness, mockReviews } from "@/lib/mock-data";
 import { notFound } from "next/navigation";
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     business.seo_description?.trim() ||
     `Read ${total.toLocaleString()} verified reviews of ${business.name}. Average rating: ${business.avg_rating}/5 stars. All reviews verified by purchase with AI fraud detection.`;
   const canonical = `https://earnedstar.com/reviews/${slug}`;
-  const ogImage = business.logo_url ?? `https://earnedstar.com/icon.png`;
+  const ogImage = business.logo_url ?? DEFAULT_SHARE_IMAGE_URL;
 
   return {
     title,
