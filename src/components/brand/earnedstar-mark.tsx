@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import {
   type CenterStyle,
@@ -7,10 +8,13 @@ import {
   getBodyGradientStops,
   getStarPath,
 } from "@/lib/earnedstar-mark";
+import { getMark3dSrc, MARK_3D_MIN_SIZE, type Mark3dVariant } from "@/lib/brand-assets";
 
 export interface EarnedStarMarkProps {
   size?: number;
   style?: StarStyle;
+  /** 3d = photorealistic PNG from brand sheet (default for origami). svg = vector fallback for tiny embeds. */
+  render?: "3d" | "svg";
   centerStyle?: CenterStyle;
   colors?: MarkColors;
   logoUrl?: string | null;
@@ -156,9 +160,85 @@ function CenterBadge({
   );
 }
 
+function resolve3dVariant(colors: MarkColors, darkBg: boolean): Mark3dVariant {
+  const c1 = colors.color1.toUpperCase();
+  const c3 = colors.color3.toUpperCase();
+  if (darkBg && (c1 === "#FFFFFF" || c1 === "#F8FAFC")) return "all-white";
+  if (c1 === "#F59E0B" && c3 === "#92400E") return "all-gold";
+  return "navy-gold";
+}
+
+function EarnedStarMark3d({
+  size,
+  centerStyle,
+  colors,
+  logoUrl,
+  darkBg,
+  className,
+}: {
+  size: number;
+  centerStyle: CenterStyle;
+  colors: MarkColors;
+  logoUrl?: string | null;
+  darkBg: boolean;
+  className?: string;
+}) {
+  const variant = resolve3dVariant(colors, darkBg);
+  const src = getMark3dSrc(variant, size);
+  const medallion = Math.round(size * 0.34);
+  const medallionOffset = Math.round((size - medallion) / 2);
+
+  return (
+    <span
+      className={cn("relative inline-block shrink-0", className)}
+      style={{ width: size, height: size }}
+      role="img"
+      aria-label="EarnedStar badge"
+    >
+      <Image
+        src={src}
+        alt=""
+        width={size}
+        height={size}
+        className="h-full w-full object-contain"
+        priority={size >= 120}
+      />
+      {centerStyle === "logo" && logoUrl ? (
+        <Image
+          src={logoUrl}
+          alt=""
+          width={medallion}
+          height={medallion}
+          className="absolute rounded-full object-cover ring-2 ring-gold/80"
+          style={{ left: medallionOffset, top: medallionOffset }}
+        />
+      ) : null}
+      {centerStyle === "check" ? (
+        <span
+          className="pointer-events-none absolute flex items-center justify-center rounded-full bg-white/95 ring-2 ring-gold/80"
+          style={{ width: medallion, height: medallion, left: medallionOffset, top: medallionOffset }}
+          aria-hidden
+        >
+          <svg viewBox="0 0 24 24" width={medallion * 0.55} height={medallion * 0.55}>
+            <path
+              d="M5 12 L10 17 L19 7"
+              fill="none"
+              stroke="#F59E0B"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      ) : null}
+    </span>
+  );
+}
+
 export function EarnedStarMark({
   size = 32,
   style = "origami",
+  render,
   centerStyle = "check",
   colors = DEFAULT_MARK_COLORS,
   logoUrl,
@@ -167,6 +247,22 @@ export function EarnedStarMark({
   className,
   id = "es-mark",
 }: EarnedStarMarkProps) {
+  const use3d =
+    render === "3d" || (render !== "svg" && style === "origami" && size >= MARK_3D_MIN_SIZE);
+
+  if (use3d) {
+    return (
+      <EarnedStarMark3d
+        size={size}
+        centerStyle={centerStyle}
+        colors={colors}
+        logoUrl={logoUrl}
+        darkBg={darkBg}
+        className={className}
+      />
+    );
+  }
+
   const starPath = getStarPath(style, roundness);
   const grad = getBodyGradientStops(colors);
   const gradId = `bodyGrad-${id}`;

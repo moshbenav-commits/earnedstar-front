@@ -1,6 +1,15 @@
 import { Star } from "lucide-react";
 import { dashboardStats } from "@/lib/mock-data";
 
+type DashboardStats = {
+  totalReviews: number;
+  weeklyDeltaPct: number;
+  avgRating: number;
+  inviteResponseRate: number;
+  googleSellerRating: number;
+  googleSellerActive: boolean;
+};
+
 function ProgressRing({ pct }: { pct: number }) {
   const r = 18;
   const c = 2 * Math.PI * r;
@@ -23,19 +32,20 @@ function ProgressRing({ pct }: { pct: number }) {
   );
 }
 
-export function DashboardKpiRow() {
+export function DashboardKpiRow({ stats }: { stats?: DashboardStats | null }) {
+  const data = stats ?? dashboardStats;
   const cards = [
     {
       label: "Total Reviews",
-      value: dashboardStats.totalReviews.toLocaleString(),
-      sub: `+${dashboardStats.weeklyDeltaPct}% vs last 30 days`,
+      value: data.totalReviews.toLocaleString(),
+      sub: `+${data.weeklyDeltaPct}% vs last 30 days`,
       subClass: "text-green-dark",
     },
     {
       label: "Average Rating",
       value: (
         <span className="inline-flex items-center gap-2">
-          {dashboardStats.avgRating.toFixed(1)}
+          {data.avgRating.toFixed(1)}
           <span className="inline-flex gap-0.5">
             {Array.from({ length: 5 }).map((_, i) => (
               <Star key={i} size={14} className="fill-gold text-gold" />
@@ -50,8 +60,8 @@ export function DashboardKpiRow() {
       label: "Invite Response Rate",
       value: (
         <span className="inline-flex items-center gap-3">
-          {dashboardStats.inviteResponseRate}%
-          <ProgressRing pct={dashboardStats.inviteResponseRate} />
+          {data.inviteResponseRate}%
+          <ProgressRing pct={data.inviteResponseRate} />
         </span>
       ),
       sub: "Invitations completed",
@@ -61,11 +71,11 @@ export function DashboardKpiRow() {
       label: "Google Seller Rating",
       value: (
         <span className="inline-flex items-center gap-2">
-          {dashboardStats.googleSellerRating}
+          {data.googleSellerRating}
           <Star size={16} className="fill-gold text-gold" />
         </span>
       ),
-      sub: dashboardStats.googleSellerActive ? (
+      sub: data.googleSellerActive ? (
         <span className="rounded-full bg-green-pale px-2 py-0.5 text-xs font-semibold text-green-dark">Active</span>
       ) : null,
       subClass: "",

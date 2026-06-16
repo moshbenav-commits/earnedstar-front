@@ -7,7 +7,7 @@ B2B SaaS verified review platform at **earnedstar.com** — for any e-commerce m
 - **Next.js 16** · React 19 · TypeScript · Tailwind CSS 4
 - **Backend:** `earnedstar-back` Nest API (`/api/earnedstar/*`) — repo `github.com/moshbenav-commits/earnedstar-back`
 - **Billing:** Authorize.net ARB (NOT Stripe)
-- **Data:** Supabase Postgres (`earnedstar_*` / `merchants` tables)
+- **Data:** Supabase Postgres only — dedicated project `ppnbpblnuxbihhxgozxi` (no Mongo)
 - **Deploy:** Vercel → `earnedstar.com` · repo `github.com/moshbenav-commits/earnedstar-front`
 
 ## Specs
@@ -15,7 +15,7 @@ B2B SaaS verified review platform at **earnedstar.com** — for any e-commerce m
 - [`../docs/prompts/AI_EARNEDSTAR_SPEC.md`](../docs/prompts/AI_EARNEDSTAR_SPEC.md) — ES-AC-01–20 (v2)
 - [`../docs/prompts/earnedstar/DESIGN.md`](../docs/prompts/earnedstar/DESIGN.md) — navy `#0F2044` + gold `#F59E0B`, light mode default
 - [`../docs/prompts/earnedstar/MASTER_AI_PROMPT.md`](../docs/prompts/earnedstar/MASTER_AI_PROMPT.md)
-- [`../docs/prompts/earnedstar/LOGO_DESIGN_BRIEF.md`](../docs/prompts/earnedstar/LOGO_DESIGN_BRIEF.md)
+- [`../docs/branding/earnedstar-logo-spec.md`](../docs/branding/earnedstar-logo-spec.md) — **logo & badge single source of truth** (origami SVG assets, lockups, Figma file)
 - [`../docs/prompts/earnedstar/CURSOR_BUILD_PROMPTS.md`](../docs/prompts/earnedstar/CURSOR_BUILD_PROMPTS.md) — per-page Cursor task prompts
 
 ## Deploy
@@ -68,7 +68,7 @@ BFF pattern like `expedia-parts-front`:
 
 - **Light mode default** — warm white `#FAFAF9`
 - **Fonts:** Plus Jakarta Sans + Instrument Serif (italic heroes)
-- **Logo:** Official SVG in `components/brand/earnedstar-logo.tsx` — do not modify
+- **Logo:** See [`docs/branding/earnedstar-logo-spec.md`](../docs/branding/earnedstar-logo-spec.md) — origami mark via `EarnedStarMark` / `EarnedStarLogo` in `components/brand/`; do not introduce new star icons or color schemes
 - **Stars:** Progressive 1★ red → 5★ gold (`progressive-star-rating.tsx`)
 - Gold only on stars, "Star" wordmark, badges; green only on verified chips
 

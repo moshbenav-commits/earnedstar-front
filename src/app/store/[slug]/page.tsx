@@ -1,15 +1,17 @@
-import type { Metadata } from "next";
-import { mockBusiness, mockReviews } from "@/lib/mock-data";
 import { StoreProfile } from "@/components/store/store-profile";
 import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
+import { fetchStorePageData } from "@/lib/earnedstar-server";
+import { mockBusiness, mockReviews } from "@/lib/mock-data";
+import { notFound } from "next/navigation";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  const business = slug === "expediaparts" ? mockBusiness : { ...mockBusiness, slug, name: slug };
+  const { merchant } = await fetchStorePageData(slug);
+  const business = merchant ?? { ...mockBusiness, slug, name: slug };
   return {
     title: `${business.name} Reviews — ${business.review_count} Verified Reviews`,
     description: `Read ${business.review_count} verified reviews. Average rating: ${business.avg_rating}/5.`,
@@ -19,10 +21,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function PublicReviewProfilePage({ params }: PageProps) {
   const { slug } = await params;
-  const business =
-    slug === "expediaparts"
-      ? mockBusiness
-      : { ...mockBusiness, slug, name: slug.replace(/-/g, " ") };
+  const { merchant, reviews } = await fetchStorePageData(slug);
+
+  if (!merchant && slug !== "expediaparts") {
+    notFound();
+  }
+
+  const business = merchant ?? { ...mockBusiness, slug };
+  const list = reviews.length > 0 ? reviews : mockReviews;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -41,7 +47,14 @@ export default async function PublicReviewProfilePage({ params }: PageProps) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <StoreProfile business={business} reviews={mockReviews} />
+      <StoreProfile
+        business={{
+          ...business,
+          response_rate: 68,
+          joined_year: 2026,
+        }}
+        reviews={list}
+      />
       <footer className="border-t border-border bg-surface py-8 text-center text-xs text-text-faint">
         <EarnedStarLogo size={20} className="mx-auto justify-center" />
         <p className="mt-2">Powered by EarnedStar</p>

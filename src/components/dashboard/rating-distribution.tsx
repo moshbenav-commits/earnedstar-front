@@ -1,12 +1,31 @@
-import { ratingDistribution } from "@/lib/mock-data";
+import { ratingDistribution as mockDistribution } from "@/lib/mock-data";
 
-export function RatingDistributionChart() {
+const STAR_COLORS: Record<number, string> = {
+  5: "#F59E0B",
+  4: "#84CC16",
+  3: "#EAB308",
+  2: "#F97316",
+  1: "#EF4444",
+};
+
+type Row = { stars: number; count: number; pct: number; color?: string };
+
+export function RatingDistributionChart({
+  distribution,
+}: {
+  distribution?: { stars: number; count: number; pct: number }[] | null;
+}) {
+  const rows: Row[] = (distribution?.length ? distribution : mockDistribution).map((row) => ({
+    ...row,
+    color: STAR_COLORS[row.stars] ?? "#F59E0B",
+  }));
+
   return (
     <section className="card-surface gold-seam p-6">
       <h2 className="text-lg font-bold text-navy">Rating distribution</h2>
-      <p className="mt-1 text-sm text-text-muted">All verified reviews — last 30 days</p>
+      <p className="mt-1 text-sm text-text-muted">All verified reviews</p>
       <div className="mt-6 space-y-3">
-        {ratingDistribution.map((row) => (
+        {rows.map((row) => (
           <div key={row.stars} className="flex items-center gap-3">
             <span className="w-8 shrink-0 text-sm font-semibold text-navy">{row.stars}★</span>
             <div className="relative h-7 flex-1 overflow-hidden rounded-full bg-surface-2">
