@@ -46,6 +46,7 @@ export default async function SubmitReviewPage({ params }: PageProps) {
       </header>
       <ReviewSubmitFlow
         token={token}
+        invitation={invitation}
         storeName={invitation.merchant_name}
         merchantSlug={invitation.merchant_slug}
       />

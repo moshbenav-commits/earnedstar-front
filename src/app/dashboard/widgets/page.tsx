@@ -32,9 +32,12 @@ export default async function WidgetsPage() {
     <>
       <DashboardTopbar title="Widgets" />
       <main className="space-y-8 bg-bg p-4 md:p-8">
-        <p className="text-sm text-text-muted">
-          Build and save embeddable review widgets for {merchant.name}.
-        </p>
+        <div>
+          <h1 className="text-xl font-bold text-navy">Embeddable Review Widgets</h1>
+          <p className="mt-1 text-sm text-text-muted">
+            Copy the code below and paste it anywhere on your website.
+          </p>
+        </div>
 
         <WidgetBuilder initialWidgets={widgets} apiKey={merchant.api_key} />
 

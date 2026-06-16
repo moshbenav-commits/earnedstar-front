@@ -97,7 +97,55 @@
     return wrap;
   }
 
+  function injectSchema(merchant) {
+    if (document.querySelector('script[data-earnedstar-schema]')) return;
+    var script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.setAttribute("data-earnedstar-schema", "1");
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      name: merchant.name,
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: merchant.avg_rating,
+        reviewCount: merchant.review_count,
+        bestRating: 5,
+        worstRating: 1,
+      },
+    });
+    document.head.appendChild(script);
+  }
+
+  function renderFloating(payload) {
+    var review = (payload.reviews || [])[0];
+    if (!review) return render(payload);
+    var bubble = el("div", {
+      position: "fixed",
+      right: "20px",
+      bottom: "20px",
+      zIndex: "9999",
+      maxWidth: "280px",
+      background: "#fff",
+      border: "1px solid " + BORDER,
+      borderRadius: "16px",
+      padding: "14px",
+      boxShadow: "0 12px 40px rgba(15,32,68,0.18)",
+      fontFamily: "system-ui, sans-serif",
+    });
+    bubble.appendChild(el("div", { fontSize: "12px", fontWeight: "700", color: NAVY, marginBottom: "6px" }, payload.merchant.name));
+    bubble.appendChild(stars(review.rating_overall));
+    bubble.appendChild(el("p", { margin: "8px 0 0", fontSize: "12px", color: MUTED, lineHeight: "1.4" }, (review.review_text || "").slice(0, 120)));
+    document.body.appendChild(bubble);
+  }
+
   function render(payload) {
+    injectSchema(payload.merchant);
+    if (config.widget === "floating") {
+      renderFloating(payload);
+      return;
+    }
+
     var mount =
       (config.target && document.querySelector(config.target)) ||
       SCRIPT.parentNode ||
@@ -164,16 +212,35 @@
     mount.appendChild(root);
   }
 
-  fetch(API_BASE + "/earnedstar/reviews/embed/" + encodeURIComponent(config.key))
-    .then(function (res) {
-      if (!res.ok) throw new Error("EarnedStar widget failed to load");
-      return res.json();
-    })
-    .then(render)
-    .catch(function () {
-      var mount = SCRIPT.parentNode || document.body;
-      mount.appendChild(
-        el("div", { fontSize: "12px", color: MUTED, padding: "8px" }, "EarnedStar reviews unavailable"),
-      );
-    });
+  function loadWidget() {
+    fetch(API_BASE + "/earnedstar/reviews/embed/" + encodeURIComponent(config.key))
+      .then(function (res) {
+        if (!res.ok) throw new Error("EarnedStar widget failed to load");
+        return res.json();
+      })
+      .then(render)
+      .catch(function () {
+        var mount = SCRIPT.parentNode || document.body;
+        mount.appendChild(
+          el("div", { fontSize: "12px", color: MUTED, padding: "8px" }, "EarnedStar reviews unavailable"),
+        );
+      });
+  }
+
+  if ("IntersectionObserver" in window && config.widget !== "floating") {
+    var placeholder = el("div", { minHeight: "1px" });
+    SCRIPT.parentNode && SCRIPT.parentNode.insertBefore(placeholder, SCRIPT.nextSibling);
+    var observer = new IntersectionObserver(
+      function (entries) {
+        if (entries[0] && entries[0].isIntersecting) {
+          observer.disconnect();
+          loadWidget();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+    observer.observe(placeholder);
+  } else {
+    loadWidget();
+  }
 })();

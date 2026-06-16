@@ -206,6 +206,9 @@ export type InvitationLookup = {
   merchant_name: string;
   merchant_slug: string;
   order_id: string;
+  customer_name?: string;
+  product_name?: string;
+  purchased_at?: string;
 };
 
 export type AnalyticsDashboard = {

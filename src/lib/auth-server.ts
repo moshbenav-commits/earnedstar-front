@@ -6,6 +6,7 @@ export type AuthSession = {
   userId: string;
   email: string;
   accessToken: string;
+  plan?: string;
 };
 
 export async function getAuthSession(): Promise<AuthSession | null> {
@@ -14,6 +15,7 @@ export async function getAuthSession(): Promise<AuthSession | null> {
       userId: 'dev-owner',
       email: 'dev@earnedstar.local',
       accessToken: 'dev-bypass',
+      plan: 'growth',
     };
   }
 
@@ -34,7 +36,25 @@ export async function getAuthSession(): Promise<AuthSession | null> {
 export async function authHeaders(): Promise<HeadersInit> {
   const session = await getAuthSession();
   if (!session) return {};
-  return { Authorization: `Bearer ${session.accessToken}` };
+
+  const headers: Record<string, string> = {
+    Authorization: `Bearer ${session.accessToken}`,
+  };
+
+  try {
+    const res = await fetch(`${getApiBase()}/earnedstar/auth/me`, {
+      headers: { Authorization: `Bearer ${session.accessToken}` },
+      cache: 'no-store',
+    });
+    if (res.ok) {
+      const me = (await res.json()) as { plan?: string };
+      if (me.plan) headers['X-Business-Plan'] = me.plan;
+    }
+  } catch {
+    // optional plan header
+  }
+
+  return headers;
 }
 
 export async function provisionMerchantAfterSignup(params: {

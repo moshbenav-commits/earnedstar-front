@@ -1,6 +1,15 @@
 export async function submitReview(payload: {
   token: string;
   rating_overall: number;
+  rating_fitment?: number;
+  rating_quality?: number;
+  rating_shipping?: number;
+  rating_description?: number;
+  rating_install?: number;
+  ymm_year?: number;
+  ymm_make?: string;
+  ymm_model?: string;
+  ymm_trim?: string;
   review_title?: string;
   review_text: string;
   customer_name: string;

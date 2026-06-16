@@ -13,11 +13,12 @@ export type SavedWidget = {
 };
 
 const WIDGET_TYPES = [
-  { id: "badge", label: "Floating badge" },
-  { id: "carousel", label: "Review carousel" },
-  { id: "grid", label: "Review grid" },
-  { id: "testimonial", label: "Featured testimonial" },
-  { id: "feed", label: "Review feed" },
+  { id: "badge", label: "Badge" },
+  { id: "carousel", label: "Carousel" },
+  { id: "grid", label: "Grid" },
+  { id: "testimonial", label: "Testimonial" },
+  { id: "feed", label: "Feed" },
+  { id: "floating", label: "Floating bubble" },
 ] as const;
 
 export function WidgetBuilder({
@@ -76,9 +77,9 @@ export function WidgetBuilder({
   return (
     <div className="space-y-8">
       <section className="card-surface gold-seam p-6">
-        <h2 className="text-lg font-bold text-navy">Widget builder</h2>
+        <h2 className="text-lg font-bold text-navy">Embeddable review widgets</h2>
         <p className="mt-1 text-sm text-text-muted">
-          Configure an embed, save it to your account, and paste the snippet on your storefront.
+          Copy the code below and paste it anywhere on your website.
           {apiKey ? (
             <span className="mt-1 block font-mono text-xs text-text-faint">API key: {apiKey}</span>
           ) : null}

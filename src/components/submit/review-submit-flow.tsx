@@ -1,41 +1,68 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, Loader2, X } from "lucide-react";
+import { CheckCircle2, ClipboardList, Loader2, Package, Star, Truck, Wrench, X } from "lucide-react";
 import { ProgressiveStarRating } from "@/components/ui/progressive-star-rating";
-import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
+import { ReviewCard } from "@/components/ui/review-card";
 import { Button } from "@/components/ui/button";
 import { submitReview, uploadReviewPhoto } from "@/lib/earnedstar-client";
+import type { InvitationLookup } from "@/lib/earnedstar-server";
+import type { Review } from "@/types/review";
 import { cn } from "@/lib/utils";
 
 const MAX_PHOTOS = 5;
 
-const PROMPTS = [
-  "Mention fit/compatibility",
-  "Describe shipping speed",
-  "Talk about product quality",
-  "Note ease of installation",
+const PROMPT_CHIPS = [
+  "Fits perfectly ✓",
+  "Easy to install",
+  "Correct part",
+  "Fast shipping",
+  "Great quality",
+  "Would buy again",
 ];
 
-const STEPS = ["Rating", "Review", "Photos", "Details", "Done"];
+const ATTRIBUTE_RATINGS = [
+  { key: "fitment" as const, label: "Fitment Accuracy", hint: "Did the part fit your vehicle correctly?", icon: Wrench },
+  { key: "quality" as const, label: "Part Quality", hint: "How was the build quality and materials?", icon: Star },
+  { key: "shipping" as const, label: "Shipping Speed", hint: "How fast did your order arrive?", icon: Truck },
+  { key: "description" as const, label: "Description Accuracy", hint: "Did it match what was shown in the listing?", icon: ClipboardList },
+  { key: "install" as const, label: "Installation Ease", hint: "How difficult was the installation?", icon: Package },
+];
+
+const STEPS = ["Verify", "Rate", "Write", "Publish"];
+
+const YEAR_OPTIONS = Array.from({ length: 37 }, (_, i) => String(2026 - i));
+
+type Ratings = Record<(typeof ATTRIBUTE_RATINGS)[number]["key"], number>;
 
 export function ReviewSubmitFlow({
   token,
+  invitation,
   storeName = "Your Store",
   merchantSlug = "meridian-gear",
 }: {
   token: string;
+  invitation: InvitationLookup;
   storeName?: string;
   merchantSlug?: string;
 }) {
   const [step, setStep] = useState(0);
-  const [rating, setRating] = useState(0);
-  const [title, setTitle] = useState("");
+  const [ratings, setRatings] = useState<Ratings>({
+    fitment: 0,
+    quality: 0,
+    shipping: 0,
+    description: 0,
+    install: 0,
+  });
   const [body, setBody] = useState("");
-  const [name, setName] = useState("");
+  const [name, setName] = useState(invitation.customer_name ?? "");
   const [email, setEmail] = useState("");
-  const [confirmed, setConfirmed] = useState(false);
+  const [ymmYear, setYmmYear] = useState("");
+  const [ymmMake, setYmmMake] = useState("");
+  const [ymmModel, setYmmModel] = useState("");
+  const [ymmTrim, setYmmTrim] = useState("");
+  const [editVehicle, setEditVehicle] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [publishStatus, setPublishStatus] = useState<string | null>(null);
@@ -43,11 +70,46 @@ export function ReviewSubmitFlow({
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const overallRating = useMemo(() => {
+    const vals = Object.values(ratings).filter((v) => v > 0);
+    if (vals.length < 5) return 0;
+    return Math.round((vals.reduce((a, b) => a + b, 0) / vals.length) * 10) / 10;
+  }, [ratings]);
+
+  const purchasedLabel = invitation.purchased_at
+    ? new Date(invitation.purchased_at).toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      })
+    : "Recently";
+
+  const hasVehicle = Boolean(ymmYear && ymmMake && ymmModel);
+
+  const previewReview: Review = {
+    id: "preview",
+    business_id: "preview",
+    customer_name: name || "Verified Buyer",
+    rating_overall: overallRating || 5,
+    review_text: body || "Your review will appear here.",
+    product_name: invitation.product_name,
+    verified_purchase: true,
+    fraud_score: 5,
+    status: "published",
+    created_at: new Date().toISOString(),
+    rating_fitment: ratings.fitment,
+    rating_quality: ratings.quality,
+    rating_shipping: ratings.shipping,
+    rating_description: ratings.description,
+    rating_install: ratings.install,
+  };
+
+  const allRated = Object.values(ratings).every((v) => v > 0);
   const canNext =
-    (step === 0 && rating > 0) ||
-    (step === 1 && body.trim().length >= 20) ||
-    step === 2 ||
-    (step === 3 && name.trim() && email.includes("@") && confirmed);
+    (step === 0 && name.trim().length > 0) ||
+    (step === 1 && allRated) ||
+    (step === 2 && body.trim().length >= 20 && name.trim() && email.includes("@")) ||
+    step === 3;
 
   async function handleSubmit() {
     setSubmitting(true);
@@ -55,8 +117,16 @@ export function ReviewSubmitFlow({
     try {
       const result = await submitReview({
         token,
-        rating_overall: rating,
-        review_title: title.trim() || undefined,
+        rating_overall: Math.round(overallRating),
+        rating_fitment: ratings.fitment,
+        rating_quality: ratings.quality,
+        rating_shipping: ratings.shipping,
+        rating_description: ratings.description,
+        rating_install: ratings.install,
+        ymm_year: ymmYear ? Number(ymmYear) : undefined,
+        ymm_make: ymmMake || undefined,
+        ymm_model: ymmModel || undefined,
+        ymm_trim: ymmTrim || undefined,
         review_text: body.trim(),
         customer_name: name.trim(),
         customer_email: email.trim(),
@@ -81,11 +151,8 @@ export function ReviewSubmitFlow({
       const urls: string[] = [];
       for (const file of batch) {
         if (!file.type.startsWith("image/")) continue;
-        if (file.size > 2 * 1024 * 1024) {
-          throw new Error(`${file.name} exceeds 2 MB limit`);
-        }
-        const url = await uploadReviewPhoto({ token, file });
-        urls.push(url);
+        if (file.size > 2 * 1024 * 1024) throw new Error(`${file.name} exceeds 2 MB limit`);
+        urls.push(await uploadReviewPhoto({ token, file }));
       }
       setPhotoUrls((prev) => [...prev, ...urls].slice(0, MAX_PHOTOS));
     } catch (err) {
@@ -96,10 +163,6 @@ export function ReviewSubmitFlow({
     }
   }
 
-  function removePhoto(url: string) {
-    setPhotoUrls((prev) => prev.filter((u) => u !== url));
-  }
-
   function handleNext() {
     if (step === 3) {
       void handleSubmit();
@@ -108,23 +171,62 @@ export function ReviewSubmitFlow({
     setStep((s) => s + 1);
   }
 
+  useEffect(() => {
+    if (step !== 4) return;
+    if (typeof window === "undefined") return;
+    const canvas = document.createElement("canvas");
+    canvas.style.cssText = "position:fixed;inset:0;pointer-events:none;z-index:9999";
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const pieces = Array.from({ length: 80 }, () => ({
+      x: Math.random() * canvas.width,
+      y: -20,
+      r: 4 + Math.random() * 6,
+      c: ["#F59E0B", "#0F2044", "#059669", "#2A4D8F"][Math.floor(Math.random() * 4)]!,
+      vy: 2 + Math.random() * 4,
+      vx: -2 + Math.random() * 4,
+    }));
+    let frame = 0;
+    const tick = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        ctx.fillStyle = p.c;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      frame += 1;
+      if (frame < 90) requestAnimationFrame(tick);
+      else canvas.remove();
+    };
+    requestAnimationFrame(tick);
+    return () => canvas.remove();
+  }, [step]);
+
   return (
     <div className="mx-auto max-w-xl px-4 py-12">
-      <div className="mb-8 flex justify-center gap-2">
-        {STEPS.map((label, i) => (
-          <div key={label} className="flex flex-col items-center gap-1">
-            <div
-              className={cn(
-                "flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold",
-                i <= step ? "bg-navy text-white" : "bg-surface-2 text-text-faint",
-              )}
-            >
-              {i + 1}
+      {step < 4 ? (
+        <div className="mb-8 flex justify-center gap-2">
+          {STEPS.map((label, i) => (
+            <div key={label} className="flex flex-col items-center gap-1">
+              <div
+                className={cn(
+                  "flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold",
+                  i <= step ? "bg-navy text-white" : "bg-surface-2 text-text-faint",
+                )}
+              >
+                {i + 1}
+              </div>
+              <span className="hidden text-[10px] text-text-faint sm:block">{label}</span>
             </div>
-            <span className="hidden text-[10px] text-text-faint sm:block">{label}</span>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : null}
 
       <AnimatePresence mode="wait">
         <motion.div
@@ -136,58 +238,143 @@ export function ReviewSubmitFlow({
         >
           {step === 0 && (
             <>
-              <h1 className="text-center text-2xl font-bold text-navy">How would you rate your experience?</h1>
-              <p className="mt-2 text-center text-sm text-text-muted">Your review for {storeName}</p>
-              <ProgressiveStarRating value={rating} onChange={setRating} size={60} className="mt-10" />
+              <h1 className="text-2xl font-bold text-navy">Let&apos;s verify your purchase</h1>
+              <p className="mt-2 text-sm text-text-muted">
+                We want to make sure every review on EarnedStar comes from a real buyer. Confirm your order below.
+              </p>
+              <div className="mt-6 rounded-xl border border-border bg-surface-2/60 p-5">
+                <p className="font-semibold text-navy">Order #{invitation.order_id}</p>
+                <p className="mt-2 text-sm text-text-muted">
+                  Product: {invitation.product_name ?? "Your order"}
+                </p>
+                <p className="mt-1 text-sm text-text-muted">Purchased: {purchasedLabel}</p>
+              </div>
+              <div className="mt-6">
+                <p className="text-sm font-semibold text-navy">Your vehicle</p>
+                {hasVehicle && !editVehicle ? (
+                  <p className="mt-2 text-sm text-text-muted">
+                    {ymmYear} {ymmMake} {ymmModel}
+                    {ymmTrim ? ` · ${ymmTrim}` : ""}{" "}
+                    <button type="button" className="text-navy-light underline" onClick={() => setEditVehicle(true)}>
+                      Edit
+                    </button>
+                  </p>
+                ) : (
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                    <select
+                      value={ymmYear}
+                      onChange={(e) => setYmmYear(e.target.value)}
+                      className="rounded-lg border border-border bg-surface px-3 py-2 text-sm"
+                      aria-label="Year"
+                    >
+                      <option value="">Year</option>
+                      {YEAR_OPTIONS.map((y) => (
+                        <option key={y} value={y}>
+                          {y}
+                        </option>
+                      ))}
+                    </select>
+                    <input
+                      placeholder="Make"
+                      value={ymmMake}
+                      onChange={(e) => setYmmMake(e.target.value)}
+                      className="rounded-lg border border-border bg-surface px-3 py-2 text-sm"
+                    />
+                    <input
+                      placeholder="Model"
+                      value={ymmModel}
+                      onChange={(e) => setYmmModel(e.target.value)}
+                      className="rounded-lg border border-border bg-surface px-3 py-2 text-sm"
+                    />
+                    <input
+                      placeholder="Trim (optional)"
+                      value={ymmTrim}
+                      onChange={(e) => setYmmTrim(e.target.value)}
+                      className="rounded-lg border border-border bg-surface px-3 py-2 text-sm"
+                    />
+                  </div>
+                )}
+                <p className="mt-2 text-xs text-text-faint">
+                  Your vehicle helps future buyers know if this part fits their car too.
+                </p>
+              </div>
+              <label className="mt-6 block text-sm font-medium text-navy">
+                Your name
+                <input
+                  type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm"
+                />
+              </label>
             </>
           )}
 
           {step === 1 && (
             <>
-              <h1 className="text-2xl font-bold text-navy">Tell us what happened</h1>
-              <input
-                type="text"
-                placeholder="Short title (optional)"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="mt-6 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm"
-              />
-              <textarea
-                value={body}
-                onChange={(e) => setBody(e.target.value)}
-                rows={5}
-                placeholder="Share details about your order…"
-                className="mt-3 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm"
-              />
-              <p className="mt-1 text-xs text-text-faint">{body.length} chars · min 20</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {PROMPTS.map((p) => (
-                  <button
-                    key={p}
-                    type="button"
-                    onClick={() => setBody((b) => (b ? `${b} ${p}.` : `${p}.`))}
-                    className="rounded-full border border-border bg-surface-2 px-3 py-1 text-xs text-text-muted hover:border-gold/40"
-                  >
-                    {p}
-                  </button>
+              <h1 className="text-2xl font-bold text-navy">Rate your experience</h1>
+              <p className="mt-2 text-sm text-text-muted">Be honest — future buyers are counting on you.</p>
+              <div className="mt-6 space-y-6">
+                {ATTRIBUTE_RATINGS.map((attr) => (
+                  <div key={attr.key}>
+                    <div className="flex items-center gap-2">
+                      <attr.icon size={16} className="text-navy-light" aria-hidden />
+                      <p className="font-semibold text-navy">{attr.label}</p>
+                    </div>
+                    <p className="mt-1 text-xs text-text-muted">{attr.hint}</p>
+                    <ProgressiveStarRating
+                      value={ratings[attr.key]}
+                      onChange={(v) => setRatings((prev) => ({ ...prev, [attr.key]: v }))}
+                      size={36}
+                      showLabels={false}
+                      className="mt-2 justify-start"
+                    />
+                  </div>
                 ))}
               </div>
+              <p className="mt-6 text-sm font-semibold text-navy">
+                Your overall rating: {overallRating > 0 ? `${overallRating}/5 ★` : "—"}
+              </p>
             </>
           )}
 
           {step === 2 && (
             <>
-              <h1 className="text-2xl font-bold text-navy">Add photos or video</h1>
-              <p className="mt-2 text-sm text-text-muted">Optional — up to {MAX_PHOTOS} images, 2 MB each.</p>
+              <h1 className="text-2xl font-bold text-navy">Tell future buyers what you think</h1>
+              <p className="mt-2 text-sm text-text-muted">
+                Reviews with at least 50 characters get prioritized in search results.
+              </p>
+              <textarea
+                value={body}
+                onChange={(e) => setBody(e.target.value)}
+                rows={6}
+                maxLength={2000}
+                placeholder="Share details about fit, quality, and shipping…"
+                className="mt-6 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm"
+              />
+              <p className="mt-1 text-xs text-text-faint">{body.length} / 2000 · min 20</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {PROMPT_CHIPS.map((chip) => (
+                  <button
+                    key={chip}
+                    type="button"
+                    onClick={() => setBody((b) => (b ? `${b} ${chip}.` : `${chip}.`))}
+                    className="rounded-full border border-border bg-surface-2 px-3 py-1 text-xs text-text-muted hover:border-gold/40"
+                  >
+                    {chip}
+                  </button>
+                ))}
+              </div>
               <div
-                className="mt-6 flex min-h-[160px] flex-col items-center justify-center rounded-xl border-2 border-dashed border-border bg-surface-2/50 p-8 text-center"
+                className="mt-6 flex min-h-[120px] flex-col items-center justify-center rounded-xl border-2 border-dashed border-border bg-surface-2/50 p-6 text-center"
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={(e) => {
                   e.preventDefault();
                   void handleFiles(e.dataTransfer.files);
                 }}
               >
-                <p className="text-sm text-text-muted">Drag and drop images here</p>
+                <p className="text-sm text-text-muted">Add photos of your installation (optional but loved by buyers)</p>
                 <input
                   ref={fileInputRef}
                   type="file"
@@ -204,7 +391,7 @@ export function ReviewSubmitFlow({
                   disabled={uploading || photoUrls.length >= MAX_PHOTOS}
                   onClick={() => fileInputRef.current?.click()}
                 >
-                  {uploading ? "Uploading…" : "Browse files"}
+                  {uploading ? "Uploading…" : "Browse photos"}
                 </Button>
               </div>
               {photoUrls.length > 0 ? (
@@ -215,7 +402,7 @@ export function ReviewSubmitFlow({
                       <img src={url} alt="" className="h-full w-full object-cover" />
                       <button
                         type="button"
-                        onClick={() => removePhoto(url)}
+                        onClick={() => setPhotoUrls((prev) => prev.filter((u) => u !== url))}
                         className="absolute right-1 top-1 rounded-full bg-navy/80 p-0.5 text-white"
                         aria-label="Remove photo"
                       >
@@ -225,40 +412,33 @@ export function ReviewSubmitFlow({
                   ))}
                 </div>
               ) : null}
-              {error && step === 2 ? (
-                <p className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>
-              ) : null}
-              <button type="button" className="mt-4 text-sm text-navy-light hover:text-gold" onClick={() => setStep(3)}>
-                Skip this step →
-              </button>
+              <p className="mt-3 text-xs text-text-faint">(Growth plan businesses: video upload enabled)</p>
+              <label className="mt-6 block text-sm font-medium text-navy">
+                Email <span className="font-normal text-text-faint">(verification only)</span>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm"
+                />
+              </label>
             </>
           )}
 
           {step === 3 && (
             <>
-              <h1 className="text-2xl font-bold text-navy">Your details</h1>
-              <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="mt-6 w-full rounded-lg border border-border px-3 py-2 text-sm"
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="mt-3 w-full rounded-lg border border-border px-3 py-2 text-sm"
-              />
-              <p className="mt-1 text-xs text-text-faint">Never shown publicly — used for verification only.</p>
-              <label className="mt-4 flex items-start gap-2 text-sm text-text-muted">
-                <input type="checkbox" checked={confirmed} onChange={(e) => setConfirmed(e.target.checked)} className="mt-1" />
-                I confirm this review is based on my genuine experience.
-              </label>
-              <div className="mt-4 rounded-lg border border-border bg-surface-2 px-4 py-3 text-xs text-text-faint">
-                reCAPTCHA placeholder
+              <h1 className="text-2xl font-bold text-navy">Your review is ready to publish</h1>
+              <p className="mt-2 text-sm text-text-muted">
+                This is exactly how it will appear on {storeName}&apos;s review page.
+              </p>
+              <div className="mt-6">
+                <ReviewCard review={previewReview} />
               </div>
+              <p className="mt-6 text-xs text-text-muted">
+                By publishing, you confirm this review reflects your honest experience. Reviews are subject to our
+                Community Guidelines.
+              </p>
               {error ? (
                 <p className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>
               ) : null}
@@ -268,19 +448,41 @@ export function ReviewSubmitFlow({
           {step === 4 && (
             <div className="text-center">
               <CheckCircle2 size={56} className="mx-auto text-green" />
-              <h1 className="mt-4 text-2xl font-bold text-navy">Thank you — your review has been submitted.</h1>
+              <h1 className="mt-4 text-2xl font-bold text-navy">🎉 Thank you, {name}!</h1>
               <p className="mt-2 text-sm text-text-muted">
-                {publishStatus === "published"
-                  ? "Your review passed AI fraud screening and is live on the Review Profile."
-                  : publishStatus === "flagged"
-                    ? "Our team is reviewing this submission before it can be published."
-                    : "Our AI verifies all reviews within 2 hours before publishing."}
+                Your verified review is now live on {storeName}&apos;s page.
+                {ymmMake ? ` You're helping other ${ymmMake} owners make better decisions.` : ""}
               </p>
-              <EarnedStarMark size={64} centerStyle="none" className="mx-auto mt-8" />
+              {publishStatus === "flagged" ? (
+                <p className="mt-2 text-xs text-amber-800">Our team is reviewing this submission before publishing.</p>
+              ) : null}
               <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <Button href="/">Back to product</Button>
-                <Button variant="ghost" href={`/store/${merchantSlug}`}>
-                  See all reviews
+                <Button
+                  variant="ghost"
+                  onClick={() => {
+                    const url = window.location.href;
+                    window.open(
+                      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+                      "_blank",
+                    );
+                  }}
+                >
+                  Share on Facebook
+                </Button>
+                <Button
+                  variant="ghost"
+                  onClick={() => {
+                    const url = window.location.href;
+                    window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`, "_blank");
+                  }}
+                >
+                  Share on X
+                </Button>
+              </div>
+              <div className="mt-8 flex flex-wrap justify-center gap-3">
+                <Button href={`/reviews/${merchantSlug}`}>See all reviews</Button>
+                <Button variant="ghost" href="/">
+                  Back home
                 </Button>
               </div>
             </div>
@@ -298,12 +500,16 @@ export function ReviewSubmitFlow({
               <Button disabled={!canNext || submitting || uploading} onClick={handleNext}>
                 {submitting ? (
                   <>
-                    <Loader2 size={16} className="mr-1 animate-spin" /> Submitting…
+                    <Loader2 size={16} className="mr-1 animate-spin" /> Publishing…
                   </>
-                ) : step === 3 ? (
-                  "Submit"
+                ) : step === 0 ? (
+                  "Confirm My Purchase →"
+                ) : step === 1 ? (
+                  "Next: Write Your Review →"
+                ) : step === 2 ? (
+                  "Preview My Review →"
                 ) : (
-                  "Next"
+                  "Publish My Review ✓"
                 )}
               </Button>
             </div>
