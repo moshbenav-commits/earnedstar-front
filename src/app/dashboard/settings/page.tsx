@@ -3,12 +3,13 @@ import { BillingSubscribeForm } from "@/components/dashboard/billing-subscribe-f
 import { PlanBadge } from "@/components/ui/plan-badge";
 import type { PlanId } from "@/lib/plans";
 import { fetchDashboardOverview } from "@/lib/earnedstar-server";
-import { mockBusiness } from "@/lib/mock-data";
+import { getDashboardMerchant } from "@/lib/dashboard-merchant";
 
 export default async function DashboardSettingsPage() {
-  const overview = await fetchDashboardOverview("expediaparts");
-  const merchant = overview?.merchant ?? mockBusiness;
-  const plan = ((merchant.plan as PlanId) || "growth");
+  const merchant = await getDashboardMerchant();
+  const overview = await fetchDashboardOverview(merchant.slug);
+  const profile = overview?.merchant ?? merchant;
+  const plan = ((profile.plan as PlanId) || "growth");
 
   return (
     <>
@@ -18,18 +19,18 @@ export default async function DashboardSettingsPage() {
           <h2 className="text-lg font-bold text-navy">Store profile</h2>
           <p className="mt-1 text-sm text-text-muted">
             Public Review Profile:{" "}
-            <a href={`/store/${merchant.slug}`} className="text-navy-light hover:text-gold">
-              earnedstar.com/store/{merchant.slug}
+            <a href={`/store/${profile.slug}`} className="text-navy-light hover:text-gold">
+              earnedstar.com/store/{profile.slug}
             </a>
           </p>
           <dl className="mt-6 space-y-4 text-sm">
             <div>
               <dt className="font-semibold text-navy">Business name</dt>
-              <dd className="mt-1 text-text-muted">{merchant.name}</dd>
+              <dd className="mt-1 text-text-muted">{profile.name}</dd>
             </div>
             <div>
               <dt className="font-semibold text-navy">Website</dt>
-              <dd className="mt-1 text-text-muted">{merchant.website_url ?? "—"}</dd>
+              <dd className="mt-1 text-text-muted">{profile.website_url ?? "—"}</dd>
             </div>
             <div>
               <dt className="font-semibold text-navy">Plan</dt>

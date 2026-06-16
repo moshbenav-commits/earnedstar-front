@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-export function SendInvitationForm() {
+export function SendInvitationForm({ merchantSlug = "expediaparts" }: { merchantSlug?: string }) {
   const [email, setEmail] = useState("");
   const [orderId, setOrderId] = useState("");
   const [name, setName] = useState("");
@@ -15,7 +15,7 @@ export function SendInvitationForm() {
     setLoading(true);
     setResult(null);
     try {
-      const res = await fetch("/api/earnedstar/invitations/send?slug=expediaparts", {
+      const res = await fetch(`/api/earnedstar/invitations/send?slug=${merchantSlug}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

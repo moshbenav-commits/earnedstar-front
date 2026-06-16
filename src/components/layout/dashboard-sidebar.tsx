@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { LayoutDashboard, Star, Send, BarChart2, Layout, Settings, LogOut, Lock } from "lucide-react";
 import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 import { PlanBadge } from "@/components/ui/plan-badge";
@@ -25,6 +26,16 @@ export function DashboardSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const plan = getCurrentPlan();
+  const [merchantName, setMerchantName] = useState("ExpediaParts");
+
+  useEffect(() => {
+    fetch("/api/earnedstar/auth/me")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data?.name) setMerchantName(data.name as string);
+      })
+      .catch(() => undefined);
+  }, []);
 
   async function handleLogout() {
     await fetch("/api/auth/logout", { method: "POST" });
@@ -59,7 +70,7 @@ export function DashboardSidebar() {
       </nav>
       <div className="border-t border-border p-4">
         <PlanBadge plan={plan} />
-        <p className="mt-3 text-sm font-semibold text-navy">ExpediaParts</p>
+        <p className="mt-3 text-sm font-semibold text-navy">{merchantName}</p>
         <button
           type="button"
           onClick={() => void handleLogout()}

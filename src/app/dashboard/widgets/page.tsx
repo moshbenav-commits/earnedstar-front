@@ -6,6 +6,7 @@ import {
   EarnedStarPhotoBadge,
   EarnedStarPhotoBadgeVariants,
 } from "@/components/brand/earnedstar-photo-badge";
+import { EarnedStarBadge } from "@/components/ui/earnedstar-badge";
 import { BADGE_PHOTO_VARIANTS } from "@/lib/badge-photo-assets";
 import { mockBusiness } from "@/lib/mock-data";
 
@@ -44,6 +45,16 @@ export default function WidgetsPage() {
         <p className="text-text-secondary">
           Copy embed code for your store badge. Swap navy, gold, or white and drop your logo in the center.
         </p>
+
+        <section className="card-surface mt-8 p-6">
+          <h2 className="text-lg font-bold text-navy">Origami badge variants (ES-AC-07)</h2>
+          <div className="mt-6 flex flex-wrap gap-4">
+            <EarnedStarBadge variant="pill" />
+            <EarnedStarBadge variant="card" merchantName="ExpediaParts" />
+            <EarnedStarBadge variant="stamp" />
+            <EarnedStarBadge variant="dark" />
+          </div>
+        </section>
 
         <section className="card-surface mt-8 p-6">
           <h2 className="text-lg font-bold text-navy">Photo badge — color variants</h2>

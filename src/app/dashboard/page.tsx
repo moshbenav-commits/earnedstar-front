@@ -5,12 +5,14 @@ import { ReviewsTable } from "@/components/dashboard/reviews-table";
 import { WidgetsPanel } from "@/components/dashboard/widgets-panel";
 import { InvitationsList } from "@/components/dashboard/invitations-list";
 import { fetchDashboardOverview, fetchInvitations } from "@/lib/earnedstar-server";
+import { getDashboardMerchant } from "@/lib/dashboard-merchant";
 import { mockReviews } from "@/lib/mock-data";
 
 export default async function DashboardHomePage() {
+  const merchant = await getDashboardMerchant();
   const [overview, invitations] = await Promise.all([
-    fetchDashboardOverview("expediaparts"),
-    fetchInvitations("expediaparts", 5),
+    fetchDashboardOverview(merchant.slug),
+    fetchInvitations(merchant.slug, 5),
   ]);
   const reviews = overview?.recentReviews?.length ? overview.recentReviews : mockReviews;
 

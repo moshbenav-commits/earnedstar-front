@@ -36,6 +36,7 @@ export function ReviewSubmitFlow({
   const [confirmed, setConfirmed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [publishStatus, setPublishStatus] = useState<string | null>(null);
 
   const canNext =
     (step === 0 && rating > 0) ||
@@ -47,7 +48,7 @@ export function ReviewSubmitFlow({
     setSubmitting(true);
     setError(null);
     try {
-      await submitReview({
+      const result = await submitReview({
         token,
         rating_overall: rating,
         review_title: title.trim() || undefined,
@@ -55,6 +56,7 @@ export function ReviewSubmitFlow({
         customer_name: name.trim(),
         customer_email: email.trim(),
       });
+      setPublishStatus(result.status);
       setStep(4);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to submit review");
@@ -190,7 +192,11 @@ export function ReviewSubmitFlow({
               <CheckCircle2 size={56} className="mx-auto text-green" />
               <h1 className="mt-4 text-2xl font-bold text-navy">Thank you — your review has been submitted.</h1>
               <p className="mt-2 text-sm text-text-muted">
-                Our AI verifies all reviews within 2 hours before publishing.
+                {publishStatus === "published"
+                  ? "Your review passed AI fraud screening and is live on the Review Profile."
+                  : publishStatus === "flagged"
+                    ? "Our team is reviewing this submission before it can be published."
+                    : "Our AI verifies all reviews within 2 hours before publishing."}
               </p>
               <EarnedStarMark size={64} centerStyle="check" className="mx-auto mt-8" />
               <div className="mt-8 flex flex-wrap justify-center gap-3">

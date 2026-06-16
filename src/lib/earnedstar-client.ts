@@ -15,5 +15,5 @@ export async function submitReview(payload: {
   if (!res.ok) {
     throw new Error((data as { message?: string }).message ?? "Failed to submit review");
   }
-  return data as { ok: boolean; reviewId?: string; status: string };
+      return data as { ok: boolean; reviewId?: string; status: string; fraud_score?: number };
 }
