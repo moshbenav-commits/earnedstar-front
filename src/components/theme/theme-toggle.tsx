@@ -13,7 +13,7 @@ type ThemeToggleProps = {
 };
 
 export function ThemeToggle({ className, compact = false, onLightCard = false }: ThemeToggleProps) {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, canToggle } = useTheme();
   const isDark = theme === "dark";
 
   return (
@@ -21,7 +21,15 @@ export function ThemeToggle({ className, compact = false, onLightCard = false }:
       type="button"
       role="switch"
       aria-checked={isDark}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-disabled={!canToggle}
+      disabled={!canToggle}
+      aria-label={
+        !canToggle
+          ? `Theme set to ${isDark ? "dark" : "light"} mode`
+          : isDark
+            ? "Switch to light mode"
+            : "Switch to dark mode"
+      }
       onClick={toggleTheme}
       className={cn(
         "group inline-flex items-center gap-2 rounded-full border transition duration-200",
@@ -29,6 +37,7 @@ export function ThemeToggle({ className, compact = false, onLightCard = false }:
           ? "border-border bg-surface-2 text-navy hover:border-gold/40 hover:bg-gold-pale/60"
           : "border-white/20 bg-white/10 text-white hover:border-gold/45 hover:bg-white/15",
         compact ? "p-1.5" : "px-3 py-1.5 text-xs font-semibold uppercase tracking-wider",
+        !canToggle && "cursor-default opacity-60 hover:border-white/20 hover:bg-white/10",
         className,
       )}
       data-surface={onLightCard ? "light" : "dark"}

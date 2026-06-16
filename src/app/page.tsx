@@ -11,12 +11,10 @@ import { TestimonialsSection } from "@/components/marketing/testimonials-section
 import { PricingSection } from "@/components/marketing/pricing-section";
 import { FaqSection } from "@/components/marketing/faq-section";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
-import { ScrollThemeSync } from "@/components/theme/scroll-theme-sync";
 
 export default function HomePage() {
   return (
     <>
-      <ScrollThemeSync />
       <MarketingNav />
       <AnnouncementStrip />
       <main>

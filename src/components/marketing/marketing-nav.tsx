@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -52,7 +51,6 @@ export function MarketingNav() {
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
-          <ThemeToggle compact className="hidden lg:inline-flex" />
           <Button
             variant="ghost"
             size="sm"
