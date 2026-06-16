@@ -8,16 +8,21 @@ export async function GET(
   { params }: { params: Promise<{ slug: string }> },
 ) {
   const { slug } = await params;
-  const limit = req.nextUrl.searchParams.get("limit") ?? "8";
-  const offset = req.nextUrl.searchParams.get("offset") ?? "0";
-  const res = await fetch(
-    `${getApiBase()}/earnedstar/reviews/${slug}?limit=${limit}&offset=${offset}`,
-    { next: { revalidate: 60 } },
-  );
+  const sp = req.nextUrl.searchParams;
+  const query = new URLSearchParams();
+  for (const key of ["limit", "offset", "page", "sort", "min_rating", "ymm_year", "ymm_make", "ymm_model", "has_photos"]) {
+    const val = sp.get(key);
+    if (val) query.set(key, val);
+  }
+  const res = await fetch(`${getApiBase()}/earnedstar/reviews/${slug}?${query.toString()}`, {
+    next: { revalidate: 60 },
+  });
   if (!res.ok) {
     return NextResponse.json([], { status: res.status });
   }
   const rows = (await res.json()) as Record<string, unknown>[];
   const mapped: Review[] = rows.map(mapReview);
-  return NextResponse.json(mapped);
+  return NextResponse.json(mapped, {
+    headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120" },
+  });
 }
