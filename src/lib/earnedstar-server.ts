@@ -1,9 +1,6 @@
 import type { Review } from "@/types/review";
 import type { Merchant } from "@/types/review";
-
-const API =
-  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ??
-  "https://earnedstar-back.vercel.app/api";
+import { getApiBase } from "@/lib/api";
 
 const MERCHANT_SLUG = "expediaparts";
 
@@ -42,7 +39,7 @@ function mapReview(row: Record<string, unknown>): Review {
 
 export async function fetchMerchant(slug: string): Promise<Merchant | null> {
   try {
-    const res = await fetch(`${API}/earnedstar/merchants/${slug}`, {
+    const res = await fetch(`${getApiBase()}/earnedstar/merchants/${slug}`, {
       next: { revalidate: 120 },
     });
     if (!res.ok) return null;
@@ -54,7 +51,7 @@ export async function fetchMerchant(slug: string): Promise<Merchant | null> {
 
 export async function fetchPublishedReviews(slug: string, limit = 50): Promise<Review[]> {
   try {
-    const res = await fetch(`${API}/earnedstar/reviews/${slug}?limit=${limit}`, {
+    const res = await fetch(`${getApiBase()}/earnedstar/reviews/${slug}?limit=${limit}`, {
       next: { revalidate: 120 },
     });
     if (!res.ok) return [];
@@ -69,7 +66,7 @@ export async function fetchDashboardOverview(
   slug = MERCHANT_SLUG,
 ): Promise<DashboardOverview | null> {
   try {
-    const res = await fetch(`${API}/earnedstar/dashboard/overview?slug=${slug}`, {
+    const res = await fetch(`${getApiBase()}/earnedstar/dashboard/overview?slug=${slug}`, {
       next: { revalidate: 60 },
     });
     if (!res.ok) return null;

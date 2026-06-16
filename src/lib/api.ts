@@ -1,12 +1,15 @@
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') ?? 'http://localhost:8080/api';
-
+/** Canonical EarnedStar API base — earnedstar-back in prod, :8081 locally. */
 export function getApiBase(): string {
-  return API_BASE;
+  return (
+    process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') ??
+    (process.env.NODE_ENV === 'production'
+      ? 'https://earnedstar-back.vercel.app/api'
+      : 'http://localhost:8081/api')
+  );
 }
 
 export async function fetchFromApi<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`, {
+  const res = await fetch(`${getApiBase()}${path}`, {
     ...init,
     headers: {
       'Content-Type': 'application/json',
