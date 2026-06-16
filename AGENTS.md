@@ -35,7 +35,7 @@ Production domain: `https://earnedstar.com` — DNS on GoDaddy (see below).
 | Vercel project | `expedia-solutions/earnedstar` |
 | Project ID | `prj_QgVjY1LDuLbTxfq7h3HjyglwXuH7` |
 | GitHub | `moshbenav-commits/earnedstar-front` (renamed from ExpediaParts-Rewards-Front) |
-| Env (production) | `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_SITE_URL` |
+| Env (production) | `NEXT_PUBLIC_API_URL=https://earnedstar-back.vercel.app/api`, `NEXT_PUBLIC_SITE_URL` |
 
 ### GoDaddy DNS (you — ~2 min)
 
@@ -61,7 +61,7 @@ vercel deploy --prod --yes
 ## API wiring
 
 BFF pattern like `expedia-parts-front`:
-- `NEXT_PUBLIC_API_URL` → earnedstar-back production API (or gamma during transition)
+- `NEXT_PUBLIC_API_URL=https://earnedstar-back.vercel.app/api`
 - Session cookies via `src/app/api/**` — never raw JWT in browser
 
 ## Design (v2)
@@ -81,6 +81,10 @@ BFF pattern like `expedia-parts-front`:
 | `/submit/[token]` | 5-step review submission flow |
 | `/store/[slug]` | Public review profile (filters + sidebar) |
 
-## Backend repo
+## Backend (`earnedstar-back`)
 
-`earnedstar-back` — merchants, reviews, invitations, widgets, billing (Authorize.net ARB stub). See `../earnedstar-back/AGENTS.md`.
+Standalone Nest API — merchants, reviews, invitations, widgets, billing stub. See `../earnedstar-back/AGENTS.md`.
+
+| Vercel project | `expedia-solutions/earnedstar-back` |
+| Project ID | `prj_L8rtLqEJ9qiIOYgsvmaFPjvzCaAR` |
+| Production API | `https://earnedstar-back.vercel.app/api` |
