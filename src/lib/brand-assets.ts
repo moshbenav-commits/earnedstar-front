@@ -1,5 +1,9 @@
 /** Photoreal 3D leather logo — earnedstar/public/brand/photo/ */
 
+export const LOGO_3D_HORIZONTAL_SRC = "/brand/png/logo-3d-horizontal-primary.png";
+export const MARK_3D_NAVY_GOLD_SRC = "/brand/png/mark-3d-navy-gold.png";
+export const LOGO_3D_LOCKUP_MIN_SIZE = 100;
+
 export const PHOTO_LOGO_SIZES = [16, 32, 48, 64, 96, 128, 192, 256, 512, 1024] as const;
 export type PhotoLogoSize = (typeof PHOTO_LOGO_SIZES)[number];
 
