@@ -5,9 +5,9 @@ const platforms = [
 
 export function TrustBar() {
   return (
-    <section className="border-y border-border bg-surface py-6">
+    <section className="border-y border-white/10 bg-navy-mid py-6" data-surface="dark">
       <div className="mx-auto max-w-7xl px-4">
-        <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-text-faint">
+        <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-white/45">
           Trusted by stores selling on
         </p>
         <div className="marquee-mask overflow-hidden">
@@ -15,7 +15,7 @@ export function TrustBar() {
             {[...platforms, ...platforms].map((name, i) => (
               <span
                 key={`${name}-${i}`}
-                className="inline-flex rounded-full border border-border bg-bg px-4 py-1.5 text-sm text-text-muted"
+                className="inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm text-white/70"
               >
                 {name}
               </span>

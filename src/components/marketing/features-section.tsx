@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Shield, BadgeCheck, Search, Mail, Palette, BarChart3 } from "lucide-react";
+import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
 
 const features = [
   {
@@ -12,9 +13,10 @@ const features = [
   },
   {
     large: true,
-    title: "The EarnedStar Badge",
-    body: "Four embed variants — Pill, Card, Stamp, and Dark — that look like they came from a real institution. Merchants display them with pride.",
+    title: "The Origami EarnedStar Badge",
+    body: "Four embed variants — Pill, Card, Stamp, and Dark — with your logo in the center medallion. Merchants display them with pride.",
     icon: BadgeCheck,
+    showMark: true,
   },
   {
     title: "Verified by Purchase",
@@ -33,14 +35,14 @@ const features = [
   },
   {
     title: "White-Label for Agencies",
-    body: "Custom domain, your logo, 25 sub-accounts — one Agency plan.",
+    body: "Custom domain, your logo in the star center, 25 sub-accounts — one Agency plan.",
     icon: Palette,
   },
 ];
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="bg-bg py-24">
+    <section id="features" className="section-warm py-24">
       <div className="mx-auto max-w-7xl px-4">
         <p className="text-center text-xs font-semibold uppercase tracking-widest text-navy-light">Why EarnedStar</p>
         <h2 className="mt-3 text-center text-3xl font-bold text-navy sm:text-4xl">
@@ -58,9 +60,13 @@ export function FeaturesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className={`card-surface p-6 ${feature.large ? "lg:col-span-3" : "lg:col-span-2"}`}
+              className={`card-surface gold-seam p-6 ${feature.large ? "lg:col-span-3" : "lg:col-span-2"}`}
             >
-              <feature.icon size={24} className="mb-4 text-gold" aria-hidden />
+              {feature.showMark ? (
+                <EarnedStarMark size={48} centerStyle="check" className="mb-4" />
+              ) : (
+                <feature.icon size={24} className="mb-4 text-gold" aria-hidden />
+              )}
               <h3 className="text-lg font-bold text-navy">{feature.title}</h3>
               <p className="mt-2 text-sm text-text-muted">{feature.body}</p>
             </motion.div>
@@ -69,7 +75,7 @@ export function FeaturesSection() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="card-surface p-6 lg:col-span-2"
+            className="card-surface gold-seam p-6 lg:col-span-2"
           >
             <BarChart3 size={24} className="mb-4 text-gold" aria-hidden />
             <h3 className="text-lg font-bold text-navy">Full Analytics</h3>

@@ -16,7 +16,7 @@ B2B SaaS verified review platform at **earnedstar.com** — for any e-commerce m
 - [`../docs/prompts/earnedstar/DESIGN.md`](../docs/prompts/earnedstar/DESIGN.md) — navy `#0F2044` + gold `#F59E0B`, light mode default
 - [`../docs/prompts/earnedstar/MASTER_AI_PROMPT.md`](../docs/prompts/earnedstar/MASTER_AI_PROMPT.md)
 - [`../docs/prompts/earnedstar/LOGO_DESIGN_BRIEF.md`](../docs/prompts/earnedstar/LOGO_DESIGN_BRIEF.md)
-- [`../docs/prompts/earnedstar/PROGRESSIVE_STAR_RATING.html`](../docs/prompts/earnedstar/PROGRESSIVE_STAR_RATING.html)
+- [`../docs/prompts/earnedstar/CURSOR_BUILD_PROMPTS.md`](../docs/prompts/earnedstar/CURSOR_BUILD_PROMPTS.md) — per-page Cursor task prompts
 
 ## Deploy
 
@@ -78,8 +78,8 @@ BFF pattern like `expedia-parts-front`:
 |-------|---------|
 | `/` | Marketing landing |
 | `/dashboard` | Merchant dashboard |
-| `/store/[slug]` | Public review profile |
-| `/submit/[token]` | Review submission |
+| `/submit/[token]` | 5-step review submission flow |
+| `/store/[slug]` | Public review profile (filters + sidebar) |
 
 ## Next backend work (expedia-parts-back)
 

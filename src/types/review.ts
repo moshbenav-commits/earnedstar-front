@@ -6,11 +6,15 @@ export interface Review {
   customer_name: string;
   order_id?: string;
   rating_overall: number;
+  review_title?: string;
   review_text: string;
+  product_name?: string;
   verified_purchase: boolean;
   fraud_score: number;
   status: ReviewStatus;
   business_response?: string;
+  helpful_yes?: number;
+  helpful_no?: number;
   created_at: string;
   /** Optional vertical-specific metadata (fitment, size, etc.) */
   metadata?: Record<string, string>;

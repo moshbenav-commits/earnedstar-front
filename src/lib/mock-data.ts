@@ -1,3 +1,5 @@
+import type { Review } from "@/types/review";
+
 export const mockBusiness = {
   id: "1",
   name: "ExpediaParts",
@@ -6,19 +8,33 @@ export const mockBusiness = {
   plan: "growth" as const,
   review_count: 2847,
   avg_rating: 4.9,
+  response_rate: 68,
+  joined_year: 2026,
 };
 
-export const mockReviews = [
+export const ratingDistribution = [
+  { stars: 5, count: 2410, pct: 84.6, color: "#F59E0B" },
+  { stars: 4, count: 312, pct: 11.0, color: "#84CC16" },
+  { stars: 3, count: 85, pct: 3.0, color: "#EAB308" },
+  { stars: 2, count: 28, pct: 1.0, color: "#F97316" },
+  { stars: 1, count: 12, pct: 0.4, color: "#EF4444" },
+];
+
+export const mockReviews: Review[] = [
   {
     id: "r1",
     business_id: "1",
     customer_name: "Marcus T.",
     order_id: "ORD-48291",
     rating_overall: 5,
+    review_title: "Perfect fit on my 2018 Camry",
     review_text: "Exactly what I ordered. Fast shipping and the product matched the listing perfectly. Would buy again.",
+    product_name: "OEM Brake Pad Set — Front Axle",
     verified_purchase: true,
     fraud_score: 8,
-    status: "published" as const,
+    status: "published",
+    helpful_yes: 12,
+    helpful_no: 0,
     created_at: "2026-06-01T14:22:00Z",
   },
   {
@@ -28,10 +44,13 @@ export const mockReviews = [
     order_id: "ORD-48102",
     rating_overall: 5,
     review_text: "Great quality and customer service responded within hours. Setup was straightforward.",
+    product_name: "All-Weather Floor Mat Kit",
     verified_purchase: true,
     fraud_score: 12,
-    status: "published" as const,
+    status: "published",
     business_response: "Thank you, Diane! We appreciate you taking the time to share your experience.",
+    helpful_yes: 8,
+    helpful_no: 1,
     created_at: "2026-05-28T09:15:00Z",
   },
   {
@@ -41,9 +60,12 @@ export const mockReviews = [
     order_id: "ORD-47988",
     rating_overall: 4,
     review_text: "Solid product quality. Shipping took a day longer than expected but overall a good experience.",
+    product_name: "LED Headlight Assembly — Pair",
     verified_purchase: true,
     fraud_score: 15,
-    status: "published" as const,
+    status: "published",
+    helpful_yes: 5,
+    helpful_no: 0,
     created_at: "2026-05-25T16:40:00Z",
   },
   {
@@ -53,17 +75,67 @@ export const mockReviews = [
     order_id: "ORD-47856",
     rating_overall: 5,
     review_text: "Google stars showed up in our ads within a week of collecting reviews through EarnedStar.",
+    product_name: "Cabin Air Filter — Premium",
     verified_purchase: true,
     fraud_score: 5,
-    status: "published" as const,
+    status: "published",
+    helpful_yes: 14,
+    helpful_no: 0,
     created_at: "2026-05-20T11:00:00Z",
+  },
+  {
+    id: "r5",
+    business_id: "1",
+    customer_name: "James P.",
+    order_id: "ORD-47701",
+    rating_overall: 3,
+    review_text: "Product was fine but installation instructions could be clearer.",
+    product_name: "Radiator Hose — Upper",
+    verified_purchase: true,
+    fraud_score: 22,
+    status: "pending",
+    helpful_yes: 2,
+    helpful_no: 0,
+    created_at: "2026-06-10T08:30:00Z",
+  },
+  {
+    id: "r6",
+    business_id: "1",
+    customer_name: "Unknown User",
+    order_id: "ORD-47650",
+    rating_overall: 1,
+    review_text: "Never received item.",
+    product_name: "Side Mirror — Driver",
+    verified_purchase: false,
+    fraud_score: 87,
+    status: "flagged",
+    helpful_yes: 0,
+    helpful_no: 3,
+    created_at: "2026-06-11T19:00:00Z",
   },
 ];
 
 export const dashboardStats = {
   totalReviews: 2847,
-  weeklyDelta: 12,
+  weeklyDeltaPct: 12,
   avgRating: 4.9,
-  pendingResponses: 3,
+  inviteResponseRate: 34,
+  googleSellerRating: 4.9,
+  googleSellerActive: true,
   fraudBlocked: 47,
 };
+
+export const activeWidgets = [
+  { id: "w1", name: "Carousel", type: "Carousel", views: 12400, ctr: "3.2%" },
+  { id: "w2", name: "Origami Badge", type: "Badge", views: 48200, ctr: "5.8%" },
+  { id: "w3", name: "Floating Bar", type: "Floating Bar", views: 8900, ctr: "2.1%" },
+  { id: "w4", name: "Inline Reviews", type: "Inline", views: 22100, ctr: "4.4%" },
+];
+
+export const recentInvitations = [
+  { id: "i1", email: "m***@gmail.com", orderId: "ORD-48310", channel: "Email", status: "Completed", sentAt: "Jun 14" },
+  { id: "i2", email: "s***@yahoo.com", orderId: "ORD-48308", channel: "SMS", status: "Opened", sentAt: "Jun 14" },
+  { id: "i3", email: "j***@outlook.com", orderId: "ORD-48305", channel: "Email", status: "Sent", sentAt: "Jun 13" },
+  { id: "i4", email: "a***@icloud.com", orderId: "ORD-48299", channel: "Email", status: "Bounced", sentAt: "Jun 13" },
+  { id: "i5", email: "r***@gmail.com", orderId: "ORD-48295", channel: "SMS", status: "Completed", sentAt: "Jun 12" },
+];

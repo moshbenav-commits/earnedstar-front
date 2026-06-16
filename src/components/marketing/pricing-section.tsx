@@ -38,7 +38,7 @@ const plans = [
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="bg-surface py-24">
+    <section id="pricing" className="section-warm py-24">
       <div className="mx-auto max-w-7xl px-4">
         <p className="text-center text-xs font-semibold uppercase tracking-widest text-navy-light">Pricing</p>
         <h2 className="mt-3 text-center text-3xl font-bold text-navy">Simple pricing. No invite caps. No surprises.</h2>
@@ -47,7 +47,7 @@ export function PricingSection() {
         </p>
         <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {plans.map((plan) => (
-            <div key={plan.id} className={cn("card-surface relative flex flex-col p-6", plan.popular && "glow-growth")}>
+            <div key={plan.id} className={cn("card-surface relative flex flex-col p-6", plan.popular && "glow-growth gold-seam")}>
               {plan.badge && (
                 <span className={cn(
                   "absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-0.5 text-xs font-semibold",
@@ -68,7 +68,7 @@ export function PricingSection() {
                   </li>
                 ))}
               </ul>
-              <Button variant={plan.popular ? "primary" : "ghost"} className="mt-6 w-full" href="/signup">{plan.cta}</Button>
+              <Button variant={plan.popular ? "gold" : "primary"} className="mt-6 w-full" href="/signup">{plan.cta}</Button>
             </div>
           ))}
         </div>

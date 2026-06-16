@@ -31,13 +31,13 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="bg-bg py-24">
+    <section className="border-y border-border bg-surface-2 py-24">
       <div className="mx-auto max-w-7xl px-4">
         <h2 className="text-center text-3xl font-bold text-navy">What store owners say</h2>
         <div className="marquee-mask mt-12 overflow-hidden">
           <div className="marquee-track flex gap-6">
             {[...testimonials, ...testimonials].map((t, i) => (
-              <article key={`${t.name}-${i}`} className="card-surface w-[340px] shrink-0 p-6">
+              <article key={`${t.name}-${i}`} className="card-surface gold-seam w-[340px] shrink-0 p-6">
                 <StarRating rating={t.rating} size="sm" />
                 <p className="mt-4 text-sm text-text-muted">&ldquo;{t.quote}&rdquo;</p>
                 <p className="mt-4 text-sm font-semibold text-navy">{t.name}</p>

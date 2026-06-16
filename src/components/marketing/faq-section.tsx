@@ -44,9 +44,9 @@ export function FaqSection() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="bg-bg-surface py-24">
+    <section id="faq" className="section-stone py-24">
       <div className="mx-auto max-w-3xl px-4">
-        <h2 className="text-center text-3xl font-semibold text-text-primary">
+        <h2 className="text-center text-3xl font-bold text-navy">
           Questions? We&apos;ve got answers.
         </h2>
         <div className="mt-12 space-y-2">
@@ -54,11 +54,11 @@ export function FaqSection() {
             <div key={faq.q} className="card-surface overflow-hidden">
               <button
                 type="button"
-                className="flex w-full items-center justify-between p-4 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+                className="flex w-full items-center justify-between p-4 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                 onClick={() => setOpen(open === i ? null : i)}
                 aria-expanded={open === i}
               >
-                <span className="font-medium text-text-primary">{faq.q}</span>
+                <span className="font-medium text-navy">{faq.q}</span>
                 <ChevronDown
                   size={20}
                   className={cn("shrink-0 text-text-muted transition", open === i && "rotate-180")}
@@ -72,7 +72,7 @@ export function FaqSection() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.22 }}
                   >
-                    <p className="border-t border-border px-4 py-4 text-sm text-text-secondary">
+                    <p className="border-t border-border px-4 py-4 text-sm text-text-muted">
                       {faq.a}
                     </p>
                   </motion.div>

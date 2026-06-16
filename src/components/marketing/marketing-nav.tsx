@@ -19,7 +19,7 @@ export function MarketingNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -29,34 +29,46 @@ export function MarketingNav() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition duration-200",
-        scrolled ? "border-b border-border bg-surface/90 backdrop-blur-md" : "bg-transparent",
+        scrolled
+          ? "border-b border-white/10 bg-navy/95 shadow-lg backdrop-blur-md"
+          : "bg-transparent",
       )}
+      data-surface="dark"
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/">
-          <EarnedStarLogo />
+          <EarnedStarLogo variant="light" size={30} />
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="text-sm text-text-muted hover:text-navy">
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-sm text-white/70 transition hover:text-gold"
+            >
               {link.label}
             </a>
           ))}
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Button variant="ghost" size="sm" href="/login">
+          <Button
+            variant="ghost"
+            size="sm"
+            href="/login"
+            className="border-white/15 text-white/80 hover:border-white/30 hover:text-white"
+          >
             Sign In
           </Button>
-          <Button size="sm" href="/signup">
+          <Button variant="gold" size="sm" href="/signup">
             Start Free Trial
           </Button>
         </div>
 
         <button
           type="button"
-          className="rounded-md p-2 text-text-muted md:hidden"
+          className="rounded-md p-2 text-white/80 md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >
@@ -65,15 +77,24 @@ export function MarketingNav() {
       </nav>
 
       {mobileOpen && (
-        <div className="border-b border-border bg-surface px-4 py-4 md:hidden">
+        <div className="border-b border-white/10 bg-navy px-4 py-4 md:hidden">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="block py-2 text-sm text-text-muted" onClick={() => setMobileOpen(false)}>
+            <a
+              key={link.href}
+              href={link.href}
+              className="block py-2 text-sm text-white/75"
+              onClick={() => setMobileOpen(false)}
+            >
               {link.label}
             </a>
           ))}
           <div className="mt-4 flex flex-col gap-2">
-            <Button variant="ghost" href="/login" className="w-full">Sign In</Button>
-            <Button href="/signup" className="w-full">Start Free Trial</Button>
+            <Button variant="ghost" href="/login" className="w-full border-white/15 text-white">
+              Sign In
+            </Button>
+            <Button variant="gold" href="/signup" className="w-full">
+              Start Free Trial
+            </Button>
           </div>
         </div>
       )}

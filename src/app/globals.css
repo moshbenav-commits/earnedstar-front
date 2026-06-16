@@ -12,15 +12,18 @@
   --green: #059669;
   --green-dark: #047857;
   --green-pale: #ecfdf5;
-  --bg: #fafaf9;
-  --surface: #ffffff;
-  --surface-2: #f4f4f0;
-  --border: rgba(15, 32, 68, 0.1);
-  --border-strong: rgba(15, 32, 68, 0.2);
+  /* Warmer stone default — less clinical white */
+  --bg: #f0ede6;
+  --surface: #faf9f6;
+  --surface-2: #e8e4dc;
+  --surface-offset: #e2ddd4;
+  --border: rgba(15, 32, 68, 0.12);
+  --border-strong: rgba(15, 32, 68, 0.22);
   --text: #0f2044;
-  --text-muted: #64748b;
-  --text-faint: #94a3b8;
+  --text-muted: #5c6b7a;
+  --text-faint: #8b97a5;
   --dark-bg: #0a1628;
+  --dark-surface: #111827;
   --star-1: #ef4444;
   --star-2: #f97316;
   --star-3: #eab308;
@@ -30,6 +33,7 @@
   --shadow-md: 0 4px 16px rgba(15, 32, 68, 0.1), 0 2px 4px rgba(15, 32, 68, 0.06);
   --shadow-lg: 0 12px 40px rgba(15, 32, 68, 0.14), 0 4px 8px rgba(15, 32, 68, 0.08);
   --shadow-gold: 0 0 0 3px rgba(245, 158, 11, 0.25), 0 8px 32px rgba(245, 158, 11, 0.15);
+  --shadow-navy: 0 20px 60px rgba(10, 22, 40, 0.45);
 }
 
 @theme inline {
@@ -46,11 +50,13 @@
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-surface-offset: var(--surface-offset);
   --color-border: var(--border);
   --color-text: var(--text);
   --color-text-muted: var(--text-muted);
   --color-text-faint: var(--text-faint);
   --color-dark-bg: var(--dark-bg);
+  --color-dark-surface: var(--dark-surface);
   --font-sans: var(--font-jakarta);
   --font-display: var(--font-instrument);
 }
@@ -71,6 +77,27 @@ body {
   font-style: italic;
 }
 
+/* Marketing shells */
+.section-navy {
+  background: linear-gradient(165deg, var(--navy) 0%, var(--dark-bg) 100%);
+  color: #fff;
+}
+
+.section-warm {
+  background: var(--bg);
+}
+
+.section-stone {
+  background: var(--surface-offset);
+}
+
+.hero-mesh {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(245, 158, 11, 0.14), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 85% 80%, rgba(42, 77, 143, 0.35), transparent 50%),
+    linear-gradient(165deg, var(--navy) 0%, var(--dark-bg) 100%);
+}
+
 .card-surface {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -83,9 +110,24 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
+.card-surface-dark {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+}
+
+.card-surface-dark:hover {
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
 .glow-growth {
   box-shadow: var(--shadow-gold);
   border-color: var(--gold) !important;
+}
+
+.gold-seam {
+  box-shadow: inset 0 0 0 1px rgba(245, 158, 11, 0.25);
 }
 
 .marquee-mask {
@@ -103,6 +145,15 @@ body {
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+@keyframes float-star {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+.animate-float-star {
+  animation: float-star 5s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

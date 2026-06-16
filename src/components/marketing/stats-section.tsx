@@ -41,7 +41,7 @@ function CountUp({
     decimals > 0 ? count.toFixed(decimals) : Math.floor(count).toLocaleString();
 
   return (
-    <span ref={ref} className="text-3xl font-bold text-accent sm:text-4xl">
+    <span ref={ref} className="text-3xl font-bold text-gold sm:text-4xl">
       {prefix}
       {formatted}
       {suffix}
@@ -51,7 +51,7 @@ function CountUp({
 
 export function StatsSection() {
   return (
-    <section className="border-y border-border bg-bg-elevated py-24">
+    <section className="section-navy py-20" data-surface="dark">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 lg:grid-cols-4">
         {stats.map((stat, i) => (
           <motion.div
@@ -68,7 +68,7 @@ export function StatsSection() {
               suffix={stat.suffix}
               decimals={stat.decimals}
             />
-            <p className="mt-2 text-xs font-medium uppercase tracking-widest text-text-muted">
+            <p className="mt-2 text-xs font-medium uppercase tracking-widest text-white/55">
               {stat.label}
             </p>
           </motion.div>

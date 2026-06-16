@@ -45,10 +45,23 @@ export function ReviewCard({
         </div>
         <time className="text-sm text-text-faint" dateTime={review.created_at}>{date}</time>
       </div>
-      <p className="text-text-muted">{review.review_text}</p>
+      <p className="text-text-muted">
+        {review.review_title ? (
+          <span className="mb-1 block font-semibold text-navy">{review.review_title}</span>
+        ) : null}
+        {review.review_text}
+      </p>
+      {review.product_name ? (
+        <p className="mt-2 text-xs text-text-faint">Product: {review.product_name}</p>
+      ) : null}
+      {(review.helpful_yes != null || review.helpful_no != null) && !showActions && (
+        <p className="mt-3 text-xs text-text-faint">
+          Was this helpful? 👍 {review.helpful_yes ?? 0} · 👎 {review.helpful_no ?? 0}
+        </p>
+      )}
       {showResponse && review.business_response && (
-        <div className="mt-4 border-l-4 border-green bg-green-pale/50 p-4">
-          <p className="mb-1 text-xs font-bold uppercase tracking-wider text-green-dark">Store Response</p>
+        <div className="mt-4 rounded-lg border-l-4 border-navy-light bg-navy-pale/40 p-4">
+          <p className="mb-1 text-xs font-bold text-navy">Reply from store</p>
           <p className="text-sm text-text-muted">{review.business_response}</p>
         </div>
       )}
