@@ -1,25 +1,63 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 140" role="img" aria-label="EarnedStar logo stacked">
-  <defs><radialGradient id="grad-logo-s-light" cx="38%" cy="32%" r="68%">
-    <stop offset="0%" stop-color="#1A3566"/><stop offset="55%" stop-color="#0F2044"/><stop offset="100%" stop-color="#070F1E"/>
-  </radialGradient></defs>
   <g transform="translate(30,0) scale(1)">
-    <path d="M50.00,6.00L77.23,35.38L68.04,81.96L31.96,81.96L22.77,35.38Z" fill="url(#grad-logo-s-light)"/>
-  <path d="M50,6 L61,35 L50,65 Z" fill="rgba(255,255,255,0.10)"/>
-  <path d="M50,6 L39,35 L50,65 Z" fill="rgba(0,0,0,0.10)"/>
-  <path d="M91,35 L68,54 L61,35 Z" fill="rgba(255,255,255,0.12)"/>
-  <path d="M9,35 L32,54 L39,35 Z" fill="rgba(0,0,0,0.08)"/>
-  <path d="M77,82 L50,65 L68,54 Z" fill="rgba(255,255,255,0.07)"/>
+    
+  
+  <defs>
+    <radialGradient id="grad-core-logo-s-light" cx="38%" cy="32%" r="68%">
+      <stop offset="0%" stop-color="#1A3566"/>
+      <stop offset="45%" stop-color="#1F3B72"/>
+      <stop offset="100%" stop-color="#070F1E"/>
+    </radialGradient>
+    <radialGradient id="grad-shad-logo-s-light" cx="62%" cy="58%" r="75%">
+      <stop offset="0%" stop-color="#050A16" stop-opacity="0"/>
+      <stop offset="70%" stop-color="#050A16" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#070F1E" stop-opacity="0.32"/>
+    </radialGradient>
+    <radialGradient id="grad-flare-logo-s-light" cx="28%" cy="22%" r="45%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="40%" stop-color="#FFFFFF" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="grad-inset-logo-s-light" cx="50%" cy="52.5%" r="50%">
+      <stop offset="0%" stop-color="#050A16" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#050A16" stop-opacity="0.14"/>
+    </radialGradient>
+    <radialGradient id="grad-disk-logo-s-light" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="55%" stop-color="#F5F5FA"/>
+      <stop offset="100%" stop-color="#E5E7F0"/>
+    </radialGradient>
+    <radialGradient id="grad-ringhi-logo-s-light" cx="49.8%" cy="49.2%" r="45%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="grad-goldring-logo-s-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE68A"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+  </defs>
+  <path d="M50.00,6.00L77.23,35.38L68.04,81.96L31.96,81.96L22.77,35.38Z" fill="url(#grad-core-logo-s-light)"/>
+  <path d="M50.00,6.00L77.23,35.38L68.04,81.96L31.96,81.96L22.77,35.38Z" fill="url(#grad-shad-logo-s-light)"/>
+  <path d="M50.00,6.00L77.23,35.38L68.04,81.96L31.96,81.96L22.77,35.38Z" fill="url(#grad-flare-logo-s-light)"/>
+  
+  <path d="M50,6 L61,35 L50,65 Z" fill="rgba(255,255,255,0.14)"/>
+  <path d="M50,6 L39,35 L50,65 Z" fill="rgba(0,0,0,0.11)"/>
+  <path d="M91,35 L68,54 L61,35 Z" fill="rgba(255,255,255,0.15)"/>
+  <path d="M9,35 L32,54 L39,35 Z" fill="rgba(0,0,0,0.09)"/>
+  <path d="M77,82 L50,65 L68,54 Z" fill="rgba(255,255,255,0.08)"/>
   <path d="M23,82 L50,65 L32,54 Z" fill="rgba(0,0,0,0.07)"/>
   <path d="M50,6 L61,35 L44,26 Z" fill="rgba(255,255,255,0.22)"/>
-  <line x1="50" y1="6" x2="61" y2="35" stroke="rgba(255,255,255,0.18)" stroke-width="0.7"/>
-  <line x1="50" y1="6" x2="39" y2="35" stroke="rgba(0,0,0,0.18)" stroke-width="0.7"/>
-  <line x1="61" y1="35" x2="50" y2="65" stroke="rgba(0,0,0,0.12)" stroke-width="0.7"/>
-  <line x1="91" y1="35" x2="68" y2="54" stroke="rgba(255,255,255,0.14)" stroke-width="0.7"/>
-  <line x1="9" y1="35" x2="32" y2="54" stroke="rgba(0,0,0,0.10)" stroke-width="0.7"/>
 
-    <path d="M50.00,6.00L77.23,35.38L68.04,81.96L31.96,81.96L22.77,35.38Z" fill="none" stroke="rgba(255,255,255,0.20)" stroke-width="0.8"/>
-    <circle cx="50" cy="50" r="17" fill="white" opacity="0.97"/>
-    <circle cx="50" cy="50" r="17" fill="none" stroke="#F59E0B" stroke-width="1.8" opacity="0.85"/><path d="M41 50 L47 56 L59 44" fill="none" stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <line x1="50" y1="6" x2="61" y2="35" stroke="rgba(26,53,102,0.25)" stroke-width="0.35" stroke-dasharray="0.6 1.2"/>
+  <line x1="50" y1="6" x2="39" y2="35" stroke="rgba(26,53,102,0.25)" stroke-width="0.35" stroke-dasharray="0.6 1.2"/>
+  <line x1="61" y1="35" x2="50" y2="65" stroke="rgba(26,53,102,0.20)" stroke-width="0.35" stroke-dasharray="0.6 1.2"/>
+  <line x1="91" y1="35" x2="68" y2="54" stroke="rgba(26,53,102,0.20)" stroke-width="0.35" stroke-dasharray="0.6 1.2"/>
+  <line x1="9" y1="35" x2="32" y2="54" stroke="rgba(26,53,102,0.20)" stroke-width="0.35" stroke-dasharray="0.6 1.2"/>
+
+  <path d="M50.00,6.00L77.23,35.38L68.04,81.96L31.96,81.96L22.77,35.38Z" fill="none" stroke="#B45309" stroke-width="0.14" stroke-opacity="0.34"/>
+  <path d="M50.00,6.00L77.23,35.38L68.04,81.96L31.96,81.96L22.77,35.38Z" fill="none" stroke="#FDE68A" stroke-width="0.09" stroke-opacity="0.58"/>
+    <ellipse cx="50" cy="52.5" rx="14.5" ry="14.5" fill="url(#grad-inset-logo-s-light)"/><circle cx="50" cy="50" r="17" fill="url(#grad-disk-logo-s-light)" opacity="0.97"/><circle cx="50" cy="50" r="17" fill="none" stroke="url(#grad-goldring-logo-s-light)" stroke-width="1.8" opacity="0.85"/><circle cx="49.8" cy="49.2" r="15.6" fill="url(#grad-ringhi-logo-s-light)"/><path d="M41 50 L47 56 L59 44" fill="none" stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   <text x="80" y="118" text-anchor="middle" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="22" font-weight="800" fill="#0F2044">Earned</text>
   <text x="128" y="118" text-anchor="middle" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="22" font-weight="800" fill="#F59E0B">Star</text>
