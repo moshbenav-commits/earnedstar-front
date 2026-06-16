@@ -7,6 +7,7 @@ import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { HERO_TAGLINE } from "@/content/earnedstar-trust-copy";
 
 type Tab = "signin" | "signup";
 
@@ -87,9 +88,7 @@ export function AuthPanel({ defaultTab = "signin" }: { defaultTab?: Tab }) {
         data-surface="dark"
       >
         <EarnedStarLogo variant="light" size={32} showBadge={false} />
-        <p className="mt-8 max-w-sm text-lg text-white/80">
-          Verified reviews your customers actually earned — not manufactured.
-        </p>
+        <p className="mt-8 max-w-sm text-lg text-white/80">{HERO_TAGLINE}</p>
         <blockquote className="mt-8 border-l-2 border-gold pl-4 text-sm italic text-white/70">
           &ldquo;Setup took 22 minutes. Google stars in our ads within 4 days.&rdquo;
           <footer className="mt-2 not-italic text-white/50">— Amelia W., EuroParts Chicago</footer>

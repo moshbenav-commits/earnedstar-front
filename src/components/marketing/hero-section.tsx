@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { EarnedStarLuckyStar } from "@/components/brand/earnedstar-lucky-star";
 import { AmbientStars } from "@/components/marketing/ambient-stars";
 import { HeroReviewCard } from "@/components/marketing/hero-review-card";
+import { HERO_EYEBROW, HERO_HEADLINE_BEFORE, HERO_HEADLINE_EMPHASIS, HERO_SUBCOPY } from "@/content/earnedstar-trust-copy";
 
 /** Figma Hero Banner — navy mesh, lucky stars, review-site copy */
 export function HeroSection() {
@@ -26,7 +27,7 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               className="mb-6 inline-flex items-center rounded-full border border-gold/35 bg-gold/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-gold"
             >
-              Verified by purchase
+              {HERO_EYEBROW}
             </motion.span>
 
             <motion.h1
@@ -35,8 +36,8 @@ export function HeroSection() {
               transition={{ delay: 0.1 }}
               className="text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.25rem]"
             >
-              Reviews your customers{" "}
-              <span className="font-display italic text-gold">actually earned.</span>
+              {HERO_HEADLINE_BEFORE}{" "}
+              <span className="font-display italic text-gold">{HERO_HEADLINE_EMPHASIS}</span>
             </motion.h1>
 
             <motion.p
@@ -45,8 +46,7 @@ export function HeroSection() {
               transition={{ delay: 0.2 }}
               className="mt-6 max-w-lg text-lg text-white/70 lg:mx-0 mx-auto"
             >
-              Purchase-verified ratings for any e-commerce store. Fraud-scored by AI before they
-              publish — so shoppers trust what they read.
+              {HERO_SUBCOPY}
             </motion.p>
 
             <motion.div

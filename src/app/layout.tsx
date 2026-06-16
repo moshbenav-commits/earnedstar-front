@@ -17,10 +17,11 @@ const instrument = Instrument_Serif({
   display: "swap",
 });
 
+import { HERO_META_DESCRIPTION, HERO_TAGLINE } from "@/content/earnedstar-trust-copy";
+
 const siteUrl = "https://earnedstar.com";
-const title = "EarnedStar — Reviews Your Customers Actually Earned";
-const description =
-  "Verified by purchase. Fraud-scored by AI. The only badge that means your reviews are real.";
+const title = `EarnedStar — ${HERO_TAGLINE}`;
+const description = HERO_META_DESCRIPTION;
 
 export const metadata: Metadata = {
   title: {

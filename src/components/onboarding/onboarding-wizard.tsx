@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { CheckCircle2 } from "lucide-react";
 import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 import { Button } from "@/components/ui/button";
+import { TRUST_ONBOARDING_BLURB } from "@/content/earnedstar-trust-copy";
 
 const PLATFORMS = ["Shopify", "WooCommerce", "Magento", "BigCommerce", "Custom API"] as const;
 const DELAYS = [3, 5, 7, 14] as const;
@@ -59,7 +60,8 @@ export function OnboardingWizard() {
         {step === 0 && (
           <section className="card-surface gold-seam p-8">
             <h1 className="text-2xl font-bold text-navy">Name your business</h1>
-            <p className="mt-2 text-sm text-text-muted">About 3 minutes — you&apos;ll be collecting reviews by the end.</p>
+            <p className="mt-2 text-sm text-text-muted">{TRUST_ONBOARDING_BLURB}</p>
+            <p className="mt-2 text-xs text-text-faint">About 3 minutes — you&apos;ll be ready to send invitations.</p>
             <div className="mt-6 space-y-4">
               <input
                 placeholder="Business name"

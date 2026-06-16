@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { HERO_TAGLINE } from "@/content/earnedstar-trust-copy";
 
 type BrandImageVariant = "og" | "icon" | "apple";
 
@@ -63,7 +64,7 @@ export function BrandShareImage({ variant }: { variant: BrandImageVariant }): Re
             EarnedStar
           </div>
           <div style={{ fontSize: 34, fontWeight: 500, color: "#a8b4c8", lineHeight: 1.35 }}>
-            Reviews your customers actually earned.
+            {HERO_TAGLINE}
           </div>
           <div
             style={{

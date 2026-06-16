@@ -1,7 +1,7 @@
 {
   "name": "EarnedStar",
   "short_name": "EarnedStar",
-  "description": "Verified reviews your customers actually earned.",
+  "description": "Only verified buyers earn your stars.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0A1628",

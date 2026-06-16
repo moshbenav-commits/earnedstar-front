@@ -81,7 +81,7 @@ export function EarnedStarBadge({
       <div>
         <p className="text-sm font-semibold text-gold">EarnedStar Verified</p>
         <StarRating rating={rating} size="sm" />
-        <p className="text-xs text-white/70">{countLabel} reviews actually earned</p>
+        <p className="text-xs text-white/70">{countLabel} order-verified reviews</p>
       </div>
     </div>
   );

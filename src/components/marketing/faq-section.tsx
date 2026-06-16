@@ -5,7 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+import { FAQ_TRUST_ENTRIES } from "@/content/earnedstar-trust-copy";
+
 const faqs = [
+  ...FAQ_TRUST_ENTRIES,
   {
     q: "Is every review actually verified to a real purchase?",
     a: "Yes — every review is tied to a confirmed order number. When a customer submits, we cross-reference the purchase record in real time. If there's no verified purchase match, the review is flagged before it ever reaches your page.",

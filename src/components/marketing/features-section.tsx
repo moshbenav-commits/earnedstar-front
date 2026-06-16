@@ -20,7 +20,7 @@ const features = [
   },
   {
     title: "Verified by Purchase",
-    body: "Every review ties to a confirmed order. No guest reviews. No open submissions.",
+    body: "Every review ties to a confirmed order invitation. No guest reviews. No open submissions. No adding stars without verification.",
     icon: Shield,
   },
   {
