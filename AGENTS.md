@@ -28,8 +28,35 @@ vercel link          # link to Vercel project on same account
 vercel --prod --yes  # first production deploy
 ```
 
-Production domain: `https://earnedstar.com` (add in Vercel → Domains after first deploy).
+Production domain: `https://earnedstar.com` — DNS on GoDaddy (see below).
 
+**Live now:** https://earnedstar.vercel.app
+
+| Vercel project | `expedia-solutions/earnedstar` |
+| Project ID | `prj_QgVjY1LDuLbTxfq7h3HjyglwXuH7` |
+| GitHub | `moshbenav-commits/earnedstar` (connected) |
+| Env (production) | `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_SITE_URL` |
+
+### GoDaddy DNS (you — ~2 min)
+
+In GoDaddy → **earnedstar.com** → DNS → add/update:
+
+| Type | Name | Value | TTL |
+|------|------|-------|-----|
+| **A** | `@` | `76.76.21.21` | 600 (or default) |
+| **A** | `www` | `76.76.21.21` | 600 |
+
+Remove conflicting **parking** or old **A/CNAME** records for `@` and `www` first.
+
+Optional (Vercel-managed DNS): change nameservers to `ns1.vercel-dns.com` + `ns2.vercel-dns.com` instead of A records.
+
+Propagation: usually 5–30 minutes. Vercel emails when verified.
+
+```bash
+cd earnedstar
+vercel link          # already linked locally
+vercel deploy --prod --yes
+```
 
 ## API wiring
 
