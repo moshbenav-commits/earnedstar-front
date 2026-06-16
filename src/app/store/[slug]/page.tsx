@@ -34,7 +34,8 @@ export default async function PublicReviewProfilePage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: business.name,
-    url: business.website_url,
+    url: business.website_url ?? `https://earnedstar.com/store/${slug}`,
+    image: business.logo_url ?? undefined,
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: business.avg_rating,
@@ -42,6 +43,18 @@ export default async function PublicReviewProfilePage({ params }: PageProps) {
       bestRating: 5,
       worstRating: 1,
     },
+    review: list.slice(0, 20).map((r) => ({
+      "@type": "Review",
+      author: { "@type": "Person", name: r.customer_name },
+      datePublished: r.created_at,
+      reviewBody: r.review_text,
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: r.rating_overall,
+        bestRating: 5,
+        worstRating: 1,
+      },
+    })),
   };
 
   return (

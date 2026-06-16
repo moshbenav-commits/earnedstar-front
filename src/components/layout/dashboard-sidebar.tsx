@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { LayoutDashboard, Star, Send, BarChart2, Layout, Settings, LogOut, Lock, Plug } from "lucide-react";
+import { LayoutDashboard, Star, Send, BarChart2, Layout, Settings, LogOut, Lock, Plug, Share2, Building2 } from "lucide-react";
 import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 import { PlanBadge } from "@/components/ui/plan-badge";
 import type { PlanId } from "@/lib/plans";
@@ -16,6 +16,8 @@ const navItems = [
   { href: "/dashboard/analytics", label: "Analytics", icon: BarChart2, lockStarter: true },
   { href: "/dashboard/widgets", label: "Widgets", icon: Layout },
   { href: "/dashboard/integrations", label: "Integrations", icon: Plug },
+  { href: "/dashboard/syndication", label: "Syndication", icon: Share2, lockStarter: true, lockGrowth: true },
+  { href: "/dashboard/agency", label: "Agency", icon: Building2 },
   { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
 
@@ -52,7 +54,9 @@ export function DashboardSidebar() {
       <nav className="flex-1 space-y-1 p-3">
         {navItems.map((item) => {
           const active = pathname === item.href;
-          const locked = item.lockStarter && plan === "starter";
+          const locked =
+            (item.lockStarter && plan === "starter") ||
+            (item.lockGrowth && (plan === "starter" || plan === "growth"));
           return (
             <Link
               key={item.href}

@@ -41,9 +41,19 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(login);
   }
 
+  if (request.nextUrl.pathname.startsWith('/setup') && !user && !devBypass) {
+    const login = new URL('/login', request.url);
+    login.searchParams.set('next', '/setup');
+    return NextResponse.redirect(login);
+  }
+
+  if (user && request.nextUrl.pathname === '/signup') {
+    return NextResponse.redirect(new URL('/setup', request.url));
+  }
+
   return response;
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/login', '/signup'],
+  matcher: ['/dashboard/:path*', '/login', '/signup', '/setup'],
 };
