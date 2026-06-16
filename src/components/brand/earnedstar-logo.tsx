@@ -1,6 +1,4 @@
-import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { LOGO_3D_HORIZONTAL } from "@/lib/brand-assets";
 import { EarnedStarMark, type EarnedStarMarkProps } from "./earnedstar-mark";
 
 interface EarnedStarLogoProps extends Omit<EarnedStarMarkProps, "darkBg"> {
@@ -22,27 +20,6 @@ export function EarnedStarLogo({
 }: EarnedStarLogoProps) {
   const onDark = variant === "light";
   const wordmarkSize = Math.max(14, Math.round(size * 0.38));
-  const use3dLockup =
-    showWordmark &&
-    style === "origami" &&
-    render !== "svg" &&
-    !onDark &&
-    size >= 100;
-
-  if (use3dLockup) {
-    const height = Math.round(size * 0.42);
-    const width = Math.round(height * (517 / 130));
-    return (
-      <Image
-        src={LOGO_3D_HORIZONTAL}
-        alt="EarnedStar"
-        width={width}
-        height={height}
-        className={cn("shrink-0 object-contain object-left", className)}
-        priority={size >= 120}
-      />
-    );
-  }
 
   return (
     <div className={cn("inline-flex items-center", className)} style={{ gap: Math.round(size * 0.12) }}>
@@ -51,6 +28,7 @@ export function EarnedStarLogo({
         style={style}
         centerStyle={centerStyle}
         darkBg={onDark}
+        render={render}
         {...markProps}
       />
       {showWordmark ? (

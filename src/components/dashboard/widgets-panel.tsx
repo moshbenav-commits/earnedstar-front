@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
+import { EarnedStarPhotoBadge } from "@/components/brand/earnedstar-photo-badge";
 import { activeWidgets } from "@/lib/mock-data";
 
 export function WidgetsPanel() {
@@ -15,7 +15,7 @@ export function WidgetsPanel() {
                 <p className="text-xs text-text-faint">{widget.type}</p>
               </div>
               {widget.type === "Badge" ? (
-                <EarnedStarMark size={36} centerStyle="check" />
+                <EarnedStarPhotoBadge variant="navy" size={40} logoFallback="E" />
               ) : (
                 <div className="h-10 w-16 rounded-md bg-navy-pale" aria-hidden />
               )}

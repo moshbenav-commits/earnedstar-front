@@ -1,0 +1,23 @@
+{
+  "name": "EarnedStar",
+  "short_name": "EarnedStar",
+  "description": "Verified reviews your customers actually earned.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A1628",
+  "theme_color": "#0F2044",
+  "icons": [
+    {
+      "src": "/brand/photo/earnedstar-photo-logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/brand/photo/earnedstar-photo-logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

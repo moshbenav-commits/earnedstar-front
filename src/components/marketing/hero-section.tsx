@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
+import { EarnedStarPhotoBadgeVariants } from "@/components/brand/earnedstar-photo-badge";
+import { EarnedStarLeatherText } from "@/components/brand/earnedstar-leather-text";
 
 export function HeroSection() {
   return (
@@ -71,7 +73,7 @@ export function HeroSection() {
         className="relative z-10 mt-14 flex flex-col items-center lg:mt-0 lg:flex-1"
       >
         <div className="animate-float-star relative">
-          <EarnedStarMark size={160} centerStyle="logo" darkBg className="drop-shadow-[0_24px_48px_rgba(0,0,0,0.45)]" />
+          <EarnedStarMark size={160} centerStyle="logo" preferHero darkBg className="drop-shadow-[0_24px_48px_rgba(0,0,0,0.45)]" />
           <div
             className="pointer-events-none absolute inset-0 rounded-full"
             style={{ boxShadow: "0 0 80px rgba(245,158,11,0.35)" }}
@@ -84,6 +86,11 @@ export function HeroSection() {
             <p className="text-xs font-semibold uppercase tracking-widest text-gold">Merchant badge preview</p>
             <span className="rounded-full bg-green/20 px-2 py-0.5 text-xs font-semibold text-green-pale">Live</span>
           </div>
+          <EarnedStarPhotoBadgeVariants
+            size={72}
+            logoUrl="https://www.expediaparts.com/favicon.ico"
+            className="mb-4"
+          />
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
             {[
               { label: "Reviews", value: "2,847" },
@@ -98,6 +105,8 @@ export function HeroSection() {
             ))}
           </div>
         </div>
+
+        <EarnedStarLeatherText type="motto" width={280} className="mt-8 opacity-90" />
       </motion.div>
     </section>
   );

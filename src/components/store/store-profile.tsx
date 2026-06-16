@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
+import { EarnedStarPhotoBadge } from "@/components/brand/earnedstar-photo-badge";
 import { StarRating } from "@/components/ui/star-rating";
 import { VerifiedBadge } from "@/components/ui/verified-badge";
 import { ReviewCard } from "@/components/ui/review-card";
@@ -48,9 +49,13 @@ export function StoreProfile({ business, reviews }: StoreProfileProps) {
       <header className="border-b border-border bg-surface py-10">
         <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex items-center gap-4">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-gold/30 bg-navy-pale text-2xl font-bold text-navy">
-              {business.name.charAt(0)}
-            </div>
+            <EarnedStarPhotoBadge
+              variant="navy"
+              size={80}
+              logoUrl={business.logo_url}
+              logoFallback={business.name.charAt(0)}
+              className="shrink-0"
+            />
             <div>
               <h1 className="text-2xl font-extrabold text-navy sm:text-3xl">{business.name}</h1>
               <div className="mt-2">
@@ -138,7 +143,13 @@ export function StoreProfile({ business, reviews }: StoreProfileProps) {
 
         <aside className="hidden space-y-4 lg:block">
           <div className="card-surface gold-seam p-6 text-center">
-            <EarnedStarMark size={72} centerStyle="stars" className="mx-auto" />
+            <EarnedStarPhotoBadge
+              variant="navy"
+              size={72}
+              logoUrl={business.logo_url}
+              logoFallback={business.name.charAt(0)}
+              className="mx-auto"
+            />
             <p className="mt-4 text-sm font-semibold text-navy">EarnedStar Verified</p>
             <p className="text-xs text-text-muted">Reviews tied to real purchases</p>
           </div>
