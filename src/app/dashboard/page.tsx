@@ -4,11 +4,14 @@ import { RatingDistributionChart } from "@/components/dashboard/rating-distribut
 import { ReviewsTable } from "@/components/dashboard/reviews-table";
 import { WidgetsPanel } from "@/components/dashboard/widgets-panel";
 import { InvitationsList } from "@/components/dashboard/invitations-list";
-import { fetchDashboardOverview } from "@/lib/earnedstar-server";
+import { fetchDashboardOverview, fetchInvitations } from "@/lib/earnedstar-server";
 import { mockReviews } from "@/lib/mock-data";
 
 export default async function DashboardHomePage() {
-  const overview = await fetchDashboardOverview("expediaparts");
+  const [overview, invitations] = await Promise.all([
+    fetchDashboardOverview("expediaparts"),
+    fetchInvitations("expediaparts", 5),
+  ]);
   const reviews = overview?.recentReviews?.length ? overview.recentReviews : mockReviews;
 
   return (
@@ -20,7 +23,7 @@ export default async function DashboardHomePage() {
         <ReviewsTable reviews={reviews} />
         <div className="grid gap-8 lg:grid-cols-2">
           <WidgetsPanel />
-          <InvitationsList />
+          <InvitationsList invitations={invitations} />
         </div>
       </main>
     </>

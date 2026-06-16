@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
 import { Button } from "@/components/ui/button";
@@ -20,9 +21,64 @@ function passwordStrength(pw: string): { score: number; label: string } {
 }
 
 export function AuthPanel({ defaultTab = "signin" }: { defaultTab?: Tab }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const next = searchParams.get("next") ?? "/dashboard";
+
   const [tab, setTab] = useState<Tab>(defaultTab);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const strength = passwordStrength(password);
+
+  async function handleSignIn(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error((data as { error?: string }).error ?? "Sign in failed");
+      router.push(next);
+      router.refresh();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Sign in failed");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleSignUp(e: React.FormEvent) {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, businessName, plan: "starter" }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error((data as { error?: string }).error ?? "Signup failed");
+      router.push(next);
+      router.refresh();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Signup failed");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <div className="flex min-h-screen flex-col lg:flex-row">
@@ -60,39 +116,66 @@ export function AuthPanel({ defaultTab = "signin" }: { defaultTab?: Tab }) {
             ))}
           </div>
 
+          {error ? (
+            <p className="mb-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>
+          ) : null}
+
           {tab === "signin" ? (
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-4" onSubmit={handleSignIn}>
               <h1 className="text-2xl font-bold text-navy">Welcome back</h1>
               <div>
                 <label htmlFor="email" className="mb-1 block text-sm text-text-muted">Email</label>
-                <input id="email" type="email" className="w-full rounded-lg border border-border px-3 py-2 text-sm" placeholder="you@store.com" />
+                <input
+                  id="email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full rounded-lg border border-border px-3 py-2 text-sm"
+                  placeholder="you@store.com"
+                />
               </div>
               <div>
                 <label htmlFor="password" className="mb-1 block text-sm text-text-muted">Password</label>
-                <input id="password" type="password" className="w-full rounded-lg border border-border px-3 py-2 text-sm" />
+                <input
+                  id="password"
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full rounded-lg border border-border px-3 py-2 text-sm"
+                />
               </div>
               <Link href="#" className="block text-right text-sm text-navy-light hover:text-gold">
                 Forgot password?
               </Link>
-              <Button className="w-full" href="/dashboard">Sign In</Button>
-              <button
-                type="button"
-                className="flex w-full items-center justify-center gap-2 rounded-lg border border-border py-2 text-sm font-semibold text-navy hover:bg-surface-2"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
-                  <path fill="#4285F4" d="M22 12h-4.8v-.1H12v4.8h6.2c-.6 2.9-3.1 5-6.2 5-3.6 0-6.5-2.9-6.5-6.5S8.4 9 12 9c1.5 0 2.9.5 4 1.5l3.6-3.6C16.9 4.9 14.6 4 12 4 7.6 4 4 7.6 4 12s3.6 8 8 8 8-3.6 8-8z" />
-                </svg>
-                Continue with Google
-              </button>
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? "Signing in…" : "Sign In"}
+              </Button>
             </form>
           ) : (
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-4" onSubmit={handleSignUp}>
               <h1 className="text-2xl font-bold text-navy">Create your account</h1>
-              <input type="text" placeholder="Name" className="w-full rounded-lg border border-border px-3 py-2 text-sm" />
-              <input type="email" placeholder="Email" className="w-full rounded-lg border border-border px-3 py-2 text-sm" />
+              <input
+                type="text"
+                required
+                placeholder="Business name"
+                value={businessName}
+                onChange={(e) => setBusinessName(e.target.value)}
+                className="w-full rounded-lg border border-border px-3 py-2 text-sm"
+              />
+              <input
+                type="email"
+                required
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full rounded-lg border border-border px-3 py-2 text-sm"
+              />
               <div>
                 <input
                   type="password"
+                  required
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -108,12 +191,21 @@ export function AuthPanel({ defaultTab = "signin" }: { defaultTab?: Tab }) {
                 </div>
                 <p className="mt-1 text-xs text-text-faint">Strength: {strength.label}</p>
               </div>
-              <input type="password" placeholder="Confirm password" className="w-full rounded-lg border border-border px-3 py-2 text-sm" />
+              <input
+                type="password"
+                required
+                placeholder="Confirm password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full rounded-lg border border-border px-3 py-2 text-sm"
+              />
               <label className="flex items-start gap-2 text-xs text-text-muted">
-                <input type="checkbox" className="mt-0.5" />
+                <input type="checkbox" required className="mt-0.5" />
                 I agree to the Terms &amp; Privacy Policy
               </label>
-              <Button className="w-full" href="/dashboard">Create Account</Button>
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? "Creating…" : "Create Account — 14-day trial"}
+              </Button>
             </form>
           )}
 

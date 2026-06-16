@@ -91,3 +91,58 @@ export async function fetchStorePageData(slug: string) {
   ]);
   return { merchant, reviews };
 }
+
+export async function fetchMerchantReviews(slug = MERCHANT_SLUG, limit = 100): Promise<Review[]> {
+  try {
+    const res = await fetch(`${getApiBase()}/earnedstar/dashboard/reviews?slug=${slug}&limit=${limit}`, {
+      next: { revalidate: 30 },
+    });
+    if (!res.ok) return [];
+    const rows = (await res.json()) as Record<string, unknown>[];
+    return rows.map(mapReview);
+  } catch {
+    return [];
+  }
+}
+
+export type InvitationRow = {
+  id: string;
+  customer_email: string;
+  order_id: string;
+  channel: string;
+  status: string;
+  sent_at: string;
+  token?: string;
+};
+
+export async function fetchInvitations(slug = MERCHANT_SLUG, limit = 50): Promise<InvitationRow[]> {
+  try {
+    const res = await fetch(`${getApiBase()}/earnedstar/dashboard/invitations?slug=${slug}&limit=${limit}`, {
+      next: { revalidate: 30 },
+    });
+    if (!res.ok) return [];
+    return (await res.json()) as InvitationRow[];
+  } catch {
+    return [];
+  }
+}
+
+export type InvitationLookup = {
+  token: string;
+  status: string;
+  merchant_name: string;
+  merchant_slug: string;
+  order_id: string;
+};
+
+export async function fetchInvitationByToken(token: string): Promise<InvitationLookup | null> {
+  try {
+    const res = await fetch(`${getApiBase()}/earnedstar/invitations/lookup/${encodeURIComponent(token)}`, {
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as InvitationLookup;
+  } catch {
+    return null;
+  }
+}

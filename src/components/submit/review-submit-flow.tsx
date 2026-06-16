@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Loader2 } from "lucide-react";
 import { ProgressiveStarRating } from "@/components/ui/progressive-star-rating";
 import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
 import { Button } from "@/components/ui/button";
+import { submitReview } from "@/lib/earnedstar-client";
 import { cn } from "@/lib/utils";
 
 const PROMPTS = [
@@ -17,7 +18,15 @@ const PROMPTS = [
 
 const STEPS = ["Rating", "Review", "Photos", "Details", "Done"];
 
-export function ReviewSubmitFlow({ storeName = "ExpediaParts" }: { storeName?: string }) {
+export function ReviewSubmitFlow({
+  token,
+  storeName = "ExpediaParts",
+  merchantSlug = "expediaparts",
+}: {
+  token: string;
+  storeName?: string;
+  merchantSlug?: string;
+}) {
   const [step, setStep] = useState(0);
   const [rating, setRating] = useState(0);
   const [title, setTitle] = useState("");
@@ -25,12 +34,42 @@ export function ReviewSubmitFlow({ storeName = "ExpediaParts" }: { storeName?: s
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmed, setConfirmed] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const canNext =
     (step === 0 && rating > 0) ||
     (step === 1 && body.trim().length >= 20) ||
     step === 2 ||
     (step === 3 && name.trim() && email.includes("@") && confirmed);
+
+  async function handleSubmit() {
+    setSubmitting(true);
+    setError(null);
+    try {
+      await submitReview({
+        token,
+        rating_overall: rating,
+        review_title: title.trim() || undefined,
+        review_text: body.trim(),
+        customer_name: name.trim(),
+        customer_email: email.trim(),
+      });
+      setStep(4);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to submit review");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  function handleNext() {
+    if (step === 3) {
+      void handleSubmit();
+      return;
+    }
+    setStep((s) => s + 1);
+  }
 
   return (
     <div className="mx-auto max-w-xl px-4 py-12">
@@ -140,6 +179,9 @@ export function ReviewSubmitFlow({ storeName = "ExpediaParts" }: { storeName?: s
               <div className="mt-4 rounded-lg border border-border bg-surface-2 px-4 py-3 text-xs text-text-faint">
                 reCAPTCHA placeholder
               </div>
+              {error ? (
+                <p className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>
+              ) : null}
             </>
           )}
 
@@ -153,7 +195,7 @@ export function ReviewSubmitFlow({ storeName = "ExpediaParts" }: { storeName?: s
               <EarnedStarMark size={64} centerStyle="check" className="mx-auto mt-8" />
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <Button href="/">Back to product</Button>
-                <Button variant="ghost" href="/store/expediaparts">
+                <Button variant="ghost" href={`/store/${merchantSlug}`}>
                   See all reviews
                 </Button>
               </div>
@@ -164,13 +206,21 @@ export function ReviewSubmitFlow({ storeName = "ExpediaParts" }: { storeName?: s
             <div className="mt-8 flex justify-between">
               <Button
                 variant="ghost"
-                disabled={step === 0}
+                disabled={step === 0 || submitting}
                 onClick={() => setStep((s) => Math.max(0, s - 1))}
               >
                 Back
               </Button>
-              <Button disabled={!canNext} onClick={() => setStep((s) => s + 1)}>
-                {step === 3 ? "Submit" : "Next"}
+              <Button disabled={!canNext || submitting} onClick={handleNext}>
+                {submitting ? (
+                  <>
+                    <Loader2 size={16} className="mr-1 animate-spin" /> Submitting…
+                  </>
+                ) : step === 3 ? (
+                  "Submit"
+                ) : (
+                  "Next"
+                )}
               </Button>
             </div>
           )}

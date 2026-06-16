@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, Star, Send, BarChart2, Layout, Settings, LogOut, Lock } from "lucide-react";
 import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 import { PlanBadge } from "@/components/ui/plan-badge";
@@ -23,7 +23,14 @@ function getCurrentPlan(): PlanId {
 
 export function DashboardSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
   const plan = getCurrentPlan();
+
+  async function handleLogout() {
+    await fetch("/api/auth/logout", { method: "POST" });
+    router.push("/login");
+    router.refresh();
+  }
 
   return (
     <aside className="fixed left-0 top-0 z-40 flex h-screen w-60 flex-col border-r border-border bg-surface">
@@ -53,7 +60,11 @@ export function DashboardSidebar() {
       <div className="border-t border-border p-4">
         <PlanBadge plan={plan} />
         <p className="mt-3 text-sm font-semibold text-navy">ExpediaParts</p>
-        <button type="button" className="mt-3 flex items-center gap-2 text-sm text-red-600 hover:underline">
+        <button
+          type="button"
+          onClick={() => void handleLogout()}
+          className="mt-3 flex items-center gap-2 text-sm text-red-600 hover:underline"
+        >
           <LogOut size={16} /> Log Out
         </button>
       </div>
