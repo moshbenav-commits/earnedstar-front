@@ -10,7 +10,7 @@ import { EarnedStarBadge } from "@/components/ui/earnedstar-badge";
 import { BADGE_PHOTO_VARIANTS } from "@/lib/badge-photo-assets";
 import { mockBusiness } from "@/lib/mock-data";
 
-const DEMO_LOGO = "https://www.expediaparts.com/favicon.ico";
+const DEMO_LOGO = "/icon.png";
 
 function photoEmbedSnippet(color: string, size: number, logo: string) {
   const base = "https://earnedstar.com";
@@ -50,7 +50,7 @@ export default function WidgetsPage() {
           <h2 className="text-lg font-bold text-navy">Origami badge variants (ES-AC-07)</h2>
           <div className="mt-6 flex flex-wrap gap-4">
             <EarnedStarBadge variant="pill" />
-            <EarnedStarBadge variant="card" merchantName="ExpediaParts" />
+            <EarnedStarBadge variant="card" merchantName="Meridian Gear Co." />
             <EarnedStarBadge variant="stamp" />
             <EarnedStarBadge variant="dark" />
           </div>

@@ -88,7 +88,7 @@ export function HeroSection() {
           </div>
           <EarnedStarPhotoBadgeVariants
             size={72}
-            logoUrl="https://www.expediaparts.com/favicon.ico"
+            logoUrl="/icon.png"
             className="mb-4"
           />
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">

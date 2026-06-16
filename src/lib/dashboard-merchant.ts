@@ -1,6 +1,8 @@
 import { getApiBase } from "@/lib/api";
 import { authHeaders } from "@/lib/auth-server";
 
+const DEFAULT_DEMO_SLUG = "meridian-gear";
+
 export type DashboardMerchant = {
   id: string;
   name: string;
@@ -25,7 +27,7 @@ export async function getDashboardMerchant(): Promise<DashboardMerchant> {
     // fall through
   }
 
-  const res = await fetch(`${getApiBase()}/earnedstar/merchants/expediaparts`, {
+  const res = await fetch(`${getApiBase()}/earnedstar/merchants/${DEFAULT_DEMO_SLUG}`, {
     next: { revalidate: 60 },
   });
   if (res.ok) {
@@ -34,11 +36,11 @@ export async function getDashboardMerchant(): Promise<DashboardMerchant> {
 
   return {
     id: "fallback",
-    name: "ExpediaParts",
-    slug: "expediaparts",
+    name: "Meridian Gear Co.",
+    slug: DEFAULT_DEMO_SLUG,
     plan: "growth",
     logo_url: null,
-    website_url: "https://www.expediaparts.com",
+    website_url: "https://meridian-gear.example.com",
     review_count: 2847,
     avg_rating: 4.9,
   };

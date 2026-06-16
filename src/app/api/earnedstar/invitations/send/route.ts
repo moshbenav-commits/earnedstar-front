@@ -4,7 +4,7 @@ import { authHeaders } from '@/lib/auth-server';
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const slug = req.nextUrl.searchParams.get('slug') ?? 'expediaparts';
+  const slug = req.nextUrl.searchParams.get('slug') ?? 'meridian-gear';
   const res = await fetch(`${getApiBase()}/earnedstar/invitations/send?slug=${slug}`, {
     method: 'POST',
     headers: {

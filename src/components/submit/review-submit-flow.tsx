@@ -20,8 +20,8 @@ const STEPS = ["Rating", "Review", "Photos", "Details", "Done"];
 
 export function ReviewSubmitFlow({
   token,
-  storeName = "ExpediaParts",
-  merchantSlug = "expediaparts",
+  storeName = "Your Store",
+  merchantSlug = "meridian-gear",
 }: {
   token: string;
   storeName?: string;

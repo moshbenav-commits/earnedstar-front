@@ -2,7 +2,7 @@ import type { Review } from "@/types/review";
 import type { Merchant } from "@/types/review";
 import { getApiBase } from "@/lib/api";
 
-const MERCHANT_SLUG = "expediaparts";
+const DEFAULT_DEMO_SLUG = "meridian-gear";
 
 export type DashboardOverview = {
   merchant: Merchant;
@@ -63,7 +63,7 @@ export async function fetchPublishedReviews(slug: string, limit = 50): Promise<R
 }
 
 export async function fetchDashboardOverview(
-  slug = MERCHANT_SLUG,
+  slug = DEFAULT_DEMO_SLUG,
 ): Promise<DashboardOverview | null> {
   try {
     const res = await fetch(`${getApiBase()}/earnedstar/dashboard/overview?slug=${slug}`, {
@@ -92,7 +92,7 @@ export async function fetchStorePageData(slug: string) {
   return { merchant, reviews };
 }
 
-export async function fetchMerchantReviews(slug = MERCHANT_SLUG, limit = 100): Promise<Review[]> {
+export async function fetchMerchantReviews(slug = DEFAULT_DEMO_SLUG, limit = 100): Promise<Review[]> {
   try {
     const res = await fetch(`${getApiBase()}/earnedstar/dashboard/reviews?slug=${slug}&limit=${limit}`, {
       next: { revalidate: 30 },
@@ -115,7 +115,7 @@ export type InvitationRow = {
   token?: string;
 };
 
-export async function fetchInvitations(slug = MERCHANT_SLUG, limit = 50): Promise<InvitationRow[]> {
+export async function fetchInvitations(slug = DEFAULT_DEMO_SLUG, limit = 50): Promise<InvitationRow[]> {
   try {
     const res = await fetch(`${getApiBase()}/earnedstar/dashboard/invitations?slug=${slug}&limit=${limit}`, {
       next: { revalidate: 30 },

@@ -2,9 +2,9 @@ import type { Review } from "@/types/review";
 
 export const mockBusiness = {
   id: "1",
-  name: "ExpediaParts",
-  slug: "expediaparts",
-  website_url: "https://www.expediaparts.com",
+  name: "Meridian Gear Co.",
+  slug: "meridian-gear",
+  website_url: "https://meridian-gear.example.com",
   plan: "growth" as const,
   review_count: 2847,
   avg_rating: 4.9,

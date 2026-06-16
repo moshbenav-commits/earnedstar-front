@@ -26,7 +26,7 @@ export function DashboardSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const plan = getCurrentPlan();
-  const [merchantName, setMerchantName] = useState("ExpediaParts");
+  const [merchantName, setMerchantName] = useState("Your Store");
 
   useEffect(() => {
     fetch("/api/earnedstar/auth/me")

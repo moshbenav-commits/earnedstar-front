@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-export function SendInvitationForm({ merchantSlug = "expediaparts" }: { merchantSlug?: string }) {
+export function SendInvitationForm({ merchantSlug = "meridian-gear" }: { merchantSlug?: string }) {
   const [email, setEmail] = useState("");
   const [orderId, setOrderId] = useState("");
   const [name, setName] = useState("");

@@ -1,6 +1,6 @@
 # AGENTS.md — EarnedStar
 
-B2B SaaS verified review platform at **earnedstar.com** — for any e-commerce merchant. Parent: ExpediaParts. Founding tenant: `expediaparts`.
+B2B SaaS verified review platform at **earnedstar.com** — for any e-commerce merchant.
 
 ## Stack
 
@@ -34,7 +34,7 @@ Production domain: `https://earnedstar.com` — DNS on GoDaddy (see below).
 
 | Vercel project | `expedia-solutions/earnedstar` |
 | Project ID | `prj_QgVjY1LDuLbTxfq7h3HjyglwXuH7` |
-| GitHub | `moshbenav-commits/earnedstar-front` (renamed from ExpediaParts-Rewards-Front) |
+| GitHub | `moshbenav-commits/earnedstar-front` |
 | Env (production) | `NEXT_PUBLIC_API_URL=https://earnedstar-back.vercel.app/api`, `NEXT_PUBLIC_SITE_URL` |
 
 ### GoDaddy DNS (you — ~2 min)

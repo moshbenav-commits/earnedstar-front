@@ -23,7 +23,7 @@ export default async function PublicReviewProfilePage({ params }: PageProps) {
   const { slug } = await params;
   const { merchant, reviews } = await fetchStorePageData(slug);
 
-  if (!merchant && slug !== "expediaparts") {
+  if (!merchant) {
     notFound();
   }
 
