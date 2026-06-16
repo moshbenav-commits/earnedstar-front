@@ -1,69 +1,101 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { EarnedStarMark, type EarnedStarMarkProps } from "./earnedstar-mark";
-import { LOGO_3D_HORIZONTAL_SRC, LOGO_3D_LOCKUP_MIN_SIZE } from "@/lib/brand-assets";
+import { LogoBackdrop, type LogoShell } from "./logo-backdrop";
+import {
+  DEMO_MERCHANT_LOGO_URL,
+  LEATHER_WORDMARK_SRC,
+  LOGO_3D_HORIZONTAL_SRC,
+  LOGO_3D_LOCKUP_MIN_SIZE,
+} from "@/lib/brand-assets";
 
-interface EarnedStarLogoProps extends Omit<EarnedStarMarkProps, "darkBg"> {
-  /** @deprecated name kept for footer — means reversed wordmark on dark backgrounds */
+interface EarnedStarLogoProps extends Omit<EarnedStarMarkProps, "darkBg" | "render"> {
+  /** Reversed contexts: nav, footer, auth hero panel */
   variant?: "default" | "light";
   showWordmark?: boolean;
+  /** Cream/stone platter behind photoreal mark — auto picks from variant */
+  shell?: LogoShell;
   className?: string;
+  /** Force vector fallback (favicon-sized only) */
+  render?: "photo" | "svg";
 }
 
 export function EarnedStarLogo({
   showWordmark = true,
   size = 32,
   variant = "default",
+  shell = "auto",
   className,
   style = "origami",
-  centerStyle = "check",
-  render,
+  centerStyle = "none",
+  render = "photo",
   ...markProps
 }: EarnedStarLogoProps) {
   const onDark = variant === "light";
-  const wordmarkSize = Math.max(14, Math.round(size * 0.38));
-  const useHorizontalLockup =
-    showWordmark &&
-    style === "origami" &&
-    render !== "svg" &&
-    size >= LOGO_3D_LOCKUP_MIN_SIZE &&
-    !onDark;
+  const usePhoto = render !== "svg" && style === "origami";
+  const markSize = showWordmark ? Math.round(size * 0.92) : size;
 
-  if (useHorizontalLockup) {
+  const use3dHorizontalLockup =
+    showWordmark && usePhoto && !onDark && size >= LOGO_3D_LOCKUP_MIN_SIZE;
+
+  const useLeatherWordmark = showWordmark && usePhoto && onDark && size >= 36;
+
+  if (use3dHorizontalLockup) {
     const height = size;
     const width = Math.round(size * 3.98);
     return (
-      <Image
-        src={LOGO_3D_HORIZONTAL_SRC}
-        alt="EarnedStar"
-        width={width}
-        height={height}
-        className={cn("h-auto w-auto shrink-0 object-contain", className)}
-        style={{ height, width: "auto", maxWidth: width }}
-        priority={size >= 80}
-      />
+      <LogoBackdrop shell="light" onDark={false} size={size} className={className}>
+        <Image
+          src={LOGO_3D_HORIZONTAL_SRC}
+          alt="EarnedStar"
+          width={width}
+          height={height}
+          className="h-auto w-auto shrink-0 object-contain"
+          style={{ height, width: "auto", maxWidth: width }}
+          priority={size >= 80}
+        />
+      </LogoBackdrop>
     );
   }
 
-  return (
-    <div className={cn("inline-flex items-center", className)} style={{ gap: Math.round(size * 0.12) }}>
-      <EarnedStarMark
-        size={size}
-        style={style}
-        centerStyle={centerStyle}
-        darkBg={onDark}
-        render={render}
-        {...markProps}
+  const mark = (
+    <EarnedStarMark
+      size={markSize}
+      style={style}
+      centerStyle={centerStyle}
+      render={usePhoto ? "photo" : "svg"}
+      {...markProps}
+    />
+  );
+
+  const wordmark = showWordmark ? (
+    useLeatherWordmark ? (
+      <Image
+        src={LEATHER_WORDMARK_SRC}
+        alt="EarnedStar"
+        width={Math.round(size * 2.8)}
+        height={Math.round(size * 0.55)}
+        className="h-auto shrink-0 object-contain"
+        style={{ height: Math.max(14, Math.round(size * 0.42)), width: "auto" }}
+        priority={size >= 48}
       />
-      {showWordmark ? (
-        <span
-          className="font-sans font-extrabold leading-none tracking-tight"
-          style={{ fontSize: wordmarkSize }}
-        >
-          <span className={onDark ? "text-white" : "text-navy"}>Earned</span>
-          <span className="text-gold">Star</span>
-        </span>
-      ) : null}
-    </div>
+    ) : (
+      <span
+        className="font-sans font-bold leading-none tracking-tight"
+        style={{ fontSize: Math.max(13, Math.round(size * 0.36)) }}
+      >
+        <span className={onDark ? "text-navy" : "text-navy"}>Earned</span>
+        <span className={onDark ? "text-gold-dark" : "text-gold"}>Star</span>
+      </span>
+    )
+  ) : null;
+
+  return (
+    <LogoBackdrop shell={shell} onDark={onDark} size={size} className={cn("gap-2", className)}>
+      {mark}
+      {wordmark}
+    </LogoBackdrop>
   );
 }
+
+export { DEMO_MERCHANT_LOGO_URL };

@@ -229,6 +229,7 @@ function EarnedStarMarkPhoto({
           unoptimized={asset.bucket === "hero"}
         />
       </picture>
+      {/* Photo assets already include the center medallion — only overlay merchant logos */}
       {centerStyle === "logo" && logoUrl ? (
         <Image
           src={logoUrl}
@@ -238,24 +239,6 @@ function EarnedStarMarkPhoto({
           className="absolute rounded-full object-cover ring-2 ring-gold/80"
           style={{ left: medallionOffset, top: medallionOffset }}
         />
-      ) : null}
-      {centerStyle === "check" ? (
-        <span
-          className="pointer-events-none absolute flex items-center justify-center rounded-full bg-white/95 ring-2 ring-gold/80"
-          style={{ width: medallion, height: medallion, left: medallionOffset, top: medallionOffset }}
-          aria-hidden
-        >
-          <svg viewBox="0 0 24 24" width={medallion * 0.55} height={medallion * 0.55}>
-            <path
-              d="M5 12 L10 17 L19 7"
-              fill="none"
-              stroke="#F59E0B"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </span>
       ) : null}
     </span>
   );

@@ -61,3 +61,16 @@ export async function moderateReview(reviewId: string, status: "published" | "re
   }
   return data as { ok: boolean; status: string };
 }
+
+export async function respondToReview(reviewId: string, business_response: string) {
+  const res = await fetch(`/api/earnedstar/reviews/${reviewId}/respond`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ business_response }),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error((data as { message?: string }).message ?? "Failed to save response");
+  }
+  return data as { ok: boolean; business_response: string };
+}

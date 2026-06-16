@@ -12,12 +12,15 @@ import type { Merchant } from "@/types/review";
 import { ratingDistribution } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
 
+import type { QaPublicItem } from "@/lib/earnedstar-server";
+
 interface StoreProfileProps {
   business: Merchant & { response_rate?: number; joined_year?: number };
   reviews: Review[];
+  qaItems?: QaPublicItem[];
 }
 
-export function StoreProfile({ business, reviews }: StoreProfileProps) {
+export function StoreProfile({ business, reviews, qaItems = [] }: StoreProfileProps) {
   const [sort, setSort] = useState("recent");
   const [starFilter, setStarFilter] = useState<number | "all">("all");
   const [product, setProduct] = useState("all");
@@ -138,6 +141,21 @@ export function StoreProfile({ business, reviews }: StoreProfileProps) {
             <Button variant="ghost" className="w-full" onClick={() => setVisible((v) => v + 4)}>
               Load more reviews
             </Button>
+          ) : null}
+
+          {qaItems.length > 0 ? (
+            <section className="card-surface mt-8 p-6">
+              <h2 className="text-lg font-bold text-navy">Questions &amp; answers</h2>
+              <p className="mt-1 text-sm text-text-muted">Common questions from customers</p>
+              <dl className="mt-6 space-y-6">
+                {qaItems.map((item) => (
+                  <div key={item.id}>
+                    <dt className="font-semibold text-navy">{item.question}</dt>
+                    <dd className="mt-2 text-sm text-text-muted">{item.answer}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
           ) : null}
         </main>
 

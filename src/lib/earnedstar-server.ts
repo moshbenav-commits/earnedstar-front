@@ -84,12 +84,42 @@ export async function fetchDashboardOverview(
   }
 }
 
+export type QaPublicItem = {
+  id: string;
+  question: string;
+  answer: string;
+  asked_by?: string;
+  answered_at?: string;
+};
+
+export async function fetchPublishedQa(slug: string): Promise<QaPublicItem[]> {
+  try {
+    const res = await fetch(`${getApiBase()}/earnedstar/qa/public/${slug}`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return [];
+    const rows = (await res.json()) as Record<string, unknown>[];
+    return rows
+      .filter((r) => r.answer)
+      .map((r) => ({
+        id: String(r.id),
+        question: String(r.question),
+        answer: String(r.answer),
+        asked_by: r.asked_by ? String(r.asked_by) : undefined,
+        answered_at: r.answered_at ? String(r.answered_at) : undefined,
+      }));
+  } catch {
+    return [];
+  }
+}
+
 export async function fetchStorePageData(slug: string) {
-  const [merchant, reviews] = await Promise.all([
+  const [merchant, reviews, qa] = await Promise.all([
     fetchMerchant(slug),
     fetchPublishedReviews(slug, 100),
+    fetchPublishedQa(slug),
   ]);
-  return { merchant, reviews };
+  return { merchant, reviews, qa };
 }
 
 export async function fetchMerchantReviews(slug = DEFAULT_DEMO_SLUG, limit = 100): Promise<Review[]> {

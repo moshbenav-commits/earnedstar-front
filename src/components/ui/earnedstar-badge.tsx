@@ -25,14 +25,15 @@ export function EarnedStarBadge({
     return (
       <div
         className={cn(
-          "inline-flex items-center gap-2 rounded-full border border-gold/30 bg-surface px-4 py-2 shadow-sm",
+          "inline-flex items-center gap-2 rounded-full border border-gold/30 bg-navy px-4 py-2 shadow-sm",
           className,
         )}
+        data-surface="dark"
       >
-        <EarnedStarMark size={28} />
+        <EarnedStarMark size={28} centerStyle="none" render="photo" />
         <div>
           <StarRating rating={rating} size="sm" />
-          <p className="text-xs text-text-muted">{countLabel} verified reviews</p>
+          <p className="text-xs text-white/70">{countLabel} verified reviews</p>
         </div>
       </div>
     );
@@ -42,7 +43,7 @@ export function EarnedStarBadge({
     return (
       <div className={cn("card-surface gold-seam max-w-xs p-4", className)}>
         <div className="flex items-center gap-3">
-          <EarnedStarMark size={40} />
+          <EarnedStarMark size={40} centerStyle="none" render="photo" />
           <div>
             <p className="font-semibold text-navy">{merchantName}</p>
             <StarRating rating={rating} size="sm" />
@@ -61,7 +62,7 @@ export function EarnedStarBadge({
           className,
         )}
       >
-        <EarnedStarMark size={36} centerStyle="check" />
+        <EarnedStarMark size={36} centerStyle="none" render="photo" />
         <p className="mt-2 text-xs font-bold uppercase tracking-wider text-navy">EarnedStar Verified</p>
         <p className="text-sm font-semibold text-gold-dark">{rating} ★ · {countLabel}</p>
       </div>
@@ -71,12 +72,12 @@ export function EarnedStarBadge({
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-3 rounded-xl bg-navy px-5 py-4 text-white shadow-lg",
+        "inline-flex items-center gap-3 rounded-xl bg-dark-bg px-5 py-4 text-white shadow-lg",
         className,
       )}
       data-surface="dark"
     >
-      <EarnedStarMark size={44} darkBg centerStyle="check" />
+      <EarnedStarMark size={44} centerStyle="none" render="photo" />
       <div>
         <p className="text-sm font-semibold text-gold">EarnedStar Verified</p>
         <StarRating rating={rating} size="sm" />

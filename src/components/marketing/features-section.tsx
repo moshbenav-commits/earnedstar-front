@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Shield, BadgeCheck, Search, Mail, Palette, BarChart3 } from "lucide-react";
-import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
+import { EarnedStarBadge } from "@/components/ui/earnedstar-badge";
 
 const features = [
   {
@@ -63,7 +63,10 @@ export function FeaturesSection() {
               className={`card-surface gold-seam p-6 ${feature.large ? "lg:col-span-3" : "lg:col-span-2"}`}
             >
               {feature.showMark ? (
-                <EarnedStarMark size={48} centerStyle="check" className="mb-4" />
+                <div className="mb-4 flex flex-wrap gap-2">
+                  <EarnedStarBadge variant="pill" className="scale-90 origin-left" />
+                  <EarnedStarBadge variant="dark" className="scale-90 origin-left" />
+                </div>
               ) : (
                 <feature.icon size={24} className="mb-4 text-gold" aria-hidden />
               )}

@@ -1,8 +1,16 @@
 /** Photoreal 3D leather logo — earnedstar/public/brand/photo/ */
 
 export const LOGO_3D_HORIZONTAL_SRC = "/brand/png/logo-3d-horizontal-primary.png";
+export const LOGO_HORIZONTAL_LIGHT_SVG = "/brand/svg/logo-horizontal-light.svg";
+export const LOGO_HORIZONTAL_REVERSED_SVG = "/brand/svg/logo-horizontal-reversed.svg";
 export const MARK_3D_NAVY_GOLD_SRC = "/brand/png/mark-3d-navy-gold.png";
 export const LOGO_3D_LOCKUP_MIN_SIZE = 100;
+
+/** Demo merchant for marketing badge previews (founding tenant) */
+export const DEMO_MERCHANT_LOGO_URL = "https://www.expediaparts.com/Logo_Menu.png";
+
+export const LEATHER_WORDMARK_SRC = "/brand/leather/wordmark-navy-gold.png";
+export const LEATHER_MOTTO_SRC = "/brand/leather/motto-navy-gold.png";
 
 export const PHOTO_LOGO_SIZES = [16, 32, 48, 64, 96, 128, 192, 256, 512, 1024] as const;
 export type PhotoLogoSize = (typeof PHOTO_LOGO_SIZES)[number];

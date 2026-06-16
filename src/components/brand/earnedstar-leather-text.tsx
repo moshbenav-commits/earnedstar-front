@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { LEATHER_MOTTO_SRC, LEATHER_WORDMARK_SRC } from "@/lib/badge-photo-assets";
+import { LEATHER_MOTTO_SRC, LEATHER_WORDMARK_SRC } from "@/lib/brand-assets";
 import { cn } from "@/lib/utils";
 
 type Props = {

@@ -3,6 +3,7 @@ import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 import { fetchStorePageData } from "@/lib/earnedstar-server";
 import { mockBusiness, mockReviews } from "@/lib/mock-data";
 import { notFound } from "next/navigation";
+import type { QaPublicItem } from "@/lib/earnedstar-server";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function PublicReviewProfilePage({ params }: PageProps) {
   const { slug } = await params;
-  const { merchant, reviews } = await fetchStorePageData(slug);
+  const { merchant, reviews, qa } = await fetchStorePageData(slug);
 
   if (!merchant) {
     notFound();
@@ -29,6 +30,7 @@ export default async function PublicReviewProfilePage({ params }: PageProps) {
 
   const business = merchant ?? { ...mockBusiness, slug };
   const list = reviews.length > 0 ? reviews : mockReviews;
+  const qaItems: QaPublicItem[] = qa;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -57,9 +59,25 @@ export default async function PublicReviewProfilePage({ params }: PageProps) {
     })),
   };
 
+  const faqLd =
+    qaItems.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: qaItems.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: { "@type": "Answer", text: item.answer },
+          })),
+        }
+      : null;
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {faqLd ? (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      ) : null}
       <StoreProfile
         business={{
           ...business,
@@ -67,9 +85,10 @@ export default async function PublicReviewProfilePage({ params }: PageProps) {
           joined_year: 2026,
         }}
         reviews={list}
+        qaItems={qaItems}
       />
       <footer className="border-t border-border bg-surface py-8 text-center text-xs text-text-faint">
-        <EarnedStarLogo size={20} className="mx-auto justify-center" />
+        <EarnedStarLogo size={24} showWordmark={false} centerStyle="none" className="mx-auto justify-center" />
         <p className="mt-2">Powered by EarnedStar</p>
       </footer>
     </>

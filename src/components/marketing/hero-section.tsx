@@ -3,8 +3,10 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
+import { LogoBackdrop } from "@/components/brand/logo-backdrop";
 import { EarnedStarPhotoBadgeVariants } from "@/components/brand/earnedstar-photo-badge";
 import { EarnedStarLeatherText } from "@/components/brand/earnedstar-leather-text";
+import { DEMO_MERCHANT_LOGO_URL } from "@/lib/brand-assets";
 
 export function HeroSection() {
   return (
@@ -73,7 +75,15 @@ export function HeroSection() {
         className="relative z-10 mt-14 flex flex-col items-center lg:mt-0 lg:flex-1"
       >
         <div className="animate-float-star relative">
-          <EarnedStarMark size={160} centerStyle="logo" preferHero darkBg className="drop-shadow-[0_24px_48px_rgba(0,0,0,0.45)]" />
+          <LogoBackdrop shell="hero" size={160}>
+            <EarnedStarMark
+              size={160}
+              centerStyle="none"
+              preferHero
+              render="photo"
+              className="drop-shadow-[0_24px_48px_rgba(0,0,0,0.45)]"
+            />
+          </LogoBackdrop>
           <div
             className="pointer-events-none absolute inset-0 rounded-full"
             style={{ boxShadow: "0 0 80px rgba(245,158,11,0.35)" }}
@@ -88,7 +98,7 @@ export function HeroSection() {
           </div>
           <EarnedStarPhotoBadgeVariants
             size={72}
-            logoUrl="/icon.png"
+            logoUrl={DEMO_MERCHANT_LOGO_URL}
             className="mb-4"
           />
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">

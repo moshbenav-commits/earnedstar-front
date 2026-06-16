@@ -6,7 +6,7 @@ import { StarRating } from "@/components/ui/star-rating";
 import { VerifiedBadge } from "@/components/ui/verified-badge";
 import { FraudBadge } from "@/components/ui/fraud-badge";
 import { Button } from "@/components/ui/button";
-import { moderateReview } from "@/lib/earnedstar-client";
+import { moderateReview, respondToReview } from "@/lib/earnedstar-client";
 import type { Review } from "@/types/review";
 import { cn } from "@/lib/utils";
 
@@ -14,11 +14,14 @@ interface ReviewDetailDrawerProps {
   review: Review | null;
   onClose: () => void;
   onUpdated?: (reviewId: string, status: Review["status"]) => void;
+  onResponded?: (reviewId: string, response: string) => void;
 }
 
-export function ReviewDetailDrawer({ review, onClose, onUpdated }: ReviewDetailDrawerProps) {
+export function ReviewDetailDrawer({ review, onClose, onUpdated, onResponded }: ReviewDetailDrawerProps) {
   const [acting, setActing] = useState(false);
   const [localStatus, setLocalStatus] = useState<Review["status"] | null>(null);
+  const [localResponse, setLocalResponse] = useState<string | null>(null);
+  const [draftResponse, setDraftResponse] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   if (!review) return null;
@@ -31,6 +34,25 @@ export function ReviewDetailDrawer({ review, onClose, onUpdated }: ReviewDetailD
     hour: "numeric",
     minute: "2-digit",
   });
+
+  async function handleRespond() {
+    if (!review || draftResponse.trim().length < 5) return;
+    const reviewId = review.id;
+    setActing(true);
+    setError(null);
+    try {
+      const result = await respondToReview(reviewId, draftResponse.trim());
+      setLocalResponse(result.business_response);
+      onResponded?.(reviewId, result.business_response);
+      setDraftResponse("");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to save response");
+    } finally {
+      setActing(false);
+    }
+  }
+
+  const responseText = localResponse ?? review.business_response;
 
   async function handleModerate(next: "published" | "rejected") {
     if (!review) return;
@@ -89,12 +111,35 @@ export function ReviewDetailDrawer({ review, onClose, onUpdated }: ReviewDetailD
           >
             {status}
           </span>
-          {review.business_response ? (
+          {responseText ? (
             <div className="mt-6 rounded-lg border border-border bg-surface-2 p-4 text-sm text-text-muted">
               <p className="font-semibold text-navy">Your response</p>
-              <p className="mt-2">{review.business_response}</p>
+              <p className="mt-2">{responseText}</p>
             </div>
           ) : null}
+
+          {status === "published" && (
+            <div className="mt-6 space-y-2">
+              <label className="text-sm font-semibold text-navy" htmlFor="merchant-response">
+                {responseText ? "Update response" : "Reply publicly"}
+              </label>
+              <textarea
+                id="merchant-response"
+                className="min-h-24 w-full rounded-lg border border-border px-3 py-2 text-sm"
+                placeholder="Thank the customer — shown on your public store profile"
+                value={draftResponse}
+                onChange={(e) => setDraftResponse(e.target.value)}
+              />
+              <Button
+                size="sm"
+                disabled={acting || draftResponse.trim().length < 5}
+                onClick={() => void handleRespond()}
+              >
+                {acting ? <Loader2 size={14} className="animate-spin" /> : null}
+                Save response
+              </Button>
+            </div>
+          )}
 
           {(status === "pending" || status === "flagged") && (
             <div className="mt-6 flex flex-wrap gap-2">

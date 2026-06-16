@@ -7,9 +7,8 @@ import {
 import { EarnedStarBadge } from "@/components/ui/earnedstar-badge";
 import { getApiBase } from "@/lib/api";
 import { authHeaders } from "@/lib/auth-server";
+import { DEMO_MERCHANT_LOGO_URL } from "@/lib/brand-assets";
 import { getDashboardMerchant } from "@/lib/dashboard-merchant";
-
-const DEMO_LOGO = "/icon.png";
 
 async function fetchWidgets(): Promise<SavedWidget[]> {
   try {
@@ -27,6 +26,7 @@ async function fetchWidgets(): Promise<SavedWidget[]> {
 export default async function WidgetsPage() {
   const merchant = await getDashboardMerchant();
   const widgets = await fetchWidgets();
+  const previewLogo = merchant.logo_url ?? DEMO_MERCHANT_LOGO_URL;
 
   return (
     <>
@@ -54,10 +54,10 @@ export default async function WidgetsPage() {
             Photoreal leather star with your logo in the center medallion.
           </p>
           <div className="mt-6">
-            <EarnedStarPhotoBadgeVariants size={96} logoUrl={DEMO_LOGO} />
+            <EarnedStarPhotoBadgeVariants size={96} logoUrl={previewLogo} />
           </div>
           <div className="mt-8">
-            <EarnedStarPhotoBadge variant="navy" size={128} logoUrl={DEMO_LOGO} />
+            <EarnedStarPhotoBadge variant="navy" size={128} logoUrl={previewLogo} />
           </div>
         </section>
       </main>

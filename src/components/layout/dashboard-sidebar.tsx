@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { LayoutDashboard, Star, Send, BarChart2, Layout, Settings, LogOut, Lock, Plug, Share2, Building2 } from "lucide-react";
+import { LayoutDashboard, Star, Send, BarChart2, Layout, Settings, LogOut, Lock, Plug, Share2, Building2, HelpCircle, Users } from "lucide-react";
 import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 import { PlanBadge } from "@/components/ui/plan-badge";
 import type { PlanId } from "@/lib/plans";
@@ -15,20 +15,26 @@ const navItems = [
   { href: "/dashboard/invitations", label: "Invitations", icon: Send },
   { href: "/dashboard/analytics", label: "Analytics", icon: BarChart2, lockStarter: true },
   { href: "/dashboard/widgets", label: "Widgets", icon: Layout },
+  { href: "/dashboard/qa", label: "Q&A SEO", icon: HelpCircle, lockStarter: true, lockGrowth: true },
+  { href: "/dashboard/team", label: "Team", icon: Users },
   { href: "/dashboard/integrations", label: "Integrations", icon: Plug },
   { href: "/dashboard/syndication", label: "Syndication", icon: Share2, lockStarter: true, lockGrowth: true },
   { href: "/dashboard/agency", label: "Agency", icon: Building2 },
   { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
 
-function getCurrentPlan(): PlanId {
+function planFromMerchant(data: Record<string, unknown> | null): PlanId {
+  const plan = (data?.plan as string | undefined)?.toLowerCase();
+  if (plan === "starter" || plan === "growth" || plan === "pro" || plan === "agency") {
+    return plan;
+  }
   return "growth";
 }
 
 export function DashboardSidebar() {
   const pathname = usePathname();
   const router = useRouter();
-  const plan = getCurrentPlan();
+  const [plan, setPlan] = useState<PlanId>("growth");
   const [merchantName, setMerchantName] = useState("Your Store");
 
   useEffect(() => {
@@ -36,6 +42,7 @@ export function DashboardSidebar() {
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
         if (data?.name) setMerchantName(data.name as string);
+        if (data) setPlan(planFromMerchant(data as Record<string, unknown>));
       })
       .catch(() => undefined);
   }, []);
@@ -49,7 +56,7 @@ export function DashboardSidebar() {
   return (
     <aside className="fixed left-0 top-0 z-40 flex h-screen w-60 flex-col border-r border-border bg-surface">
       <div className="flex h-16 items-center border-b border-border px-4">
-        <EarnedStarLogo size={28} />
+        <EarnedStarLogo size={32} centerStyle="none" shell="none" />
       </div>
       <nav className="flex-1 space-y-1 p-3">
         {navItems.map((item) => {

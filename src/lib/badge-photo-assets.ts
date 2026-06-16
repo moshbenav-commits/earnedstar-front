@@ -40,5 +40,4 @@ export function badgeLogoOverlayPx(badgeDisplayPx: number): number {
   return Math.round((badgeDisplayPx * BADGE_LOGO_SIZE_AT_128) / 128);
 }
 
-export const LEATHER_WORDMARK_SRC = "/brand/leather/wordmark-navy-gold.png";
-export const LEATHER_MOTTO_SRC = "/brand/leather/motto-navy-gold.png";
+export { LEATHER_WORDMARK_SRC, LEATHER_MOTTO_SRC } from "@/lib/brand-assets";

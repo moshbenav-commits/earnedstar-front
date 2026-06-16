@@ -276,7 +276,7 @@ export function ReviewSubmitFlow({
                     ? "Our team is reviewing this submission before it can be published."
                     : "Our AI verifies all reviews within 2 hours before publishing."}
               </p>
-              <EarnedStarMark size={64} centerStyle="check" className="mx-auto mt-8" />
+              <EarnedStarMark size={64} centerStyle="none" className="mx-auto mt-8" />
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <Button href="/">Back to product</Button>
                 <Button variant="ghost" href={`/store/${merchantSlug}`}>

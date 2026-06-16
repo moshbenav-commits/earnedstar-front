@@ -13,7 +13,7 @@ export function MarketingFooter() {
         </div>
       </section>
       <div className="mx-auto max-w-7xl border-t border-white/10 px-4 py-12">
-        <EarnedStarLogo variant="light" />
+        <EarnedStarLogo variant="light" size={40} centerStyle="none" />
         <p className="mt-4 max-w-md text-sm text-white/60">Verified reviews for e-commerce stores that take trust seriously.</p>
         <p className="mt-8 text-xs text-white/40">© 2026 EarnedStar, Inc. · Los Angeles, CA</p>
       </div>

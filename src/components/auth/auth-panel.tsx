@@ -86,7 +86,7 @@ export function AuthPanel({ defaultTab = "signin" }: { defaultTab?: Tab }) {
         className="hero-mesh relative flex flex-col justify-center px-8 py-12 lg:w-2/5 lg:px-12"
         data-surface="dark"
       >
-        <EarnedStarLogo variant="light" size={32} />
+        <EarnedStarLogo variant="light" size={32} centerStyle="none" />
         <p className="mt-8 max-w-sm text-lg text-white/80">
           Verified reviews your customers actually earned — not manufactured.
         </p>
@@ -95,7 +95,7 @@ export function AuthPanel({ defaultTab = "signin" }: { defaultTab?: Tab }) {
           <footer className="mt-2 not-italic text-white/50">— Amelia W., EuroParts Chicago</footer>
         </blockquote>
         <p className="mt-6 text-sm font-semibold text-gold">4.9 ★ · 2,847 verified reviews</p>
-        <EarnedStarMark size={48} centerStyle="check" darkBg className="mt-8 opacity-80" />
+        <EarnedStarMark size={48} centerStyle="none" className="mt-8 opacity-90" />
       </div>
 
       <div className="flex flex-1 items-center justify-center bg-bg p-8">
