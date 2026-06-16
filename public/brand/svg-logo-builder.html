@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EarnedStar — SVG Logo Builder</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0F2044; --navy-mid: #1A3566;
+  --gold: #F59E0B; --gold-dark: #D97706; --gold-pale: #FFFBEB;
+  --green: #059669; --green-pale: #ECFDF5;
+  --bg: #FAFAF9; --surface: #FFFFFF;
+  --border: rgba(15,32,68,0.10); --border-strong: rgba(15,32,68,0.20);
+  --text: #0F2044; --text-muted: #64748B; --text-faint: #94A3B8;
+  --font: "Plus Jakarta Sans", system-ui, sans-serif;
+  --r-lg: 14px; --r-xl: 20px;
+  --shadow-md: 0 4px 20px rgba(15,32,68,0.09);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;padding:36px 20px 64px;}
+
+/* HEADER */
+.hdr{text-align:center;margin-bottom:44px;}
+.logo-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;}
+.logo-text{font-size:1.05rem;font-weight:800;color:var(--navy);}
+.logo-text span{color:var(--gold);}
+.hdr h1{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--navy);margin-bottom:6px;}
+.hdr p{font-size:0.9rem;color:var(--text-muted);}
+
+/* MAIN LAYOUT */
+.builder{display:grid;grid-template-columns:320px 1fr;gap:24px;max-width:1100px;margin:0 auto;}
+@media(max-width:900px){.builder{grid-template-columns:1fr;}}
+
+/* CONTROLS PANEL */
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);
+  padding:28px;box-shadow:var(--shadow-md);height:fit-content;}
+.panel h2{font-size:0.8rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;
+  color:var(--text-faint);margin-bottom:20px;}
+
+.ctrl-group{margin-bottom:22px;}
+.ctrl-group:last-child{margin-bottom:0;}
+.ctrl-label{font-size:0.78rem;font-weight:700;color:var(--text);margin-bottom:10px;display:block;}
+
+/* Color swatches */
+.swatch-row{display:flex;gap:8px;flex-wrap:wrap;}
+.swatch{width:32px;height:32px;border-radius:8px;cursor:pointer;
+  border:2px solid transparent;transition:all 180ms ease;position:relative;}
+.swatch.active{border-color:var(--navy);box-shadow:0 0 0 3px rgba(15,32,68,0.15);}
+.swatch:hover{transform:scale(1.1);}
+
+/* Style buttons */
+.style-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.style-btn{padding:10px 8px;border:1.5px solid var(--border);border-radius:10px;
+  background:var(--surface);font-family:var(--font);font-size:0.75rem;font-weight:700;
+  color:var(--text-muted);cursor:pointer;transition:all 180ms ease;text-align:center;}
+.style-btn:hover{border-color:var(--navy-mid);color:var(--navy);}
+.style-btn.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+/* Slider */
+.slider-row{display:flex;align-items:center;gap:12px;}
+.slider-row input[type=range]{flex:1;accent-color:var(--gold);}
+.slider-val{font-size:0.75rem;font-weight:700;color:var(--navy);min-width:36px;text-align:right;}
+
+/* Logo upload */
+.upload-zone{border:2px dashed var(--border);border-radius:12px;padding:16px;
+  text-align:center;cursor:pointer;transition:all 200ms ease;background:var(--bg);}
+.upload-zone:hover{border-color:var(--gold);background:var(--gold-pale);}
+.upload-zone input{display:none;}
+.upload-zone p{font-size:0.75rem;color:var(--text-muted);font-weight:500;}
+.upload-zone .uz-icon{font-size:1.4rem;margin-bottom:4px;}
+#logoThumb{width:40px;height:40px;border-radius:50%;object-fit:cover;
+  display:none;margin:0 auto 6px;border:2px solid var(--border);}
+
+/* Text toggle */
+.toggle-row{display:flex;align-items:center;justify-content:space-between;}
+.toggle{position:relative;width:40px;height:22px;}
+.toggle input{opacity:0;width:0;height:0;}
+.toggle-slider{position:absolute;inset:0;background:#E2E8F0;border-radius:999px;
+  cursor:pointer;transition:200ms;}
+.toggle input:checked+.toggle-slider{background:var(--navy);}
+.toggle-slider::before{content:'';position:absolute;width:16px;height:16px;
+  background:#fff;border-radius:50%;left:3px;bottom:3px;transition:200ms;
+  box-shadow:0 1px 3px rgba(0,0,0,0.20);}
+.toggle input:checked+.toggle-slider::before{transform:translateX(18px);}
+
+/* Action buttons */
+.action-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:20px;}
+.act-btn{padding:11px;border:1.5px solid var(--border);border-radius:10px;
+  font-family:var(--font);font-size:0.78rem;font-weight:700;cursor:pointer;
+  transition:all 180ms ease;background:var(--surface);color:var(--text);}
+.act-btn:hover{background:#F1F5F9;border-color:var(--border-strong);}
+.act-btn.primary{background:var(--navy);color:#fff;border-color:var(--navy);grid-column:1/-1;}
+.act-btn.primary:hover{background:var(--navy-mid);}
+.act-btn.gold{background:var(--gold);color:var(--navy);border-color:var(--gold-dark);}
+.act-btn.gold:hover{background:var(--gold-dark);}
+
+/* PREVIEW PANEL */
+.preview-panel{display:flex;flex-direction:column;gap:20px;}
+
+/* Canvas card */
+.canvas-card{background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-xl);padding:32px;box-shadow:var(--shadow-md);
+  display:flex;flex-direction:column;align-items:center;gap:0;}
+.canvas-label{font-size:0.65rem;font-weight:700;letter-spacing:0.09em;
+  text-transform:uppercase;color:var(--text-faint);margin-bottom:20px;align-self:flex-start;}
+.canvas-area{width:100%;display:flex;align-items:center;justify-content:center;
+  gap:48px;flex-wrap:wrap;padding:16px 0;}
+
+.logo-variant{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.variant-lbl{font-size:0.65rem;font-weight:700;letter-spacing:0.07em;
+  text-transform:uppercase;color:var(--text-faint);}
+
+/* Dark canvas */
+.canvas-dark{background:var(--navy);border-radius:16px;padding:32px 40px;
+  display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;}
+
+/* Code card */
+.code-card{background:var(--navy);border-radius:var(--r-xl);padding:28px;
+  box-shadow:var(--shadow-md);}
+.code-card h3{font-size:0.7rem;font-weight:700;letter-spacing:0.09em;
+  text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:14px;}
+.code-block{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px;padding:16px;font-family:monospace;font-size:0.72rem;
+  color:#FDE68A;line-height:1.7;overflow-x:auto;white-space:pre;max-height:280px;overflow-y:auto;}
+.copy-row{display:flex;gap:8px;margin-top:12px;}
+.copy-btn{padding:9px 18px;background:var(--gold);color:var(--navy);border:none;
+  border-radius:8px;font-family:var(--font);font-size:0.76rem;font-weight:800;
+  cursor:pointer;transition:background 180ms ease;}
+.copy-btn:hover{background:var(--gold-dark);}
+.dl-btn{padding:9px 18px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);
+  border:1px solid rgba(255,255,255,0.12);border-radius:8px;font-family:var(--font);
+  font-size:0.76rem;font-weight:700;cursor:pointer;transition:all 180ms ease;}
+.dl-btn:hover{background:rgba(255,255,255,0.15);color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="logo-row">
+    <svg viewBox="0 0 32 32" fill="none" width="26" height="26">
+      <circle cx="16" cy="16" r="16" fill="#0F2044"/>
+      <path d="M16 7l2.47 5.01 5.53.8-4 3.9.94 5.5L16 19.77l-4.94 2.54.94-5.5-4-3.9 5.53-.8z" fill="#F59E0B"/>
+      <path d="M12.5 16l2.5 2.5 4.5-4.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="logo-text">Earned<span>Star</span></div>
+  </div>
+  <h1>SVG Logo Builder</h1>
+  <p>Production-ready vector · Upload your logo · Export clean SVG</p>
+</div>
+
+<div class="builder">
+
+  <!-- LEFT: CONTROLS -->
+  <div class="panel">
+    <h2>Customize</h2>
+
+    <!-- Star Style -->
+    <div class="ctrl-group">
+      <label class="ctrl-label">Star Style</label>
+      <div class="style-grid">
+        <button class="style-btn active" onclick="setStyle('origami')" id="btn-origami">🌟 Origami</button>
+        <button class="style-btn" onclick="setStyle('geometric')" id="btn-geometric">◆ Geometric</button>
+        <button class="style-btn" onclick="setStyle('rounded')" id="btn-rounded">✦ Rounded</button>
+        <button class="style-btn" onclick="setStyle('classic')" id="btn-classic">★ Classic</button>
+      </div>
+    </div>
+
+    <!-- Star Color -->
+    <div class="ctrl-group">
+      <label class="ctrl-label">Star Color</label>
+      <div class="swatch-row">
+        <div class="swatch active" style="background:#F59E0B;" onclick="setStarColor('#F59E0B','#D97706','#92400E')" title="Gold" id="sw-gold"></div>
+        <div class="swatch" style="background:#0F2044;" onclick="setStarColor('#0F2044','#1A3566','#070F1E')" title="Navy" id="sw-navy"></div>
+        <div class="swatch" style="background:#059669;" onclick="setStarColor('#059669','#047857','#064E3B')" title="Green" id="sw-green"></div>
+        <div class="swatch" style="background:#7C3AED;" onclick="setStarColor('#7C3AED','#6D28D9','#4C1D95')" title="Violet" id="sw-violet"></div>
+        <div class="swatch" style="background:#DC2626;" onclick="setStarColor('#DC2626','#B91C1C','#7F1D1D')" title="Red" id="sw-red"></div>
+        <div class="swatch" style="background:linear-gradient(135deg,#F59E0B,#DC2626);" onclick="setStarColor('#F59E0B','#DC2626','#7F1D1D','gradient')" title="Gradient" id="sw-grad"></div>
+        <div class="swatch" style="background:#1E293B;border:1.5px dashed #94A3B8;" title="Custom">
+          <input type="color" value="#F59E0B" oninput="setStarColor(this.value,this.value,this.value)" style="opacity:0;width:100%;height:100%;cursor:pointer;border:none;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Center Style -->
+    <div class="ctrl-group">
+      <label class="ctrl-label">Center Badge</label>
+      <div class="style-grid">
+        <button class="style-btn active" onclick="setCenterStyle('logo')" id="btn-logo">🔵 Logo Zone</button>
+        <button class="style-btn" onclick="setCenterStyle('check')" id="btn-check">✓ Checkmark</button>
+        <button class="style-btn" onclick="setCenterStyle('stars')" id="btn-stars">★ Rating</button>
+        <button class="style-btn" onclick="setCenterStyle('none')" id="btn-none">○ Empty</button>
+      </div>
+    </div>
+
+    <!-- Size -->
+    <div class="ctrl-group">
+      <label class="ctrl-label">Size</label>
+      <div class="slider-row">
+        <input type="range" min="40" max="200" value="120" id="sizeSlider" oninput="setSize(this.value)">
+        <div class="slider-val" id="sizeVal">120px</div>
+      </div>
+    </div>
+
+    <!-- Corner radius (rounded style) -->
+    <div class="ctrl-group" id="radiusGroup" style="display:none;">
+      <label class="ctrl-label">Point Roundness</label>
+      <div class="slider-row">
+        <input type="range" min="0" max="10" value="4" step="0.5" id="radiusSlider" oninput="render()">
+        <div class="slider-val" id="radiusVal">4</div>
+      </div>
+    </div>
+
+    <!-- Wordmark toggle -->
+    <div class="ctrl-group">
+      <div class="toggle-row">
+        <label class="ctrl-label" style="margin-bottom:0;">Show Wordmark</label>
+        <label class="toggle"><input type="checkbox" id="wordmarkToggle" checked onchange="render()"><span class="toggle-slider"></span></label>
+      </div>
+    </div>
+
+    <!-- Logo Upload -->
+    <div class="ctrl-group">
+      <label class="ctrl-label">Upload Your Logo</label>
+      <div class="upload-zone" onclick="document.getElementById('logoFile').click()">
+        <input type="file" id="logoFile" accept="image/*" onchange="handleLogo(event)">
+        <img id="logoThumb" src="" alt="">
+        <div class="uz-icon">⬆️</div>
+        <p><strong>Drop logo here</strong></p>
+        <p style="font-size:0.68rem;opacity:0.6;margin-top:2px;">PNG · SVG · JPG — best at 80×80px</p>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="action-btns">
+      <button class="act-btn" onclick="downloadSVG()">⬇ Download SVG</button>
+      <button class="act-btn" onclick="copySVG()">⎘ Copy SVG</button>
+      <button class="act-btn gold" onclick="downloadPNG()">⬇ Export PNG</button>
+      <button class="act-btn primary" onclick="resetAll()">↺ Reset to Default</button>
+    </div>
+  </div>
+
+  <!-- RIGHT: PREVIEW -->
+  <div class="preview-panel">
+
+    <!-- Light canvas -->
+    <div class="canvas-card">
+      <div class="canvas-label">Light — all configurations</div>
+      <div class="canvas-area" id="lightCanvas">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+
+    <!-- Dark canvas -->
+    <div class="canvas-card" style="background:var(--navy);">
+      <div class="canvas-label" style="color:rgba(255,255,255,0.3);">Dark background</div>
+      <div class="canvas-dark" id="darkCanvas">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+
+    <!-- SVG Code -->
+    <div class="code-card">
+      <h3>Production SVG — copy or download</h3>
+      <div class="code-block" id="svgCode"><!-- rendered below --></div>
+      <div class="copy-row">
+        <button class="copy-btn" onclick="copySVG()">Copy SVG Code</button>
+        <button class="dl-btn" onclick="downloadSVG()">Download .svg</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ===== STATE =====
+let state = {
+  style: 'origami',
+  color1: '#F59E0B',
+  color2: '#D97706',
+  color3: '#92400E',
+  colorMode: 'solid',
+  centerStyle: 'logo',
+  size: 120,
+  wordmark: true,
+  logoDataUrl: null,
+  radius: 4,
+};
+
+// ===== STAR PATH GENERATORS =====
+function getStarPath(style, r) {
+  const cx = 50, cy = 50;
+  const outerR = 44, innerR = 19;
+  const points = 5;
+  r = parseFloat(r) || 0;
+
+  if (style === 'classic' || style === 'origami' || style === 'rounded') {
+    // Standard 5-point star polygon
+    let d = '';
+    for (let i = 0; i < points * 2; i++) {
+      const angle = (Math.PI / points) * i - Math.PI / 2;
+      const rad = i % 2 === 0 ? outerR : innerR;
+      const x = cx + rad * Math.cos(angle);
+      const y = cy + rad * Math.sin(angle);
+      d += (i === 0 ? 'M' : 'L') + x.toFixed(2) + ',' + y.toFixed(2);
+    }
+    return d + 'Z';
+  }
+
+  if (style === 'geometric') {
+    // Sharper, more angular star
+    const oR = 45, iR = 16;
+    let d = '';
+    for (let i = 0; i < points * 2; i++) {
+      const angle = (Math.PI / points) * i - Math.PI / 2;
+      const rad = i % 2 === 0 ? oR : iR;
+      const x = cx + rad * Math.cos(angle);
+      const y = cy + rad * Math.sin(angle);
+      d += (i === 0 ? 'M' : 'L') + x.toFixed(2) + ',' + y.toFixed(2);
+    }
+    return d + 'Z';
+  }
+
+  return 'M50,6 L61,35 L91,35 L68,54 L77,82 L50,65 L23,82 L32,54 L9,35 L39,35 Z';
+}
+
+// Rounded star using quadratic bezier curves
+function getRoundedStarPath() {
+  const cx=50, cy=50, outerR=44, innerR=19, points=5;
+  const r = parseFloat(document.getElementById('radiusSlider').value);
+  document.getElementById('radiusVal').textContent = r;
+  let coords = [];
+  for (let i = 0; i < points * 2; i++) {
+    const angle = (Math.PI / points) * i - Math.PI / 2;
+    const rad = i % 2 === 0 ? outerR : innerR;
+    coords.push({ x: cx + rad * Math.cos(angle), y: cy + rad * Math.sin(angle) });
+  }
+  const n = coords.length;
+  let d = '';
+  for (let i = 0; i < n; i++) {
+    const prev = coords[(i - 1 + n) % n];
+    const curr = coords[i];
+    const next = coords[(i + 1) % n];
+    const mx1 = (prev.x + curr.x) / 2, my1 = (prev.y + curr.y) / 2;
+    const mx2 = (curr.x + next.x) / 2, my2 = (curr.y + next.y) / 2;
+    if (i === 0) d += `M${mx1.toFixed(2)},${my1.toFixed(2)} `;
+    d += `Q${curr.x.toFixed(2)},${curr.y.toFixed(2)} ${mx2.toFixed(2)},${my2.toFixed(2)} `;
+  }
+  return d + 'Z';
+}
+
+// ===== GRADIENT / FILL =====
+function getFillAttr(id, mode) {
+  if (mode === 'gradient') return `url(#grad-${id})`;
+  return state.color1;
+}
+
+function getGradientDefs(id) {
+  if (state.colorMode !== 'gradient') return '';
+  return `<defs>
+    <linearGradient id="grad-${id}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${state.color1}"/>
+      <stop offset="100%" stop-color="${state.color2}"/>
+    </linearGradient>
+  </defs>`;
+}
+
+// ===== CENTER CONTENT =====
+function getCenterContent(withLogo) {
+  const cx=50, cy=50, r=17;
+
+  if (state.centerStyle === 'none') return '';
+
+  let circle = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="white" opacity="0.97"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${state.color1}" stroke-width="1.8" opacity="0.85"/>
+    <circle cx="${cx}" cy="${cy}" r="${r-3}" fill="none" stroke="${state.color1}" stroke-width="0.6" opacity="0.3"/>`;
+
+  if (state.centerStyle === 'check') {
+    return circle + `<path d="M41 50 L47 56 L59 44" fill="none" stroke="${state.color1}"
+      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+  }
+  if (state.centerStyle === 'stars') {
+    return circle + `<text x="50" y="47" text-anchor="middle" font-family="sans-serif"
+      font-size="11" fill="${state.color1}">★★★</text>
+      <text x="50" y="57" text-anchor="middle" font-family="sans-serif"
+      font-size="5.5" font-weight="700" fill="${state.color1}" letter-spacing="0.3">4.9</text>`;
+  }
+  if (state.centerStyle === 'logo' && withLogo && state.logoDataUrl) {
+    return `<clipPath id="logoCircleClip"><circle cx="${cx}" cy="${cy}" r="${r-1}"/></clipPath>
+      ${circle}
+      <image href="${state.logoDataUrl}" x="${cx-r+2}" y="${cy-r+2}"
+        width="${(r-2)*2}" height="${(r-2)*2}" clip-path="url(#logoCircleClip)"
+        preserveAspectRatio="xMidYMid slice"/>`;
+  }
+  // Default logo zone placeholder
+  return circle + `<text x="${cx}" y="${cy-4}" text-anchor="middle"
+    font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="800"
+    fill="${state.color1}" letter-spacing="-0.3">ES</text>
+    <text x="${cx}" y="${cy+7}" text-anchor="middle"
+    font-family="Plus Jakarta Sans, sans-serif" font-size="5" font-weight="700"
+    fill="${state.color2}" letter-spacing="0.6">VERIFIED</text>`;
+}
+
+// ===== ORIGAMI FACETS =====
+function getOrigamiFacets() {
+  if (state.style !== 'origami') return '';
+  return `
+    <path d="M50,6 L61,35 L50,65 Z" fill="rgba(255,255,255,0.10)"/>
+    <path d="M50,6 L39,35 L50,65 Z" fill="rgba(0,0,0,0.10)"/>
+    <path d="M91,35 L68,54 L61,35 Z" fill="rgba(255,255,255,0.12)"/>
+    <path d="M9,35 L32,54 L39,35 Z" fill="rgba(0,0,0,0.08)"/>
+    <path d="M77,82 L50,65 L68,54 Z" fill="rgba(255,255,255,0.07)"/>
+    <path d="M23,82 L50,65 L32,54 Z" fill="rgba(0,0,0,0.07)"/>
+    <path d="M50,6 L61,35 L44,26 Z" fill="rgba(255,255,255,0.22)"/>
+    <line x1="50" y1="6" x2="61" y2="35" stroke="rgba(255,255,255,0.18)" stroke-width="0.7"/>
+    <line x1="50" y1="6" x2="39" y2="35" stroke="rgba(0,0,0,0.18)" stroke-width="0.7"/>
+    <line x1="61" y1="35" x2="50" y2="65" stroke="rgba(0,0,0,0.12)" stroke-width="0.7"/>
+    <line x1="91" y1="35" x2="68" y2="54" stroke="rgba(255,255,255,0.14)" stroke-width="0.7"/>
+    <line x1="9" y1="35" x2="32" y2="54" stroke="rgba(0,0,0,0.10)" stroke-width="0.7"/>`;
+}
+
+// ===== BUILD SVG MARK =====
+function buildMark(id, size, withLogo, darkBg) {
+  const starPath = state.style === 'rounded' ? getRoundedStarPath() : getStarPath(state.style);
+  const fill = getFillAttr(id, state.colorMode);
+  const gradDefs = getGradientDefs(id);
+  const facets = getOrigamiFacets();
+  const center = getCenterContent(withLogo);
+
+  // Outer glow for geometric on dark
+  const glow = darkBg ? `<filter id="glow-${id}"><feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>` : '';
+  const glowAttr = darkBg && state.style === 'geometric' ? `filter="url(#glow-${id})"` : '';
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
+  width="${size}" height="${size}" role="img" aria-label="EarnedStar badge">
+  <defs>
+    <radialGradient id="bodyGrad-${id}" cx="38%" cy="32%" r="68%">
+      <stop offset="0%" stop-color="${lighten(state.color1, 0.18)}"/>
+      <stop offset="55%" stop-color="${state.color1}"/>
+      <stop offset="100%" stop-color="${state.color3}"/>
+    </radialGradient>
+    ${glow}
+    ${gradDefs.replace('<defs>','').replace('</defs>','')}
+  </defs>
+  <!-- Star body -->
+  <path d="${starPath}" fill="url(#bodyGrad-${id})" ${glowAttr}/>
+  ${facets}
+  <!-- Edge highlight -->
+  <path d="${starPath}" fill="none" stroke="rgba(255,255,255,0.20)" stroke-width="0.8"/>
+  <!-- Center badge -->
+  ${center}
+</svg>`;
+}
+
+// ===== BUILD FULL LOGO (mark + wordmark) =====
+function buildFullLogo(id, size, withLogo, darkBg) {
+  if (!state.wordmark) return buildMark(id, size, withLogo, darkBg);
+
+  const textColor = darkBg ? '#FFFFFF' : state.color1 === '#0F2044' ? '#0F2044' : '#0F2044';
+  const accentColor = state.color1 === '#F59E0B' ? '#F59E0B' : state.color1;
+  const fs = Math.round(size * 0.22);
+  const gap = Math.round(size * 0.08);
+  const totalW = size + gap + Math.round(fs * 5.2);
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalW} ${size}"
+  width="${totalW}" height="${size}" role="img" aria-label="EarnedStar">
+  <!-- Mark -->
+  <svg x="0" y="0" width="${size}" height="${size}" viewBox="0 0 100 100">
+    ${buildMark(id+'inner', size, withLogo, darkBg).replace(/<svg[^>]*>/,'').replace('</svg>','')}
+  </svg>
+  <!-- Wordmark -->
+  <text x="${size + gap}" y="${size * 0.52}"
+    font-family="Plus Jakarta Sans, Arial, sans-serif"
+    font-size="${fs}" font-weight="800" fill="${darkBg ? '#ffffff' : '#0F2044'}"
+    dominant-baseline="middle">Earned</text>
+  <text x="${size + gap + Math.round(fs * 3.08)}" y="${size * 0.52}"
+    font-family="Plus Jakarta Sans, Arial, sans-serif"
+    font-size="${fs}" font-weight="800" fill="${accentColor}"
+    dominant-baseline="middle">Star</text>
+</svg>`;
+}
+
+// ===== HELPERS =====
+function lighten(hex, amt) {
+  let r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  r = Math.min(255, Math.round(r + (255-r)*amt));
+  g = Math.min(255, Math.round(g + (255-g)*amt));
+  b = Math.min(255, Math.round(b + (255-b)*amt));
+  return '#' + [r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('');
+}
+
+// ===== RENDER =====
+function render() {
+  const s = state.size;
+  const light = document.getElementById('lightCanvas');
+  const dark  = document.getElementById('darkCanvas');
+  const code  = document.getElementById('svgCode');
+
+  light.innerHTML = `
+    <div class="logo-variant">
+      <div>${buildFullLogo('lf', s, true, false)}</div>
+      <div class="variant-lbl">Primary Horizontal</div>
+    </div>
+    <div class="logo-variant">
+      <div>${buildMark('lm', s, true, false)}</div>
+      <div class="variant-lbl">Mark Only</div>
+    </div>
+    <div class="logo-variant">
+      <div>${buildMark('lms', Math.round(s*0.6), true, false)}</div>
+      <div class="variant-lbl">Small</div>
+    </div>`;
+
+  dark.innerHTML = `
+    <div class="logo-variant">
+      <div>${buildFullLogo('df', s, true, true)}</div>
+      <div class="variant-lbl" style="color:rgba(255,255,255,0.35)">Reversed</div>
+    </div>
+    <div class="logo-variant">
+      <div>${buildMark('dm', s, true, true)}</div>
+      <div class="variant-lbl" style="color:rgba(255,255,255,0.35)">Dark Mark</div>
+    </div>`;
+
+  const svgOutput = buildMark('export', s, true, false);
+  code.textContent = svgOutput;
+}
+
+// ===== SETTERS =====
+function setStyle(s) {
+  state.style = s;
+  document.querySelectorAll('[id^="btn-"]').forEach(b => {
+    if(b.id.startsWith('btn-origami')||b.id.startsWith('btn-geometric')||b.id.startsWith('btn-rounded')||b.id.startsWith('btn-classic'))
+      b.classList.remove('active');
+  });
+  document.getElementById('btn-'+s).classList.add('active');
+  document.getElementById('radiusGroup').style.display = s === 'rounded' ? 'block' : 'none';
+  render();
+}
+
+function setStarColor(c1, c2, c3, mode) {
+  state.color1 = c1; state.color2 = c2; state.color3 = c3;
+  state.colorMode = mode || 'solid';
+  document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+  render();
+}
+
+function setCenterStyle(s) {
+  state.centerStyle = s;
+  ['logo','check','stars','none'].forEach(id => {
+    document.getElementById('btn-'+id)?.classList.remove('active');
+  });
+  document.getElementById('btn-'+s)?.classList.add('active');
+  render();
+}
+
+function setSize(v) {
+  state.size = parseInt(v);
+  document.getElementById('sizeVal').textContent = v + 'px';
+  render();
+}
+
+function handleLogo(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    state.logoDataUrl = ev.target.result;
+    const thumb = document.getElementById('logoThumb');
+    thumb.src = ev.target.result; thumb.style.display = 'block';
+    state.centerStyle = 'logo';
+    setCenterStyle('logo');
+    render();
+  };
+  reader.readAsDataURL(file);
+}
+
+function copySVG() {
+  const svg = buildMark('copy', state.size, true, false);
+  if (navigator.clipboard) navigator.clipboard.writeText(svg);
+  const btn = document.querySelector('.copy-btn');
+  const orig = btn.textContent;
+  btn.textContent = '✓ Copied!'; btn.style.background = '#059669';
+  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 2000);
+}
+
+function downloadSVG() {
+  const svg = buildFullLogo('dl', state.size, true, false);
+  const blob = new Blob([svg], { type: 'image/svg+xml' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'earnedstar-logo.svg'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+function downloadPNG() {
+  const svg = buildMark('png', state.size * 2, true, false);
+  const img = new Image();
+  const blob = new Blob([svg], { type: 'image/svg+xml' });
+  const url = URL.createObjectURL(blob);
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = state.size * 2; canvas.height = state.size * 2;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    canvas.toBlob(b => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(b); a.download = 'earnedstar-badge.png'; a.click();
+    }, 'image/png');
+    URL.revokeObjectURL(url);
+  };
+  img.src = url;
+}
+
+function resetAll() {
+  state = { style:'origami', color1:'#F59E0B', color2:'#D97706', color3:'#92400E',
+    colorMode:'solid', centerStyle:'logo', size:120, wordmark:true, logoDataUrl:null, radius:4 };
+  document.getElementById('sizeSlider').value = 120;
+  document.getElementById('sizeVal').textContent = '120px';
+  document.getElementById('wordmarkToggle').checked = true;
+  document.getElementById('logoThumb').style.display = 'none';
+  setStyle('origami');
+  document.querySelectorAll('.swatch').forEach((s,i)=>s.classList.toggle('active',i===0));
+  setCenterStyle('logo');
+  render();
+}
+
+// ===== INIT =====
+render();
+</script>
+</body>
+</html>

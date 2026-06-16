@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #0f2044;
+  --navy-mid: #1a3566;
+  --navy-light: #2a4d8f;
+  --navy-pale: #ebf0fa;
+  --gold: #f59e0b;
+  --gold-dark: #d97706;
+  --gold-light: #fde68a;
+  --gold-pale: #fffbeb;
+  --green: #059669;
+  --green-dark: #047857;
+  --green-pale: #ecfdf5;
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --surface-2: #f4f4f0;
+  --border: rgba(15, 32, 68, 0.1);
+  --border-strong: rgba(15, 32, 68, 0.2);
+  --text: #0f2044;
+  --text-muted: #64748b;
+  --text-faint: #94a3b8;
+  --dark-bg: #0a1628;
+  --star-1: #ef4444;
+  --star-2: #f97316;
+  --star-3: #eab308;
+  --star-4: #84cc16;
+  --star-5: #f59e0b;
+  --star-empty: #e5e7eb;
+  --shadow-md: 0 4px 16px rgba(15, 32, 68, 0.1), 0 2px 4px rgba(15, 32, 68, 0.06);
+  --shadow-lg: 0 12px 40px rgba(15, 32, 68, 0.14), 0 4px 8px rgba(15, 32, 68, 0.08);
+  --shadow-gold: 0 0 0 3px rgba(245, 158, 11, 0.25), 0 8px 32px rgba(245, 158, 11, 0.15);
+}
+
+@theme inline {
+  --color-navy: var(--navy);
+  --color-navy-mid: var(--navy-mid);
+  --color-navy-light: var(--navy-light);
+  --color-navy-pale: var(--navy-pale);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-gold-pale: var(--gold-pale);
+  --color-green: var(--green);
+  --color-green-dark: var(--green-dark);
+  --color-green-pale: var(--green-pale);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-text-faint: var(--text-faint);
+  --color-dark-bg: var(--dark-bg);
+  --font-sans: var(--font-jakarta);
+  --font-display: var(--font-instrument);
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: var(--font-instrument), Georgia, serif;
+  font-style: italic;
+}
+
+.card-surface {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+}
+
+.card-surface:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-lg);
+}
+
+.glow-growth {
+  box-shadow: var(--shadow-gold);
+  border-color: var(--gold) !important;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
