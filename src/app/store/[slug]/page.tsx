@@ -13,10 +13,19 @@ export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const { merchant } = await fetchStorePageData(slug);
   const business = merchant ?? { ...mockBusiness, slug, name: slug };
+  const defaultTitle = `${business.name} Reviews — ${business.review_count} Verified Reviews`;
+  const defaultDescription = `Read ${business.review_count} verified reviews. Average rating: ${business.avg_rating}/5.`;
   return {
-    title: `${business.name} Reviews — ${business.review_count} Verified Reviews`,
-    description: `Read ${business.review_count} verified reviews. Average rating: ${business.avg_rating}/5.`,
+    title: business.seo_title?.trim() || defaultTitle,
+    description: business.seo_description?.trim() || defaultDescription,
     alternates: { canonical: `https://earnedstar.com/store/${slug}` },
+    openGraph: {
+      title: business.seo_title?.trim() || defaultTitle,
+      description: business.seo_description?.trim() || defaultDescription,
+      url: `https://earnedstar.com/store/${slug}`,
+      siteName: "EarnedStar",
+      type: "website",
+    },
   };
 }
 

@@ -26,6 +26,8 @@ export interface Merchant {
   slug: string;
   logo_url?: string;
   website_url?: string;
+  seo_title?: string | null;
+  seo_description?: string | null;
   plan: "starter" | "growth" | "pro" | "agency";
   api_key?: string;
   review_count: number;

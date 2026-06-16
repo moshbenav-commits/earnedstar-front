@@ -2,6 +2,7 @@ import { DashboardTopbar } from "@/components/layout/dashboard-topbar";
 import { BillingSubscribeForm } from "@/components/dashboard/billing-subscribe-form";
 import { ApiKeyPanel } from "@/components/dashboard/api-key-panel";
 import { EmailStatusPanel } from "@/components/dashboard/email-status-panel";
+import { ProfileSeoForm } from "@/components/dashboard/profile-seo-form";
 import { PlanBadge } from "@/components/ui/plan-badge";
 import type { PlanId } from "@/lib/plans";
 import { fetchDashboardOverview } from "@/lib/earnedstar-server";
@@ -42,6 +43,16 @@ export default async function DashboardSettingsPage() {
             </div>
           </dl>
         </section>
+
+        <ProfileSeoForm
+          initial={{
+            name: profile.name,
+            website_url: profile.website_url,
+            seo_title: profile.seo_title,
+            seo_description: profile.seo_description,
+            slug: profile.slug,
+          }}
+        />
 
         <BillingSubscribeForm currentPlan={plan} />
 

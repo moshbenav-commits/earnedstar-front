@@ -11,6 +11,8 @@ export type DashboardMerchant = {
   api_key?: string;
   logo_url: string | null;
   website_url: string | null;
+  seo_title?: string | null;
+  seo_description?: string | null;
   review_count: number;
   avg_rating: number;
 };
@@ -42,6 +44,8 @@ export async function getDashboardMerchant(): Promise<DashboardMerchant> {
     plan: "growth",
     logo_url: null,
     website_url: "https://meridian-gear.example.com",
+    seo_title: null,
+    seo_description: null,
     review_count: 2847,
     avg_rating: 4.9,
   };
