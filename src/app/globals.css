@@ -65,6 +65,40 @@ html {
   color-scheme: light;
 }
 
+html.dark {
+  color-scheme: dark;
+  --bg: #0a1628;
+  --surface: #111827;
+  --surface-2: #1a2744;
+  --surface-offset: #0f1a2e;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --text: #e8ecf8;
+  --text-muted: #a8b4c8;
+  --text-faint: #6b7a90;
+  --navy-pale: rgba(48, 96, 184, 0.18);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+html.dark .text-navy {
+  color: #e8ecf8;
+}
+
+html.dark .text-navy-light {
+  color: #a8c0e8;
+}
+
+html.dark .bg-white {
+  background-color: var(--surface);
+}
+
+html.dark .section-warm,
+html.dark .section-stone {
+  background: var(--bg);
+}
+
+
 body {
   background: var(--bg);
   color: var(--text);
@@ -91,11 +125,17 @@ body {
   background: var(--surface-offset);
 }
 
+/* Figma Logo System — deep navy hero mesh (#0B1D58 → #010509) */
+.hero-figma {
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 35%, #18306a 0%, #0b1d58 45%, #010509 100%);
+}
+
 .hero-mesh {
   background:
     radial-gradient(ellipse 80% 60% at 20% 10%, rgba(245, 158, 11, 0.14), transparent 55%),
-    radial-gradient(ellipse 60% 50% at 85% 80%, rgba(42, 77, 143, 0.35), transparent 50%),
-    linear-gradient(165deg, var(--navy) 0%, var(--dark-bg) 100%);
+    radial-gradient(ellipse 60% 50% at 85% 80%, rgba(48, 96, 184, 0.35), transparent 50%),
+    linear-gradient(165deg, #0b1d58 0%, #010509 100%);
 }
 
 /* Figma Make hero — deep radial navy with gold ambient */

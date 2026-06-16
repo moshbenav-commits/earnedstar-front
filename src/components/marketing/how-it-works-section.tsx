@@ -18,7 +18,7 @@ const steps = [
 
 export function HowItWorksSection() {
   return (
-    <section id="how-it-works" className="section-stone border-y border-border py-24">
+    <section id="how-it-works" className="section-stone border-y border-border py-24" data-scroll-theme="light">
       <div className="mx-auto max-w-3xl px-4">
         <p className="text-center text-xs font-semibold uppercase tracking-widest text-navy-light">Setup in 3 steps</p>
         <h2 className="mt-3 text-center text-3xl font-bold text-navy">From store to stars in under 30 minutes</h2>

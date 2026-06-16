@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "smoke": "bash scripts/smoke.sh",
+    "smoke:prod": "SMOKE_FRONT_URL=https://earnedstar.vercel.app SMOKE_CUSTOM_DOMAIN=https://earnedstar.com SMOKE_API_URL=https://earnedstar-back.vercel.app/api bash scripts/smoke.sh",
+    "audit:vercel-billing": "node scripts/vercel-billing-guard.mjs",
+    "audit:vercel-billing:ci": "node scripts/vercel-billing-guard.mjs --ci",
+    "deploy:prod": "bash scripts/deploy-vercel.sh",
+    "deploy:prod:skip-smoke": "SKIP_POST_DEPLOY_SMOKE=1 bash scripts/deploy-vercel.sh"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",

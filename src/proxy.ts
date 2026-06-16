@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 import { getSupabaseEnv } from '@/lib/supabase/env';
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { url, anonKey, configured } = getSupabaseEnv();
   const devBypass = process.env.EARNEDSTAR_AUTH_DEV_BYPASS === '1';
   let response = NextResponse.next({ request });

@@ -1,117 +1,117 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
+import { EarnedStarLuckyStar } from "@/components/brand/earnedstar-lucky-star";
+import { AmbientStars } from "@/components/marketing/ambient-stars";
 import { HeroReviewCard } from "@/components/marketing/hero-review-card";
-import { MARKETING_HERO_STAR_SRC } from "@/lib/brand-assets";
 
-const AMBIENT_STARS = [
-  { x: "8%", y: "18%", size: 28, delay: 0, variant: "photo" as const },
-  { x: "84%", y: "12%", size: 22, delay: 1.2, variant: "photo" as const },
-  { x: "6%", y: "72%", size: 34, delay: 2, variant: "photo" as const },
-  { x: "90%", y: "68%", size: 24, delay: 0.6, variant: "photo" as const },
-  { x: "50%", y: "6%", size: 20, delay: 3, variant: "photo" as const },
-  { x: "18%", y: "88%", size: 26, delay: 1.8, variant: "photo" as const },
-  { x: "76%", y: "85%", size: 18, delay: 2.6, variant: "photo" as const },
-];
-
+/** Figma Hero Banner — navy mesh, lucky stars, review-site copy */
 export function HeroSection() {
   return (
-    <section className="hero-figma relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pt-24 pb-16 lg:flex-row lg:items-center lg:gap-10 lg:px-8 lg:text-left">
-      {AMBIENT_STARS.map((star, i) => (
-        <motion.div
-          key={i}
-          className="pointer-events-none absolute opacity-[0.16]"
-          style={{ left: star.x, top: star.y }}
-          animate={{ y: [0, -14, 6, -10, 0], rotate: [0, 6, -3, 4, 0] }}
-          transition={{ duration: 8 + i * 0.4, delay: star.delay, repeat: Infinity, ease: "easeInOut" }}
-          aria-hidden
-        >
-          <EarnedStarMark size={star.size} centerStyle="none" render="photo" />
-        </motion.div>
-      ))}
-
-      <div className="relative z-10 max-w-xl text-center lg:flex-1 lg:text-left">
-        <motion.span
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white/80"
-        >
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green" />
-          Now in open beta — Join 1,200+ e-commerce stores
-        </motion.span>
-
-        <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
-          Reviews your customers{" "}
-          <span className="font-display italic text-gold">actually earned.</span>
-        </h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mt-6 text-lg text-white/70"
-        >
-          Verified by purchase. Fraud-scored by AI. The photoreal lucky star badge that means your reviews
-          are real.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="mt-10 flex flex-wrap justify-center gap-4 lg:justify-start"
-        >
-          <Button variant="gold" size="lg" href="/signup">
-            Start Free — No Credit Card
-          </Button>
-          <Button
-            variant="ghost"
-            size="lg"
-            href="#brand"
-            className="border-white/20 text-white/90 hover:border-gold/50 hover:text-white"
-          >
-            See the Badge →
-          </Button>
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="mt-4 text-xs text-white/45"
-        >
-          No annual contracts · Cancel anytime · Google Seller Ratings ready · Setup in under 30 minutes
-        </motion.p>
+    <section className="hero-figma relative overflow-hidden pt-10 pb-16" data-scroll-theme="dark">
+      <div className="pointer-events-none absolute inset-0 opacity-30" aria-hidden>
+        <div className="absolute left-1/4 top-1/3 h-80 w-80 rounded-full bg-[#3060b8]/30 blur-[100px]" />
+        <div className="absolute right-1/4 bottom-1/4 h-64 w-64 rounded-full bg-gold/15 blur-[80px]" />
       </div>
 
-      <div className="relative z-10 mt-14 flex w-full max-w-lg flex-col items-center lg:mt-0 lg:flex-1">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.88 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.25, duration: 0.7 }}
-          className="animate-float-star relative mb-8"
-        >
-          <div className="logo-shell-hero rounded-3xl p-5 sm:p-8">
-            <Image
-              src={MARKETING_HERO_STAR_SRC}
-              alt="EarnedStar photoreal 3D leather lucky star"
-              width={320}
-              height={320}
-              className="h-auto w-[200px] object-contain drop-shadow-[0_32px_64px_rgba(0,0,0,0.55)] sm:w-[260px] lg:w-[300px]"
-              priority
-            />
-          </div>
-          <div
-            className="pointer-events-none absolute inset-0 rounded-3xl"
-            style={{ boxShadow: "0 0 100px rgba(245,158,11,0.28)" }}
-            aria-hidden
-          />
-        </motion.div>
+      <AmbientStars />
 
-        <HeroReviewCard />
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid min-h-[min(70vh,640px)] items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* Left — Figma BannerHero copy block */}
+          <div className="text-center lg:text-left">
+            <motion.span
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-6 inline-flex items-center rounded-full border border-gold/35 bg-gold/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-gold"
+            >
+              Verified by purchase
+            </motion.span>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.25rem]"
+            >
+              Reviews your customers{" "}
+              <span className="font-display italic text-gold">actually earned.</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="mt-6 max-w-lg text-lg text-white/70 lg:mx-0 mx-auto"
+            >
+              Purchase-verified ratings for any e-commerce store. Fraud-scored by AI before they
+              publish — so shoppers trust what they read.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="mt-10 flex flex-wrap justify-center gap-4 lg:justify-start"
+            >
+              <Button variant="gold" size="lg" href="/signup" className="min-w-[180px]">
+                Start Free Trial
+              </Button>
+              <Button
+                variant="ghost"
+                size="lg"
+                href="#how-it-works"
+                className="border-white/20 text-white/90 hover:border-gold/50 hover:text-white"
+              >
+                See How It Works
+              </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.45 }}
+              className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start"
+            >
+              <div className="flex items-center gap-1">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <EarnedStarLuckyStar key={i} size={14} variant="gold" showBadge={false} />
+                ))}
+              </div>
+              <span className="text-sm font-medium text-white/60">4.9 · 2,847 verified reviews</span>
+            </motion.div>
+          </div>
+
+          {/* Right — decorative stars + live review card (Figma ReviewAnimation) */}
+          <div className="relative flex w-full flex-col items-center">
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center" aria-hidden>
+              <EarnedStarLuckyStar
+                size={200}
+                variant="gold"
+                showBadge
+                className="absolute -right-4 top-0 opacity-90 drop-shadow-2xl sm:size-[240px]"
+              />
+              <EarnedStarLuckyStar
+                size={140}
+                variant="navy"
+                showBadge
+                className="absolute -left-6 bottom-12 opacity-80 drop-shadow-xl"
+              />
+            </div>
+
+            <div className="relative z-10 w-full max-w-md pt-8 lg:pt-16">
+              <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-gold/70">
+                Live review
+              </p>
+              <h2 className="mb-6 text-center text-2xl font-bold text-white sm:text-3xl">
+                See why stores trust{" "}
+                <span className="font-display italic text-gold">EarnedStar</span>
+              </h2>
+              <HeroReviewCard />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

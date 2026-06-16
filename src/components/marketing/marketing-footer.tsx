@@ -4,7 +4,7 @@ import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 
 export function MarketingFooter() {
   return (
-    <footer className="border-t border-border bg-navy text-white">
+    <footer className="border-t border-border bg-navy text-white" data-scroll-theme="dark">
       <section className="py-20 text-center">
         <div className="mx-auto max-w-3xl px-4">
           <h2 className="font-display text-3xl italic text-gold">Stop guessing if customers trust you.</h2>
@@ -13,7 +13,7 @@ export function MarketingFooter() {
         </div>
       </section>
       <div className="mx-auto max-w-7xl border-t border-white/10 px-4 py-12">
-        <EarnedStarLogo variant="light" size={40} centerStyle="none" />
+        <EarnedStarLogo variant="light" size={40} showBadge={false} />
         <p className="mt-4 max-w-md text-sm text-white/60">Verified reviews for e-commerce stores that take trust seriously.</p>
         <p className="mt-8 text-xs text-white/40">© 2026 EarnedStar, Inc. · Los Angeles, CA</p>
       </div>

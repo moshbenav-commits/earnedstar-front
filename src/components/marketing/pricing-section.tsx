@@ -70,7 +70,7 @@ const plans = [
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="relative overflow-hidden py-24">
+    <section id="pricing" className="relative overflow-hidden py-24" data-scroll-theme="light">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-surface-offset via-bg to-surface-offset" aria-hidden />
       <div className="pointer-events-none absolute left-1/2 top-0 h-px w-full max-w-4xl -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/40 to-transparent" aria-hidden />
 
@@ -131,7 +131,7 @@ export function PricingSection() {
 
                 <div className="flex items-center gap-2">
                   {plan.popular ? (
-                    <EarnedStarMark size={24} centerStyle="none" render="photo" />
+                    <EarnedStarMark size={24} centerStyle="none" />
                   ) : null}
                   <h3 className="text-lg font-bold capitalize text-navy">{plan.id}</h3>
                 </div>
@@ -171,7 +171,7 @@ export function PricingSection() {
           viewport={{ once: true }}
           className="mt-10 text-center text-xs text-text-faint"
         >
-          Every plan includes the photoreal EarnedStar badge · Verified by Purchase on every review
+          Every plan includes the EarnedStar badge · Verified by Purchase on every review
         </motion.p>
       </div>
     </section>

@@ -56,7 +56,7 @@ export function DashboardSidebar() {
   return (
     <aside className="fixed left-0 top-0 z-40 flex h-screen w-60 flex-col border-r border-border bg-surface">
       <div className="flex h-16 items-center border-b border-border px-4">
-        <EarnedStarLogo size={32} centerStyle="none" shell="none" />
+        <EarnedStarLogo size={32} showBadge={false} />
       </div>
       <nav className="flex-1 space-y-1 p-3">
         {navItems.map((item) => {

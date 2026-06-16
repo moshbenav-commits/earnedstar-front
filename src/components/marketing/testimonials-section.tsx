@@ -46,19 +46,22 @@ function TestimonialCard({
   t: (typeof testimonials)[number];
 }) {
   return (
-    <article className="marketing-review-card w-[360px] shrink-0 overflow-hidden rounded-2xl bg-white shadow-[0_4px_12px_rgba(0,0,0,0.1),0_20px_44px_rgba(0,0,6,0.12)]">
+    <article
+      className="marketing-review-card w-[360px] shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-dark-bg/90 shadow-[0_4px_12px_rgba(0,0,0,0.35),0_20px_44px_rgba(0,0,0,0.4)]"
+      data-surface="dark"
+    >
       <div className="h-1 bg-gradient-to-r from-navy via-gold to-navy" />
 
       <div className="p-6">
         <div className="mb-4 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <EarnedStarMark size={22} centerStyle="none" render="photo" />
-            <span className="text-xs font-bold text-navy">EarnedStar</span>
+            <EarnedStarMark size={22} centerStyle="none" />
+            <span className="text-xs font-bold text-white">EarnedStar</span>
           </div>
           <VerifiedBadge size="sm" />
         </div>
 
-        <blockquote className="border-l-[3px] border-gold pl-4 text-sm leading-relaxed text-navy">
+        <blockquote className="border-l-[3px] border-gold pl-4 text-sm leading-relaxed text-white/85">
           &ldquo;{t.quote}&rdquo;
         </blockquote>
 
@@ -66,14 +69,14 @@ function TestimonialCard({
           <StarRating rating={t.rating} size="sm" />
         </div>
 
-        <div className="mt-5 flex items-center justify-between border-t border-border pt-4">
+        <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-navy-mid to-dark-bg text-xs font-bold text-gold">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-navy-mid to-navy text-xs font-bold text-gold">
               {t.initial}
             </div>
             <div>
-              <p className="text-sm font-bold text-navy">{t.name}</p>
-              <p className="text-xs text-text-faint">{t.store}</p>
+              <p className="text-sm font-bold text-white">{t.name}</p>
+              <p className="text-xs text-white/45">{t.store}</p>
             </div>
           </div>
           <p className="text-right text-xs font-semibold text-gold">{t.rating}.0 ★</p>
@@ -85,7 +88,7 @@ function TestimonialCard({
 
 export function TestimonialsSection() {
   return (
-    <section className="hero-figma relative overflow-hidden py-24" data-surface="dark">
+    <section className="hero-figma relative overflow-hidden py-24" data-surface="dark" data-scroll-theme="dark">
       <div className="pointer-events-none absolute inset-0 opacity-20" aria-hidden>
         <div className="absolute left-1/4 top-1/3 h-64 w-64 rounded-full bg-gold/30 blur-[100px]" />
       </div>

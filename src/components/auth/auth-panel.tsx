@@ -86,7 +86,7 @@ export function AuthPanel({ defaultTab = "signin" }: { defaultTab?: Tab }) {
         className="hero-mesh relative flex flex-col justify-center px-8 py-12 lg:w-2/5 lg:px-12"
         data-surface="dark"
       >
-        <EarnedStarLogo variant="light" size={32} centerStyle="none" />
+        <EarnedStarLogo variant="light" size={32} showBadge={false} />
         <p className="mt-8 max-w-sm text-lg text-white/80">
           Verified reviews your customers actually earned — not manufactured.
         </p>

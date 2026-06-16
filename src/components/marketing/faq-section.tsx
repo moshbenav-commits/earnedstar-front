@@ -44,7 +44,7 @@ export function FaqSection() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="section-stone py-24">
+    <section id="faq" className="section-stone py-24" data-scroll-theme="light">
       <div className="mx-auto max-w-3xl px-4">
         <h2 className="text-center text-3xl font-bold text-navy">
           Questions? We&apos;ve got answers.

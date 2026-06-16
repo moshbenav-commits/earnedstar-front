@@ -5,7 +5,7 @@ const platforms = [
 
 export function TrustBar() {
   return (
-    <section className="border-y border-white/10 bg-navy-mid py-6" data-surface="dark">
+    <section className="border-y border-white/10 bg-navy-mid py-6" data-surface="dark" data-scroll-theme="dark">
       <div className="mx-auto max-w-7xl px-4">
         <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-white/45">
           Trusted by stores selling on

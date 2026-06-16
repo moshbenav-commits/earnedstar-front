@@ -30,7 +30,7 @@ export function EarnedStarBadge({
         )}
         data-surface="dark"
       >
-        <EarnedStarMark size={28} centerStyle="none" render="photo" />
+        <EarnedStarMark size={28} centerStyle="none" />
         <div>
           <StarRating rating={rating} size="sm" />
           <p className="text-xs text-white/70">{countLabel} verified reviews</p>
@@ -43,7 +43,7 @@ export function EarnedStarBadge({
     return (
       <div className={cn("card-surface gold-seam max-w-xs p-4", className)}>
         <div className="flex items-center gap-3">
-          <EarnedStarMark size={40} centerStyle="none" render="photo" />
+          <EarnedStarMark size={40} centerStyle="none" />
           <div>
             <p className="font-semibold text-navy">{merchantName}</p>
             <StarRating rating={rating} size="sm" />
@@ -62,7 +62,7 @@ export function EarnedStarBadge({
           className,
         )}
       >
-        <EarnedStarMark size={36} centerStyle="none" render="photo" />
+        <EarnedStarMark size={36} centerStyle="none" />
         <p className="mt-2 text-xs font-bold uppercase tracking-wider text-navy">EarnedStar Verified</p>
         <p className="text-sm font-semibold text-gold-dark">{rating} ★ · {countLabel}</p>
       </div>
@@ -77,7 +77,7 @@ export function EarnedStarBadge({
       )}
       data-surface="dark"
     >
-      <EarnedStarMark size={44} centerStyle="none" render="photo" />
+      <EarnedStarMark size={44} centerStyle="none" />
       <div>
         <p className="text-sm font-semibold text-gold">EarnedStar Verified</p>
         <StarRating rating={rating} size="sm" />

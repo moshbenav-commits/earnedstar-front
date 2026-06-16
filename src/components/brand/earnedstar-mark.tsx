@@ -9,11 +9,12 @@ import {
   resolveRefinedOrigamiPalette,
 } from "@/lib/earnedstar-mark";
 import { getPhotoLogoForDisplay, MARK_3D_MIN_SIZE } from "@/lib/brand-assets";
+import { EarnedStarLuckyStar } from "./earnedstar-lucky-star";
 
 export interface EarnedStarMarkProps {
   size?: number;
   style?: StarStyle;
-  /** photo/3d = photoreal leather PNG+WEBP (default for origami). svg = vector fallback. */
+  /** photo/3d = legacy PNG marks (opt-in only). origami defaults to Figma Make lucky star SVG. */
   render?: "photo" | "3d" | "svg";
   /** Use hero-1600 asset (landing hero, large marketing). */
   preferHero?: boolean;
@@ -257,10 +258,20 @@ export function EarnedStarMark({
   className,
   id = "es-mark",
 }: EarnedStarMarkProps) {
-  const usePhoto =
-    render === "photo" ||
-    render === "3d" ||
-    (render !== "svg" && style === "origami" && size >= MARK_3D_MIN_SIZE);
+  const usePhoto = render === "photo" || render === "3d";
+
+  if (style === "origami" && !usePhoto) {
+    const showBadge = centerStyle !== "none";
+    return (
+      <EarnedStarLuckyStar
+        size={size}
+        variant="navy"
+        showBadge={showBadge}
+        logoUrl={centerStyle === "logo" ? logoUrl : null}
+        className={className}
+      />
+    );
+  }
 
   if (usePhoto) {
     return (

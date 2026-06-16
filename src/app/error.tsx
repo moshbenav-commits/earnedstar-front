@@ -18,7 +18,7 @@ export default function Error({
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-bg px-4 text-center">
-      <EarnedStarLogo size={32} shell="light" />
+      <EarnedStarLogo size={32} />
       <h1 className="mt-8 text-3xl font-bold text-navy">Something went wrong</h1>
       <p className="mt-3 max-w-md text-sm text-text-muted">
         We hit an unexpected error loading this page. Your reviews and dashboard data are safe.
