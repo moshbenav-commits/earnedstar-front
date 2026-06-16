@@ -8,6 +8,7 @@ export type DashboardMerchant = {
   name: string;
   slug: string;
   plan: string;
+  api_key?: string;
   logo_url: string | null;
   website_url: string | null;
   review_count: number;

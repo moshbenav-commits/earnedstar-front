@@ -1,5 +1,6 @@
 import { DashboardTopbar } from "@/components/layout/dashboard-topbar";
 import { BillingSubscribeForm } from "@/components/dashboard/billing-subscribe-form";
+import { ApiKeyPanel } from "@/components/dashboard/api-key-panel";
 import { PlanBadge } from "@/components/ui/plan-badge";
 import type { PlanId } from "@/lib/plans";
 import { fetchDashboardOverview } from "@/lib/earnedstar-server";
@@ -42,6 +43,8 @@ export default async function DashboardSettingsPage() {
         </section>
 
         <BillingSubscribeForm currentPlan={plan} />
+
+        <ApiKeyPanel apiKey={profile.api_key} />
 
         <section className="card-surface max-w-2xl p-6">
           <h2 className="text-lg font-bold text-navy">Notifications</h2>

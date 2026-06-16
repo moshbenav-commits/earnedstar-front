@@ -118,7 +118,7 @@ export default function WidgetsPage() {
             { id: "testimonial", name: "Testimonial", desc: "Single featured review, large format" },
             { id: "feed", name: "Feed", desc: "Vertical list of most recent reviews" },
           ].map((widget) => {
-            const embedCode = `<script src="https://cdn.earnedstar.com/widget.js" data-key="YOUR_API_KEY" data-widget="${widget.id}" data-max="6"></script>`;
+            const embedCode = `<script src="https://earnedstar.com/widget/v1/widget.js" data-key="YOUR_API_KEY" data-widget="${widget.id}" data-max="6"></script>`;
             return (
               <div key={widget.id} className="card-surface p-6">
                 <h3 className="font-semibold text-text-primary">{widget.name}</h3>

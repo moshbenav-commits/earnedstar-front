@@ -1,13 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, Loader2 } from "lucide-react";
+import { CheckCircle2, Loader2, X } from "lucide-react";
 import { ProgressiveStarRating } from "@/components/ui/progressive-star-rating";
 import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
 import { Button } from "@/components/ui/button";
-import { submitReview } from "@/lib/earnedstar-client";
+import { submitReview, uploadReviewPhoto } from "@/lib/earnedstar-client";
 import { cn } from "@/lib/utils";
+
+const MAX_PHOTOS = 5;
 
 const PROMPTS = [
   "Mention fit/compatibility",
@@ -37,6 +39,9 @@ export function ReviewSubmitFlow({
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [publishStatus, setPublishStatus] = useState<string | null>(null);
+  const [photoUrls, setPhotoUrls] = useState<string[]>([]);
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const canNext =
     (step === 0 && rating > 0) ||
@@ -55,6 +60,7 @@ export function ReviewSubmitFlow({
         review_text: body.trim(),
         customer_name: name.trim(),
         customer_email: email.trim(),
+        photos: photoUrls.length ? photoUrls : undefined,
       });
       setPublishStatus(result.status);
       setStep(4);
@@ -63,6 +69,35 @@ export function ReviewSubmitFlow({
     } finally {
       setSubmitting(false);
     }
+  }
+
+  async function handleFiles(files: FileList | null) {
+    if (!files?.length) return;
+    setUploading(true);
+    setError(null);
+    try {
+      const remaining = MAX_PHOTOS - photoUrls.length;
+      const batch = Array.from(files).slice(0, remaining);
+      const urls: string[] = [];
+      for (const file of batch) {
+        if (!file.type.startsWith("image/")) continue;
+        if (file.size > 2 * 1024 * 1024) {
+          throw new Error(`${file.name} exceeds 2 MB limit`);
+        }
+        const url = await uploadReviewPhoto({ token, file });
+        urls.push(url);
+      }
+      setPhotoUrls((prev) => [...prev, ...urls].slice(0, MAX_PHOTOS));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to upload photo");
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  }
+
+  function removePhoto(url: string) {
+    setPhotoUrls((prev) => prev.filter((u) => u !== url));
   }
 
   function handleNext() {
@@ -143,13 +178,56 @@ export function ReviewSubmitFlow({
           {step === 2 && (
             <>
               <h1 className="text-2xl font-bold text-navy">Add photos or video</h1>
-              <p className="mt-2 text-sm text-text-muted">Optional — helps other shoppers decide.</p>
-              <div className="mt-6 flex min-h-[160px] flex-col items-center justify-center rounded-xl border-2 border-dashed border-border bg-surface-2/50 p-8 text-center">
-                <p className="text-sm text-text-muted">Drag and drop files here</p>
-                <Button variant="ghost" size="sm" className="mt-3">
-                  Browse files
+              <p className="mt-2 text-sm text-text-muted">Optional — up to {MAX_PHOTOS} images, 2 MB each.</p>
+              <div
+                className="mt-6 flex min-h-[160px] flex-col items-center justify-center rounded-xl border-2 border-dashed border-border bg-surface-2/50 p-8 text-center"
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  void handleFiles(e.dataTransfer.files);
+                }}
+              >
+                <p className="text-sm text-text-muted">Drag and drop images here</p>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/gif"
+                  multiple
+                  className="hidden"
+                  onChange={(e) => void handleFiles(e.target.files)}
+                />
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="mt-3"
+                  type="button"
+                  disabled={uploading || photoUrls.length >= MAX_PHOTOS}
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  {uploading ? "Uploading…" : "Browse files"}
                 </Button>
               </div>
+              {photoUrls.length > 0 ? (
+                <div className="mt-4 flex flex-wrap gap-3">
+                  {photoUrls.map((url) => (
+                    <div key={url} className="relative h-20 w-20 overflow-hidden rounded-lg border border-border">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={url} alt="" className="h-full w-full object-cover" />
+                      <button
+                        type="button"
+                        onClick={() => removePhoto(url)}
+                        className="absolute right-1 top-1 rounded-full bg-navy/80 p-0.5 text-white"
+                        aria-label="Remove photo"
+                      >
+                        <X size={12} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+              {error && step === 2 ? (
+                <p className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>
+              ) : null}
               <button type="button" className="mt-4 text-sm text-navy-light hover:text-gold" onClick={() => setStep(3)}>
                 Skip this step →
               </button>
@@ -217,7 +295,7 @@ export function ReviewSubmitFlow({
               >
                 Back
               </Button>
-              <Button disabled={!canNext || submitting} onClick={handleNext}>
+              <Button disabled={!canNext || submitting || uploading} onClick={handleNext}>
                 {submitting ? (
                   <>
                     <Loader2 size={16} className="mr-1 animate-spin" /> Submitting…

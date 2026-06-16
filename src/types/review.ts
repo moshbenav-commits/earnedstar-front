@@ -27,6 +27,7 @@ export interface Merchant {
   logo_url?: string;
   website_url?: string;
   plan: "starter" | "growth" | "pro" | "agency";
+  api_key?: string;
   review_count: number;
   avg_rating: number;
 }

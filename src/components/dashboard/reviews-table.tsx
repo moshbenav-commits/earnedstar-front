@@ -14,8 +14,14 @@ const statusStyles: Record<Review["status"], string> = {
   rejected: "bg-surface-2 text-text-faint",
 };
 
-export function ReviewsTable({ reviews }: { reviews: Review[] }) {
+export function ReviewsTable({ reviews: initialReviews }: { reviews: Review[] }) {
+  const [reviews, setReviews] = useState(initialReviews);
   const [selected, setSelected] = useState<Review | null>(null);
+
+  function handleUpdated(reviewId: string, status: Review["status"]) {
+    setReviews((rows) => rows.map((r) => (r.id === reviewId ? { ...r, status } : r)));
+    setSelected((current) => (current?.id === reviewId ? { ...current, status } : current));
+  }
 
   return (
     <>
@@ -77,7 +83,11 @@ export function ReviewsTable({ reviews }: { reviews: Review[] }) {
           </table>
         </div>
       </section>
-      <ReviewDetailDrawer review={selected} onClose={() => setSelected(null)} />
+      <ReviewDetailDrawer
+        review={selected}
+        onClose={() => setSelected(null)}
+        onUpdated={handleUpdated}
+      />
     </>
   );
 }
