@@ -1,8 +1,13 @@
 import { DashboardTopbar } from "@/components/layout/dashboard-topbar";
 import { RatingDistributionChart } from "@/components/dashboard/rating-distribution";
 import { DashboardKpiRow } from "@/components/dashboard/dashboard-kpi-row";
+import {
+  InvitationTrendChart,
+  ReviewVelocityChart,
+  SentimentBreakdown,
+} from "@/components/dashboard/analytics-charts";
 import { Button } from "@/components/ui/button";
-import { fetchDashboardOverview } from "@/lib/earnedstar-server";
+import { fetchAnalytics, fetchDashboardOverview } from "@/lib/earnedstar-server";
 import { getDashboardMerchant } from "@/lib/dashboard-merchant";
 
 export default async function AnalyticsPage() {
@@ -29,15 +34,28 @@ export default async function AnalyticsPage() {
     );
   }
 
+  const analytics = await fetchAnalytics(merchant.slug);
+
   return (
     <>
       <DashboardTopbar title="Analytics" />
       <main className="space-y-8 bg-bg p-4 md:p-8">
-        <p className="text-sm text-text-muted">
-          Performance snapshot for {merchant.name}.
-        </p>
+        <p className="text-sm text-text-muted">Performance snapshot for {merchant.name}.</p>
         <DashboardKpiRow stats={overview?.stats} />
-        <RatingDistributionChart distribution={overview?.ratingDistribution} />
+        {analytics ? (
+          <>
+            <div className="grid gap-8 lg:grid-cols-2">
+              <InvitationTrendChart data={analytics.invitationTrend} />
+              <ReviewVelocityChart data={analytics.reviewVelocity} />
+            </div>
+            <div className="grid gap-8 lg:grid-cols-2">
+              <RatingDistributionChart distribution={overview?.ratingDistribution} />
+              <SentimentBreakdown sentiment={analytics.sentiment} />
+            </div>
+          </>
+        ) : (
+          <RatingDistributionChart distribution={overview?.ratingDistribution} />
+        )}
       </main>
     </>
   );

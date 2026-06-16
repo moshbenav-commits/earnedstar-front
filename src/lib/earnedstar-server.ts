@@ -135,6 +135,24 @@ export type InvitationLookup = {
   order_id: string;
 };
 
+export type AnalyticsDashboard = {
+  invitationTrend: { week: string; sent: number; completed: number }[];
+  reviewVelocity: { week: string; published: number; pending: number }[];
+  sentiment: { positive: number; neutral: number; negative: number };
+};
+
+export async function fetchAnalytics(slug = DEFAULT_DEMO_SLUG): Promise<AnalyticsDashboard | null> {
+  try {
+    const res = await fetch(`${getApiBase()}/earnedstar/dashboard/analytics?slug=${slug}`, {
+      next: { revalidate: 120 },
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as AnalyticsDashboard;
+  } catch {
+    return null;
+  }
+}
+
 export async function fetchInvitationByToken(token: string): Promise<InvitationLookup | null> {
   try {
     const res = await fetch(`${getApiBase()}/earnedstar/invitations/lookup/${encodeURIComponent(token)}`, {
