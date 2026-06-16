@@ -21,9 +21,10 @@ export default async function AnalyticsPage() {
         <DashboardTopbar title="Analytics" />
         <main className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center p-8">
           <div className="glow-growth card-surface max-w-md p-8 text-center">
-            <h2 className="text-xl font-semibold text-text-primary">Analytics are a Growth feature</h2>
-            <p className="mt-4 text-sm text-text-secondary">
-              See review gaps, conversion drivers, and sentiment trends over time.
+            <h2 className="text-xl font-semibold text-navy">Analytics are a Growth feature</h2>
+            <p className="mt-4 text-sm text-text-muted">
+              See exactly which products have review gaps, which reviews drive the most conversions, and how your
+              sentiment score trends over time.
             </p>
             <Button className="mt-6" href="/dashboard/settings">
               Upgrade to Growth — $99/mo

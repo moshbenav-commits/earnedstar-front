@@ -37,7 +37,7 @@ export const PLAN_LIMITS = {
     api_access: "full" as const,
     analytics: true,
     qa_module: true,
-    syndication: false,
+    syndication: true,
     price: 249,
   },
   agency: {

@@ -237,6 +237,22 @@ body {
   animation: float-star 5s ease-in-out infinite;
 }
 
+.glow-growth {
+  box-shadow:
+    0 0 0 1px rgba(245, 158, 11, 0.35),
+    0 0 40px rgba(245, 158, 11, 0.2),
+    var(--shadow-md);
+}
+
+@keyframes sparkle-pulse {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.4); }
+}
+
+.sparkle-dot {
+  animation: sparkle-pulse 3s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

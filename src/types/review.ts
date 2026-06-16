@@ -16,6 +16,16 @@ export interface Review {
   helpful_yes?: number;
   helpful_no?: number;
   created_at: string;
+  photos?: string[];
+  ymm_year?: number;
+  ymm_make?: string;
+  ymm_model?: string;
+  ymm_trim?: string;
+  rating_fitment?: number;
+  rating_quality?: number;
+  rating_shipping?: number;
+  rating_description?: number;
+  rating_install?: number;
   /** Optional vertical-specific metadata (fitment, size, etc.) */
   metadata?: Record<string, string>;
 }

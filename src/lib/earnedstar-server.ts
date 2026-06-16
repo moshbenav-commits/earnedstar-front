@@ -18,7 +18,7 @@ export type DashboardOverview = {
   recentReviews: Review[];
 };
 
-function mapReview(row: Record<string, unknown>): Review {
+export function mapReview(row: Record<string, unknown>): Review {
   return {
     id: String(row.id),
     business_id: String(row.business_id),
@@ -33,6 +33,16 @@ function mapReview(row: Record<string, unknown>): Review {
     status: (row.status as Review["status"]) ?? "published",
     business_response: row.business_response ? String(row.business_response) : undefined,
     helpful_yes: Number(row.helpful_count ?? 0),
+    photos: Array.isArray(row.photos) ? (row.photos as string[]) : undefined,
+    ymm_year: row.ymm_year != null ? Number(row.ymm_year) : undefined,
+    ymm_make: row.ymm_make ? String(row.ymm_make) : undefined,
+    ymm_model: row.ymm_model ? String(row.ymm_model) : undefined,
+    ymm_trim: row.ymm_trim ? String(row.ymm_trim) : undefined,
+    rating_fitment: row.rating_fitment != null ? Number(row.rating_fitment) : undefined,
+    rating_quality: row.rating_quality != null ? Number(row.rating_quality) : undefined,
+    rating_shipping: row.rating_shipping != null ? Number(row.rating_shipping) : undefined,
+    rating_description: row.rating_description != null ? Number(row.rating_description) : undefined,
+    rating_install: row.rating_install != null ? Number(row.rating_install) : undefined,
     created_at: String(row.created_at),
   };
 }
@@ -49,17 +59,57 @@ export async function fetchMerchant(slug: string): Promise<Merchant | null> {
   }
 }
 
-export async function fetchPublishedReviews(slug: string, limit = 50): Promise<Review[]> {
+export async function fetchPublishedReviews(slug: string, limit = 50, offset = 0): Promise<Review[]> {
   try {
-    const res = await fetch(`${getApiBase()}/earnedstar/reviews/${slug}?limit=${limit}`, {
-      next: { revalidate: 120 },
-    });
+    const res = await fetch(
+      `${getApiBase()}/earnedstar/reviews/${slug}?limit=${limit}&offset=${offset}`,
+      { next: { revalidate: 120 } },
+    );
     if (!res.ok) return [];
     const rows = (await res.json()) as Record<string, unknown>[];
     return rows.map(mapReview);
   } catch {
     return [];
   }
+}
+
+export type PublicProfileSummary = {
+  merchant: Merchant;
+  ratingDistribution: { stars: number; count: number; pct: number }[];
+  attributeAverages: {
+    fitment: number;
+    quality: number;
+    shipping: number;
+    description: number;
+    install: number;
+  };
+};
+
+export async function fetchPublicProfileSummary(slug: string): Promise<PublicProfileSummary | null> {
+  try {
+    const res = await fetch(`${getApiBase()}/earnedstar/merchants/${slug}/profile`, {
+      next: { revalidate: 120 },
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as PublicProfileSummary;
+  } catch {
+    return null;
+  }
+}
+
+export async function fetchStorePageData(slug: string) {
+  const [profile, reviews, qa] = await Promise.all([
+    fetchPublicProfileSummary(slug),
+    fetchPublishedReviews(slug, 20, 0),
+    fetchPublishedQa(slug),
+  ]);
+  const merchant = profile?.merchant ?? (await fetchMerchant(slug));
+  return {
+    merchant,
+    reviews,
+    qa,
+    profile,
+  };
 }
 
 export async function fetchDashboardOverview(
@@ -113,15 +163,6 @@ export async function fetchPublishedQa(slug: string): Promise<QaPublicItem[]> {
   }
 }
 
-export async function fetchStorePageData(slug: string) {
-  const [merchant, reviews, qa] = await Promise.all([
-    fetchMerchant(slug),
-    fetchPublishedReviews(slug, 100),
-    fetchPublishedQa(slug),
-  ]);
-  return { merchant, reviews, qa };
-}
-
 export async function fetchMerchantReviews(slug = DEFAULT_DEMO_SLUG, limit = 100): Promise<Review[]> {
   try {
     const res = await fetch(`${getApiBase()}/earnedstar/dashboard/reviews?slug=${slug}&limit=${limit}`, {
@@ -138,10 +179,12 @@ export async function fetchMerchantReviews(slug = DEFAULT_DEMO_SLUG, limit = 100
 export type InvitationRow = {
   id: string;
   customer_email: string;
+  customer_name?: string;
   order_id: string;
   channel: string;
   status: string;
   sent_at: string;
+  opened_at?: string;
   token?: string;
 };
 
