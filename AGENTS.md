@@ -5,10 +5,10 @@ B2B SaaS verified review platform at **earnedstar.com** — for any e-commerce m
 ## Stack
 
 - **Next.js 16** · React 19 · TypeScript · Tailwind CSS 4
-- **Backend:** `expedia-parts-back-gamma.vercel.app/api` — new `/earnedstar/*` Nest modules (shared API)
-- **Billing:** Authorize.net ARB (NOT Stripe) — reuse `AuthorizeNetService`
+- **Backend:** `earnedstar-back` Nest API (`/api/earnedstar/*`) — repo `github.com/moshbenav-commits/earnedstar-back`
+- **Billing:** Authorize.net ARB (NOT Stripe)
 - **Data:** Supabase Postgres (`earnedstar_*` / `merchants` tables)
-- **Deploy:** Vercel → `earnedstar.com` · repo `github.com/moshbenav-commits/earnedstar`
+- **Deploy:** Vercel → `earnedstar.com` · repo `github.com/moshbenav-commits/earnedstar-front`
 
 ## Specs
 
@@ -34,7 +34,7 @@ Production domain: `https://earnedstar.com` — DNS on GoDaddy (see below).
 
 | Vercel project | `expedia-solutions/earnedstar` |
 | Project ID | `prj_QgVjY1LDuLbTxfq7h3HjyglwXuH7` |
-| GitHub | `moshbenav-commits/earnedstar` (connected) |
+| GitHub | `moshbenav-commits/earnedstar-front` (renamed from ExpediaParts-Rewards-Front) |
 | Env (production) | `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_SITE_URL` |
 
 ### GoDaddy DNS (you — ~2 min)
@@ -61,7 +61,7 @@ vercel deploy --prod --yes
 ## API wiring
 
 BFF pattern like `expedia-parts-front`:
-- `NEXT_PUBLIC_API_URL=https://expedia-parts-back-gamma.vercel.app/api`
+- `NEXT_PUBLIC_API_URL` → earnedstar-back production API (or gamma during transition)
 - Session cookies via `src/app/api/**` — never raw JWT in browser
 
 ## Design (v2)
@@ -81,6 +81,6 @@ BFF pattern like `expedia-parts-front`:
 | `/submit/[token]` | 5-step review submission flow |
 | `/store/[slug]` | Public review profile (filters + sidebar) |
 
-## Next backend work (expedia-parts-back)
+## Backend repo
 
-Add `src/earnedstar/` module: merchants, reviews, invitations, widgets, billing (Authorize.net ARB).
+`earnedstar-back` — merchants, reviews, invitations, widgets, billing (Authorize.net ARB stub). See `../earnedstar-back/AGENTS.md`.
