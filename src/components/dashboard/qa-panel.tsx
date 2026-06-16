@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { PLAN_LIMITS, type PlanId } from "@/lib/plans";
 
 export type QaItem = {
   id: string;
@@ -12,13 +13,16 @@ export type QaItem = {
   created_at?: string;
 };
 
-export function QaPanel({ planLocked }: { planLocked: boolean }) {
+export function QaPanel({ planLocked, plan = "pro" }: { planLocked: boolean; plan?: PlanId }) {
   const [items, setItems] = useState<QaItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [saving, setSaving] = useState(false);
+  const [suggesting, setSuggesting] = useState(false);
+
+  const canSuggestAnswer = PLAN_LIMITS[plan].ai_qa_suggestions;
 
   async function load() {
     setLoading(true);
@@ -84,6 +88,30 @@ export function QaPanel({ planLocked }: { planLocked: boolean }) {
     if (res.ok) await load();
   }
 
+  async function handleSuggestAnswer() {
+    if (!question.trim()) return;
+    setSuggesting(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/earnedstar/seo/suggest-qa-answer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: question.trim() }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError((data as { message?: string }).message ?? "Suggest failed");
+        return;
+      }
+      const draft = (data as { draft?: string }).draft;
+      if (draft) setAnswer(draft);
+    } catch {
+      setError("Suggest failed — try again.");
+    } finally {
+      setSuggesting(false);
+    }
+  }
+
   if (planLocked) {
     return (
       <section className="card-surface max-w-3xl p-6">
@@ -116,6 +144,16 @@ export function QaPanel({ planLocked }: { planLocked: boolean }) {
             onChange={(e) => setAnswer(e.target.value)}
           />
           <div className="flex flex-wrap gap-2">
+            {canSuggestAnswer ? (
+              <Button
+                type="button"
+                variant="ghost"
+                disabled={suggesting || !question.trim()}
+                onClick={() => void handleSuggestAnswer()}
+              >
+                {suggesting ? "Drafting…" : "Suggest answer"}
+              </Button>
+            ) : null}
             <Button disabled={saving || !question.trim()} onClick={() => void handleCreate(false)}>
               Save draft
             </Button>

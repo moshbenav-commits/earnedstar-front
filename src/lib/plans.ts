@@ -13,6 +13,9 @@ export const PLAN_LIMITS = {
     analytics: false,
     qa_module: false,
     syndication: false,
+    ai_meta_suggestions: false,
+    ai_review_summary: false,
+    ai_qa_suggestions: false,
     price: 29,
   },
   growth: {
@@ -27,6 +30,9 @@ export const PLAN_LIMITS = {
     analytics: true,
     qa_module: false,
     syndication: false,
+    ai_meta_suggestions: true,
+    ai_review_summary: true,
+    ai_qa_suggestions: false,
     price: 99,
   },
   pro: {
@@ -41,6 +47,9 @@ export const PLAN_LIMITS = {
     analytics: true,
     qa_module: true,
     syndication: true,
+    ai_meta_suggestions: true,
+    ai_review_summary: true,
+    ai_qa_suggestions: true,
     price: 249,
   },
   agency: {
@@ -57,6 +66,9 @@ export const PLAN_LIMITS = {
     syndication: true,
     white_label: true,
     sub_accounts: 25,
+    ai_meta_suggestions: true,
+    ai_review_summary: true,
+    ai_qa_suggestions: true,
     price: 499,
   },
 } as const;

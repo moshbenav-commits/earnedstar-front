@@ -19,6 +19,7 @@ import type { Review } from "@/types/review";
 import type { Merchant } from "@/types/review";
 import type { PublicProfileSummary, QaPublicItem } from "@/lib/earnedstar-server";
 import { ratingDistribution as mockDistribution } from "@/lib/mock-data";
+import { activeReviewSummary } from "@/lib/review-summary";
 import { cn } from "@/lib/utils";
 
 type ProfileTab = "reviews" | "qa";
@@ -164,6 +165,8 @@ export function StoreProfile({ business, reviews, qaItems = [], profile, slug }:
       ? `${year} ${make} ${model}`
       : null;
 
+  const customerSummary = activeReviewSummary(business);
+
   return (
     <div className="min-h-screen bg-bg">
       <header className="border-b border-border bg-surface py-10">
@@ -233,6 +236,17 @@ export function StoreProfile({ business, reviews, qaItems = [], profile, slug }:
           </div>
         </div>
       </header>
+
+      {customerSummary ? (
+        <div className="border-b border-border bg-gold-pale/40 py-6">
+          <div className="mx-auto max-w-6xl px-4">
+            <p className="text-xs font-semibold uppercase tracking-widest text-gold-dark">
+              What customers say
+            </p>
+            <p className="mt-2 max-w-3xl text-base leading-relaxed text-navy">{customerSummary}</p>
+          </div>
+        </div>
+      ) : null}
 
       <div className="sticky top-0 z-20 border-b border-border bg-surface/95 backdrop-blur">
         <div className="mx-auto max-w-6xl px-4 py-3">

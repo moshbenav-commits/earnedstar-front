@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { PLAN_LIMITS, type PlanId } from "@/lib/plans";
 
 interface ProfileSeoFormProps {
+  plan: PlanId;
   initial: {
     name: string;
     website_url?: string | null;
@@ -13,14 +15,38 @@ interface ProfileSeoFormProps {
   };
 }
 
-export function ProfileSeoForm({ initial }: ProfileSeoFormProps) {
+export function ProfileSeoForm({ plan, initial }: ProfileSeoFormProps) {
   const [name, setName] = useState(initial.name);
   const [websiteUrl, setWebsiteUrl] = useState(initial.website_url ?? "");
   const [seoTitle, setSeoTitle] = useState(initial.seo_title ?? "");
   const [seoDescription, setSeoDescription] = useState(initial.seo_description ?? "");
   const [saving, setSaving] = useState(false);
+  const [suggesting, setSuggesting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  const canSuggestMeta = PLAN_LIMITS[plan].ai_meta_suggestions;
+
+  async function handleSuggestMeta() {
+    setSuggesting(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/earnedstar/seo/suggest-meta", { method: "POST" });
+      const data = await res.json();
+      if (!res.ok) {
+        setError((data as { message?: string }).message ?? "Suggest failed");
+        return;
+      }
+      const d = data as { seo_title?: string; seo_description?: string };
+      if (d.seo_title) setSeoTitle(d.seo_title);
+      if (d.seo_description) setSeoDescription(d.seo_description);
+      setMessage("AI draft applied — review and click Save to publish.");
+    } catch {
+      setError("Suggest failed — try again.");
+    } finally {
+      setSuggesting(false);
+    }
+  }
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault();
@@ -64,8 +90,8 @@ export function ProfileSeoForm({ initial }: ProfileSeoFormProps) {
         <h2 className="text-lg font-bold text-navy">Review Profile SEO</h2>
         <p className="mt-1 text-sm text-text-muted">
           Controls how Google indexes{" "}
-          <a href={`/store/${initial.slug}`} className="text-navy-light hover:text-gold">
-            /store/{initial.slug}
+          <a href={`/reviews/${initial.slug}`} className="text-navy-light hover:text-gold">
+            /reviews/{initial.slug}
           </a>
           . Leave blank to use smart defaults from your review stats.
         </p>
@@ -119,16 +145,23 @@ export function ProfileSeoForm({ initial }: ProfileSeoFormProps) {
       <div className="rounded-lg border border-border bg-bg p-4 text-sm">
         <p className="text-xs font-semibold uppercase tracking-widest text-text-faint">Google preview</p>
         <p className="mt-2 text-base text-[#1a0dab]">{previewTitle}</p>
-        <p className="text-sm text-green-dark">earnedstar.com › store › {initial.slug}</p>
+        <p className="text-sm text-green-dark">earnedstar.com › reviews › {initial.slug}</p>
         <p className="mt-1 text-sm text-text-muted">{previewDescription}</p>
       </div>
 
       {error ? <p className="text-sm text-red-600">{error}</p> : null}
       {message ? <p className="text-sm text-green-dark">{message}</p> : null}
 
-      <Button type="submit" disabled={saving}>
-        {saving ? "Saving…" : "Save profile"}
-      </Button>
+      <div className="flex flex-wrap gap-3">
+        {canSuggestMeta ? (
+          <Button type="button" variant="ghost" disabled={suggesting} onClick={() => void handleSuggestMeta()}>
+            {suggesting ? "Drafting…" : "Suggest SEO"}
+          </Button>
+        ) : null}
+        <Button type="submit" disabled={saving}>
+          {saving ? "Saving…" : "Save profile"}
+        </Button>
+      </div>
     </form>
   );
 }

@@ -3,6 +3,7 @@ import { BillingSubscribeForm } from "@/components/dashboard/billing-subscribe-f
 import { ApiKeyPanel } from "@/components/dashboard/api-key-panel";
 import { EmailStatusPanel } from "@/components/dashboard/email-status-panel";
 import { ProfileSeoForm } from "@/components/dashboard/profile-seo-form";
+import { SeoHealthPanel } from "@/components/dashboard/seo-health-panel";
 import { PlanBadge } from "@/components/ui/plan-badge";
 import type { PlanId } from "@/lib/plans";
 import { fetchDashboardOverview } from "@/lib/earnedstar-server";
@@ -22,8 +23,8 @@ export default async function DashboardSettingsPage() {
           <h2 className="text-lg font-bold text-navy">Store profile</h2>
           <p className="mt-1 text-sm text-text-muted">
             Public Review Profile:{" "}
-            <a href={`/store/${profile.slug}`} className="text-navy-light hover:text-gold">
-              earnedstar.com/store/{profile.slug}
+            <a href={`/reviews/${profile.slug}`} className="text-navy-light hover:text-gold">
+              earnedstar.com/reviews/{profile.slug}
             </a>
           </p>
           <dl className="mt-6 space-y-4 text-sm">
@@ -44,7 +45,10 @@ export default async function DashboardSettingsPage() {
           </dl>
         </section>
 
+        <SeoHealthPanel plan={plan} />
+
         <ProfileSeoForm
+          plan={plan}
           initial={{
             name: profile.name,
             website_url: profile.website_url,

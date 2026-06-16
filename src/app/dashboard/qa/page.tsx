@@ -13,7 +13,7 @@ export default async function DashboardQaPage() {
     <>
       <DashboardTopbar title="Q&A SEO" />
       <main className="bg-bg p-4 md:p-8">
-        <QaPanel planLocked={planLocked} />
+        <QaPanel planLocked={planLocked} plan={plan} />
       </main>
     </>
   );

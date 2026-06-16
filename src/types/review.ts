@@ -42,4 +42,7 @@ export interface Merchant {
   api_key?: string;
   review_count: number;
   avg_rating: number;
+  public_profile_enabled?: boolean;
+  review_summary_ai?: string | null;
+  review_summary_generated_at?: string | null;
 }
