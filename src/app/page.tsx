@@ -1,5 +1,7 @@
 import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { HeroSection } from "@/components/marketing/hero-section";
+import { PhotorealAdBanner } from "@/components/marketing/photoreal-ad-banner";
+import { BrandShowcaseSection } from "@/components/marketing/brand-showcase-section";
 import { TrustBar } from "@/components/marketing/trust-bar";
 import { StatsSection } from "@/components/marketing/stats-section";
 import { FeaturesSection } from "@/components/marketing/features-section";
@@ -15,6 +17,8 @@ export default function HomePage() {
       <MarketingNav />
       <main>
         <HeroSection />
+        <PhotorealAdBanner />
+        <BrandShowcaseSection />
         <TrustBar />
         <StatsSection />
         <FeaturesSection />

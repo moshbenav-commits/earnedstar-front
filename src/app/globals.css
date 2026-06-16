@@ -98,6 +98,12 @@ body {
     linear-gradient(165deg, var(--navy) 0%, var(--dark-bg) 100%);
 }
 
+/* Figma Make hero — deep radial navy with gold ambient */
+.hero-figma {
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 35%, #18306a 0%, #0c1a3a 45%, #040810 100%);
+}
+
 .card-surface {
   background: var(--surface);
   border: 1px solid var(--border);

@@ -12,6 +12,10 @@ export const DEMO_MERCHANT_LOGO_URL = "https://www.expediaparts.com/Logo_Menu.pn
 export const LEATHER_WORDMARK_SRC = "/brand/leather/wordmark-navy-gold.png";
 export const LEATHER_MOTTO_SRC = "/brand/leather/motto-navy-gold.png";
 
+/** Figma Make / community logo system exports — marketing hero & brand sheet */
+export const MARKETING_HERO_STAR_SRC = "/brand/marketing/hero-star-photoreal-navy.png";
+export const MARKETING_BRAND_SHEET_SRC = "/brand/marketing/brand-system-sheet.png";
+
 export const PHOTO_LOGO_SIZES = [16, 32, 48, 64, 96, 128, 192, 256, 512, 1024] as const;
 export type PhotoLogoSize = (typeof PHOTO_LOGO_SIZES)[number];
 

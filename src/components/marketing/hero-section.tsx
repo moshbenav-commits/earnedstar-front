@@ -1,19 +1,37 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
-import { LogoBackdrop } from "@/components/brand/logo-backdrop";
-import { EarnedStarPhotoBadgeVariants } from "@/components/brand/earnedstar-photo-badge";
-import { EarnedStarLeatherText } from "@/components/brand/earnedstar-leather-text";
-import { DEMO_MERCHANT_LOGO_URL } from "@/lib/brand-assets";
+import { HeroReviewCard } from "@/components/marketing/hero-review-card";
+import { MARKETING_HERO_STAR_SRC } from "@/lib/brand-assets";
+
+const AMBIENT_STARS = [
+  { x: "8%", y: "18%", size: 28, delay: 0, variant: "photo" as const },
+  { x: "84%", y: "12%", size: 22, delay: 1.2, variant: "photo" as const },
+  { x: "6%", y: "72%", size: 34, delay: 2, variant: "photo" as const },
+  { x: "90%", y: "68%", size: 24, delay: 0.6, variant: "photo" as const },
+  { x: "50%", y: "6%", size: 20, delay: 3, variant: "photo" as const },
+  { x: "18%", y: "88%", size: 26, delay: 1.8, variant: "photo" as const },
+  { x: "76%", y: "85%", size: 18, delay: 2.6, variant: "photo" as const },
+];
 
 export function HeroSection() {
   return (
-    <section className="hero-mesh relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pt-24 pb-16 lg:flex-row lg:gap-12 lg:px-8 lg:text-left">
-      <div className="pointer-events-none absolute inset-0 opacity-30" aria-hidden>
-        <div className="absolute left-1/2 top-1/4 h-96 w-96 -translate-x-1/2 rounded-full bg-gold/20 blur-[100px]" />
-      </div>
+    <section className="hero-figma relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pt-24 pb-16 lg:flex-row lg:items-center lg:gap-10 lg:px-8 lg:text-left">
+      {AMBIENT_STARS.map((star, i) => (
+        <motion.div
+          key={i}
+          className="pointer-events-none absolute opacity-[0.16]"
+          style={{ left: star.x, top: star.y }}
+          animate={{ y: [0, -14, 6, -10, 0], rotate: [0, 6, -3, 4, 0] }}
+          transition={{ duration: 8 + i * 0.4, delay: star.delay, repeat: Infinity, ease: "easeInOut" }}
+          aria-hidden
+        >
+          <EarnedStarMark size={star.size} centerStyle="none" render="photo" />
+        </motion.div>
+      ))}
 
       <div className="relative z-10 max-w-xl text-center lg:flex-1 lg:text-left">
         <motion.span
@@ -36,7 +54,8 @@ export function HeroSection() {
           transition={{ delay: 0.2 }}
           className="mt-6 text-lg text-white/70"
         >
-          Verified by purchase. Fraud-scored by AI. The origami lucky star badge that means your reviews are real.
+          Verified by purchase. Fraud-scored by AI. The photoreal lucky star badge that means your reviews
+          are real.
         </motion.p>
 
         <motion.div
@@ -51,10 +70,10 @@ export function HeroSection() {
           <Button
             variant="ghost"
             size="lg"
-            href="#how-it-works"
+            href="#brand"
             className="border-white/20 text-white/90 hover:border-gold/50 hover:text-white"
           >
-            See How It Works →
+            See the Badge →
           </Button>
         </motion.div>
 
@@ -68,56 +87,32 @@ export function HeroSection() {
         </motion.p>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0.92 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.35, duration: 0.6 }}
-        className="relative z-10 mt-14 flex flex-col items-center lg:mt-0 lg:flex-1"
-      >
-        <div className="animate-float-star relative">
-          <LogoBackdrop shell="hero" size={160}>
-            <EarnedStarMark
-              size={160}
-              centerStyle="none"
-              preferHero
-              render="photo"
-              className="drop-shadow-[0_24px_48px_rgba(0,0,0,0.45)]"
+      <div className="relative z-10 mt-14 flex w-full max-w-lg flex-col items-center lg:mt-0 lg:flex-1">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.88 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.25, duration: 0.7 }}
+          className="animate-float-star relative mb-8"
+        >
+          <div className="logo-shell-hero rounded-3xl p-5 sm:p-8">
+            <Image
+              src={MARKETING_HERO_STAR_SRC}
+              alt="EarnedStar photoreal 3D leather lucky star"
+              width={320}
+              height={320}
+              className="h-auto w-[200px] object-contain drop-shadow-[0_32px_64px_rgba(0,0,0,0.55)] sm:w-[260px] lg:w-[300px]"
+              priority
             />
-          </LogoBackdrop>
+          </div>
           <div
-            className="pointer-events-none absolute inset-0 rounded-full"
-            style={{ boxShadow: "0 0 80px rgba(245,158,11,0.35)" }}
+            className="pointer-events-none absolute inset-0 rounded-3xl"
+            style={{ boxShadow: "0 0 100px rgba(245,158,11,0.28)" }}
             aria-hidden
           />
-        </div>
+        </motion.div>
 
-        <div className="card-surface-dark gold-seam mt-10 w-full max-w-md p-4">
-          <div className="mb-3 flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-widest text-gold">Merchant badge preview</p>
-            <span className="rounded-full bg-green/20 px-2 py-0.5 text-xs font-semibold text-green-pale">Live</span>
-          </div>
-          <EarnedStarPhotoBadgeVariants
-            size={72}
-            logoUrl={DEMO_MERCHANT_LOGO_URL}
-            className="mb-4"
-          />
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-            {[
-              { label: "Reviews", value: "2,847" },
-              { label: "Rating", value: "4.9 ★" },
-              { label: "Response", value: "68%" },
-              { label: "Fraud blocked", value: "47" },
-            ].map((stat) => (
-              <div key={stat.label} className="rounded-lg border border-white/10 bg-white/5 p-2.5 text-center">
-                <p className="text-base font-bold text-white">{stat.value}</p>
-                <p className="text-[10px] uppercase tracking-wide text-white/45">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <EarnedStarLeatherText type="motto" width={280} className="mt-8 opacity-90" />
-      </motion.div>
+        <HeroReviewCard />
+      </div>
     </section>
   );
 }
