@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -115,7 +120,7 @@ export function StoreProfile({ business, reviews, qaItems = [], profile, slug }:
     setLoadingMore(true);
     try {
       const res = await fetch(
-        `/api/earnedstar/reviews/${slug}?limit=${PAGE_SIZE}&offset=${allReviews.length}`,
+        `/api/earnedstar/reviews/merchant/${slug}?limit=${PAGE_SIZE}&offset=${allReviews.length}`,
       );
       if (!res.ok) return;
       const rows = (await res.json()) as Review[];
@@ -149,7 +154,7 @@ export function StoreProfile({ business, reviews, qaItems = [], profile, slug }:
   async function submitQuestion(e: React.FormEvent) {
     e.preventDefault();
     if (qaQuestion.trim().length < 5) return;
-    const res = await fetch(`/api/earnedstar/qa/${slug}/ask`, {
+    const res = await fetch(`/api/earnedstar/qa/public/${slug}/ask`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question: qaQuestion, asked_by: qaName || undefined }),

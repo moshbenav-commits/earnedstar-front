@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
 import { DashboardTopbar } from "@/components/layout/dashboard-topbar";
 import { BillingSubscribeForm } from "@/components/dashboard/billing-subscribe-form";
 import { ApiKeyPanel } from "@/components/dashboard/api-key-panel";

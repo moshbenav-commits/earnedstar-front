@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { ACCESS_TOKEN_COOKIE, getSupabaseEnv, REFRESH_TOKEN_COOKIE } from './env';

@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+# Proprietary and confidential. Unauthorized copying, distribution, or use
+# is strictly prohibited without express written permission.
 """Sync SVG fallbacks from Figma page 10 — SVG Refinement.
 
 1. Regenerate canonical SVGs via export-brand-svgs.mjs (matches Figma refined layering).

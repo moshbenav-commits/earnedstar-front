@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
 import { Button } from "@/components/ui/button";
 import { EarnedStarPhotoBadge } from "@/components/brand/earnedstar-photo-badge";
 import { activeWidgets } from "@/lib/mock-data";

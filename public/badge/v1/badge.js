@@ -1,4 +1,9 @@
 /**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
+/**
  * EarnedStar Badge Widget v1 — lucky-star SVG (navy/gold origami)
  *
  *   <script src="https://earnedstar.com/badge/v1/badge.js"

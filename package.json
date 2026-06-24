@@ -12,9 +12,15 @@
     "audit:vercel-billing": "node scripts/vercel-billing-guard.mjs",
     "audit:vercel-billing:ci": "node scripts/vercel-billing-guard.mjs --ci",
     "deploy:prod": "bash scripts/deploy-vercel.sh",
-    "deploy:prod:skip-smoke": "SKIP_POST_DEPLOY_SMOKE=1 bash scripts/deploy-vercel.sh"
+    "deploy:prod:skip-smoke": "SKIP_POST_DEPLOY_SMOKE=1 bash scripts/deploy-vercel.sh",
+    "qa:design-lab:baseline": "node scripts/design-lab-visual.mjs --update",
+    "qa:design-lab:visual": "node scripts/design-lab-visual.mjs",
+    "qa:design-lab:visual:strict": "node scripts/design-lab-visual.mjs --strict",
+    "qa:design-lab:ci": "npm run qa:design-lab:visual"
   },
   "dependencies": {
+    "@expedia/design-lab": "file:../expedia-parts-front/packages/expedia-design-lab",
+    "@expedia/design-system": "file:../expedia-parts-front/packages/expedia-design-system",
     "@supabase/ssr": "^0.12.0",
     "@supabase/supabase-js": "^2.108.2",
     "clsx": "^2.1.1",
@@ -23,6 +29,7 @@
     "next": "16.2.9",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "react-icons": "^5.5.0",
     "recharts": "^3.8.1",
     "tailwind-merge": "^3.6.0",
     "zod": "^4.4.3"

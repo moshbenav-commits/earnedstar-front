@@ -1,4 +1,9 @@
 /**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
+/**
  * EarnedStar Review Widget v1
  *
  * <script src="https://earnedstar.com/widget/v1/widget.js"

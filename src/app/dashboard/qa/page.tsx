@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
 import { DashboardTopbar } from "@/components/layout/dashboard-topbar";
 import { QaPanel } from "@/components/dashboard/qa-panel";
 import type { PlanId } from "@/lib/plans";

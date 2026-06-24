@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
 /** EarnedStar mark SVG builders — ported from SVG_LOGO_BUILDER.html */
 
 export type StarStyle = "origami" | "geometric" | "rounded" | "classic";

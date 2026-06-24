@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+/**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
 /** Export canonical EarnedStar logo/badge SVGs — photoreal-refined layering — see docs/branding/earnedstar-logo-spec.md */
 import { writeFileSync, mkdirSync, readFileSync } from "fs";
 import { join, dirname } from "path";

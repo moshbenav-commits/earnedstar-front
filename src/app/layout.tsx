@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
 import { Plus_Jakarta_Sans, Instrument_Serif } from "next/font/google";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme/theme-provider";

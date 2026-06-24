@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+# Proprietary and confidential. Unauthorized copying, distribution, or use
+# is strictly prohibited without express written permission.
 """Extract photorealistic 3D logo PNGs from earnedstar-origami-logo-system.png."""
 from __future__ import annotations
 

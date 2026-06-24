@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
 import type { Merchant } from "@/types/review";
 
 const SUMMARY_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;

@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
 /** Canonical EarnedStar API base — earnedstar-back in prod, :8081 locally. */
 export function getApiBase(): string {
   return (

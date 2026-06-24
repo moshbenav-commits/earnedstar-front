@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
 import { ratingDistribution as mockDistribution } from "@/lib/mock-data";
 
 const STAR_COLORS: Record<number, string> = {

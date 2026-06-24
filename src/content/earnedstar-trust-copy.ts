@@ -1,4 +1,9 @@
 /**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
+/**
  * EarnedStar trust & verification messaging — single source for dashboard + marketing.
  * Spec: docs/prompts/AI_EARNEDSTAR_SPEC.md § Trust verification copy
  */

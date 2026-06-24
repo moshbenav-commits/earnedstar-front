@@ -18,6 +18,18 @@ B2B SaaS verified review platform at **earnedstar.com** — for any e-commerce m
 - [`../docs/branding/earnedstar-logo-spec.md`](../docs/branding/earnedstar-logo-spec.md) — **logo & badge single source of truth** (origami SVG assets, lockups, Figma file)
 - [`../docs/prompts/earnedstar/CURSOR_BUILD_PROMPTS.md`](../docs/prompts/earnedstar/CURSOR_BUILD_PROMPTS.md) — per-page Cursor task prompts
 
+## Shared design system (Phase 3)
+
+Dev-only `/design-lab` routes preview EarnedStar tokens, stars, brand lockups, and `@expedia/design-system` primitives. See [`../docs/design-system/monorepo-extraction.md`](../docs/design-system/monorepo-extraction.md).
+
+| Route | Purpose |
+|-------|---------|
+| `/design-lab` | Overview |
+| `/design-lab/tokens` | Navy/gold CSS variables |
+| `/design-lab/stars` | Progressive + compact star ratings |
+| `/design-lab/brand` | Logo lockups |
+| `/design-lab/shared` | EP `DsButton` primitives |
+
 ## Deploy
 
 `vercel.json` sets `git.deploymentEnabled: false` (same billing guard pattern as `expedia-parts-front`).

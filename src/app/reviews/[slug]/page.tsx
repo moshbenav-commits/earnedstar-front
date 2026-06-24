@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
 import { StoreProfile } from "@/components/store/store-profile";
 import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 import { DEFAULT_SHARE_IMAGE_URL } from "@/lib/brand-assets";
