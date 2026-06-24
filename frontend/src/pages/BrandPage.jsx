@@ -83,6 +83,30 @@ export default function BrandPage() {
             <div className="flex items-center gap-2"><span className="font-num font-bold text-2xl gold-text">{featuredCount}</span><span className="text-ink/55">featured</span></div>
             <div className="flex items-center gap-2"><span className="font-num font-bold text-2xl">{GROUPS.length}</span><span className="text-ink/55">categories</span></div>
           </div>
+
+          {/* PDF Download Card */}
+          <div className="mt-10 vellum-card gilded-edge rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between max-w-3xl">
+            <div className="flex items-start gap-4">
+              <div className="w-14 h-14 rounded-xl gold-foil flex items-center justify-center shrink-0">
+                <Download size={22} className="text-ink" />
+              </div>
+              <div>
+                <div className="text-[10px] smallcaps text-gold-dark">Edition I &middot; 8 pages</div>
+                <h3 className="font-heading text-2xl italic mt-1">Brand Guidelines PDF</h3>
+                <p className="font-body text-sm text-ink/60 mt-1 leading-[1.55] max-w-md">
+                  Clear-space rules, minimum sizes, color, typography, do&apos;s &amp; don&apos;ts, and the full library &mdash; bound as a print-ready document.
+                </p>
+              </div>
+            </div>
+            <a
+              href="/brand-guidelines.pdf"
+              download="EarnedStar-Brand-Guidelines-Edition-I.pdf"
+              data-testid="download-pdf-guidelines"
+              className="shrink-0 inline-flex items-center gap-2 px-5 py-3 rounded-full bg-ink text-white font-bold text-sm hover:bg-ink-soft transition-colors"
+            >
+              <Download size={14} /> Download PDF
+            </a>
+          </div>
         </div>
       </section>
 
