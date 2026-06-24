@@ -1,0 +1,151 @@
+{
+  "project_name": "EarnedStar",
+  "domain": "SaaS E-commerce Reviews & Trust Platform",
+  "theme_and_archetype": {
+    "theme": "hybrid",
+    "archetype": "Archetype 5 (Luxury) mixed with Swiss precision",
+    "description": "A premium, sophisticated 'trust stack' for the post-Yotpo era. Combining deep navy and sparing gold accents to convey truth, radical transparency, and premium quality."
+  },
+  "brand_identity": {
+    "logo_description": "ORIGAMI PENTAGONAL STAR (5-point) - Folded paper star with concentric SVG gradients giving depth. Center has a circular medallion with gold ring containing a checkmark (\u2713), 'ES VERIFIED', merchant logo, or '\u2605\u2605\u2605 4.9' depending on use case.",
+    "voice": "Confident, witty, slightly contrarian - 'every star earned, not bought'",
+    "vibe": "Radical transparency rendered as design, feeling like a confident manifesto rather than a hype machine."
+  },
+  "colors": {
+    "primary": {
+      "navy": "#0F2044",
+      "navy_light": "#1A2F5B",
+      "navy_dark": "#08132B"
+    },
+    "accents": {
+      "gold": "#F59E0B",
+      "gold_gradient_start": "#FDE68A",
+      "gold_gradient_end": "#B45309"
+    },
+    "backgrounds": {
+      "primary": "#0F2044",
+      "light": "#FAFAF9",
+      "white": "#FFFFFF"
+    },
+    "text": {
+      "dark_on_light": "#0F2044",
+      "light_on_dark": "#FFFFFF",
+      "muted_on_dark": "#94A3B8",
+      "muted_on_light": "#475569"
+    },
+    "semantic": {
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "error": "#EF4444",
+      "info": "#3B82F6"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Instrument Serif",
+      "body": "Plus Jakarta Sans",
+      "ui": "Plus Jakarta Sans"
+    },
+    "installation": "Add Google Fonts links for 'Instrument Serif' and 'Plus Jakarta Sans'.",
+    "hierarchy": {
+      "h1_hero": "font-heading italic text-5xl sm:text-6xl+ tracking-tight text-white",
+      "h2_section": "font-heading text-3xl sm:text-4xl tracking-tight text-dark_on_light",
+      "h3_subsection": "font-heading text-2xl sm:text-3xl text-dark_on_light",
+      "h4_card": "font-body font-bold text-lg sm:text-xl",
+      "body": "font-body text-base leading-relaxed",
+      "label": "font-body text-xs uppercase tracking-[0.2em] font-bold"
+    }
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous Spacing Philosophy. Use 2-3x more spacing. Focus on asymmetric, left-aligned layouts. Let the content breathe.",
+    "containers": "max-w-7xl mx-auto px-6 sm:px-8 lg:px-12",
+    "section_padding": "py-20 md:py-32",
+    "grid_modes": {
+      "marketing": "grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-8 lg:gap-12",
+      "dashboard": "grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6"
+    }
+  },
+  "surface_strategies": {
+    "glassmorphism": "backdrop-blur-xl bg-white/70 border border-white/20 shadow-sm (for sticky navs over light backgrounds) or bg-navy/60 border-white/10 (over dark backgrounds)",
+    "cards_marketing": "bg-white border border-slate-200/50 shadow-sm p-8 rounded-xl",
+    "cards_dashboard": "bg-white border border-slate-200 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow",
+    "dark_sections": "bg-[#0F2044] text-white border-y border-white/10 relative overflow-hidden"
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-gradient-to-r from-[#FDE68A] to-[#B45309] text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2",
+      "secondary": "bg-transparent border border-[#0F2044] text-[#0F2044] font-bold py-3 px-6 rounded-lg hover:bg-[#0F2044] hover:text-white transition-colors",
+      "dark_mode_secondary": "bg-transparent border border-white/20 text-white font-bold py-3 px-6 rounded-lg hover:bg-white/10 transition-colors"
+    },
+    "badges": {
+      "verified": "inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAFAF9] border border-slate-200 text-xs font-bold text-[#0F2044]"
+    },
+    "tables": {
+      "comparison": "w-full text-left border-collapse",
+      "header_cell": "p-4 border-b-2 border-[#0F2044] font-heading text-xl text-[#0F2044]",
+      "body_cell": "p-4 border-b border-slate-200 text-[#475569]"
+    },
+    "inputs": {
+      "default": "w-full bg-transparent border-b-2 border-slate-300 py-3 px-0 text-lg focus:outline-none focus:border-[#0F2044] transition-colors rounded-none placeholder:text-slate-400"
+    }
+  },
+  "motion_and_interactions": {
+    "hover_states": "Subtle transform -translate-y-1 on cards. Buttons scale by 1.02.",
+    "page_load": "Staggered entrance reveals for text blocks. Lottie-style 'unfold' animation for the origami star logo.",
+    "counters": "Live ticking animation for trust receipts counter. Numbers should feel ALIVE."
+  },
+  "icons": {
+    "library": "lucide-react",
+    "usage": "Use crisp, minimalist icons. Avoid emoji."
+  },
+  "media": {
+    "hero_visuals": [
+      {
+        "url": "https://images.unsplash.com/photo-1760226642567-a5315592c810?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDZ8MHwxfHNlYXJjaHwyfHxlY29tbWVyY2UlMjBhYnN0cmFjdCUyMGJhY2tncm91bmR8ZW58MHx8fHwxNzgyMjc4OTQ4fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Abstract golden podium with shadows. Perfect for a premium 'trust' visual backdrop or the Audit Tool hero."
+      }
+    ],
+    "team_portraits": [
+      {
+        "url": "https://images.unsplash.com/photo-1630939687530-241d630735df?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwyfHxidXNpbmVzcyUyMG93bmVyJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzgyMjc4OTQ3fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Smiling female business owner. Use in testimonials or 'Yotpo Refugees' migration section."
+      },
+      {
+        "url": "https://images.pexels.com/photos/8422729/pexels-photo-8422729.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Confident male shop owner. Use in testimonial or successful merchant showcase."
+      }
+    ],
+    "logos": [
+      {
+        "url": "https://images.unsplash.com/photo-1562783912-21ad31ee2a83?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHw0fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3ODIxODcyNjd8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Premium brand logo example for merchant mockups."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1496200186974-4293800e2c20?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwzfHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3ODIxODcyNjd8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Tech company logo for integrations section (e.g. replacing Klaviyo/Attentive)."
+      }
+    ]
+  },
+  "testing_attributes": {
+    "rule": "All interactive elements must include a data-testid attribute in kebab-case, role-based format (e.g., data-testid='hero-cta-button')."
+  },
+  "pages_to_build": {
+    "marketing_homepage": "Hero with dark navy bg, live Trust Receipts counter, comparison table, asymmetric manifesto block.",
+    "pricing_page": "8 tiers with toggle, comparison matrix, Yotpo Exodus banner.",
+    "merchant_dashboard": "Clean white/off-white dashboard, KPI row, recent reviews, sentiment clusters.",
+    "public_store_profile": "Merchant profile page with AI summary, verified reviews list, Moderation Ledger link.",
+    "trust_receipt_modal": "Detailed modal showing AI fraud score and order hash.",
+    "manifesto_page": "Editorial style page with bold typography on off-white.",
+    "free_review_audit_tool": "Landing page to paste URL and get AI fraud estimate.",
+    "yotpo_refugees_migration": "High conversion landing page targeted at Yotpo switchers."
+  },
+  "instructions_to_main_agent": [
+    "Use standard HTML tags (`div`, `section`, `span`) combined with Tailwind for complex marketing layouts. Use Shadcn sparingly on marketing pages.",
+    "For the Merchant Dashboard and complex interactive logic (modals, selects), use Shadcn components but style them to fit the clean, flat, premium look.",
+    "Apply `data-testid` extensively.",
+    "Integrate the brand logo as an SVG with the description provided in `logo_description`.",
+    "Ensure generous spacing (`py-20`, `gap-8`) throughout.",
+    "Avoid generic purple gradients or emoji.",
+    "Build the ticking counter using React state or Framer Motion for the Trust Receipts."
+  ]
+}
