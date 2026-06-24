@@ -8,6 +8,7 @@ const links = [
   { to: "/audit", label: "The Audit" },
   { to: "/yotpo-refugees", label: "Yotpo Refugees" },
   { to: "/store/reman-transmissions", label: "Live Store" },
+  { to: "/brand", label: "Brand" },
   { to: "/dashboard", label: "Dashboard" },
 ];
 

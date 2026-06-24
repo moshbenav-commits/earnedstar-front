@@ -8,6 +8,7 @@ import YotpoRefugeesPage from "./pages/YotpoRefugeesPage";
 import StorePage from "./pages/StorePage";
 import ModerationLedger from "./pages/ModerationLedger";
 import DashboardPage from "./pages/DashboardPage";
+import BrandPage from "./pages/BrandPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/store/:slug" element={<StorePage />} />
           <Route path="/store/:slug/moderation" element={<ModerationLedger />} />
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/brand" element={<BrandPage />} />
         </Routes>
       </BrowserRouter>
     </div>
