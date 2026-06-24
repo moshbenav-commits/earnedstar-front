@@ -4,8 +4,12 @@ import { motion } from "framer-motion";
 import { Check, ArrowRight, Sparkles, Shield, FileText, Lock, Scale, Mail, MessageSquareText, Coins, Search, AlertTriangle, X, Quote } from "lucide-react";
 import MarketingNav from "../components/layout/MarketingNav";
 import MarketingFooter from "../components/layout/MarketingFooter";
-import EarnedStarMark from "../components/brand/EarnedStarMark";
+import LeatherStar from "../components/brand/LeatherStar";
 import { getJSON } from "../lib/api";
+
+const HERO_WORDMARK = "https://customer-assets.emergentagent.com/job_rater-pro/artifacts/4wz9czmz_Photorealistic_leather_text_wordmark_for_EarnedStar_in_navy_and_gold.png";
+const HERO_MOTTO = "https://customer-assets.emergentagent.com/job_rater-pro/artifacts/a8hwckoa_Photorealistic_leather_EarnedStar_motto_text_in_navy_and_gold_on_white_background.png";
+const HERO_BADGE = "https://customer-assets.emergentagent.com/job_rater-pro/artifacts/0zpntmg0_EarnedStar_3D_origami_lucky_star_logo_system_with_merchant_logo_zone.png";
 
 // Fixed-width animated counter
 function TickingNumber({ value, prefix = "", suffix = "" }) {
@@ -148,7 +152,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right column — origami badge with orbiting gold ring */}
+          {/* Right column — leather lucky star with orbiting gold ring */}
           <div className="lg:col-span-5 relative flex items-center justify-center lg:justify-end">
             <motion.div
               initial={{ opacity: 0, scale: 0.92, rotate: -6 }}
@@ -157,31 +161,39 @@ export default function HomePage() {
               className="relative"
             >
               {/* outer orbiting ring */}
-              <div className="absolute -inset-12 animate-orbit pointer-events-none">
+              <div className="absolute -inset-16 animate-orbit pointer-events-none">
                 <svg viewBox="0 0 400 400" className="w-full h-full">
                   <defs>
                     <linearGradient id="orbit-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="#FDE68A" stopOpacity="0.55" />
-                      <stop offset="50%" stopColor="#F59E0B" stopOpacity="0.25" />
+                      <stop offset="50%" stopColor="#F59E0B" stopOpacity="0.28" />
                       <stop offset="100%" stopColor="#92400E" stopOpacity="0.0" />
                     </linearGradient>
                   </defs>
-                  <circle cx="200" cy="200" r="180" fill="none" stroke="url(#orbit-grad)" strokeWidth="1.5" strokeDasharray="3 8" />
+                  <circle cx="200" cy="200" r="186" fill="none" stroke="url(#orbit-grad)" strokeWidth="1.5" strokeDasharray="3 9" />
                 </svg>
               </div>
-              {/* inner glow */}
-              <div className="absolute -inset-8 bg-gradient-to-tr from-gold-dark/50 via-gold/30 to-transparent blur-3xl" />
+              {/* warm glow halo */}
+              <div className="absolute -inset-10 bg-gradient-to-tr from-gold-dark/55 via-gold/30 to-transparent blur-3xl" />
+              {/* the actual leather lucky star — cropped from brand sheet */}
               <div className="relative animate-float">
-                <EarnedStarMark size={360} variant="navy" center="es" />
+                <div
+                  className="w-[440px] h-[440px] max-w-full rounded-3xl overflow-hidden"
+                  style={{
+                    backgroundImage: `url(${HERO_BADGE})`,
+                    backgroundSize: "300% 300%",
+                    backgroundPosition: "92% 32%",
+                    backgroundRepeat: "no-repeat",
+                    backgroundColor: "#FFFFFF",
+                    boxShadow: "0 40px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(245,158,11,0.25)",
+                  }}
+                  role="img"
+                  aria-label="EarnedStar 3D leather lucky star badge"
+                />
               </div>
-              {/* small notations */}
-              <div className="hidden lg:block absolute -left-6 top-1/3 text-right">
-                <div className="text-[10px] smallcaps text-gold-light/80">Origami Mark</div>
-                <div className="font-num text-[10px] text-white/40 mt-0.5">5° fold · est. 2026</div>
-              </div>
-              <div className="hidden lg:block absolute -right-2 bottom-8 text-left">
-                <div className="text-[10px] smallcaps text-gold-light/80">Trust Stamp</div>
-                <div className="font-num text-[10px] text-white/40 mt-0.5">ES VERIFIED</div>
+              {/* studio caption */}
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-ink/80 backdrop-blur-sm border border-white/15 rounded-full px-4 py-1.5 text-[10px] smallcaps text-gold-light whitespace-nowrap">
+                Padded leather &middot; Hand-finished
               </div>
             </motion.div>
           </div>
@@ -285,6 +297,91 @@ export default function HomePage() {
                 <p className="font-body text-ink/65 mt-4 leading-[1.65] text-pretty">{s}</p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TRUST BADGES GALLERY — using real leather artwork */}
+      <section className="bg-cream-light py-24 md:py-32 relative overflow-hidden border-y border-ink/8">
+        <div className="absolute inset-0 paper-grain pointer-events-none" />
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-14 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end mb-14">
+            <div className="lg:col-span-7">
+              <div className="text-[10px] smallcaps text-gold-dark mb-3">The Mark</div>
+              <h2 className="font-heading text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02] tracking-tight text-balance">
+                A trust badge worth <em className="italic text-gold-dark underline-hand">earning</em>.
+              </h2>
+            </div>
+            <div className="lg:col-span-5">
+              <p className="font-body text-ink/65 leading-[1.65] text-pretty">
+                Padded navy leather. Gold piping. A medallion that holds <em className="italic">your</em> logo &mdash;
+                because every star on the platform points back to a real merchant who earned it.
+                Hand-finished, in three colorways, ready to drop on any storefront.
+              </p>
+            </div>
+          </div>
+
+          {/* Featured badge */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-5 vellum-card gilded-edge rounded-2xl p-8 md:p-12 relative overflow-hidden">
+              <div className="absolute -top-12 -right-12 w-64 h-64 rounded-full gold-foil opacity-10" />
+              <div className="text-[10px] smallcaps text-gold-dark mb-3 relative">Primary &mdash; Navy / Gold</div>
+              <div className="flex justify-center relative">
+                <div
+                  className="w-[320px] h-[320px] max-w-full"
+                  style={{
+                    backgroundImage: `url(${HERO_BADGE})`,
+                    backgroundSize: "280% 280%",
+                    backgroundPosition: "92% 22%",
+                    backgroundRepeat: "no-repeat",
+                    filter: "drop-shadow(0 24px 50px rgba(11,26,56,0.32))",
+                  }}
+                  role="img"
+                  aria-label="EarnedStar 3D leather badge — Navy/Gold"
+                />
+              </div>
+              <h3 className="font-heading text-3xl italic leading-tight mt-6 text-center">The EarnedStar mark.</h3>
+              <p className="font-body text-ink/65 mt-3 leading-[1.65] text-center text-sm text-pretty max-w-md mx-auto">
+                Pillow-finished navy leather, hand-stitched gold piping, gold-ring medallion that holds your store&apos;s logo &mdash; every badge a verified introduction.
+              </p>
+            </div>
+
+            {/* Full brand system reveal — real artwork */}
+            <div className="lg:col-span-7 vellum-card rounded-2xl p-8 md:p-10 relative overflow-hidden">
+              <div className="flex items-center justify-between mb-5">
+                <div className="text-[10px] smallcaps text-gold-dark">Brand System &middot; Edition I</div>
+                <div className="text-[10px] smallcaps text-ink/40 font-num">Vol. 01 &middot; 2026</div>
+              </div>
+              <img
+                src={HERO_BADGE}
+                alt="EarnedStar full brand system — primary logo, icon detail, dark version, color variants"
+                className="w-full h-auto rounded-xl"
+                style={{ filter: "drop-shadow(0 20px 40px rgba(11,26,56,0.16))" }}
+              />
+              <div className="grid grid-cols-4 gap-3 mt-6 text-center">
+                {[
+                  ["01", "Primary"],
+                  ["02", "Icon"],
+                  ["03", "Dark"],
+                  ["04", "Variants"],
+                ].map(([n, l]) => (
+                  <div key={n} className="border-t border-ink/10 pt-3">
+                    <div className="font-num text-[10px] text-ink/40">{n}</div>
+                    <div className="font-body text-xs font-bold text-ink mt-1">{l}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Leather wordmark / motto strip — real 3D leather renders */}
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="vellum-card rounded-2xl p-10 flex items-center justify-center min-h-[220px]" style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F7F4EE 100%)" }}>
+              <img src={HERO_WORDMARK} alt="EarnedStar leather wordmark" className="max-h-48 w-auto object-contain" style={{ filter: "drop-shadow(0 10px 24px rgba(11,26,56,0.18))" }} />
+            </div>
+            <div className="vellum-card rounded-2xl p-10 flex items-center justify-center min-h-[220px]" style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F7F4EE 100%)" }}>
+              <img src={HERO_MOTTO} alt="No order, no star. Every review is real." className="max-h-48 w-auto object-contain" style={{ filter: "drop-shadow(0 10px 24px rgba(11,26,56,0.18))" }} />
+            </div>
           </div>
         </div>
       </section>
@@ -456,9 +553,20 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="md:col-span-5 flex justify-center relative">
-            <div className="absolute -inset-8 bg-gradient-to-tr from-gold-dark/15 via-gold/12 to-transparent blur-2xl" />
+            <div className="absolute -inset-8 bg-gradient-to-tr from-gold-dark/20 via-gold/15 to-transparent blur-2xl" />
             <div className="relative animate-float">
-              <EarnedStarMark size={240} variant="gold" center="check" />
+              <div
+                className="w-[260px] h-[260px]"
+                style={{
+                  backgroundImage: `url(${HERO_BADGE})`,
+                  backgroundSize: "280% 280%",
+                  backgroundPosition: "92% 22%",
+                  backgroundRepeat: "no-repeat",
+                  filter: "drop-shadow(0 20px 40px rgba(11,26,56,0.45))",
+                }}
+                role="img"
+                aria-label="EarnedStar leather badge"
+              />
             </div>
           </div>
         </div>

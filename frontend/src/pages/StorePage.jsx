@@ -4,8 +4,9 @@ import { Star, Check, Shield, ShieldCheck, Award, X, ExternalLink, Sparkles, Loa
 import { motion, AnimatePresence } from "framer-motion";
 import MarketingNav from "../components/layout/MarketingNav";
 import MarketingFooter from "../components/layout/MarketingFooter";
-import EarnedStarMark from "../components/brand/EarnedStarMark";
 import { getJSON, postJSON } from "../lib/api";
+
+const BRAND_SHEET = "https://customer-assets.emergentagent.com/job_rater-pro/artifacts/0zpntmg0_EarnedStar_3D_origami_lucky_star_logo_system_with_merchant_logo_zone.png";
 
 function Stars({ n, size = 16 }) {
   return (
@@ -141,8 +142,19 @@ export default function StorePage() {
 
           <div className="lg:col-span-5 lg:justify-self-end">
             <div className="relative">
-              <div className="absolute -inset-6 bg-gradient-to-tr from-gold-dark/15 via-gold/10 to-transparent blur-2xl" />
-              <EarnedStarMark size={260} variant="navy" center="es" />
+              <div className="absolute -inset-8 bg-gradient-to-tr from-gold-dark/25 via-gold/15 to-transparent blur-3xl" />
+              <div
+                className="w-[320px] h-[320px] max-w-full animate-float"
+                style={{
+                  backgroundImage: `url(${BRAND_SHEET})`,
+                  backgroundSize: "280% 280%",
+                  backgroundPosition: "92% 22%",
+                  backgroundRepeat: "no-repeat",
+                  filter: "drop-shadow(0 24px 50px rgba(11,26,56,0.45))",
+                }}
+                role="img"
+                aria-label="EarnedStar leather badge — verified store"
+              />
             </div>
             <div className="grid grid-cols-3 gap-3 mt-6 text-center">
               {[
@@ -294,9 +306,9 @@ export default function StorePage() {
               onClick={(e) => e.stopPropagation()}
               className="bg-white rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden"
             >
-              <div className="bg-navy text-white p-6 flex items-center justify-between">
+              <div className="bg-ink text-white p-6 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <EarnedStarMark size={48} variant="navy" center="check" />
+                  <LeatherStar size={56} variant="navy" center="check" showShadow={false} />
                   <div>
                     <div className="text-xs uppercase tracking-[0.22em] text-gold-light font-bold">Trust Receipt</div>
                     <div className="font-heading text-xl italic">{activeReceipt.author_name}&apos;s review</div>
