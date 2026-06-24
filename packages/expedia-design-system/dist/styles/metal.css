@@ -1,0 +1,98 @@
+/**
+ * Machined metal / chrome rim wrappers — Tier 2 brand enhancement.
+ * See docs/branding/EXPEDIAPARTS_LOGO_DESIGN_SYSTEM.md
+ */
+
+.badge-metal {
+  position: relative;
+  display: inline-flex;
+  border-radius: var(--radius-badge);
+  padding: 2px;
+  background: linear-gradient(
+    180deg,
+    #f5f7fa 0%,
+    #bfc5d0 38%,
+    #6b7380 62%,
+    #bfc5d0 100%
+  );
+  box-shadow: var(--shadow-metal);
+}
+
+.badge-metal__inner {
+  border-radius: var(--radius-badge-inner);
+  background: var(--brand-expedia-navy);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.badge-metal--transmissions .badge-metal__inner {
+  background: var(--brand-expedia-navy);
+}
+
+.badge-metal--engines {
+  background: linear-gradient(
+    180deg,
+    #fff8f0 0%,
+    #d4c4a8 35%,
+    #8a7355 55%,
+    #c9b896 100%
+  );
+}
+
+.badge-metal--engines .badge-accent {
+  color: var(--brand-engine-gold);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.badge-metal--parts .badge-metal__inner {
+  background: var(--brand-expedia-black);
+}
+
+.badge-bevel-inset {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+}
+
+.badge-premium-plate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 2rem;
+  border-radius: var(--radius-panel);
+  background: radial-gradient(ellipse at 50% 30%, #2a3348 0%, #0d1118 70%);
+  border: 1px solid var(--border-metal);
+}
+
+.badge-raised-emblem {
+  display: inline-flex;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.45));
+}
+
+/** T3 photoreal hero emblem — pre-rendered PNG with baked chrome lighting.
+ * No CSS sheen (would fight baked speculars). Use on subsidiary homepage heroes only.
+ */
+.photoreal-hero-emblem {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 22px 44px rgba(0, 0, 0, 0.72))
+    drop-shadow(0 10px 20px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photoreal-hero-emblem {
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.55));
+  }
+}
+
+.badge-machined-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-badge);
+  background: linear-gradient(180deg, #2a3040 0%, #1a2030 100%);
+  border: 1px solid var(--border-dark);
+  box-shadow: var(--shadow-metal);
+}

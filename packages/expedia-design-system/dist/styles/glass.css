@@ -1,0 +1,53 @@
+/**
+ * Glass panel utilities — restrained blur, dark premium surfaces.
+ */
+
+.ds-glass {
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-dark);
+  box-shadow: var(--shadow-glass);
+}
+
+.ds-glass--light {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.ds-glass-panel {
+  border-radius: var(--radius-panel);
+  padding: 1.25rem 1.5rem;
+}
+
+/* Composed glass panels */
+.brand-glass-panel,
+.ds-panel-glass-dark {
+  border-radius: var(--radius-panel);
+  padding: 1.25rem 1.5rem;
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-dark);
+  box-shadow: var(--shadow-glass);
+}
+
+.ds-panel-glass-light {
+  border-radius: var(--radius-panel);
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-glass,
+  .ds-panel-glass-dark,
+  .ds-panel-glass-light {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}

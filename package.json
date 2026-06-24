@@ -19,8 +19,8 @@
     "qa:design-lab:ci": "npm run qa:design-lab:visual"
   },
   "dependencies": {
-    "@expedia/design-lab": "file:../expedia-parts-front/packages/expedia-design-lab",
-    "@expedia/design-system": "file:../expedia-parts-front/packages/expedia-design-system",
+    "@expedia/design-lab": "file:./packages/expedia-design-lab",
+    "@expedia/design-system": "file:./packages/expedia-design-system",
     "@supabase/ssr": "^0.12.0",
     "@supabase/supabase-js": "^2.108.2",
     "clsx": "^2.1.1",

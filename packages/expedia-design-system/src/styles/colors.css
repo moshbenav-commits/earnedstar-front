@@ -1,0 +1,58 @@
+/**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
+/**
+ * Semantic color utilities for brand surfaces.
+ */
+
+.ds-surface-dark {
+  background: var(--surface-dark-deep);
+  color: rgb(229 231 235);
+}
+
+.ds-surface-navy {
+  background: var(--surface-dark);
+  color: rgb(229 231 235);
+}
+
+.ds-surface-light {
+  background: var(--surface-light);
+  color: var(--color-text);
+}
+
+.ds-accent-transmissions {
+  color: var(--brand-transmission-blue);
+}
+
+.ds-accent-engines {
+  color: var(--brand-engine-gold);
+}
+
+.ds-accent-parts {
+  color: var(--color-primary);
+}
+
+.ds-border-dark {
+  border-color: var(--border-dark);
+}
+
+.ds-border-light {
+  border-color: var(--border-light);
+}
+
+.ds-preview-checker {
+  background-color: #ccc;
+  background-image:
+    linear-gradient(45deg, #999 25%, transparent 25%),
+    linear-gradient(-45deg, #999 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #999 75%),
+    linear-gradient(-45deg, transparent 75%, #999 75%);
+  background-size: 16px 16px;
+  background-position:
+    0 0,
+    0 8px,
+    8px -8px,
+    -8px 0;
+}

@@ -1,0 +1,74 @@
+{
+  "name": "@expedia/design-system",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Expedia Parts code-native design system — tokens, materials, components",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist",
+    "src/styles"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "prepublishOnly": "npm run build"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "development": "./src/index.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./styles": {
+      "development": "./src/styles/index.css",
+      "default": "./dist/styles/index.css"
+    },
+    "./styles/*": {
+      "development": "./src/styles/*",
+      "default": "./dist/styles/*"
+    },
+    "./tokens": {
+      "types": "./dist/tokens.d.ts",
+      "development": "./src/tokens.ts",
+      "import": "./dist/tokens.js",
+      "default": "./dist/tokens.js"
+    },
+    "./typography": {
+      "types": "./dist/typography.d.ts",
+      "development": "./src/typography.ts",
+      "import": "./dist/typography.js",
+      "default": "./dist/typography.js"
+    },
+    "./brandAssets": {
+      "types": "./dist/brandAssets.d.ts",
+      "import": "./dist/brandAssets.js",
+      "default": "./dist/brandAssets.js"
+    },
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js",
+      "default": "./dist/components/index.js"
+    },
+    "./components/*": "./dist/components/*"
+  },
+  "peerDependencies": {
+    "clsx": "^2.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.0"
+  }
+}

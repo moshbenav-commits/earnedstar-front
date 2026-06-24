@@ -20,9 +20,9 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@expedia/design-lab": ["../expedia-parts-front/packages/expedia-design-lab/src/index.ts"],
-      "@expedia/design-lab/logo-workshop": ["../expedia-parts-front/packages/expedia-design-lab/src/logo-workshop/index.ts"],
-      "@expedia/design-system": ["../expedia-parts-front/packages/expedia-design-system/src/index.ts"]
+      "@expedia/design-lab": ["./packages/expedia-design-lab/src/index.ts"],
+      "@expedia/design-lab/logo-workshop": ["./packages/expedia-design-lab/src/logo-workshop/index.ts"],
+      "@expedia/design-system": ["./packages/expedia-design-system/src/index.ts"]
     }
   },
   "include": [

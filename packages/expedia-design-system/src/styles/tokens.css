@@ -1,0 +1,79 @@
+/**
+ * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized copying, distribution, or use
+ * is strictly prohibited without express written permission.
+ */
+/**
+ * Brand + semantic design tokens (code-native SSOT).
+ * Extends globals.css palette with subsidiary brand roles.
+ */
+:root {
+  /* Shared neutrals (canonical names — mirror Figma Brand / Palettes) */
+  --expedia-black: #05070d;
+  --expedia-navy: #0a1020;
+  --expedia-white: #ffffff;
+
+  /* Expedia Transmissions palette */
+  --trans-navy: #0a1020;
+  --trans-blue: #1769ff;
+  --trans-blue-hover: #3d84ff;
+  --trans-blue-muted: #1254cc;
+
+  /* Expedia Engines palette */
+  --eng-navy: #0a1020;
+  --eng-gold: #f5a623;
+  --eng-gold-hover: #ffb84d;
+  --eng-gold-muted: #c8840f;
+
+  /* Legacy aliases (keep for existing components) */
+  --brand-expedia-black: var(--expedia-black);
+  --brand-expedia-navy: var(--expedia-navy);
+  --brand-expedia-white: var(--expedia-white);
+  --brand-transmission-blue: var(--trans-blue);
+  --brand-engine-gold: var(--eng-gold);
+
+  /* Semantic surfaces */
+  --surface-dark: var(--brand-expedia-navy);
+  --surface-dark-deep: var(--brand-expedia-black);
+  --surface-light: var(--color-off-white);
+  --surface-glass: rgba(10, 16, 32, 0.72);
+
+  /* Semantic borders */
+  --border-dark: rgba(255, 255, 255, 0.08);
+  --border-light: var(--color-grey-2);
+  --border-metal: rgba(191, 197, 208, 0.55);
+
+  /* Radii */
+  --radius-badge: 6px;
+  --radius-badge-inner: 4px;
+  --radius-panel: 14px;
+  --radius-button: 9999px;
+
+  /* Shadows */
+  --shadow-metal:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+    0 10px 30px rgba(0, 0, 0, 0.18);
+  --shadow-panel-dark: 0 12px 40px rgba(0, 0, 0, 0.35);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.24);
+}
+
+/* Per-site primary accent overrides */
+:root {
+  --header-promo-bar-bg: var(--color-accent);
+}
+
+[data-brand='transmissions'] {
+  --color-primary: var(--trans-blue);
+  --header-promo-bar-bg: var(--trans-blue);
+}
+
+[data-brand='engines'] {
+  --color-primary: var(--eng-gold);
+  --header-promo-bar-bg: var(--eng-gold);
+}
+
+[data-brand='expediaparts'],
+[data-brand='parts'] {
+  --color-primary: var(--color-orange);
+}

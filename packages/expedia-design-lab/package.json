@@ -1,0 +1,44 @@
+{
+  "name": "@expedia/design-lab",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Shared design-lab shell for code-native design system previews",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "prepublishOnly": "npm run build"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "development": "./src/index.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./logo-workshop": {
+      "types": "./dist/logo-workshop/index.d.ts",
+      "development": "./src/logo-workshop/index.ts",
+      "import": "./dist/logo-workshop/index.js",
+      "default": "./dist/logo-workshop/index.js"
+    }
+  },
+  "peerDependencies": {
+    "@expedia/design-system": "*",
+    "next": ">=15",
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.0"
+  }
+}

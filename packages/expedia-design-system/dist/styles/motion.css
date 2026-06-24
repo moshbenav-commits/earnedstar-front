@@ -1,0 +1,102 @@
+/**
+ * Motion tiers — transform + opacity only. See docs/design-system/motion-rules.md
+ */
+:root {
+  --motion-fast: 150ms;
+  --motion-medium: 250ms;
+  --motion-sheen-duration: 1s;
+  --motion-sheen-delay: 5s;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-enter: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.ds-motion-fast {
+  transition:
+    transform var(--motion-fast) var(--ease-enter),
+    opacity var(--motion-fast) var(--ease-enter);
+}
+
+.ds-motion-medium {
+  transition:
+    transform var(--motion-medium) var(--ease-standard),
+    opacity var(--motion-medium) var(--ease-standard);
+}
+
+/* Sheen sweep — Tier 2 hover / Tier 3 hero (one per viewport) */
+.badge-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-sheen::after {
+  content: '';
+  position: absolute;
+  inset: -40% -60%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.22) 48%,
+    rgba(255, 255, 255, 0.38) 50%,
+    rgba(255, 255, 255, 0.22) 52%,
+    transparent 60%,
+    transparent 100%
+  );
+  transform: translateX(-120%) skewX(-12deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.badge-sheen--hover:hover::after,
+.badge-sheen--hover:focus-visible::after {
+  animation: badge-sheen-sweep var(--motion-medium) var(--ease-standard) 1;
+}
+
+.badge-sheen--auto::after {
+  animation: badge-sheen-sweep-cycle 6s ease-in-out infinite;
+}
+
+@keyframes badge-sheen-sweep {
+  0% {
+    transform: translateX(-120%) skewX(-12deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(120%) skewX(-12deg);
+    opacity: 0;
+  }
+}
+
+@keyframes badge-sheen-sweep-cycle {
+  0%,
+  78% {
+    transform: translateX(-120%) skewX(-12deg);
+    opacity: 0;
+  }
+  82% {
+    opacity: 1;
+  }
+  92% {
+    transform: translateX(120%) skewX(-12deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(120%) skewX(-12deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge-sheen::after,
+  .badge-sheen--auto::after {
+    animation: none !important;
+  }
+
+  .ds-motion-fast,
+  .ds-motion-medium {
+    transition: none;
+  }
+}
