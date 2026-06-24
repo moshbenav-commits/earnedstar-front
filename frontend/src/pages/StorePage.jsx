@@ -6,7 +6,8 @@ import MarketingNav from "../components/layout/MarketingNav";
 import MarketingFooter from "../components/layout/MarketingFooter";
 import { getJSON, postJSON } from "../lib/api";
 
-const BRAND_SHEET = "https://customer-assets.emergentagent.com/job_rater-pro/artifacts/0zpntmg0_EarnedStar_3D_origami_lucky_star_logo_system_with_merchant_logo_zone.png";
+const BRAND_SHEET = "/meshy-renders/render_03ad263cd8.png"; // full hero composition
+const REMAN_CARD = "/meshy-renders/render_c6d95bea43.png"; // Reman Transmissions custom merchant card
 
 function Stars({ n, size = 16 }) {
   return (
@@ -143,17 +144,11 @@ export default function StorePage() {
           <div className="lg:col-span-5 lg:justify-self-end">
             <div className="relative">
               <div className="absolute -inset-8 bg-gradient-to-tr from-gold-dark/25 via-gold/15 to-transparent blur-3xl" />
-              <div
-                className="w-[320px] h-[320px] max-w-full animate-float"
-                style={{
-                  backgroundImage: `url(${BRAND_SHEET})`,
-                  backgroundSize: "280% 280%",
-                  backgroundPosition: "92% 22%",
-                  backgroundRepeat: "no-repeat",
-                  filter: "drop-shadow(0 24px 50px rgba(11,26,56,0.45))",
-                }}
-                role="img"
-                aria-label="EarnedStar leather badge — verified store"
+              <img
+                src={slug === "reman-transmissions" ? REMAN_CARD : BRAND_SHEET}
+                alt={`EarnedStar verified badge for ${store.name}`}
+                className="w-[420px] max-w-full animate-float"
+                style={{ filter: "drop-shadow(0 30px 60px rgba(11,26,56,0.45))" }}
               />
             </div>
             <div className="grid grid-cols-3 gap-3 mt-6 text-center">

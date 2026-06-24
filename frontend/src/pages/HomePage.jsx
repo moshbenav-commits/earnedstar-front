@@ -7,9 +7,13 @@ import MarketingFooter from "../components/layout/MarketingFooter";
 import LeatherStar from "../components/brand/LeatherStar";
 import { getJSON } from "../lib/api";
 
-const HERO_WORDMARK = "https://customer-assets.emergentagent.com/job_rater-pro/artifacts/4wz9czmz_Photorealistic_leather_text_wordmark_for_EarnedStar_in_navy_and_gold.png";
-const HERO_MOTTO = "https://customer-assets.emergentagent.com/job_rater-pro/artifacts/a8hwckoa_Photorealistic_leather_EarnedStar_motto_text_in_navy_and_gold_on_white_background.png";
-const HERO_BADGE = "https://customer-assets.emergentagent.com/job_rater-pro/artifacts/0zpntmg0_EarnedStar_3D_origami_lucky_star_logo_system_with_merchant_logo_zone.png";
+const HERO_WORDMARK = "/meshy-renders/render_76cbc33016.png"; // Leather wordmark "EarnedStar · THE MARK OF VERIFIED TRUST"
+const HERO_MOTTO = "/meshy-renders/render_0966455626.png"; // "No order, no star. Every review is real."
+const HERO_BADGE = "/meshy-renders/render_03ad263cd8.png"; // Full hero composition with metrics
+const BRAND_SYSTEM = "/meshy-renders/render_47069cba2c.png"; // 4-quadrant brand system sheet
+const AWARD_BADGE = "/meshy-renders/render_d0e706d76b.png"; // Q1 LEADER award medallion with ribbon
+const VERIFIED_HUMAN = "/meshy-renders/render_16b7e72831.png"; // Verified Human shield badge
+const RATING_BADGE = "/meshy-renders/render_c30552e25d.png"; // 4.8 / 2,847 REVIEWS rating badge
 
 // Fixed-width animated counter
 function TickingNumber({ value, prefix = "", suffix = "" }) {
@@ -175,25 +179,18 @@ export default function HomePage() {
               </div>
               {/* warm glow halo */}
               <div className="absolute -inset-10 bg-gradient-to-tr from-gold-dark/55 via-gold/30 to-transparent blur-3xl" />
-              {/* the actual leather lucky star — cropped from brand sheet */}
+              {/* the actual leather lucky star — Meshy 3D render */}
               <div className="relative animate-float">
-                <div
-                  className="w-[440px] h-[440px] max-w-full rounded-3xl overflow-hidden"
-                  style={{
-                    backgroundImage: `url(${HERO_BADGE})`,
-                    backgroundSize: "300% 300%",
-                    backgroundPosition: "92% 32%",
-                    backgroundRepeat: "no-repeat",
-                    backgroundColor: "#FFFFFF",
-                    boxShadow: "0 40px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(245,158,11,0.25)",
-                  }}
-                  role="img"
-                  aria-label="EarnedStar 3D leather lucky star badge"
+                <img
+                  src={HERO_BADGE}
+                  alt="EarnedStar 3D leather lucky star with metrics"
+                  className="w-[520px] max-w-full"
+                  style={{ filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.65))" }}
                 />
               </div>
               {/* studio caption */}
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-ink/80 backdrop-blur-sm border border-white/15 rounded-full px-4 py-1.5 text-[10px] smallcaps text-gold-light whitespace-nowrap">
-                Padded leather &middot; Hand-finished
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-ink/80 backdrop-blur-sm border border-white/15 rounded-full px-4 py-1.5 text-[10px] smallcaps text-gold-light whitespace-nowrap">
+                Hand-rendered &middot; 3D leather
               </div>
             </motion.div>
           </div>
@@ -327,17 +324,11 @@ export default function HomePage() {
               <div className="absolute -top-12 -right-12 w-64 h-64 rounded-full gold-foil opacity-10" />
               <div className="text-[10px] smallcaps text-gold-dark mb-3 relative">Primary &mdash; Navy / Gold</div>
               <div className="flex justify-center relative">
-                <div
-                  className="w-[320px] h-[320px] max-w-full"
-                  style={{
-                    backgroundImage: `url(${HERO_BADGE})`,
-                    backgroundSize: "280% 280%",
-                    backgroundPosition: "92% 22%",
-                    backgroundRepeat: "no-repeat",
-                    filter: "drop-shadow(0 24px 50px rgba(11,26,56,0.32))",
-                  }}
-                  role="img"
-                  aria-label="EarnedStar 3D leather badge — Navy/Gold"
+                <img
+                  src={HERO_BADGE}
+                  alt="EarnedStar 3D leather badge"
+                  className="w-[320px] max-w-full"
+                  style={{ filter: "drop-shadow(0 24px 50px rgba(11,26,56,0.32))" }}
                 />
               </div>
               <h3 className="font-heading text-3xl italic leading-tight mt-6 text-center">The EarnedStar mark.</h3>
@@ -353,7 +344,7 @@ export default function HomePage() {
                 <div className="text-[10px] smallcaps text-ink/40 font-num">Vol. 01 &middot; 2026</div>
               </div>
               <img
-                src={HERO_BADGE}
+                src={BRAND_SYSTEM}
                 alt="EarnedStar full brand system — primary logo, icon detail, dark version, color variants"
                 className="w-full h-auto rounded-xl"
                 style={{ filter: "drop-shadow(0 20px 40px rgba(11,26,56,0.16))" }}
@@ -374,13 +365,48 @@ export default function HomePage() {
             </div>
           </div>
 
+          {/* AWARD MEDALLION + VERIFIED HUMAN row */}
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="vellum-card rounded-2xl p-10 relative overflow-hidden text-center" style={{ background: "radial-gradient(ellipse at top, #FEF3C7 0%, #FFFFFF 60%)" }}>
+              <div className="text-[10px] smallcaps text-gold-dark mb-2">Quarterly Leaders Award</div>
+              <h4 className="font-heading text-3xl italic">For merchants who earn it.</h4>
+              <div className="flex justify-center mt-6">
+                <img
+                  src={AWARD_BADGE}
+                  alt="EarnedStar Q1 Leader Award"
+                  className="w-[280px] max-w-full"
+                  style={{ filter: "drop-shadow(0 24px 50px rgba(180,83,9,0.35))" }}
+                />
+              </div>
+              <p className="font-body text-sm text-ink/60 mt-6 leading-[1.65] text-pretty max-w-sm mx-auto">
+                Top-ranked merchants by Trust Score earn a quarterly leather medallion &mdash; embeddable on your site, shareable on social, and surfaced to buyers at <span className="italic">earnedstar.com/leaders</span>.
+              </p>
+            </div>
+
+            <div className="vellum-card rounded-2xl p-10 relative overflow-hidden text-center" style={{ background: "radial-gradient(ellipse at top, #DBEAFE 0%, #FFFFFF 60%)" }}>
+              <div className="text-[10px] smallcaps text-gold-dark mb-2">Anti-AI &middot; Phase I</div>
+              <h4 className="font-heading text-3xl italic">Verified Human.</h4>
+              <div className="flex justify-center mt-6">
+                <img
+                  src={VERIFIED_HUMAN}
+                  alt="EarnedStar Verified Human badge"
+                  className="w-[280px] max-w-full"
+                  style={{ filter: "drop-shadow(0 24px 50px rgba(11,26,56,0.35))" }}
+                />
+              </div>
+              <p className="font-body text-sm text-ink/60 mt-6 leading-[1.65] text-pretty max-w-sm mx-auto">
+                Every review passes perplexity + burstiness scoring + behavioral fingerprinting &mdash; so AI-generated reviews can&apos;t hide. The 2026 fake-review arms race ends here.
+              </p>
+            </div>
+          </div>
+
           {/* Leather wordmark / motto strip — real 3D leather renders */}
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="vellum-card rounded-2xl p-10 flex items-center justify-center min-h-[220px]" style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F7F4EE 100%)" }}>
-              <img src={HERO_WORDMARK} alt="EarnedStar leather wordmark" className="max-h-48 w-auto object-contain" style={{ filter: "drop-shadow(0 10px 24px rgba(11,26,56,0.18))" }} />
+              <img src={HERO_WORDMARK} alt="EarnedStar leather wordmark" className="max-h-52 w-auto object-contain" style={{ filter: "drop-shadow(0 10px 24px rgba(11,26,56,0.18))" }} />
             </div>
             <div className="vellum-card rounded-2xl p-10 flex items-center justify-center min-h-[220px]" style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F7F4EE 100%)" }}>
-              <img src={HERO_MOTTO} alt="No order, no star. Every review is real." className="max-h-48 w-auto object-contain" style={{ filter: "drop-shadow(0 10px 24px rgba(11,26,56,0.18))" }} />
+              <img src={HERO_MOTTO} alt="No order, no star. Every review is real." className="max-h-52 w-auto object-contain" style={{ filter: "drop-shadow(0 10px 24px rgba(11,26,56,0.18))" }} />
             </div>
           </div>
         </div>
@@ -555,17 +581,11 @@ export default function HomePage() {
           <div className="md:col-span-5 flex justify-center relative">
             <div className="absolute -inset-8 bg-gradient-to-tr from-gold-dark/20 via-gold/15 to-transparent blur-2xl" />
             <div className="relative animate-float">
-              <div
-                className="w-[260px] h-[260px]"
-                style={{
-                  backgroundImage: `url(${HERO_BADGE})`,
-                  backgroundSize: "280% 280%",
-                  backgroundPosition: "92% 22%",
-                  backgroundRepeat: "no-repeat",
-                  filter: "drop-shadow(0 20px 40px rgba(11,26,56,0.45))",
-                }}
-                role="img"
-                aria-label="EarnedStar leather badge"
+              <img
+                src={AWARD_BADGE}
+                alt="EarnedStar award medallion"
+                className="w-[260px] max-w-full"
+                style={{ filter: "drop-shadow(0 20px 40px rgba(180,83,9,0.35))" }}
               />
             </div>
           </div>

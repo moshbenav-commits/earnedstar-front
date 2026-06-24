@@ -1,12 +1,12 @@
 import React from "react";
 import LeatherStar from "./LeatherStar";
 
-const LEATHER_WORDMARK = "https://customer-assets.emergentagent.com/job_rater-pro/artifacts/4wz9czmz_Photorealistic_leather_text_wordmark_for_EarnedStar_in_navy_and_gold.png";
-const BRAND_SHEET = "https://customer-assets.emergentagent.com/job_rater-pro/artifacts/0zpntmg0_EarnedStar_3D_origami_lucky_star_logo_system_with_merchant_logo_zone.png";
+const LEATHER_WORDMARK = "/meshy-renders/render_76cbc33016.png"; // "EarnedStar · THE MARK OF VERIFIED TRUST"
+const HERO_BADGE = "/meshy-renders/render_03ad263cd8.png"; // hero composition
 
 /**
- * EarnedStarMark — small badge that crops the icon-detail quadrant of the brand sheet.
- * For tiny sizes, the SVG LeatherStar is used as fallback.
+ * EarnedStarMark — small badge using the 3D Meshy render.
+ * For tiny sizes (<48px) falls back to SVG LeatherStar.
  */
 export default function EarnedStarMark({
   size = 40,
@@ -19,19 +19,16 @@ export default function EarnedStarMark({
 }) {
   if (size < 56) {
     return (
-      <div
+      <img
+        src={HERO_BADGE}
+        alt="EarnedStar mark"
         className={className}
         style={{
           width: size,
           height: size,
-          backgroundImage: `url(${BRAND_SHEET})`,
-          backgroundSize: "320% 320%",
-          backgroundPosition: "100% 0%",
-          backgroundRepeat: "no-repeat",
-          filter: variant === "white" ? "drop-shadow(0 2px 4px rgba(0,0,0,0.2)) brightness(1.05)" : "drop-shadow(0 2px 4px rgba(0,0,0,0.25))",
+          objectFit: "contain",
+          filter: variant === "white" ? "drop-shadow(0 2px 4px rgba(0,0,0,0.4)) brightness(1.05)" : "drop-shadow(0 2px 4px rgba(0,0,0,0.25))",
         }}
-        role="img"
-        aria-label="EarnedStar mark"
       />
     );
   }
@@ -39,7 +36,7 @@ export default function EarnedStarMark({
 }
 
 /**
- * EarnedStarWordmark — uses the photorealistic leather wordmark image (real 3D render).
+ * EarnedStarWordmark — uses the photorealistic 3D leather wordmark render.
  */
 export function EarnedStarWordmark({ variant = "navy", className = "" }) {
   const isWhite = variant === "white";
@@ -47,8 +44,8 @@ export function EarnedStarWordmark({ variant = "navy", className = "" }) {
     <div className={`flex items-center ${className}`}>
       <img
         src={LEATHER_WORDMARK}
-        alt="EarnedStar"
-        className="h-9 md:h-10 w-auto"
+        alt="EarnedStar — The Mark of Verified Trust"
+        className="h-10 md:h-12 w-auto"
         style={{
           filter: isWhite
             ? "drop-shadow(0 2px 6px rgba(0,0,0,0.5)) brightness(1.1)"
