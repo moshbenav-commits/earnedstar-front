@@ -3,7 +3,7 @@
  * Proprietary and confidential. Unauthorized copying, distribution, or use
  * is strictly prohibited without express written permission.
  */
-import { Plus_Jakarta_Sans, Instrument_Serif } from "next/font/google";
+import { Plus_Jakarta_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import "./globals.css";
@@ -19,6 +19,12 @@ const instrument = Instrument_Serif({
   weight: "400",
   style: ["italic"],
   variable: "--font-instrument",
+  display: "swap",
+});
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains",
   display: "swap",
 });
 
@@ -57,7 +63,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${instrument.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${jakarta.variable} ${instrument.variable} ${jetbrains.variable}`} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{

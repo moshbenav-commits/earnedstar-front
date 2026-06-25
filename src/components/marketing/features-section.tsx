@@ -47,7 +47,7 @@ const features = [
 
 export function FeaturesSection() {
   return (
-    <section className="section-warm py-16" data-scroll-theme="light">
+    <section id="features" className="section-warm py-16" data-scroll-theme="light">
       <div className="mx-auto max-w-7xl px-4">
         <p className="text-center text-xs font-semibold uppercase tracking-widest text-navy-light">Why EarnedStar</p>
         <h2 className="mt-3 text-center text-3xl font-bold text-navy sm:text-4xl">

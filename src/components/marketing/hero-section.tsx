@@ -1,121 +1,150 @@
 /**
  * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
- * Proprietary and confidential. Unauthorized copying, distribution, or use
- * is strictly prohibited without express written permission.
  */
 "use client";
 
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { EarnedStarLuckyStar } from "@/components/brand/earnedstar-lucky-star";
-import { AmbientStars } from "@/components/marketing/ambient-stars";
-import { HeroReviewCard } from "@/components/marketing/hero-review-card";
-import { HERO_EYEBROW, HERO_HEADLINE_BEFORE, HERO_HEADLINE_EMPHASIS, HERO_SUBCOPY } from "@/content/earnedstar-trust-copy";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { MESHY } from "@/lib/marketing-editorial-data";
 
-/** Figma Hero Banner — navy mesh, lucky stars, review-site copy */
 export function HeroSection() {
+  const [dateLabel, setDateLabel] = useState("");
+
+  useEffect(() => {
+    setDateLabel(
+      new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
+    );
+  }, []);
+
   return (
-    <section className="hero-figma relative overflow-hidden pt-10 pb-16" data-scroll-theme="dark">
-      <div className="pointer-events-none absolute inset-0 opacity-30" aria-hidden>
-        <div className="absolute left-1/4 top-1/3 h-80 w-80 rounded-full bg-[#3060b8]/30 blur-[100px]" />
-        <div className="absolute right-1/4 bottom-1/4 h-64 w-64 rounded-full bg-gold/15 blur-[80px]" />
+    <section className="relative -mt-16 overflow-hidden bg-ink pt-16 text-white" data-scroll-theme="dark" data-surface="dark">
+      <div className="grain-overlay absolute inset-0" aria-hidden />
+      <div className="ring-light pointer-events-none absolute inset-0" aria-hidden />
+      <div
+        className="absolute -right-32 -top-40 h-[680px] w-[680px] rounded-full opacity-40"
+        style={{ background: "radial-gradient(circle at 30% 30%, rgba(245,158,11,0.55) 0%, transparent 60%)" }}
+        aria-hidden
+      />
+      <div
+        className="absolute bottom-0 left-0 h-[420px] w-[420px] rounded-full opacity-20"
+        style={{ background: "radial-gradient(circle, rgba(253,230,138,0.45) 0%, transparent 60%)" }}
+        aria-hidden
+      />
+
+      <div className="relative border-b border-white/10">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-3 text-[10px] text-white/40 sm:px-10 lg:px-14">
+          <span className="smallcaps">Manifesto · Edition I</span>
+          <span className="hidden sm:inline">EarnedStar — A Trust Manifesto for E-Commerce</span>
+          <span className="font-num tabular-nums">{dateLabel}</span>
+        </div>
       </div>
 
-      <AmbientStars />
+      <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 gap-12 px-6 py-20 md:py-32 lg:grid-cols-12 lg:gap-16 sm:px-10 lg:px-14">
+        <div className="space-y-9 lg:col-span-7">
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05 }}
+            className="flex items-center gap-3"
+          >
+            <span className="h-px w-10 bg-gold/70" />
+            <span className="smallcaps text-gold-light">The Trust Stack · Post-Yotpo Era</span>
+          </motion.div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid min-h-[min(70vh,640px)] items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left — Figma BannerHero copy block */}
-          <div className="text-center lg:text-left">
-            <motion.span
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-6 inline-flex items-center rounded-full border border-gold/35 bg-gold/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-gold"
+          <motion.h1
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.12, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            className="font-heading text-[clamp(3rem,7vw,6.5rem)] leading-[0.95] tracking-tight text-balance text-white"
+          >
+            Reviews that{" "}
+            <em className="text-gold-light underline-hand">earned</em>
+            <br />
+            their place — and <em className="text-gold-light underline-hand">prove</em> it.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.24, duration: 0.7 }}
+            className="max-w-xl text-lg leading-[1.55] text-pretty text-white/72 sm:text-xl"
+          >
+            The only e-commerce review platform where every star is order-verified, AI-fraud-audited,
+            and publicly provable. Bundled with native email, SMS, and loyalty — at flat prices that
+            don&apos;t punish you for growing.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.34 }}
+            className="flex flex-wrap items-center gap-4 pt-2"
+          >
+            <Link
+              href="/signup"
+              className="group inline-flex items-center gap-2.5 rounded-full px-6 py-3.5 font-bold text-ink shadow-[0_18px_40px_-12px_rgba(245,158,11,0.5)] transition-all gold-foil hover:shadow-[0_24px_50px_-12px_rgba(245,158,11,0.7)]"
             >
-              {HERO_EYEBROW}
-            </motion.span>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.25rem]"
+              Start free trial
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <Link
+              href="/yotpo-refugees"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3.5 font-semibold text-white backdrop-blur-sm transition-colors hover:border-white/35 hover:bg-white/8"
             >
-              {HERO_HEADLINE_BEFORE}{" "}
-              <span className="font-display italic text-gold">{HERO_HEADLINE_EMPHASIS}</span>
-            </motion.h1>
+              <Sparkles size={14} className="text-gold-light" />
+              Yotpo killed your email? Migrate free
+            </Link>
+          </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="mt-6 max-w-lg text-lg text-white/70 lg:mx-0 mx-auto"
-            >
-              {HERO_SUBCOPY}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="mt-10 flex flex-wrap justify-center gap-4 lg:justify-start"
-            >
-              <Button variant="gold" size="lg" href="/signup" className="min-w-[180px]">
-                Start Free Trial
-              </Button>
-              <Button
-                variant="ghost"
-                size="lg"
-                href="#how-it-works"
-                className="border-white/20 text-white/90 hover:border-gold/50 hover:text-white"
-              >
-                See How It Works
-              </Button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.45 }}
-              className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start"
-            >
-              <div className="flex items-center gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <EarnedStarLuckyStar key={i} size={14} variant="gold" showBadge={false} />
-                ))}
-              </div>
-              <span className="text-sm font-medium text-white/60">4.9 · 2,847 verified reviews</span>
-            </motion.div>
-          </div>
-
-          {/* Right — decorative stars + live review card (Figma ReviewAnimation) */}
-          <div className="relative flex w-full flex-col items-center">
-            <div className="pointer-events-none absolute inset-0 flex items-center justify-center" aria-hidden>
-              <EarnedStarLuckyStar
-                size={200}
-                variant="gold"
-                showBadge
-                className="absolute -right-4 top-0 opacity-90 drop-shadow-2xl sm:size-[240px]"
-              />
-              <EarnedStarLuckyStar
-                size={140}
-                variant="navy"
-                showBadge
-                className="absolute -left-6 bottom-12 opacity-80 drop-shadow-xl"
-              />
-            </div>
-
-            <div className="relative z-10 w-full max-w-md pt-8 lg:pt-16">
-              <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-gold/70">
-                Live review
-              </p>
-              <h2 className="mb-6 text-center text-2xl font-bold text-white sm:text-3xl">
-                See why stores trust{" "}
-                <span className="font-display italic text-gold">EarnedStar</span>
-              </h2>
-              <HeroReviewCard />
+          <div className="flex items-center gap-4 pt-6 text-[11px] text-white/40">
+            <span className="smallcaps">Trusted by merchants in</span>
+            <div className="font-num flex items-center gap-3 tabular-nums">
+              <span>14 verticals</span>
+              <span className="h-1 w-1 rounded-full bg-white/20" />
+              <span>22 countries</span>
+              <span className="h-1 w-1 rounded-full bg-white/20" />
+              <span>1 promise</span>
             </div>
           </div>
+        </div>
+
+        <div className="relative flex items-center justify-center lg:col-span-5 lg:justify-end">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92, rotate: -6 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ delay: 0.2, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative"
+          >
+            <div className="animate-editorial-orbit pointer-events-none absolute -inset-16">
+              <svg viewBox="0 0 400 400" className="h-full w-full" aria-hidden>
+                <defs>
+                  <linearGradient id="orbit-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#FDE68A" stopOpacity="0.55" />
+                    <stop offset="50%" stopColor="#F59E0B" stopOpacity="0.28" />
+                    <stop offset="100%" stopColor="#92400E" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+                <circle cx="200" cy="200" r="186" fill="none" stroke="url(#orbit-grad)" strokeWidth="1.5" strokeDasharray="3 9" />
+              </svg>
+            </div>
+            <div className="absolute -inset-10 bg-gradient-to-tr from-gold-dark/55 via-gold/30 to-transparent blur-3xl" aria-hidden />
+            <div className="animate-editorial-float relative">
+              <Image
+                src={MESHY.heroBadge}
+                alt="EarnedStar 3D leather lucky star with verification metrics"
+                width={520}
+                height={520}
+                priority
+                className="max-w-full drop-shadow-[0_40px_80px_rgba(0,0,0,0.65)]"
+              />
+            </div>
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/15 bg-ink/80 px-4 py-1.5 text-[10px] text-gold-light backdrop-blur-sm smallcaps">
+              Hand-rendered · 3D leather
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
