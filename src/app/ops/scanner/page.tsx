@@ -3,8 +3,15 @@
  */
 import { gtOpsFetch } from "@/lib/gt-ops-server";
 import { RunScanButton } from "@/components/ops/run-scan-button";
+import { SyncStoreButton } from "@/components/ops/sync-store-button";
+import { FindingsPanel } from "@/components/ops/findings-panel";
+import { OpsShopifyDeferredBanner } from "@/components/ops/ops-shopify-deferred-banner";
+import { CategoryScoreGrid } from "@/components/ops/category-score-grid";
+import Link from "next/link";
 
 type Store = { id: string; shop: string; status: string };
+type MePayload = { demoCatalog?: boolean; integrations?: { shopify?: { status: string; message?: string } } };
+type Scan = { id: string; status: string; created_at: string; finished_at: string | null };
 type Finding = {
   id: string;
   title: string;
@@ -15,12 +22,24 @@ type Finding = {
 };
 
 export default async function OpsScannerPage() {
-  const storesRes = await gtOpsFetch("/stores");
+  const [storesRes, meRes, findingsRes, dashRes] = await Promise.all([
+    gtOpsFetch("/stores"),
+    gtOpsFetch("/me"),
+    gtOpsFetch("/findings"),
+    gtOpsFetch("/dashboard"),
+  ]);
   const stores = (Array.isArray(storesRes.data) ? storesRes.data : []) as Store[];
+  const me = meRes.data as MePayload;
+  const demoCatalog = me?.demoCatalog === true;
   const primaryStore = stores[0];
 
-  const findingsRes = await gtOpsFetch("/findings");
   const findings = (Array.isArray(findingsRes.data) ? findingsRes.data : []) as Finding[];
+  const dash = dashRes.data as { storeScore?: number | null; categoryScores?: Record<string, number> };
+
+  const scansRes = primaryStore
+    ? await gtOpsFetch(`/stores/${primaryStore.id}/scans`)
+    : { data: [] };
+  const scans = (Array.isArray(scansRes.data) ? scansRes.data : []) as Scan[];
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
@@ -31,51 +50,67 @@ export default async function OpsScannerPage() {
             Audit SEO, content, and data completeness — prioritized findings.
           </p>
         </div>
-        {primaryStore && <RunScanButton storeId={primaryStore.id} shop={primaryStore.shop} />}
+        {primaryStore && (
+          <div className="flex flex-wrap gap-3">
+            <SyncStoreButton
+              storeId={primaryStore.id}
+              shop={primaryStore.shop}
+              thenScan
+              demoCatalog={demoCatalog}
+            />
+            <RunScanButton storeId={primaryStore.id} shop={primaryStore.shop} />
+          </div>
+        )}
       </header>
+
+      <OpsShopifyDeferredBanner me={me} />
+
+      {(dash.storeScore != null || Object.keys(dash.categoryScores ?? {}).length > 0) && (
+        <section className="rounded-xl border border-[#2a1f16] bg-[#1A120C] p-4">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-[#E8A54B]">Store health</h2>
+            {dash.storeScore != null && (
+              <span className="text-lg font-semibold text-[#F5EBE0]">{dash.storeScore}/100</span>
+            )}
+          </div>
+          <div className="mt-3">
+            <CategoryScoreGrid scores={dash.categoryScores ?? {}} />
+          </div>
+        </section>
+      )}
 
       {!primaryStore && (
         <p className="rounded-lg border border-[#C45C26]/40 bg-[#C45C26]/10 p-4 text-sm">
-          Connect a store first on the <a href="/ops/stores" className="underline">Stores</a> page.
+          Demo store is initializing — refresh shortly or open{" "}
+          <a href="/ops/stores" className="underline">
+            Stores
+          </a>
+          .
         </p>
       )}
 
+      <FindingsPanel findings={findings} />
+
       <div className="rounded-xl border border-[#2a1f16] bg-[#1A120C]">
         <h2 className="border-b border-[#2a1f16] p-4 text-sm font-semibold uppercase tracking-wide text-[#E8A54B]">
-          Open findings ({findings.length})
+          Scan history ({scans.length})
         </h2>
         <ul className="divide-y divide-[#2a1f16]">
-          {findings.length === 0 ? (
-            <li className="p-4 text-sm text-[#F5EBE0]/60">Run a scan to surface store gaps.</li>
+          {scans.length === 0 ? (
+            <li className="p-4 text-sm text-[#F5EBE0]/60">No completed scans yet.</li>
           ) : (
-            findings.map((f) => (
-              <li key={f.id} className="p-4">
-                <div className="flex flex-wrap items-center gap-2">
-                  <SeverityBadge severity={f.severity} />
-                  <span className="text-xs uppercase text-[#F5EBE0]/50">{f.category}</span>
-                </div>
-                <p className="mt-1 font-medium">{f.title}</p>
-                {f.recommendation && <p className="mt-1 text-sm text-[#F5EBE0]/70">{f.recommendation}</p>}
+            scans.map((s) => (
+              <li key={s.id} className="flex flex-wrap items-center justify-between gap-2 p-4 text-sm">
+                <Link href={`/ops/scans/${s.id}`} className="font-mono text-[#E8A54B] hover:underline">
+                  {s.id.slice(0, 8)}…
+                </Link>
+                <span className="capitalize text-[#F5EBE0]/70">{s.status}</span>
+                <span className="text-xs text-[#F5EBE0]/50">{new Date(s.created_at).toLocaleString()}</span>
               </li>
             ))
           )}
         </ul>
       </div>
     </div>
-  );
-}
-
-function SeverityBadge({ severity }: { severity: string }) {
-  const colors: Record<string, string> = {
-    critical: "bg-red-900/50 text-red-300",
-    high: "bg-orange-900/40 text-orange-200",
-    medium: "bg-yellow-900/30 text-yellow-200",
-    low: "bg-blue-900/30 text-blue-200",
-    info: "bg-gray-800 text-gray-300",
-  };
-  return (
-    <span className={`rounded px-2 py-0.5 text-xs font-semibold uppercase ${colors[severity] ?? colors.info}`}>
-      {severity}
-    </span>
   );
 }
