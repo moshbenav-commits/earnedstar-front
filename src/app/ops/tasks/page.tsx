@@ -3,6 +3,7 @@
  */
 import { gtOpsFetch } from "@/lib/gt-ops-server";
 import { CreateTaskForm } from "@/components/ops/create-task-form";
+import { ExportActionPlanButton } from "@/components/ops/export-action-plan-button";
 import { TaskConsole } from "@/components/ops/task-console";
 
 type Task = {
@@ -19,9 +20,12 @@ export default async function OpsTasksPage() {
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
-      <header>
-        <h1 className="text-2xl font-semibold text-[#E8A54B]">Action Console</h1>
-        <p className="mt-1 text-sm text-[#F5EBE0]/70">Turn findings into tracked remediation work.</p>
+      <header className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-semibold text-[#E8A54B]">Action Console</h1>
+          <p className="mt-1 text-sm text-[#F5EBE0]/70">Turn findings into tracked remediation work.</p>
+        </div>
+        <ExportActionPlanButton />
       </header>
 
       <CreateTaskForm />

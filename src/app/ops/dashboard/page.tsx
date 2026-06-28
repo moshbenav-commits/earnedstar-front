@@ -3,6 +3,7 @@
  */
 import { gtOpsFetch } from "@/lib/gt-ops-server";
 import { CategoryScoreGrid } from "@/components/ops/category-score-grid";
+import { ExportActionPlanButton } from "@/components/ops/export-action-plan-button";
 import Link from "next/link";
 
 type Dashboard = {
@@ -24,11 +25,14 @@ export default async function OpsDashboardPage() {
 
   return (
     <div className="mx-auto max-w-5xl space-y-8">
-      <header>
-        <h1 className="text-2xl font-semibold text-[#E8A54B]">Dashboard</h1>
-        <p className="mt-1 text-sm text-[#F5EBE0]/70">
-          Discover and fix hidden store gaps — visibility, data quality, execution speed.
-        </p>
+      <header className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-semibold text-[#E8A54B]">Dashboard</h1>
+          <p className="mt-1 text-sm text-[#F5EBE0]/70">
+            Discover and fix hidden store gaps — visibility, data quality, execution speed.
+          </p>
+        </div>
+        <ExportActionPlanButton />
       </header>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

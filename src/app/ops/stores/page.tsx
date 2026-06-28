@@ -4,6 +4,7 @@
 import { gtOpsFetch } from "@/lib/gt-ops-server";
 import { SyncStoreButton } from "@/components/ops/sync-store-button";
 import { OpsShopifyDeferredBanner } from "@/components/ops/ops-shopify-deferred-banner";
+import Link from "next/link";
 
 type Store = {
   id: string;
@@ -54,7 +55,11 @@ export default async function OpsStoresPage() {
             ) : (
               stores.map((s) => (
                 <tr key={s.id} className="border-b border-[#2a1f16] last:border-0">
-                  <td className="p-4 font-medium">{s.display_name ?? s.shop}</td>
+                  <td className="p-4 font-medium">
+                    <Link href={`/ops/stores/${s.id}`} className="text-[#E8A54B] hover:underline">
+                      {s.display_name ?? s.shop}
+                    </Link>
+                  </td>
                   <td className="p-4 capitalize">{s.status.replace(/_/g, " ")}</td>
                   <td className="p-4 text-[#F5EBE0]/70">{s.last_sync_at ?? "Never"}</td>
                   <td className="p-4">

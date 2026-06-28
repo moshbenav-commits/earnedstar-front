@@ -7,6 +7,7 @@ import { SyncStoreButton } from "@/components/ops/sync-store-button";
 import { FindingsPanel } from "@/components/ops/findings-panel";
 import { OpsShopifyDeferredBanner } from "@/components/ops/ops-shopify-deferred-banner";
 import { CategoryScoreGrid } from "@/components/ops/category-score-grid";
+import { ExportActionPlanButton } from "@/components/ops/export-action-plan-button";
 import Link from "next/link";
 
 type Store = { id: string; shop: string; status: string };
@@ -59,6 +60,7 @@ export default async function OpsScannerPage() {
               demoCatalog={demoCatalog}
             />
             <RunScanButton storeId={primaryStore.id} shop={primaryStore.shop} />
+            <ExportActionPlanButton />
           </div>
         )}
       </header>

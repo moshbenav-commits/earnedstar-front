@@ -16,6 +16,7 @@ import {
   LogOut,
   ArrowLeft,
   ScrollText,
+  BookOpen,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +25,7 @@ const navItems = [
   { href: "/ops/stores", label: "Stores", icon: Store },
   { href: "/ops/scanner", label: "Scanner", icon: ScanSearch },
   { href: "/ops/tasks", label: "Action Console", icon: ListTodo },
+  { href: "/ops/playbooks", label: "Playbooks", icon: BookOpen },
   { href: "/ops/seo", label: "SEO Ops", icon: Search },
   { href: "/ops/jobs", label: "Jobs", icon: Clock },
   { href: "/ops/audit-logs", label: "Audit logs", icon: ScrollText },

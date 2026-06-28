@@ -5,6 +5,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { TaskStatusSelect } from "@/components/ops/task-status-select";
 
 export type TaskRow = {
   id: string;
@@ -73,7 +74,9 @@ export function TaskConsole({ tasks }: { tasks: TaskRow[] }) {
                       </Link>
                     </td>
                     <td className="p-4 capitalize">{t.priority}</td>
-                    <td className="p-4 capitalize">{t.status.replace(/_/g, " ")}</td>
+                    <td className="p-4">
+                      <TaskStatusSelect taskId={t.id} status={t.status} />
+                    </td>
                     <td className="p-4 text-[#F5EBE0]/70">{t.owner_email ?? "—"}</td>
                   </tr>
                 ))
@@ -102,6 +105,7 @@ export function TaskConsole({ tasks }: { tasks: TaskRow[] }) {
                         >
                           <p className="font-medium leading-snug">{t.title}</p>
                           <p className="mt-1 text-xs capitalize text-[#F5EBE0]/50">{t.priority}</p>
+                          <TaskStatusSelect taskId={t.id} status={t.status} />
                         </Link>
                       </li>
                     ))

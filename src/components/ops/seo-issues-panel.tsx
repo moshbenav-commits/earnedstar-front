@@ -4,6 +4,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { SeoIssueActions } from "@/components/ops/seo-issue-actions";
 
 export type SeoIssueRow = {
   id: string;
@@ -80,12 +81,15 @@ export function SeoIssuesPanel({ issues }: { issues: SeoIssueRow[] }) {
           <li className="p-4 text-sm text-[#F5EBE0]/60">No issues match filters.</li>
         ) : (
           filtered.map((i) => (
-            <li key={i.id} className="p-4">
-              <p className="text-xs uppercase text-[#F5EBE0]/50">
-                {i.page_type} · {i.issue_type.replace(/_/g, " ")} · {i.severity}
-              </p>
-              <p className="mt-1 font-medium">{i.title ?? i.handle ?? "Untitled page"}</p>
-              {i.recommendation && <p className="mt-1 text-sm text-[#F5EBE0]/70">{i.recommendation}</p>}
+            <li key={i.id} className="flex flex-wrap items-start justify-between gap-3 p-4">
+              <div className="min-w-0 flex-1">
+                <p className="text-xs uppercase text-[#F5EBE0]/50">
+                  {i.page_type} · {i.issue_type.replace(/_/g, " ")} · {i.severity}
+                </p>
+                <p className="mt-1 font-medium">{i.title ?? i.handle ?? "Untitled page"}</p>
+                {i.recommendation && <p className="mt-1 text-sm text-[#F5EBE0]/70">{i.recommendation}</p>}
+              </div>
+              <SeoIssueActions issueId={i.id} status={i.status} />
             </li>
           ))
         )}
