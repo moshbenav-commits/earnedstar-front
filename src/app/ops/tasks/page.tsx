@@ -1,6 +1,7 @@
 /**
  * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
  */
+import Link from "next/link";
 import { gtOpsFetch } from "@/lib/gt-ops-server";
 import { CreateTaskForm } from "@/components/ops/create-task-form";
 import { ExportActionPlanButton } from "@/components/ops/export-action-plan-button";
@@ -27,6 +28,13 @@ export default async function OpsTasksPage() {
         </div>
         <ExportActionPlanButton />
       </header>
+
+      <p className="text-sm text-[#F5EBE0]/60">
+        <Link href="/ops/review" className="text-[#C45C26] hover:underline">
+          Review queue
+        </Link>
+        {" · drag cards on Board view to change status"}
+      </p>
 
       <CreateTaskForm />
 
