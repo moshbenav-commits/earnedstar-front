@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "git": { "deploymentEnabled": false },
+  "buildCommand": "npm run build",
+  "installCommand": "npm ci",
+  "builds": [
+    {
+      "src": "dist/main.js",
+      "use": "@vercel/node",
+      "config": {
+        "maxDuration": 60,
+        "includeFiles": [
+          "dist/**",
+          "emails/**",
+          "node_modules/express/**",
+          "node_modules/@nestjs/**",
+          "node_modules/pg/**",
+          "node_modules/class-validator/**",
+          "node_modules/class-transformer/**",
+          "node_modules/reflect-metadata/**",
+          "node_modules/nodemailer/**"
+        ]
+      }
+    }
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "/dist/main.js" }]
+}

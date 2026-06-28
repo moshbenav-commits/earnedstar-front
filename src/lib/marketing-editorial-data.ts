@@ -5,13 +5,13 @@ import type { LucideIcon } from "lucide-react";
 import { FileText, Lock, Scale, Shield } from "lucide-react";
 
 export const MESHY = {
-  heroBadge: "/meshy-renders/render_03ad263cd8.png",
-  heroWordmark: "/meshy-renders/render_76cbc33016.png",
-  heroMotto: "/meshy-renders/render_0966455626.png",
-  brandSystem: "/meshy-renders/render_47069cba2c.png",
-  awardBadge: "/meshy-renders/render_d0e706d76b.png",
-  verifiedHuman: "/meshy-renders/render_16b7e72831.png",
-  ratingBadge: "/meshy-renders/render_c30552e25d.png",
+  heroBadge: "/marketing/es-hero-badge.png",
+  heroWordmark: "/marketing/es002-nano-banana.png",
+  heroMotto: "/marketing/es003-nano-banana.png",
+  brandSystem: "/marketing/es004-nano-banana.png",
+  awardBadge: "/marketing/es005-nano-banana.png",
+  verifiedHuman: "/marketing/es006-nano-banana.png",
+  ratingBadge: "/marketing/es007-nano-banana.png",
 } as const;
 
 export const TRUST_COUNTERS = [

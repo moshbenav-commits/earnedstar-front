@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width"></head>
+<body style="margin:0;padding:0;background:#f0ede6;font-family:'Inter',Arial,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr><td align="center" style="padding:40px 20px">
+    <table width="600" style="background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(15,32,68,0.08)">
+      <tr><td style="padding:40px 48px">
+        <p style="font-size:22px;font-weight:700;color:#0F2044;margin:0 0 12px">Hi {{customer_name}},</p>
+        <p style="font-size:16px;color:#5C6B7A;line-height:1.6;margin:0 0 20px"><strong>{{business_name}}</strong> just replied to your review of <strong>{{product_name}}</strong>.</p>
+        <table width="100%" cellpadding="0" cellspacing="0" style="background:#EBF0FA;border-left:4px solid #2A4D8F;border-radius:8px;margin-bottom:24px">
+          <tr><td style="padding:20px">
+            <p style="font-size:14px;color:#0F2044;margin:0;font-style:italic">"{{response_text}}"</p>
+          </td></tr>
+        </table>
+        <p style="font-size:15px;color:#5C6B7A;margin:0 0 28px">Thank you again for taking the time to share your experience.</p>
+        <div style="text-align:center">
+          <a href="{{review_url}}" style="display:inline-block;background:#0F2044;color:#ffffff;font-size:16px;font-weight:600;padding:14px 32px;border-radius:8px;text-decoration:none">View Your Review →</a>
+        </div>
+      </td></tr>
+      <tr><td style="background:#FAF9F6;padding:20px;text-align:center;border-top:1px solid #E8E4DC">
+        <p style="font-size:12px;color:#8B97A5;margin:0">{{business_name}} · Powered by EarnedStar</p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>

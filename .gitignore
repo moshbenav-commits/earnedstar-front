@@ -40,3 +40,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# monorepo API (Nest in backend/)
+/backend/node_modules
+/backend/dist
