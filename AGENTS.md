@@ -7,7 +7,9 @@ B2B SaaS verified review platform at **earnedstar.com**.
 | Path | Deploy | URL |
 |------|--------|-----|
 | **Repo root** (`earnedstar/`) | Vercel project `earnedstar` | `https://earnedstar.com` |
-| **`backend/`** | Vercel project `earnedstar-back` (root dir `backend`) | `https://earnedstar-back.vercel.app/api` |
+| **`backend/`** | Vercel project `earnedstar-back` (link `.vercel/project.json` in `backend/`) | `https://earnedstar-back.vercel.app/api` |
+
+When connecting GitHub to `earnedstar-back`, set Vercel **Root Directory** to `backend`.
 
 GitHub: `github.com/moshbenav-commits/earnedstar-front` (front + API in one repo).
 

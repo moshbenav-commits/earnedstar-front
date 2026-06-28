@@ -9,6 +9,12 @@ echo "Pre-deploy build (Nest)..."
 npm run build
 
 echo "Deploying earnedstar-back from backend/ ..."
+if [ ! -f .vercel/project.json ]; then
+  echo "ERROR: Link backend to Vercel project earnedstar-back first:"
+  echo "  cp ../earnedstar-back/.vercel/project.json .vercel/project.json"
+  echo "  or: vercel link --project earnedstar-back"
+  exit 1
+fi
 vercel deploy --prod --yes --force
 
 echo ""
