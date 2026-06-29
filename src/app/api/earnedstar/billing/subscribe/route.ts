@@ -6,8 +6,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getApiBase } from '@/lib/api';
 import { authHeaders } from '@/lib/auth-server';
+import { paymentsEnabled } from '@/lib/payments-enabled';
 
 export async function POST(req: NextRequest) {
+  if (!paymentsEnabled()) {
+    return NextResponse.json(
+      { message: 'Payment processing is not active. Contact sales to subscribe.' },
+      { status: 503 },
+    );
+  }
+
   const body = await req.json();
   const res = await fetch(`${getApiBase()}/earnedstar/billing/subscribe`, {
     method: 'POST',

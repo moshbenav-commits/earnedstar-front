@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { PlanId } from "@/lib/plans";
 import { PLAN_LABELS } from "@/lib/plans";
+import { paymentsEnabled } from "@/lib/payments-enabled";
 
 type AuthNetConfig = {
   apiLoginId: string;
@@ -34,6 +35,7 @@ declare global {
 }
 
 export function BillingSubscribeForm({ currentPlan }: { currentPlan: PlanId }) {
+  const livePayments = paymentsEnabled();
   const [config, setConfig] = useState<AuthNetConfig | null>(null);
   const [plan, setPlan] = useState<PlanId>(currentPlan);
   const [loading, setLoading] = useState(false);
@@ -50,6 +52,10 @@ export function BillingSubscribeForm({ currentPlan }: { currentPlan: PlanId }) {
 
   async function handleSubscribe(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!livePayments) {
+      setMessage("Payment processing is not active yet. Contact sales to subscribe.");
+      return;
+    }
     setMessage(null);
     const form = e.currentTarget;
     const fd = new FormData(form);
@@ -117,7 +123,16 @@ export function BillingSubscribeForm({ currentPlan }: { currentPlan: PlanId }) {
   return (
     <section className="card-surface gold-seam max-w-2xl p-6">
       <h2 className="text-lg font-bold text-navy">Billing — Authorize.net</h2>
-      <p className="mt-1 text-sm text-text-muted">ARB subscription per AI_EARNEDSTAR_SPEC (ES-AC-09). No Stripe.</p>
+      <p className="mt-1 text-sm text-text-muted">
+        {livePayments
+          ? "ARB subscription per AI_EARNEDSTAR_SPEC (ES-AC-09). No Stripe."
+          : "Payments not yet active — subscription billing opens when merchant keys are live."}
+      </p>
+      {!livePayments ? (
+        <p className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950" role="status">
+          Enrollment / checkout coming soon — contact us to register for early access.
+        </p>
+      ) : null}
       <form onSubmit={handleSubscribe} className="mt-6 space-y-4">
         <label className="block text-sm font-medium text-navy">
           Plan
@@ -134,13 +149,13 @@ export function BillingSubscribeForm({ currentPlan }: { currentPlan: PlanId }) {
             ))}
           </select>
         </label>
-        <input name="email" type="email" required placeholder="Billing email" className="w-full rounded-lg border border-border px-3 py-2 text-sm" />
-        <input name="cardNumber" required placeholder="Card number" className="w-full rounded-lg border border-border px-3 py-2 text-sm" />
+        <input name="email" type="email" required placeholder="Billing email" disabled={!livePayments} className="w-full rounded-lg border border-border px-3 py-2 text-sm disabled:opacity-60" />
+        <input name="cardNumber" required placeholder="Card number" disabled={!livePayments} className="w-full rounded-lg border border-border px-3 py-2 text-sm disabled:opacity-60" />
         <div className="grid grid-cols-2 gap-3">
-          <input name="exp" required placeholder="MM/YY" className="rounded-lg border border-border px-3 py-2 text-sm" />
-          <input name="cvv" required placeholder="CVV" className="rounded-lg border border-border px-3 py-2 text-sm" />
+          <input name="exp" required placeholder="MM/YY" disabled={!livePayments} className="rounded-lg border border-border px-3 py-2 text-sm disabled:opacity-60" />
+          <input name="cvv" required placeholder="CVV" disabled={!livePayments} className="rounded-lg border border-border px-3 py-2 text-sm disabled:opacity-60" />
         </div>
-        <Button type="submit" disabled={loading}>{loading ? "Processing…" : "Subscribe"}</Button>
+        <Button type="submit" disabled={loading || !livePayments}>{loading ? "Processing…" : livePayments ? "Subscribe" : "Billing coming soon"}</Button>
       </form>
       {message ? <p className="mt-4 text-sm text-text-muted">{message}</p> : null}
     </section>

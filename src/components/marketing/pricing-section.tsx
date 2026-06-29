@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
 import { PLAN_LIMITS } from "@/lib/plans";
 import { cn } from "@/lib/utils";
+import { paymentsEnabled } from "@/lib/payments-enabled";
 
 const plans = [
   {
@@ -93,12 +94,16 @@ export function PricingSection({ showHeader = true }: { showHeader?: boolean }) 
               <span className="font-display italic text-gold">Earned</span> trust at every tier.
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-text-muted">
-              Billed via Authorize.net. 14-day free trial. Cancel anytime.
+              {paymentsEnabled()
+                ? "Billed via Authorize.net. 14-day free trial. Cancel anytime."
+                : "Pricing shown for planning — paid billing is not active yet. Contact us for early access."}
             </p>
           </motion.div>
         ) : (
           <p className="text-center text-sm text-text-muted">
-            Billed via Authorize.net. 14-day free trial. Cancel anytime.
+            {paymentsEnabled()
+              ? "Billed via Authorize.net. 14-day free trial. Cancel anytime."
+              : "Pricing for reference — subscription checkout is not live yet."}
           </p>
         )}
 
@@ -167,9 +172,9 @@ export function PricingSection({ showHeader = true }: { showHeader?: boolean }) 
                 <Button
                   variant={plan.popular ? "gold" : "primary"}
                   className="mt-8 w-full"
-                  href={plan.id === "agency" ? "/signup?plan=agency" : "/signup"}
+                  href={plan.id === "agency" ? "/contact" : paymentsEnabled() ? "/signup" : "/contact"}
                 >
-                  {plan.cta}
+                  {paymentsEnabled() ? plan.cta : "Contact us"}
                 </Button>
               </div>
             </motion.div>
