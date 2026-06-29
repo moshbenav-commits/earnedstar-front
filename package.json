@@ -16,7 +16,12 @@
     "qa:design-lab:baseline": "node scripts/design-lab-visual.mjs --update",
     "qa:design-lab:visual": "node scripts/design-lab-visual.mjs",
     "qa:design-lab:visual:strict": "node scripts/design-lab-visual.mjs --strict",
-    "qa:design-lab:ci": "npm run qa:design-lab:visual"
+    "qa:design-lab:ci": "npm run qa:design-lab:visual",
+    "mobile:sync": "npx cap sync",
+    "mobile:add:ios": "npx cap add ios",
+    "mobile:add:android": "npx cap add android",
+    "mobile:ios": "npx cap open ios",
+    "mobile:android": "npx cap open android"
   },
   "dependencies": {
     "@expedia/design-lab": "file:./packages/expedia-design-lab",
@@ -35,6 +40,10 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@capacitor/android": "^7.6.7",
+    "@capacitor/cli": "^7.6.7",
+    "@capacitor/core": "^7.6.7",
+    "@capacitor/ios": "^7.6.7",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
