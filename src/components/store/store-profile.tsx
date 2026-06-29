@@ -14,7 +14,7 @@ import {
   Truck,
   Wrench,
 } from "lucide-react";
-import { EarnedStarPhotoBadge } from "@/components/brand/earnedstar-photo-badge";
+import { EarnedStarLuckyStarBadge } from "@/components/brand/earnedstar-lucky-star-badge";
 import { AttributeBar } from "@/components/ui/attribute-bar";
 import { StarRating } from "@/components/ui/star-rating";
 import { VerifiedBadge } from "@/components/ui/verified-badge";
@@ -178,7 +178,7 @@ export function StoreProfile({ business, reviews, qaItems = [], profile, slug }:
         <div className="mx-auto max-w-6xl px-4">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
             <div className="flex items-start gap-4">
-              <EarnedStarPhotoBadge
+              <EarnedStarLuckyStarBadge
                 variant="navy"
                 size={88}
                 logoUrl={business.logo_url}

@@ -4,7 +4,7 @@
  * is strictly prohibited without express written permission.
  */
 import { Button } from "@/components/ui/button";
-import { EarnedStarPhotoBadge } from "@/components/brand/earnedstar-photo-badge";
+import { EarnedStarLuckyStarBadge } from "@/components/brand/earnedstar-lucky-star-badge";
 import { activeWidgets } from "@/lib/mock-data";
 
 export function WidgetsPanel() {
@@ -20,7 +20,7 @@ export function WidgetsPanel() {
                 <p className="text-xs text-text-faint">{widget.type}</p>
               </div>
               {widget.type === "Badge" ? (
-                <EarnedStarPhotoBadge variant="navy" size={40} logoFallback="E" />
+                <EarnedStarLuckyStarBadge variant="navy" size={40} logoFallback="E" />
               ) : (
                 <div className="h-10 w-16 rounded-md bg-navy-pale" aria-hidden />
               )}

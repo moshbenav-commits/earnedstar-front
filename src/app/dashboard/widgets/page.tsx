@@ -6,9 +6,9 @@
 import { DashboardTopbar } from "@/components/layout/dashboard-topbar";
 import { WidgetBuilder, type SavedWidget } from "@/components/dashboard/widget-builder";
 import {
-  EarnedStarPhotoBadge,
-  EarnedStarPhotoBadgeVariants,
-} from "@/components/brand/earnedstar-photo-badge";
+  EarnedStarLuckyStarBadge,
+  EarnedStarLuckyStarBadgeVariants,
+} from "@/components/brand/earnedstar-lucky-star-badge";
 import { EarnedStarBadge } from "@/components/ui/earnedstar-badge";
 import { getApiBase } from "@/lib/api";
 import { authHeaders } from "@/lib/auth-server";
@@ -62,10 +62,10 @@ export default async function WidgetsPage() {
             Navy, gold, and white lucky-star marks with your logo in the center medallion.
           </p>
           <div className="mt-6">
-            <EarnedStarPhotoBadgeVariants size={96} logoUrl={previewLogo} />
+            <EarnedStarLuckyStarBadgeVariants size={96} logoUrl={previewLogo} />
           </div>
           <div className="mt-8">
-            <EarnedStarPhotoBadge variant="navy" size={128} logoUrl={previewLogo} />
+            <EarnedStarLuckyStarBadge variant="navy" size={128} logoUrl={previewLogo} />
           </div>
         </section>
       </main>
