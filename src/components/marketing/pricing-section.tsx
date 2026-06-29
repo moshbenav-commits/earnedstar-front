@@ -73,30 +73,36 @@ const plans = [
   },
 ];
 
-export function PricingSection() {
+export function PricingSection({ showHeader = true }: { showHeader?: boolean }) {
   return (
     <section id="pricing" className="relative overflow-hidden py-24" data-scroll-theme="light">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-surface-offset via-bg to-surface-offset" aria-hidden />
       <div className="pointer-events-none absolute left-1/2 top-0 h-px w-full max-w-4xl -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/40 to-transparent" aria-hidden />
 
       <div className="relative mx-auto max-w-7xl px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-light">Pricing</p>
-          <h2 className="mt-3 text-3xl font-bold text-navy sm:text-4xl">
-            Simple plans.{" "}
-            <span className="font-display italic text-gold">Earned</span> trust at every tier.
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-text-muted">
+        {showHeader ? (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-light">Pricing</p>
+            <h2 className="mt-3 text-3xl font-bold text-navy sm:text-4xl">
+              Simple plans.{" "}
+              <span className="font-display italic text-gold">Earned</span> trust at every tier.
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-text-muted">
+              Billed via Authorize.net. 14-day free trial. Cancel anytime.
+            </p>
+          </motion.div>
+        ) : (
+          <p className="text-center text-sm text-text-muted">
             Billed via Authorize.net. 14-day free trial. Cancel anytime.
           </p>
-        </motion.div>
+        )}
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-4 xl:items-stretch">
+        <div className={cn("grid gap-6 md:grid-cols-2 xl:grid-cols-4 xl:items-stretch", showHeader ? "mt-16" : "mt-8")}>
           {plans.map((plan, i) => (
             <motion.div
               key={plan.id}

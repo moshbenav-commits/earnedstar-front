@@ -5,6 +5,7 @@
  */
 import { DashboardTopbar } from "@/components/layout/dashboard-topbar";
 import { DashboardKpiRow } from "@/components/dashboard/dashboard-kpi-row";
+import { DashboardEmptyState } from "@/components/dashboard/dashboard-empty-state";
 import { RatingDistributionChart } from "@/components/dashboard/rating-distribution";
 import { ReviewsTable } from "@/components/dashboard/reviews-table";
 import { WidgetsPanel } from "@/components/dashboard/widgets-panel";
@@ -19,15 +20,29 @@ export default async function DashboardHomePage() {
     fetchDashboardOverview(merchant.slug),
     fetchInvitations(merchant.slug, 5),
   ]);
-  const reviews = overview?.recentReviews?.length ? overview.recentReviews : mockReviews;
+
+  const hasLiveOverview = overview != null;
+  const isEmpty =
+    hasLiveOverview &&
+    overview.stats.totalReviews === 0 &&
+    overview.recentReviews.length === 0;
+  const reviews = hasLiveOverview
+    ? overview.recentReviews
+    : mockReviews;
 
   return (
     <>
       <DashboardTopbar title="Overview" />
       <main className="space-y-8 bg-bg p-4 md:p-8">
         <DashboardKpiRow stats={overview?.stats} />
-        <RatingDistributionChart distribution={overview?.ratingDistribution} />
-        <ReviewsTable reviews={reviews} />
+        {isEmpty ? (
+          <DashboardEmptyState merchantName={merchant.name} />
+        ) : (
+          <>
+            <RatingDistributionChart distribution={overview?.ratingDistribution} />
+            <ReviewsTable reviews={reviews} />
+          </>
+        )}
         <div className="grid gap-8 lg:grid-cols-2">
           <WidgetsPanel />
           <InvitationsList invitations={invitations} />

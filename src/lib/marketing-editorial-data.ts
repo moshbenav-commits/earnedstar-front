@@ -12,6 +12,10 @@ export const MESHY = {
   awardBadge: "/marketing/es005-nano-banana.png",
   verifiedHuman: "/marketing/es006-nano-banana.png",
   ratingBadge: "/marketing/es007-nano-banana.png",
+  /** ES010 — pricing page hero */
+  pricingHero: "/marketing/es-pricing-hero.png",
+  /** ES011 — dashboard empty state */
+  dashboardEmptyState: "/marketing/es-dashboard-empty-state.png",
 } as const;
 
 export const TRUST_COUNTERS = [

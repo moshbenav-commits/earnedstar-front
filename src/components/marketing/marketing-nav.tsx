@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Manifesto", exact: true },
-  { href: "/#pricing", label: "Pricing", exact: false },
+  { href: "/pricing", label: "Pricing", exact: false },
   { href: "/audit", label: "The Audit", exact: false },
   { href: "/yotpo-refugees", label: "Yotpo Refugees", exact: false },
   { href: "/reviews/expedia-parts", label: "Live Store", exact: false },

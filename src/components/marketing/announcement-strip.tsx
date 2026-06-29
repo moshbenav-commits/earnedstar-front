@@ -21,7 +21,7 @@ export function AnnouncementStrip() {
           </span>
         </p>
         <Link
-          href="#pricing"
+          href="/pricing"
           className="inline-flex items-center gap-1 text-sm font-semibold text-gold hover:text-gold-light"
         >
           See plans
