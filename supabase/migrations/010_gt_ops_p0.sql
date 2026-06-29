@@ -72,7 +72,11 @@ CREATE TABLE IF NOT EXISTS gt_installed_apps (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   store_id UUID NOT NULL REFERENCES gt_connected_stores(id) ON DELETE CASCADE,
   app_name TEXT NOT NULL,
+  name TEXT,
   app_slug TEXT,
+  category TEXT,
+  overlap_risk TEXT DEFAULT 'low'
+    CHECK (overlap_risk IS NULL OR overlap_risk IN ('low','medium','high')),
   detected_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 

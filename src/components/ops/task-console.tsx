@@ -6,6 +6,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { TaskStatusSelect } from "@/components/ops/task-status-select";
+import { TaskBoardDnd } from "@/components/ops/task-board-dnd";
 
 export type TaskRow = {
   id: string;
@@ -13,16 +14,6 @@ export type TaskRow = {
   status: string;
   priority: string;
   owner_email: string | null;
-};
-
-const BOARD_COLUMNS = ["backlog", "in_progress", "blocked", "in_review", "completed"] as const;
-
-const COLUMN_LABELS: Record<string, string> = {
-  backlog: "Backlog",
-  in_progress: "In progress",
-  blocked: "Blocked",
-  in_review: "In review",
-  completed: "Done",
 };
 
 export function TaskConsole({ tasks }: { tasks: TaskRow[] }) {
@@ -85,36 +76,7 @@ export function TaskConsole({ tasks }: { tasks: TaskRow[] }) {
           </table>
         </div>
       ) : (
-        <div className="grid gap-3 overflow-x-auto md:grid-cols-3 lg:grid-cols-5">
-          {BOARD_COLUMNS.map((col) => {
-            const colTasks = tasks.filter((t) => t.status === col);
-            return (
-              <div key={col} className="min-w-[180px] rounded-xl border border-[#2a1f16] bg-[#1A120C]">
-                <h3 className="border-b border-[#2a1f16] p-3 text-xs font-semibold uppercase tracking-wide text-[#E8A54B]">
-                  {COLUMN_LABELS[col]} ({colTasks.length})
-                </h3>
-                <ul className="space-y-2 p-2">
-                  {colTasks.length === 0 ? (
-                    <li className="p-2 text-xs text-[#F5EBE0]/40">—</li>
-                  ) : (
-                    colTasks.map((t) => (
-                      <li key={t.id}>
-                        <Link
-                          href={`/ops/tasks/${t.id}`}
-                          className="block rounded-lg border border-[#2a1f16] bg-[#0f0a07] p-2 text-sm hover:border-[#E8A54B]/40"
-                        >
-                          <p className="font-medium leading-snug">{t.title}</p>
-                          <p className="mt-1 text-xs capitalize text-[#F5EBE0]/50">{t.priority}</p>
-                          <TaskStatusSelect taskId={t.id} status={t.status} />
-                        </Link>
-                      </li>
-                    ))
-                  )}
-                </ul>
-              </div>
-            );
-          })}
-        </div>
+        <TaskBoardDnd initialTasks={tasks} />
       )}
     </div>
   );
