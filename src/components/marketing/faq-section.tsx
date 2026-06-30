@@ -44,7 +44,7 @@ const faqs = [
   },
   {
     q: "Can I collect photo and video reviews?",
-    a: "Photo reviews are included on all plans. Video reviews are available on Growth and above. Customers upload directly in the submission form.",
+    a: "Photo reviews are included on all plans — customers upload in the submission form today. Video reviews are on the Growth roadmap; upload UI is coming soon (marked on pricing).",
   },
 ];
 

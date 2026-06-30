@@ -23,12 +23,20 @@ export function ReviewQueuePanel({ tasks }: { tasks: ReviewTask[] }) {
 
   async function decide(taskId: string, status: "completed" | "in_progress") {
     setBusyId(taskId);
-    await gtOpsClient(`/tasks/${taskId}`, {
-      method: "PATCH",
-      body: JSON.stringify({ status }),
-    });
-    setBusyId(null);
-    router.refresh();
+    try {
+      const { ok, data } = await gtOpsClient(`/tasks/${taskId}`, {
+        method: "PATCH",
+        body: JSON.stringify({ status }),
+      });
+      if (!ok) {
+        const message = (data as { message?: string }).message ?? "Could not update task — check gt-ops API and demo mode env.";
+        window.alert(message);
+        return;
+      }
+      router.refresh();
+    } finally {
+      setBusyId(null);
+    }
   }
 
   if (tasks.length === 0) {

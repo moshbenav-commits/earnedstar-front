@@ -7,7 +7,7 @@ export default function OpsLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-[#0d1217]" data-surface="dark">
       <OpsSidebar />
-      <main className="md:ml-60 p-6 text-[#F5EBE0]">{children}</main>
+      <main className="pt-14 md:ml-60 md:pt-0 p-6 text-[#F5EBE0]">{children}</main>
     </div>
   );
 }

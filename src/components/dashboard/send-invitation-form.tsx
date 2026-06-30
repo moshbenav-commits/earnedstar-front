@@ -7,18 +7,20 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Link2, Mail, Smartphone } from "lucide-react";
+import { Link2, Mail, QrCode, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BulkInvitationImport } from "@/components/dashboard/bulk-invitation-import";
+import { InvitationQrCode } from "@/components/dashboard/invitation-qr-code";
 import { cn } from "@/lib/utils";
 
-type Channel = "email" | "sms" | "link";
+type Channel = "email" | "sms" | "link" | "qr";
 type DelayDays = 0 | 3 | 5 | 7 | 14;
 
 const CHANNELS: { id: Channel; label: string; icon: typeof Mail }[] = [
   { id: "email", label: "Email", icon: Mail },
   { id: "sms", label: "SMS", icon: Smartphone },
   { id: "link", label: "Copy link", icon: Link2 },
+  { id: "qr", label: "QR code", icon: QrCode },
 ];
 
 const TIMING: { days: DelayDays; label: string }[] = [
@@ -73,8 +75,8 @@ export function SendInvitationForm({
           customer_email: channel === "email" ? email : undefined,
           order_id: orderId,
           customer_name: name || undefined,
-          channel,
-          delay_days: channel === "link" ? 0 : delayDays,
+          channel: channel === "qr" ? "link" : channel,
+          delay_days: channel === "link" || channel === "qr" ? 0 : delayDays,
         }),
       });
       const data = (await res.json()) as {
@@ -114,7 +116,7 @@ export function SendInvitationForm({
       <section className="card-surface gold-seam p-6">
         <h2 className="text-lg font-bold text-navy">Send a review request</h2>
         <p className="mt-1 text-sm text-text-muted">
-          Email, SMS, or copy a verified review link for order {orderId || "…"}.
+          Email, SMS, copy link, or generate a QR code for order {orderId || "…"}.
         </p>
         <form onSubmit={handleSubmit} className="mt-6 max-w-lg space-y-5">
           <label className="block text-sm font-medium text-navy">
@@ -188,7 +190,7 @@ export function SendInvitationForm({
             </div>
           </div>
 
-          {channel !== "link" ? (
+          {channel !== "link" && channel !== "qr" ? (
             <div>
               <p className="text-sm font-medium text-navy">Send timing</p>
               <div className="mt-2 flex flex-wrap gap-2">
@@ -217,11 +219,13 @@ export function SendInvitationForm({
                 ? "Sending…"
                 : channel === "link"
                   ? "Generate review link"
-                  : delayDays > 0
+                  : channel === "qr"
+                    ? "Generate QR code"
+                    : delayDays > 0
                     ? "Schedule request"
                     : "Send review request"}
             </Button>
-            {channel !== "link" ? (
+            {channel !== "link" && channel !== "qr" ? (
               <Button type="button" variant="ghost" onClick={() => setPreviewOpen(true)}>
                 Preview message
               </Button>
@@ -233,7 +237,7 @@ export function SendInvitationForm({
           <div className="mt-4 rounded-lg bg-green-pale px-4 py-3 text-sm text-green-dark">
             {result.status === "scheduled" ? (
               <p>Request scheduled. Review link will be sent in {delayDays} days.</p>
-            ) : channel === "link" ? (
+            ) : channel === "link" || channel === "qr" ? (
               <p>
                 Review link ready:{" "}
                 <a href={result.submitUrl} className="font-semibold underline">
@@ -255,6 +259,11 @@ export function SendInvitationForm({
             >
               Copy link
             </button>
+            <InvitationQrCode
+              url={result.submitUrl}
+              label="Print or display this QR on packaging or receipts"
+              className="mt-4 border-green-200 bg-white"
+            />
           </div>
         ) : null}
         {result?.error ? (
@@ -262,7 +271,11 @@ export function SendInvitationForm({
         ) : null}
       </section>
 
-      <BulkInvitationImport merchantSlug={merchantSlug} defaultChannel={channel} defaultDelayDays={delayDays} />
+      <BulkInvitationImport
+        merchantSlug={merchantSlug}
+        defaultChannel={channel === "qr" ? "link" : channel}
+        defaultDelayDays={delayDays}
+      />
 
       {previewOpen ? (
         <div

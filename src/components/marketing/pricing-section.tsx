@@ -17,13 +17,13 @@ const plans = [
     id: "starter" as const,
     tagline: "Perfect for stores just getting started",
     features: [
-      "200 invitations/month",
-      "Verified by Purchase badge",
-      "Photo reviews",
-      "Google rich snippets",
-      "2 widgets",
-      "Basic AI fraud scoring",
-      "1 user seat",
+      { text: "200 invitations/month" },
+      { text: "Verified by Purchase badge" },
+      { text: "Photo reviews" },
+      { text: "Google rich snippets" },
+      { text: "2 widgets" },
+      { text: "Basic AI fraud scoring" },
+      { text: "1 user seat" },
     ],
     cta: "Start Free Trial",
     popular: false,
@@ -33,12 +33,12 @@ const plans = [
     tagline: "The complete review stack for growing stores",
     badge: "Most Popular",
     features: [
-      "2,000 invitations + SMS/month",
-      "Video reviews",
-      "AI review summaries",
-      "Google Seller Ratings",
-      "6 widget types",
-      "3 user seats",
+      { text: "2,000 invitations + SMS/month" },
+      { text: "Video reviews", comingSoon: true },
+      { text: "AI review summaries" },
+      { text: "Google Seller Ratings" },
+      { text: "6 widget types" },
+      { text: "3 user seats" },
     ],
     cta: "Start Free Trial",
     popular: true,
@@ -48,12 +48,12 @@ const plans = [
     tagline: "For high-volume stores",
     badge: "Best Value",
     features: [
-      "15,000 invitations/month",
-      "AI Q&A SEO module",
-      "Multi-platform syndication",
-      "Full analytics + API",
-      "10 user seats",
-      "99.9% SLA",
+      { text: "15,000 invitations/month" },
+      { text: "AI Q&A SEO module" },
+      { text: "Multi-platform syndication" },
+      { text: "Full analytics + API" },
+      { text: "10 user seats" },
+      { text: "99.9% SLA" },
     ],
     cta: "Start Free Trial",
     popular: false,
@@ -63,11 +63,11 @@ const plans = [
     tagline: "Run reviews for all your clients",
     badge: "White-Label",
     features: [
-      "Unlimited invitations",
-      "Full white-label branding",
-      "25 sub-accounts",
-      "Dedicated CSM",
-      "Priority Slack support",
+      { text: "Unlimited invitations" },
+      { text: "Full white-label branding" },
+      { text: "25 sub-accounts" },
+      { text: "Dedicated CSM" },
+      { text: "Priority Slack support" },
     ],
     cta: "Talk to Sales",
     popular: false,
@@ -160,11 +160,24 @@ export function PricingSection({ showHeader = true }: { showHeader?: boolean }) 
 
                 <ul className="mt-6 flex-1 space-y-2.5">
                   {plan.features.map((f) => (
-                    <li key={f} className="flex gap-2.5 text-sm text-text-muted">
+                    <li
+                      key={f.text}
+                      className={cn(
+                        "flex gap-2.5 text-sm",
+                        "comingSoon" in f && f.comingSoon ? "text-text-faint" : "text-text-muted",
+                      )}
+                    >
                       <span className="mt-0.5 text-gold" aria-hidden>
                         ★
                       </span>
-                      {f}
+                      <span>
+                        {f.text}
+                        {"comingSoon" in f && f.comingSoon ? (
+                          <span className="ml-1.5 rounded-full bg-surface-offset px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-text-faint">
+                            Coming soon
+                          </span>
+                        ) : null}
+                      </span>
                     </li>
                   ))}
                 </ul>
