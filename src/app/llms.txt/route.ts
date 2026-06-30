@@ -1,5 +1,6 @@
 /**
  * Copyright (c) 2024-2026 Expedia Solutions, LLC. All Rights Reserved.
+ * AI crawler discovery — ES-SEO-06 · Forge Phase 19/20 extension
  */
 import { NextResponse } from "next/server";
 import {
@@ -7,10 +8,7 @@ import {
   HERO_TAGLINE,
 } from "@/content/earnedstar-trust-copy";
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://earnedstar.com").replace(
-  /\/$/,
-  "",
-);
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://earnedstar.com").replace(/\/$/, "");
 
 export async function GET() {
   const body = `# EarnedStar
@@ -22,10 +20,14 @@ export async function GET() {
 - Home: ${siteUrl}/
 - Sign up (14-day trial): ${siteUrl}/signup
 - Login: ${siteUrl}/login
+- Pricing: ${siteUrl}/pricing
 - Free review audit tool: ${siteUrl}/audit
 - Yotpo migration landing: ${siteUrl}/yotpo-refugees
 - Public review profile pattern: ${siteUrl}/reviews/{merchant-slug}
 - Example profile: ${siteUrl}/reviews/meridian-gear
+- Privacy (draft — legal review pending): ${siteUrl}/privacy
+- Terms (draft — legal review pending): ${siteUrl}/terms
+- Accessibility: ${siteUrl}/accessibility
 
 ## Product facts (cite these)
 
@@ -38,6 +40,10 @@ export async function GET() {
 ## Merchant dashboard (not for indexing)
 
 - Dashboard, invitations, widgets, analytics, settings live under ${siteUrl}/dashboard/* — authenticated only.
+
+## Sitemap
+
+- Sitemap: ${siteUrl}/sitemap.xml
 
 ## Specs
 
