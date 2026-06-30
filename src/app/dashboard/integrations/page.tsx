@@ -4,9 +4,15 @@
  * is strictly prohibited without express written permission.
  */
 import { DashboardTopbar } from "@/components/layout/dashboard-topbar";
+import { OutgoingWebhooksPanel } from "@/components/dashboard/outgoing-webhooks-panel";
 import { ShopifyConnectPanel } from "@/components/dashboard/shopify-connect-panel";
+import { WidgetEmbedGuide } from "@/components/dashboard/widget-embed-guide";
+import { getDashboardMerchant } from "@/lib/dashboard-merchant";
 
-export default function IntegrationsPage() {
+export default async function IntegrationsPage() {
+  const merchant = await getDashboardMerchant();
+  const plan = merchant.plan ?? "starter";
+
   return (
     <>
       <DashboardTopbar title="Integrations" />
@@ -15,6 +21,8 @@ export default function IntegrationsPage() {
           Connect your storefront so EarnedStar can send invitations automatically after purchase.
         </p>
         <ShopifyConnectPanel />
+        <OutgoingWebhooksPanel plan={plan} />
+        <WidgetEmbedGuide apiKey={merchant.api_key} slug={merchant.slug} />
       </main>
     </>
   );

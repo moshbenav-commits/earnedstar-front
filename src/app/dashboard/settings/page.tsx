@@ -5,7 +5,8 @@
  */
 import { DashboardTopbar } from "@/components/layout/dashboard-topbar";
 import { BillingSubscribeForm } from "@/components/dashboard/billing-subscribe-form";
-import { ApiKeyPanel } from "@/components/dashboard/api-key-panel";
+import { IntegrationKeysPanel } from "@/components/dashboard/integration-keys-panel";
+import { WidgetEmbedGuide } from "@/components/dashboard/widget-embed-guide";
 import { EmailStatusPanel } from "@/components/dashboard/email-status-panel";
 import { ProfileSeoForm } from "@/components/dashboard/profile-seo-form";
 import { SeoHealthPanel } from "@/components/dashboard/seo-health-panel";
@@ -65,7 +66,8 @@ export default async function DashboardSettingsPage() {
 
         <BillingSubscribeForm currentPlan={plan} />
 
-        <ApiKeyPanel apiKey={profile.api_key} />
+        <IntegrationKeysPanel plan={plan} legacyApiKey={profile.api_key} />
+        <WidgetEmbedGuide apiKey={profile.api_key} slug={profile.slug} />
 
         <EmailStatusPanel />
 

@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "smoke": "bash scripts/smoke.sh",
+    "preflight": "node ../scripts/earnedstar-preflight.mjs --skip-build",
     "smoke:prod": "SMOKE_FRONT_URL=https://earnedstar.vercel.app SMOKE_CUSTOM_DOMAIN=https://earnedstar.com SMOKE_API_URL=https://earnedstar-back.vercel.app/api bash scripts/smoke.sh",
     "audit:vercel-billing": "node scripts/vercel-billing-guard.mjs",
     "audit:vercel-billing:ci": "node scripts/vercel-billing-guard.mjs --ci",

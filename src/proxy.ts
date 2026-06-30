@@ -85,6 +85,21 @@ export async function proxy(request: NextRequest) {
 
   if (user && session?.access_token && request.nextUrl.pathname.startsWith('/dashboard')) {
     try {
+      const statusRes = await fetch(`${API_BASE}/earnedstar/onboarding/status`, {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+        cache: 'no-store',
+      });
+      if (statusRes.ok) {
+        const status = (await statusRes.json()) as { completed?: boolean };
+        if (status.completed === false) {
+          return NextResponse.redirect(new URL('/setup', request.url));
+        }
+      }
+    } catch {
+      // allow dashboard if status check fails (offline dev)
+    }
+
+    try {
       const meRes = await fetch(`${API_BASE}/earnedstar/auth/me`, {
         headers: { Authorization: `Bearer ${session.access_token}` },
         cache: 'no-store',
