@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "umbrellaGoal": "naming-review",
+  "siteSlug": "earnedstar",
+  "priorDisplayName": "EarnedStar",
+  "priorDomain": "earnedstar.com",
+  "ownedDomains": ["earnedstar.com", "truestar.com"],
+  "tastePreset": "iconic-cre-strong",
+  "notes": "Forge naming sprint 2026-06-30 — see tmp/EARNEDSTAR_NAMING_REPORT.md. Recommendation: keep EarnedStar primary; truestar.com defensive/redirect. Not locked.",
+  "locked": false,
+  "shortlistSource": "tmp/forge-brand-naming-report.json",
+  "recommendation": {
+    "primary": "EarnedStar",
+    "primaryDomain": "earnedstar.com",
+    "defensiveDomain": "truestar.com",
+    "defensiveUse": "301 redirect or campaign alias — not primary rebrand unless Ricardo overrides",
+    "topAvailableAlternatives": ["provedstar.com", "reviewven.com", "credven.com", "starverified.com", "fitrata.com"]
+  }
+}
