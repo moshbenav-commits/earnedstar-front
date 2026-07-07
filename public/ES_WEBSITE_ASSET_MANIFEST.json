@@ -3,7 +3,7 @@
   "brand": "earnedstar",
   "displayName": "EarnedStar",
   "domain": "https://earnedstar.com",
-  "updatedAt": "2026-06-28T23:45:00.000Z",
+  "updatedAt": "2026-07-06",
   "ingestMap": "brand/earnedstar/ES_INGEST_MAP.json",
   "imageModel": "nano_banana_pro",
   "resolution": "2k",
@@ -19,9 +19,12 @@
       "status": "on_disk",
       "path": "brand/earnedstar/higgsfield-exports/es-origami-star-3d-nano-banana.png",
       "publicPath": "earnedstar/public/marketing/es-hero-badge.png",
-      "pages": ["homepage-hero"],
+      "pages": [
+        "homepage-hero"
+      ],
       "nanoBanana": false,
-      "mapsTo": "MESHY.heroBadge"
+      "mapsTo": "MESHY.heroBadge",
+      "output": "brand/earnedstar/higgsfield-exports/es-origami-star-3d-nano-banana.png"
     },
     {
       "id": "ES002",
@@ -31,11 +34,16 @@
       "status": "on_disk",
       "path": "brand/earnedstar/stills/es002-nano-banana.png",
       "publicPath": "earnedstar/public/marketing/es-gallery-lockup.png",
-      "pages": ["homepage-gallery"],
+      "pages": [
+        "homepage-gallery"
+      ],
       "nanoBanana": true,
       "refLocal": "brand/earnedstar/higgsfield-exports/es-origami-star-3d-nano-banana.png",
       "prompt": "Edit image one based on the prompt. Preserve exact Japanese origami lucky star geometry from reference — puffy five-point paper fold (折り紙 wishing star), soft crease facets, navy #0F2044 body and gold #F59E0B seam accents, radial paper gradient. NOT military medal, NOT laurel wreath, NOT sharp trophy star, NOT judicial seal. Premium 3D gallery hero: EarnedStar horizontal lockup — origami lucky star mark left, wordmark right, soft studio rim light on navy editorial background, photoreal SaaS marketing still.",
-      "mapsTo": "MESHY.heroWordmark"
+      "mapsTo": "MESHY.heroWordmark",
+      "output": "brand/earnedstar/stills/es002-nano-banana.png",
+      "promptBeat": "Premium 3D leather embossed wordmark EARNEDSTAR on navy leather plaque, gold foil edges, gravitas, soft studio rim light, transparent-friendly dark vignette, no extra logos. No readable branded copy — blur all UI. Text ONLY from @element refs — no other words in frame. Match @element reference spelling exactly.",
+      "promptFamily": "earnedstar-saas"
     },
     {
       "id": "ES003",
@@ -45,11 +53,16 @@
       "status": "on_disk",
       "path": "brand/earnedstar/stills/es003-nano-banana.png",
       "publicPath": "earnedstar/public/marketing/es-motto-plaque.png",
-      "pages": ["homepage-gallery"],
+      "pages": [
+        "homepage-gallery"
+      ],
       "nanoBanana": true,
       "refLocal": "brand/earnedstar/higgsfield-exports/es-origami-star-3d-nano-banana.png",
       "prompt": "3D engraved motto plaque on dark navy stone: No order, no star. Every review is real. Gold serif lettering, subtle gold dust, premium editorial product shot, centered composition.",
-      "mapsTo": "MESHY.heroMotto"
+      "mapsTo": "MESHY.heroMotto",
+      "output": "brand/earnedstar/stills/es003-nano-banana.png",
+      "promptBeat": "3D engraved motto plaque on dark navy stone: No order, no star. Every review is real. Gold serif lettering, subtle gold dust, premium editorial product shot, centered composition. Visible logos/signage MUST match @element brand refs — No readable branded copy — blur all UI. No random shop names, license plates, or extra copy. Match @element reference spelling exactly.",
+      "promptFamily": "earnedstar-saas"
     },
     {
       "id": "ES004",
@@ -59,11 +72,17 @@
       "status": "on_disk",
       "path": "brand/earnedstar/stills/es004-nano-banana.png",
       "publicPath": "earnedstar/public/marketing/es-brand-board.png",
-      "pages": ["homepage-gallery", "design-lab"],
+      "pages": [
+        "homepage-gallery",
+        "design-lab"
+      ],
       "nanoBanana": true,
       "refLocal": "brand/earnedstar/higgsfield-exports/es-origami-star-3d-nano-banana.png",
       "prompt": "EarnedStar brand board on cream editorial desk: origami lucky star marks in navy and gold, wordmark lockups, color chips #0F2044 and #F59E0B, verified green chip small, top-down product photography, no readable fake URLs.",
-      "mapsTo": "MESHY.brandSystem"
+      "mapsTo": "MESHY.brandSystem",
+      "output": "brand/earnedstar/stills/es004-nano-banana.png",
+      "promptBeat": "EarnedStar brand board on cream editorial desk: origami lucky star marks in navy and gold, wordmark lockups, color chips #0F2044 and #F59E0B, verified green chip small, top-down product photography, no readable fake URLs.",
+      "promptFamily": "earnedstar-saas"
     },
     {
       "id": "ES005",
@@ -73,11 +92,17 @@
       "status": "on_disk",
       "path": "brand/earnedstar/stills/es005-nano-banana.png",
       "publicPath": "earnedstar/public/marketing/es-q1-leader-badge.png",
-      "pages": ["homepage-gallery", "audit-teaser"],
+      "pages": [
+        "homepage-gallery",
+        "audit-teaser"
+      ],
       "nanoBanana": true,
       "refLocal": "brand/earnedstar/higgsfield-exports/es-origami-star-3d-nano-banana.png",
       "prompt": "Circular award medal badge Q1 Leader — EarnedStar origami star center, machined gold rim, navy enamel, subtle specular sheen, floating on dark gradient, premium SaaS trust badge not sports trophy.",
-      "mapsTo": "MESHY.awardBadge"
+      "mapsTo": "MESHY.awardBadge",
+      "output": "brand/earnedstar/stills/es005-nano-banana.png",
+      "promptBeat": "Circular award medal badge Q1 Leader — EarnedStar origami star center, machined gold rim, navy enamel, subtle specular sheen, floating on dark gradient, premium SaaS trust badge not sports trophy. No readable branded copy — blur all UI. Text ONLY from @element refs — no other words in frame. Match @element reference spelling exactly.",
+      "promptFamily": "earnedstar-saas"
     },
     {
       "id": "ES006",
@@ -87,11 +112,16 @@
       "status": "on_disk",
       "path": "brand/earnedstar/stills/es006-nano-banana.png",
       "publicPath": "earnedstar/public/marketing/es-verified-human-badge.png",
-      "pages": ["homepage-gallery"],
+      "pages": [
+        "homepage-gallery"
+      ],
       "nanoBanana": true,
       "refLocal": "brand/earnedstar/higgsfield-exports/es-origami-star-3d-nano-banana.png",
       "prompt": "Verified Human badge — shield with origami star and subtle human silhouette check, emerald verified ring accent only on chip, navy and gold EarnedStar palette, 3D chrome sticker on dark background.",
-      "mapsTo": "MESHY.verifiedHuman"
+      "mapsTo": "MESHY.verifiedHuman",
+      "output": "brand/earnedstar/stills/es006-nano-banana.png",
+      "promptBeat": "Verified Human badge — shield with origami star and subtle human silhouette check, emerald verified ring accent only on chip, navy and gold EarnedStar palette, 3D chrome sticker on dark background. No readable branded copy — blur all UI. Text ONLY from @element refs — no other words in frame. Match @element reference spelling exactly.",
+      "promptFamily": "earnedstar-saas"
     },
     {
       "id": "ES007",
@@ -101,11 +131,17 @@
       "status": "on_disk",
       "path": "brand/earnedstar/stills/es007-nano-banana.png",
       "publicPath": "earnedstar/public/marketing/es-rating-badge-48.png",
-      "pages": ["homepage-gallery", "widget-preview"],
+      "pages": [
+        "homepage-gallery",
+        "widget-preview"
+      ],
       "nanoBanana": true,
       "refLocal": "brand/earnedstar/higgsfield-exports/es-origami-star-3d-nano-banana.png",
       "prompt": "EarnedStar rating badge showing five progressive gold stars 4.8 score, origami star medallion left, machined metal card on navy, subtle glass edge, SaaS review widget chrome not Amazon stars.",
-      "mapsTo": "MESHY.ratingBadge"
+      "mapsTo": "MESHY.ratingBadge",
+      "output": "brand/earnedstar/stills/es007-nano-banana.png",
+      "promptBeat": "EarnedStar rating badge showing five progressive gold stars 4.8 score, origami star medallion left, machined metal card on navy, subtle glass edge, SaaS review widget chrome not Amazon stars. No readable branded copy — blur all UI. Text ONLY from @element refs — no other words in frame. Match @element reference spelling exactly.",
+      "promptFamily": "earnedstar-saas"
     },
     {
       "id": "ES008",
@@ -115,8 +151,12 @@
       "status": "on_disk",
       "path": "brand/earnedstar/higgsfield-exports/es-marketing-hero-dashboard-nano-banana.png",
       "publicPath": "earnedstar/public/marketing/es-dashboard-hero.png",
-      "pages": ["pricing", "features"],
-      "nanoBanana": false
+      "pages": [
+        "pricing",
+        "features"
+      ],
+      "nanoBanana": false,
+      "output": "brand/earnedstar/higgsfield-exports/es-marketing-hero-dashboard-nano-banana.png"
     },
     {
       "id": "ES009",
@@ -126,10 +166,16 @@
       "status": "on_disk",
       "path": "brand/earnedstar/stills/es009-nano-banana.png",
       "publicPath": "earnedstar/public/marketing/es-og-social.png",
-      "pages": ["og", "twitter"],
+      "pages": [
+        "og",
+        "twitter"
+      ],
       "nanoBanana": true,
       "refLocal": "brand/earnedstar/higgsfield-exports/es-origami-star-3d-nano-banana.png",
-      "prompt": "EarnedStar OG card 16:9 — navy editorial background, large origami lucky star left, headline area right: Only verified buyers earn your stars, gold accent line, clean SaaS marketing not automotive."
+      "prompt": "EarnedStar OG card 16:9 — navy editorial background, large origami lucky star left, headline area right: Only verified buyers earn your stars, gold accent line, clean SaaS marketing not automotive.",
+      "output": "brand/earnedstar/stills/es009-nano-banana.png",
+      "promptBeat": "EarnedStar OG card 16:9 — navy editorial background, large origami lucky star left, headline area right: Only verified buyers earn your stars, gold accent line, clean SaaS marketing not automotive. Visible logos/signage MUST match @element brand refs — No readable branded copy — blur all UI. No random shop names, license plates, or extra copy. Match @element reference spelling exactly.",
+      "promptFamily": "earnedstar-saas"
     },
     {
       "id": "ES010",
@@ -139,10 +185,15 @@
       "status": "on_disk",
       "path": "brand/earnedstar/stills/es010-nano-banana.png",
       "publicPath": "earnedstar/public/marketing/es-pricing-hero.png",
-      "pages": ["/pricing"],
+      "pages": [
+        "/pricing"
+      ],
       "nanoBanana": true,
       "refLocal": "brand/earnedstar/higgsfield-exports/es-marketing-hero-dashboard-nano-banana.png",
-      "prompt": "EarnedStar pricing hero — split layout SaaS dashboard with verified review metrics and flat pricing cards, navy UI chrome gold CTAs, warm stone page bg bleed, photoreal UI mock not cartoon."
+      "prompt": "EarnedStar pricing hero — split layout SaaS dashboard with verified review metrics and flat pricing cards, navy UI chrome gold CTAs, warm stone page bg bleed, photoreal UI mock not cartoon.",
+      "output": "brand/earnedstar/stills/es010-nano-banana.png",
+      "promptBeat": "EarnedStar pricing hero — split layout SaaS dashboard with verified review metrics and flat pricing cards, navy UI chrome gold CTAs, warm stone page bg bleed, photoreal UI mock not cartoon. Visible logos/signage MUST match @element brand refs — No readable branded copy — blur all UI. No random shop names, license plates, or extra copy. Match @element reference spelling exactly.",
+      "promptFamily": "earnedstar-saas"
     },
     {
       "id": "ES011",
@@ -152,10 +203,15 @@
       "status": "on_disk",
       "path": "brand/earnedstar/stills/es011-nano-banana.png",
       "publicPath": "earnedstar/public/marketing/es-dashboard-empty-state.png",
-      "pages": ["/dashboard"],
+      "pages": [
+        "/dashboard"
+      ],
       "nanoBanana": true,
       "refLocal": "brand/earnedstar/higgsfield-exports/es-origami-star-3d-nano-banana.png",
-      "prompt": "Friendly empty state for merchant dashboard — origami star on pedestal waiting for first verified review, soft cream background, minimal line art plus subtle 3D star, encouraging not childish."
+      "prompt": "Friendly empty state for merchant dashboard — origami star on pedestal waiting for first verified review, soft cream background, minimal line art plus subtle 3D star, encouraging not childish.",
+      "output": "brand/earnedstar/stills/es011-nano-banana.png",
+      "promptBeat": "Friendly empty state for merchant dashboard — origami star on pedestal waiting for first verified review, soft cream background, minimal line art plus subtle 3D star, encouraging not childish. Visible logos/signage MUST match @element brand refs — No readable branded copy — blur all UI. No random shop names, license plates, or extra copy. Match @element reference spelling exactly.",
+      "promptFamily": "earnedstar-saas"
     }
   ]
 }
