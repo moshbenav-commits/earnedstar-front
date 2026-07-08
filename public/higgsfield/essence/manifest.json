@@ -1,0 +1,68 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-08T16:38:25.345Z",
+  "baseUrl": "https://earnedstar.com",
+  "indexUrl": "https://earnedstar.com/higgsfield/essence",
+  "indexPath": "/higgsfield/essence",
+  "imagePolicy": {
+    "maxLongEdge": 2048,
+    "publicFormat": "webp",
+    "hfUploadFormat": "png",
+    "hfUploadRoot": "brand/higgsfield/essence/upload"
+  },
+  "doc": "docs/prompts/higgsfield/NANO_BANANA_URL_REFERENCE_WORKFLOW.md",
+  "syncCli": "npm run video:flow:essence-public-sync",
+  "hostsSsot": "brand/higgsfield/ESSENCE_PUBLIC_HOSTS.json",
+  "purpose": "Per-site public brand reference gallery for Nano Banana URL grounding — non-EP hosts use productionOrigin from ESSENCE_PUBLIC_HOSTS.json.",
+  "elements": [
+    {
+      "brandKey": "earnedstar",
+      "brandDisplay": "EarnedStar",
+      "elementName": "ES-Brand-Essence",
+      "promptTag": "@ES-Brand-Essence",
+      "slug": "es-brand-essence",
+      "tier": "standard",
+      "category": "brand",
+      "description": "Higgsfield essence reference for @ES-Brand-Essence",
+      "elementUrl": "https://earnedstar.com/higgsfield/essence#es-brand-essence",
+      "hostSiteRepo": "earnedstar-front",
+      "hostOrigin": "https://earnedstar.com",
+      "medias": [
+        {
+          "role": "origami-star-3d",
+          "slot": 1,
+          "publicPath": "/higgsfield/essence/earnedstar/es-brand-essence/01-origami-star-3d.webp",
+          "publicUrl": "https://earnedstar.com/higgsfield/essence/earnedstar/es-brand-essence/01-origami-star-3d.webp",
+          "localPublicPath": "earnedstar-front/public/higgsfield/essence/earnedstar/es-brand-essence/01-origami-star-3d.webp",
+          "hostSiteRepo": "earnedstar-front",
+          "hostOrigin": "https://earnedstar.com",
+          "uploadPath": "brand/higgsfield/essence/upload/earnedstar/es-brand-essence/01-origami-star-3d.png",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 63874,
+          "maxLongEdge": 2048,
+          "sourcePath": "brand/earnedstar/higgsfield-exports/es-origami-star-3d-nano-banana.png"
+        },
+        {
+          "role": "dashboard-hero",
+          "slot": 2,
+          "publicPath": "/higgsfield/essence/earnedstar/es-brand-essence/02-dashboard-hero.webp",
+          "publicUrl": "https://earnedstar.com/higgsfield/essence/earnedstar/es-brand-essence/02-dashboard-hero.webp",
+          "localPublicPath": "earnedstar-front/public/higgsfield/essence/earnedstar/es-brand-essence/02-dashboard-hero.webp",
+          "hostSiteRepo": "earnedstar-front",
+          "hostOrigin": "https://earnedstar.com",
+          "uploadPath": "brand/higgsfield/essence/upload/earnedstar/es-brand-essence/02-dashboard-hero.png",
+          "width": 2048,
+          "height": 1143,
+          "bytes": 131478,
+          "maxLongEdge": 2048,
+          "sourcePath": "brand/earnedstar/higgsfield-exports/es-marketing-hero-dashboard-nano-banana.png"
+        }
+      ]
+    }
+  ],
+  "siteBrandKey": "earnedstar",
+  "siteBrandKeys": [
+    "earnedstar"
+  ]
+}
