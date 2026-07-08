@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-07-07T21:41:59.005Z",
+  "updatedAt": "2026-07-08T16:38:25.345Z",
   "baseUrl": "https://earnedstar.com",
   "indexUrl": "https://earnedstar.com/higgsfield/essence",
   "indexPath": "/higgsfield/essence",
@@ -61,5 +61,8 @@
       ]
     }
   ],
-  "siteBrandKey": "earnedstar"
+  "siteBrandKey": "earnedstar",
+  "siteBrandKeys": [
+    "earnedstar"
+  ]
 }
