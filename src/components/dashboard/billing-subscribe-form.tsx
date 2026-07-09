@@ -37,7 +37,7 @@ declare global {
 export function BillingSubscribeForm({ currentPlan }: { currentPlan: PlanId }) {
   const livePayments = paymentsEnabled();
   const [config, setConfig] = useState<AuthNetConfig | null>(null);
-  const [plan, setPlan] = useState<PlanId>(currentPlan);
+  const [plan, setPlan] = useState<PlanId>(currentPlan === "free" ? "starter" : currentPlan);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
@@ -142,11 +142,13 @@ export function BillingSubscribeForm({ currentPlan }: { currentPlan: PlanId }) {
             onChange={(e) => setPlan(e.target.value as PlanId)}
             className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm"
           >
-            {(Object.keys(PLAN_LABELS) as PlanId[]).map((id) => (
-              <option key={id} value={id}>
-                {PLAN_LABELS[id]}
-              </option>
-            ))}
+            {(Object.keys(PLAN_LABELS) as PlanId[])
+              .filter((id) => id !== "free") // Free has no ARB subscription — not a billed plan
+              .map((id) => (
+                <option key={id} value={id}>
+                  {PLAN_LABELS[id]}
+                </option>
+              ))}
           </select>
         </label>
         <input name="email" type="email" required placeholder="Billing email" disabled={!livePayments} className="w-full rounded-lg border border-border px-3 py-2 text-sm disabled:opacity-60" />

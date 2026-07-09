@@ -40,7 +40,7 @@ const faqs = [
   },
   {
     q: "Is there a free plan?",
-    a: "Every paid plan includes a 14-day free trial with no credit card required. Full access to your chosen tier during the trial.",
+    a: "Yes — the Free tier gives you 25 review invitations/month, 1 widget, and verified-purchase core, free forever, no credit card required. Every paid plan also includes a 14-day free trial with full access to your chosen tier.",
   },
   {
     q: "Can I collect photo and video reviews?",

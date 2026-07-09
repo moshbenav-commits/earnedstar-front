@@ -7,6 +7,7 @@ import type { PlanId } from "@/lib/plans";
 import { cn } from "@/lib/utils";
 
 const planStyles: Record<PlanId, string> = {
+  free: "bg-bg-elevated text-text-faint border-border",
   starter: "bg-bg-elevated text-text-secondary border-border",
   growth: "bg-accent/15 text-accent border-accent/30",
   pro: "bg-purple-500/15 text-purple-300 border-purple-500/30",
