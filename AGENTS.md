@@ -1,34 +1,41 @@
-# AGENTS.md — EarnedStar (monorepo)
+# AGENTS.md — EarnedStar front
 
-B2B SaaS verified review platform at **earnedstar.com**.
+B2B SaaS verified review platform at **earnedstar.com**. This repo is the
+**Next.js front only**. The NestJS API lives in the **separate** `earnedstar-back`
+repo (sibling directory), not bundled here.
 
-## Monorepo layout (PraxiumLaw-style)
+## Two-repo layout
 
-| Path | Deploy | URL |
-|------|--------|-----|
-| **Repo root** (`earnedstar/`) | Vercel project `earnedstar` | `https://earnedstar.com` |
-| **`backend/`** | Vercel project `earnedstar-back` (link `.vercel/project.json` in `backend/`) | `https://earnedstar-back.vercel.app/api` |
+| Repo | Path | Deploy | URL |
+|------|------|--------|-----|
+| **Front** (this repo) | `earnedstar-front/` | Vercel project `earnedstar` | `https://earnedstar.com` |
+| **Back** | `../earnedstar-back/` | Vercel project `earnedstar-back` | `https://earnedstar-back.vercel.app/api` |
 
-When connecting GitHub to `earnedstar-back`, set Vercel **Root Directory** to `backend`.
+Front ↔ back is HTTP only (BFF → `NEXT_PUBLIC_API_URL`); the front imports no
+backend TypeScript. GitHub: `github.com/moshbenav-commits/earnedstar-front`.
 
-GitHub: `github.com/moshbenav-commits/earnedstar-front` (front + API in one repo).
+> **Convergence (2026-07-09):** a stale bundled copy of the API previously lived
+> under `earnedstar-front/backend/` (v0.1.0, not Vercel-linked, missing the
+> stripe-billing work). It was deleted — the standalone `earnedstar-back` repo
+> (v0.2.0, linked to Vercel `earnedstar-back`) is the sole source of truth for
+> the backend. Do not re-add a `backend/` folder here.
 
 ```bash
-# Both processes
-./scripts/dev.sh
+# Both processes (front here + API from ../earnedstar-back)
+./scripts/dev.sh          # set EARNEDSTAR_BACK_DIR to override the API path
 
 # Front only :3000
 npm run dev
 
-# API only :8081
-cd backend && npm run start:dev
+# API only :8081 — run from the backend repo
+cd ../earnedstar-back && npm run start:dev
 ```
 
 ## Stack
 
 - **Next.js 16** · React 19 · TypeScript · Tailwind CSS 4
-- **NestJS 11** API in `backend/` — `/api/earnedstar/*`
-- **Billing:** Authorize.net ARB
+- **NestJS 11** API — separate repo `../earnedstar-back`, serves `/api/earnedstar/*`
+- **Billing:** Authorize.net ARB + Stripe subscriptions (in `earnedstar-back`)
 - **Data:** Supabase Postgres — project `ppnbpblnuxbihhxgozxi`
 
 ## Brand assets (workspace SSOT)
@@ -49,8 +56,8 @@ cd backend && npm run start:dev
 # Front (earnedstar.com)
 npm run deploy:prod
 
-# API (earnedstar-back.vercel.app)
-cd backend && bash scripts/deploy-vercel.sh
+# API (earnedstar-back.vercel.app) — deploy from the backend repo
+cd ../earnedstar-back && bash scripts/deploy-vercel.sh
 ```
 
 `vercel.json` sets `git.deploymentEnabled: false` — use scripts above.
