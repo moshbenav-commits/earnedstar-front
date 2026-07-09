@@ -14,6 +14,20 @@ import { paymentsEnabled } from "@/lib/payments-enabled";
 
 const plans = [
   {
+    id: "free" as const,
+    tagline: "Prove verified reviews work on your store — upgrade when you outgrow 25 invites.",
+    features: [
+      { text: "25 review invitations/month" },
+      { text: "Verified by Purchase core" },
+      { text: "1 widget" },
+      { text: "1 user seat" },
+      { text: "1 domain" },
+      { text: "EarnedStar branding on widgets/emails" },
+    ],
+    cta: "Get Started Free",
+    popular: false,
+  },
+  {
     id: "starter" as const,
     tagline: "Perfect for stores just getting started",
     features: [
@@ -107,7 +121,7 @@ export function PricingSection({ showHeader = true }: { showHeader?: boolean }) 
           </p>
         )}
 
-        <div className={cn("grid gap-6 md:grid-cols-2 xl:grid-cols-4 xl:items-stretch", showHeader ? "mt-16" : "mt-8")}>
+        <div className={cn("grid gap-6 md:grid-cols-2 xl:grid-cols-5 xl:items-stretch", showHeader ? "mt-16" : "mt-8")}>
           {plans.map((plan, i) => (
             <motion.div
               key={plan.id}

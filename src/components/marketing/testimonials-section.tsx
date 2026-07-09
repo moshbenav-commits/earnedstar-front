@@ -37,7 +37,7 @@ const testimonials = [
   },
   {
     quote:
-      "The agency plan lets me run reviews for 14 clients under my brand. I charge $149/month each. EarnedStar costs me $499 total.",
+      "The agency plan lets me run reviews for 14 clients under my brand. I charge $149/month each. EarnedStar costs me $749 total.",
     name: "James L.",
     store: "Commerce Marketing Agency",
     rating: 5,
