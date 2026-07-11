@@ -7,6 +7,7 @@ import { Plus_Jakarta_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/g
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@/components/seo/google-analytics";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import { VisitorPulse } from "@/components/VisitorPulse";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -74,6 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen antialiased">
         <GoogleAnalytics />
+        <VisitorPulse />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
