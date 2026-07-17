@@ -39,7 +39,8 @@
     "react-icons": "^5.5.0",
     "recharts": "^3.8.1",
     "tailwind-merge": "^3.6.0",
-    "zod": "^4.4.3"
+    "zod": "^4.4.3",
+    "@creytix/partner-kit": "file:../packages/creytix-partner-kit"
   },
   "devDependencies": {
     "@capacitor/android": "^7.6.7",

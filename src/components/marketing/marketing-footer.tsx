@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 import { LEGAL_FOOTER_LINKS } from "@/lib/legal/config";
+import { CreytixPartnerLockup } from "@creytix/partner-kit";
 
 export function MarketingFooter() {
   return (
@@ -28,7 +29,10 @@ export function MarketingFooter() {
             </Link>
           ))}
         </nav>
-        <p className="mt-8 text-xs text-white/40">© 2026 EarnedStar, Inc. · Los Angeles, CA</p>
+        <div className="mt-8">
+          <CreytixPartnerLockup partnerName="EarnedStar" partnerInitial="E" size="sm" surface="dark" />
+        </div>
+        <p className="mt-4 text-xs text-white/40">© 2026 EarnedStar, Inc. · Los Angeles, CA</p>
       </div>
     </footer>
   );
