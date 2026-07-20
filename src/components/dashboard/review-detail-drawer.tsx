@@ -38,6 +38,7 @@ export function ReviewDetailDrawer({ review, onClose, onUpdated, onResponded }: 
     year: "numeric",
     hour: "numeric",
     minute: "2-digit",
+    timeZone: "UTC", // pin TZ so SSR/client match (avoids hydration #418)
   });
 
   async function handleRespond() {

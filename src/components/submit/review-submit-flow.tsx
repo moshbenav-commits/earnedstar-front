@@ -86,6 +86,7 @@ export function ReviewSubmitFlow({
         month: "long",
         day: "numeric",
         year: "numeric",
+        timeZone: "UTC", // pin TZ so SSR/client match (avoids hydration #418)
       })
     : "Recently";
 

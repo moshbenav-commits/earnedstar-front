@@ -28,10 +28,13 @@ export function ReviewCard({
   animationDelay = 0,
   className,
 }: ReviewCardProps) {
+  // Pin timeZone so server (UTC) and client (visitor-local) format identically —
+  // otherwise the date can differ by a day and trip React hydration error #418.
   const date = new Date(review.created_at).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
+    timeZone: "UTC",
   });
 
   return (
