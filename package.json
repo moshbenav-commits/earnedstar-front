@@ -40,7 +40,7 @@
     "recharts": "^3.8.1",
     "tailwind-merge": "^3.6.0",
     "zod": "^4.4.3",
-    "@creytix/partner-kit": "file:../packages/creytix-partner-kit"
+    "@creytix/partner-kit": "file:./vendor/creytix-partner-kit"
   },
   "devDependencies": {
     "@capacitor/android": "^7.6.7",

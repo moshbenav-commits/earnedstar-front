@@ -1,0 +1,22 @@
+{
+  "name": "@creytix/partner-kit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Creytix partner lockup (brand icon + plus + Creytix icon) and portfolio SSOT helpers",
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "react": "^19.2.4",
+    "typescript": "^5"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./lockup": "./src/CreytixPartnerLockup.tsx",
+    "./portfolio": "./src/portfolio.ts",
+    "./creytix-mark": "./src/CreytixMarkIcon.tsx",
+    "./partnered-page": "./src/PartneredWithCreytixView.tsx"
+  }
+}
