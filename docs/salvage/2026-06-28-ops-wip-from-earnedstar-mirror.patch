@@ -1,0 +1,121 @@
+diff --git a/src/app/ops/tasks/page.tsx b/src/app/ops/tasks/page.tsx
+index 6868257d..77dfc70c 100644
+--- a/src/app/ops/tasks/page.tsx
++++ b/src/app/ops/tasks/page.tsx
+@@ -28,6 +28,13 @@ export default async function OpsTasksPage() {
+         <ExportActionPlanButton />
+       </header>
+ 
++      <p className="text-sm text-[#F5EBE0]/60">
++        <Link href="/ops/review" className="text-[#C45C26] hover:underline">
++          Review queue
++        </Link>
++        {" · drag cards on Board view to change status"}
++      </p>
++
+       <CreateTaskForm />
+ 
+       <TaskConsole tasks={tasks} />
+diff --git a/src/components/ops/ops-sidebar.tsx b/src/components/ops/ops-sidebar.tsx
+index d1fc2d62..7a0a2746 100644
+--- a/src/components/ops/ops-sidebar.tsx
++++ b/src/components/ops/ops-sidebar.tsx
+@@ -17,6 +17,7 @@ import {
+   ArrowLeft,
+   ScrollText,
+   BookOpen,
++  ClipboardCheck,
+ } from "lucide-react";
+ import { cn } from "@/lib/utils";
+ 
+@@ -25,6 +26,7 @@ const navItems = [
+   { href: "/ops/stores", label: "Stores", icon: Store },
+   { href: "/ops/scanner", label: "Scanner", icon: ScanSearch },
+   { href: "/ops/tasks", label: "Action Console", icon: ListTodo },
++  { href: "/ops/review", label: "Review queue", icon: ClipboardCheck },
+   { href: "/ops/playbooks", label: "Playbooks", icon: BookOpen },
+   { href: "/ops/seo", label: "SEO Ops", icon: Search },
+   { href: "/ops/jobs", label: "Jobs", icon: Clock },
+diff --git a/src/components/ops/task-console.tsx b/src/components/ops/task-console.tsx
+index 96fcea06..fbdac769 100644
+--- a/src/components/ops/task-console.tsx
++++ b/src/components/ops/task-console.tsx
+@@ -6,6 +6,7 @@
+ import Link from "next/link";
+ import { useState } from "react";
+ import { TaskStatusSelect } from "@/components/ops/task-status-select";
++import { TaskBoardDnd } from "@/components/ops/task-board-dnd";
+ 
+ export type TaskRow = {
+   id: string;
+@@ -15,16 +16,6 @@ export type TaskRow = {
+   owner_email: string | null;
+ };
+ 
+-const BOARD_COLUMNS = ["backlog", "in_progress", "blocked", "in_review", "completed"] as const;
+-
+-const COLUMN_LABELS: Record<string, string> = {
+-  backlog: "Backlog",
+-  in_progress: "In progress",
+-  blocked: "Blocked",
+-  in_review: "In review",
+-  completed: "Done",
+-};
+-
+ export function TaskConsole({ tasks }: { tasks: TaskRow[] }) {
+   const [view, setView] = useState<"list" | "board">("list");
+ 
+@@ -85,36 +76,7 @@ export function TaskConsole({ tasks }: { tasks: TaskRow[] }) {
+           </table>
+         </div>
+       ) : (
+-        <div className="grid gap-3 overflow-x-auto md:grid-cols-3 lg:grid-cols-5">
+-          {BOARD_COLUMNS.map((col) => {
+-            const colTasks = tasks.filter((t) => t.status === col);
+-            return (
+-              <div key={col} className="min-w-[180px] rounded-xl border border-[#2a1f16] bg-[#1A120C]">
+-                <h3 className="border-b border-[#2a1f16] p-3 text-xs font-semibold uppercase tracking-wide text-[#E8A54B]">
+-                  {COLUMN_LABELS[col]} ({colTasks.length})
+-                </h3>
+-                <ul className="space-y-2 p-2">
+-                  {colTasks.length === 0 ? (
+-                    <li className="p-2 text-xs text-[#F5EBE0]/40">—</li>
+-                  ) : (
+-                    colTasks.map((t) => (
+-                      <li key={t.id}>
+-                        <Link
+-                          href={`/ops/tasks/${t.id}`}
+-                          className="block rounded-lg border border-[#2a1f16] bg-[#0f0a07] p-2 text-sm hover:border-[#E8A54B]/40"
+-                        >
+-                          <p className="font-medium leading-snug">{t.title}</p>
+-                          <p className="mt-1 text-xs capitalize text-[#F5EBE0]/50">{t.priority}</p>
+-                          <TaskStatusSelect taskId={t.id} status={t.status} />
+-                        </Link>
+-                      </li>
+-                    ))
+-                  )}
+-                </ul>
+-              </div>
+-            );
+-          })}
+-        </div>
++        <TaskBoardDnd initialTasks={tasks} />
+       )}
+     </div>
+   );
+diff --git a/supabase/migrations/010_gt_ops_p0.sql b/supabase/migrations/010_gt_ops_p0.sql
+index 657536bc..7a6cac4d 100644
+--- a/supabase/migrations/010_gt_ops_p0.sql
++++ b/supabase/migrations/010_gt_ops_p0.sql
+@@ -72,7 +72,11 @@ CREATE TABLE IF NOT EXISTS gt_installed_apps (
+   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+   store_id UUID NOT NULL REFERENCES gt_connected_stores(id) ON DELETE CASCADE,
+   app_name TEXT NOT NULL,
++  name TEXT,
+   app_slug TEXT,
++  category TEXT,
++  overlap_risk TEXT DEFAULT 'low'
++    CHECK (overlap_risk IS NULL OR overlap_risk IN ('low','medium','high')),
+   detected_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+ );
+ 
