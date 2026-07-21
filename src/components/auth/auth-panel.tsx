@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
+import { PasswordInput } from "@/components/auth/PasswordInput";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { HERO_TAGLINE } from "@/content/earnedstar-trust-copy";
@@ -141,16 +142,15 @@ export function AuthPanel({ defaultTab = "signin" }: { defaultTab?: Tab }) {
               </div>
               <div>
                 <label htmlFor="password" className="mb-1 block text-sm text-text-muted">Password</label>
-                <input
+                <PasswordInput
                   id="password"
-                  type="password"
+                  autoComplete="current-password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full rounded-lg border border-border px-3 py-2 text-sm"
                 />
               </div>
-              <Link href="#" className="block text-right text-sm text-navy-light hover:text-gold">
+              <Link href="/forgot-password" className="block text-right text-sm text-navy-light hover:text-gold">
                 Forgot password?
               </Link>
               <Button type="submit" className="w-full" disabled={loading}>
@@ -177,13 +177,12 @@ export function AuthPanel({ defaultTab = "signin" }: { defaultTab?: Tab }) {
                 className="w-full rounded-lg border border-border px-3 py-2 text-sm"
               />
               <div>
-                <input
-                  type="password"
+                <PasswordInput
                   required
                   placeholder="Password"
+                  autoComplete="new-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full rounded-lg border border-border px-3 py-2 text-sm"
                 />
                 <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-surface-2">
                   <div
@@ -195,13 +194,12 @@ export function AuthPanel({ defaultTab = "signin" }: { defaultTab?: Tab }) {
                 </div>
                 <p className="mt-1 text-xs text-text-faint">Strength: {strength.label}</p>
               </div>
-              <input
-                type="password"
+              <PasswordInput
                 required
                 placeholder="Confirm password"
+                autoComplete="new-password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full rounded-lg border border-border px-3 py-2 text-sm"
               />
               <label className="flex items-start gap-2 text-xs text-text-muted">
                 <input type="checkbox" required className="mt-0.5" />
