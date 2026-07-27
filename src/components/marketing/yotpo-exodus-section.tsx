@@ -53,7 +53,12 @@ export function YotpoExodusSection() {
           </div>
           <Link
             href="/yotpo-refugees"
-            className="group mt-12 inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3.5 font-bold text-ink transition-shadow hover:shadow-2xl"
+            /* bg-[#ffffff] (not bg-white) intentionally: this is a fixed
+             * white CTA pill on a dark hero in both themes. The global
+             * `html.dark .bg-white` rule remaps bg-white to a dark surface,
+             * which left this ink-navy text at 1.03:1 (near-invisible) when
+             * dark mode was active — a literal hex value opts it out. */
+            className="group mt-12 inline-flex items-center gap-2.5 rounded-full bg-[#ffffff] px-6 py-3.5 font-bold text-ink transition-shadow hover:shadow-2xl"
           >
             Migrate from Yotpo · 3 months free
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
