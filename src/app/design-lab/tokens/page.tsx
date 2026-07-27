@@ -15,7 +15,7 @@ const TOKEN_SWATCHES = [
   { label: 'Navy', var: '--navy', hex: '#0F2044' },
   { label: 'Navy mid', var: '--navy-mid', hex: '#1A3566' },
   { label: 'Gold', var: '--gold', hex: '#F59E0B' },
-  { label: 'Gold dark', var: '--gold-dark', hex: '#D97706' },
+  { label: 'Gold dark', var: '--gold-dark', hex: '#9A4A08' },
   { label: 'Green verified', var: '--green', hex: '#059669' },
   { label: 'Warm bg', var: '--bg', hex: '#F0EDE6' },
   { label: 'Surface', var: '--surface', hex: '#FAF9F6' },
