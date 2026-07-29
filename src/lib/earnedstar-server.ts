@@ -49,6 +49,8 @@ export function mapReview(row: Record<string, unknown>): Review {
     rating_description: row.rating_description != null ? Number(row.rating_description) : undefined,
     rating_install: row.rating_install != null ? Number(row.rating_install) : undefined,
     created_at: String(row.created_at),
+    source: row.source === "imported" ? "imported" : "organic",
+    import_platform: row.import_platform ? String(row.import_platform) : null,
   };
 }
 
