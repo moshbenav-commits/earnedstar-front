@@ -12,6 +12,7 @@ import { WidgetEmbedGuide } from "@/components/dashboard/widget-embed-guide";
 import { EmailStatusPanel } from "@/components/dashboard/email-status-panel";
 import { ProfileSeoForm } from "@/components/dashboard/profile-seo-form";
 import { ReviewCadenceForm } from "@/components/dashboard/review-cadence-form";
+import { LoyaltySettingsForm } from "@/components/dashboard/loyalty-settings-form";
 import { SeoHealthPanel } from "@/components/dashboard/seo-health-panel";
 import { PlanBadge } from "@/components/ui/plan-badge";
 import type { PlanId } from "@/lib/plans";
@@ -70,6 +71,13 @@ export default async function DashboardSettingsPage() {
         <ReviewCadenceForm
           initial={{
             review_request_cooldown_days: profile.review_request_cooldown_days,
+          }}
+        />
+
+        <LoyaltySettingsForm
+          initial={{
+            points_per_review: profile.points_per_review,
+            points_per_referral: profile.points_per_referral,
           }}
         />
 
