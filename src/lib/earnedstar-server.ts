@@ -236,6 +236,41 @@ export async function fetchAnalytics(slug = DEFAULT_DEMO_SLUG): Promise<Analytic
   }
 }
 
+export type ComplianceBatch = {
+  batchId: string;
+  createdAt: string;
+  source: "single_send" | "bulk_send" | "csv_import" | "internal_api" | "order_webhook";
+  channel: string;
+  invitationCount: number;
+  segmentType: "unsegmented" | "objective_exclusion" | "manual_selection";
+  segmentNote: string | null;
+  incentiveOffered: boolean;
+  incentiveDescription: string | null;
+  flagged: boolean;
+  flagReason: string | null;
+};
+
+export type ComplianceDashboard = {
+  batches: ComplianceBatch[];
+  flaggedCount: number;
+  note: string;
+};
+
+export async function fetchComplianceDashboard(
+  slug = DEFAULT_DEMO_SLUG,
+  limit = 25,
+): Promise<ComplianceDashboard | null> {
+  try {
+    const res = await fetch(`${getApiBase()}/earnedstar/dashboard/compliance?slug=${slug}&limit=${limit}`, {
+      next: { revalidate: 30 },
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as ComplianceDashboard;
+  } catch {
+    return null;
+  }
+}
+
 export async function fetchInvitationByToken(token: string): Promise<InvitationLookup | null> {
   try {
     const res = await fetch(`${getApiBase()}/earnedstar/invitations/lookup/${encodeURIComponent(token)}`, {
