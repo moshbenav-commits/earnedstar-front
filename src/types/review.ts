@@ -50,4 +50,6 @@ export interface Merchant {
   public_profile_enabled?: boolean;
   review_summary_ai?: string | null;
   review_summary_generated_at?: string | null;
+  /** Bible Phase 4i — days before re-asking the same customer for a review of the same product (default 90). */
+  review_request_cooldown_days?: number;
 }
