@@ -12,6 +12,7 @@ import { WidgetEmbedGuide } from "@/components/dashboard/widget-embed-guide";
 import { EmailStatusPanel } from "@/components/dashboard/email-status-panel";
 import { ProfileSeoForm } from "@/components/dashboard/profile-seo-form";
 import { ReviewCadenceForm } from "@/components/dashboard/review-cadence-form";
+import { B2bSettingsForm } from "@/components/dashboard/b2b-settings-form";
 import { LoyaltySettingsForm } from "@/components/dashboard/loyalty-settings-form";
 import { SeoHealthPanel } from "@/components/dashboard/seo-health-panel";
 import { PlanBadge } from "@/components/ui/plan-badge";
@@ -71,6 +72,13 @@ export default async function DashboardSettingsPage() {
         <ReviewCadenceForm
           initial={{
             review_request_cooldown_days: profile.review_request_cooldown_days,
+          }}
+        />
+
+        <B2bSettingsForm
+          initial={{
+            b2b_mode_enabled: profile.b2b_mode_enabled,
+            b2b_default_delay_days: profile.b2b_default_delay_days,
           }}
         />
 

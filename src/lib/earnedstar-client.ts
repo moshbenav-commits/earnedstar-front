@@ -88,3 +88,27 @@ export async function respondToReview(reviewId: string, business_response: strin
   }
   return data as { ok: boolean; business_response: string };
 }
+
+/**
+ * Bible Phase 4i — AI-drafted review-reply suggestion. Returns a draft the
+ * merchant can edit before calling respondToReview() above to actually
+ * post it; this never posts anything itself. Reuses the same AI-SEO
+ * drafting pipeline as the suggest-meta/suggest-qa-answer endpoints.
+ */
+export async function suggestReviewReply(reviewId: string) {
+  const res = await fetch(`/api/earnedstar/reviews/${reviewId}/suggest-reply`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error((data as { message?: string }).message ?? "Failed to generate a reply suggestion");
+  }
+  return data as {
+    draft: string;
+    review_id: string;
+    rating: number;
+    is_negative: boolean;
+    source: "ai" | "template";
+  };
+}
