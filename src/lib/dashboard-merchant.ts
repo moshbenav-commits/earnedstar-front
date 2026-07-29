@@ -20,6 +20,8 @@ export type DashboardMerchant = {
   seo_description?: string | null;
   review_count: number;
   avg_rating: number;
+  /** Bible Phase 4i — days before re-asking the same customer for a review of the same product (default 90). */
+  review_request_cooldown_days?: number;
 };
 
 export async function getDashboardMerchant(): Promise<DashboardMerchant> {
