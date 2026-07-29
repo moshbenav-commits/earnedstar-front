@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { CreytixCrossSellNudge } from "./creytix-cross-sell-nudge";
 
 type ImportSource = "yotpo" | "loox" | "judgeme" | "stamped";
 
@@ -172,6 +173,12 @@ export function ReviewImportPanel({ merchantSlug = "meridian-gear" }: { merchant
             Imported {summary.imported} of {summary.total} — {summary.duplicate} already imported
             (skipped), {summary.failed} failed.
           </p>
+          {summary.imported > 0 ? (
+            <CreytixCrossSellNudge
+              id="review-import-success"
+              message="Imported ✓ — these reviews can now feed AI-SEO drafts. Same engine, more doors: the full Creytix suite includes more tools for the rest of your store."
+            />
+          ) : null}
           {summary.failed > 0 ? (
             <div className="overflow-x-auto">
               <table className="w-full min-w-[400px] text-left text-xs">

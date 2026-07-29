@@ -6,6 +6,7 @@
 import { AlertTriangle, ShieldCheck } from "lucide-react";
 import type { ComplianceBatch, ComplianceDashboard } from "@/lib/earnedstar-server";
 import { cn } from "@/lib/utils";
+import { CreytixCrossSellNudge } from "./creytix-cross-sell-nudge";
 
 const SOURCE_LABEL: Record<ComplianceBatch["source"], string> = {
   single_send: "Single request",
@@ -134,6 +135,13 @@ export function ComplianceStatusPanel({ data }: { data: ComplianceDashboard | nu
         {data?.note ??
           "Diagnostic tool only — flags surface a structural pattern, not a legal compliance determination. Review flagged batches with counsel before relying on them."}
       </p>
+
+      {data && data.flaggedCount > 0 ? (
+        <CreytixCrossSellNudge
+          id="compliance-first-flag"
+          message="This audit log is a Creytix platform tool."
+        />
+      ) : null}
     </section>
   );
 }
