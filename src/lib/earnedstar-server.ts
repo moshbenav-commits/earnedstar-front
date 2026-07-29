@@ -49,6 +49,8 @@ export function mapReview(row: Record<string, unknown>): Review {
     rating_description: row.rating_description != null ? Number(row.rating_description) : undefined,
     rating_install: row.rating_install != null ? Number(row.rating_install) : undefined,
     created_at: String(row.created_at),
+    source: row.source === "imported" ? "imported" : "organic",
+    import_platform: row.import_platform ? String(row.import_platform) : null,
   };
 }
 
@@ -229,6 +231,41 @@ export async function fetchAnalytics(slug = DEFAULT_DEMO_SLUG): Promise<Analytic
     });
     if (!res.ok) return null;
     return (await res.json()) as AnalyticsDashboard;
+  } catch {
+    return null;
+  }
+}
+
+export type ComplianceBatch = {
+  batchId: string;
+  createdAt: string;
+  source: "single_send" | "bulk_send" | "csv_import" | "internal_api" | "order_webhook";
+  channel: string;
+  invitationCount: number;
+  segmentType: "unsegmented" | "objective_exclusion" | "manual_selection";
+  segmentNote: string | null;
+  incentiveOffered: boolean;
+  incentiveDescription: string | null;
+  flagged: boolean;
+  flagReason: string | null;
+};
+
+export type ComplianceDashboard = {
+  batches: ComplianceBatch[];
+  flaggedCount: number;
+  note: string;
+};
+
+export async function fetchComplianceDashboard(
+  slug = DEFAULT_DEMO_SLUG,
+  limit = 25,
+): Promise<ComplianceDashboard | null> {
+  try {
+    const res = await fetch(`${getApiBase()}/earnedstar/dashboard/compliance?slug=${slug}&limit=${limit}`, {
+      next: { revalidate: 30 },
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as ComplianceDashboard;
   } catch {
     return null;
   }
