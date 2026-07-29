@@ -51,6 +51,8 @@ export function mapReview(row: Record<string, unknown>): Review {
     created_at: String(row.created_at),
     source: row.source === "imported" ? "imported" : "organic",
     import_platform: row.import_platform ? String(row.import_platform) : null,
+    translated: Boolean(row.translated),
+    review_text_original: row.review_text_original ? String(row.review_text_original) : undefined,
   };
 }
 
@@ -80,6 +82,36 @@ export async function fetchPublishedReviews(slug: string, limit = 50, offset = 0
   }
 }
 
+/** Bible Phase 4h — languages the review-page/widget language selector
+ * offers. Entry-tier: available on every plan, not paid-tier-gated. Falls
+ * back to a small static list if the backend call fails so the selector
+ * still renders. */
+export async function fetchTranslationLanguages(): Promise<Record<string, string>> {
+  const fallback: Record<string, string> = {
+    es: "Spanish",
+    fr: "French",
+    de: "German",
+    pt: "Portuguese",
+    it: "Italian",
+    ja: "Japanese",
+    zh: "Chinese (Simplified)",
+    ko: "Korean",
+    ar: "Arabic",
+    hi: "Hindi",
+    nl: "Dutch",
+    ru: "Russian",
+  };
+  try {
+    const res = await fetch(`${getApiBase()}/earnedstar/reviews/meta/languages`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return fallback;
+    return (await res.json()) as Record<string, string>;
+  } catch {
+    return fallback;
+  }
+}
+
 export type PublicProfileSummary = {
   merchant: Merchant;
   ratingDistribution: { stars: number; count: number; pct: number }[];
@@ -105,10 +137,11 @@ export async function fetchPublicProfileSummary(slug: string): Promise<PublicPro
 }
 
 export async function fetchStorePageData(slug: string) {
-  const [profile, reviews, qa] = await Promise.all([
+  const [profile, reviews, qa, translationLanguages] = await Promise.all([
     fetchPublicProfileSummary(slug),
     fetchPublishedReviews(slug, 20, 0),
     fetchPublishedQa(slug),
+    fetchTranslationLanguages(),
   ]);
   const merchant = profile?.merchant ?? (await fetchMerchant(slug));
   return {
@@ -116,6 +149,7 @@ export async function fetchStorePageData(slug: string) {
     reviews,
     qa,
     profile,
+    translationLanguages,
   };
 }
 

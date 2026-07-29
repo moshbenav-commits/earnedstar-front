@@ -35,11 +35,20 @@ interface StoreProfileProps {
   qaItems?: QaPublicItem[];
   profile?: PublicProfileSummary | null;
   slug: string;
+  /** Bible Phase 4h — entry-tier auto-translation language options (code -> display name). Not plan-gated. */
+  translationLanguages?: Record<string, string>;
 }
 
 const PAGE_SIZE = 8;
 
-export function StoreProfile({ business, reviews, qaItems = [], profile, slug }: StoreProfileProps) {
+export function StoreProfile({
+  business,
+  reviews,
+  qaItems = [],
+  profile,
+  slug,
+  translationLanguages = {},
+}: StoreProfileProps) {
   const [tab, setTab] = useState<ProfileTab>("reviews");
   const [sort, setSort] = useState("recent");
   const [starFilter, setStarFilter] = useState<number | "all">("all");
@@ -53,6 +62,10 @@ export function StoreProfile({ business, reviews, qaItems = [], profile, slug }:
   const [qaQuestion, setQaQuestion] = useState("");
   const [qaName, setQaName] = useState("");
   const [qaSent, setQaSent] = useState(false);
+  // Bible Phase 4h — entry-tier auto-translation. "en" = original text, no
+  // translation call made. Works identically regardless of merchant plan.
+  const [reviewLang, setReviewLang] = useState("en");
+  const [translating, setTranslating] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
   const distribution = profile?.ratingDistribution ?? mockDistribution;
@@ -119,8 +132,9 @@ export function StoreProfile({ business, reviews, qaItems = [], profile, slug }:
     if (loadingMore || !hasMore) return;
     setLoadingMore(true);
     try {
+      const langParam = reviewLang !== "en" ? `&lang=${reviewLang}` : "";
       const res = await fetch(
-        `/api/earnedstar/reviews/merchant/${slug}?limit=${PAGE_SIZE}&offset=${allReviews.length}`,
+        `/api/earnedstar/reviews/merchant/${slug}?limit=${PAGE_SIZE}&offset=${allReviews.length}${langParam}`,
       );
       if (!res.ok) return;
       const rows = (await res.json()) as Review[];
@@ -136,7 +150,31 @@ export function StoreProfile({ business, reviews, qaItems = [], profile, slug }:
     } finally {
       setLoadingMore(false);
     }
-  }, [allReviews.length, hasMore, loadingMore, slug]);
+  }, [allReviews.length, hasMore, loadingMore, reviewLang, slug]);
+
+  /** Bible Phase 4h — entry-tier auto-translation. Re-fetches the currently
+   * loaded review page in the selected language; same call shape and
+   * behavior regardless of the merchant's plan (no plan check anywhere on
+   * this path — see EarnedstarTranslationService in earnedstar-back). */
+  const changeLanguage = useCallback(
+    async (newLang: string) => {
+      if (newLang === reviewLang || translating) return;
+      setTranslating(true);
+      try {
+        const count = Math.max(allReviews.length, PAGE_SIZE);
+        const langParam = newLang !== "en" ? `&lang=${newLang}` : "";
+        const res = await fetch(`/api/earnedstar/reviews/merchant/${slug}?limit=${count}&offset=0${langParam}`);
+        if (!res.ok) return;
+        const rows = (await res.json()) as Review[];
+        setReviewLang(newLang);
+        setAllReviews(rows);
+        setHasMore(rows.length >= count);
+      } finally {
+        setTranslating(false);
+      }
+    },
+    [allReviews.length, reviewLang, slug, translating],
+  );
 
   useEffect(() => {
     const el = loadMoreRef.current;
@@ -340,6 +378,30 @@ export function StoreProfile({ business, reviews, qaItems = [], profile, slug }:
                 onChange={(e) => setSearch(e.target.value)}
                 className="min-w-[140px] flex-1 rounded-lg border border-border bg-surface px-3 py-2 text-sm"
               />
+              {Object.keys(translationLanguages).length > 0 ? (
+                <span className="flex items-center gap-2">
+                  <select
+                    value={reviewLang}
+                    onChange={(e) => void changeLanguage(e.target.value)}
+                    disabled={translating}
+                    className="rounded-lg border border-border bg-surface px-3 py-2 text-sm disabled:opacity-60"
+                    aria-label="Translate reviews"
+                    title="Entry-tier auto-translation — available on every plan"
+                  >
+                    <option value="en">Original language</option>
+                    {Object.entries(translationLanguages).map(([code, label]) => (
+                      <option key={code} value={code}>
+                        {label}
+                      </option>
+                    ))}
+                  </select>
+                  {translating ? (
+                    <span className="text-xs text-text-faint" role="status">
+                      Translating…
+                    </span>
+                  ) : null}
+                </span>
+              ) : null}
             </div>
           ) : null}
         </div>

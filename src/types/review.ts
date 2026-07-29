@@ -37,6 +37,11 @@ export interface Review {
   source?: "organic" | "imported";
   /** Source platform when source === "imported" (yotpo | loox | judgeme | stamped). */
   import_platform?: string | null;
+  /** Bible Phase 4h — entry-tier auto-translation (not plan-gated). True when
+   * review_text below is a translated string, not the customer's original. */
+  translated?: boolean;
+  /** The original (pre-translation) review text, present only when translated === true. */
+  review_text_original?: string;
 }
 
 export interface Merchant {

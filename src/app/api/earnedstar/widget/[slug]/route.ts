@@ -12,7 +12,11 @@ export async function GET(
 ) {
   const { slug } = await params;
   const max = req.nextUrl.searchParams.get("max") ?? "12";
-  const res = await fetch(`${getApiBase()}/earnedstar/widget/${slug}?max=${max}`, {
+  // Bible Phase 4h — entry-tier auto-translation; e.g. ?lang=es. Not plan-gated.
+  const lang = req.nextUrl.searchParams.get("lang");
+  const query = new URLSearchParams({ max });
+  if (lang) query.set("lang", lang);
+  const res = await fetch(`${getApiBase()}/earnedstar/widget/${slug}?${query.toString()}`, {
     next: { revalidate: 120 },
   });
   const data = await res.json();
