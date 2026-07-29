@@ -33,6 +33,10 @@ export interface Review {
   rating_install?: number;
   /** Optional vertical-specific metadata (fitment, size, etc.) */
   metadata?: Record<string, string>;
+  /** "organic" (default) or "imported" via Phase 3f CSV migration. */
+  source?: "organic" | "imported";
+  /** Source platform when source === "imported" (yotpo | loox | judgeme | stamped). */
+  import_platform?: string | null;
 }
 
 export interface Merchant {
@@ -50,4 +54,10 @@ export interface Merchant {
   public_profile_enabled?: boolean;
   review_summary_ai?: string | null;
   review_summary_generated_at?: string | null;
+  /** Bible Phase 4i — days before re-asking the same customer for a review of the same product (default 90). */
+  review_request_cooldown_days?: number;
+  /** Bible Phase 4h — points awarded to a customer when their review is published (0 = disabled). */
+  points_per_review?: number;
+  /** Bible Phase 4h — points awarded to the referrer when a referral converts (0 = disabled). */
+  points_per_referral?: number;
 }

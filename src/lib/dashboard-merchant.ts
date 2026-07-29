@@ -20,6 +20,12 @@ export type DashboardMerchant = {
   seo_description?: string | null;
   review_count: number;
   avg_rating: number;
+  /** Bible Phase 4i — days before re-asking the same customer for a review of the same product (default 90). */
+  review_request_cooldown_days?: number;
+  /** Bible Phase 4h — points awarded to a customer when their review is published (0 = disabled). */
+  points_per_review?: number;
+  /** Bible Phase 4h — points awarded to the referrer when a referral converts (0 = disabled). */
+  points_per_referral?: number;
 };
 
 export async function getDashboardMerchant(): Promise<DashboardMerchant> {
@@ -53,5 +59,7 @@ export async function getDashboardMerchant(): Promise<DashboardMerchant> {
     seo_description: null,
     review_count: 2847,
     avg_rating: 4.9,
+    points_per_review: 10,
+    points_per_referral: 50,
   };
 }
