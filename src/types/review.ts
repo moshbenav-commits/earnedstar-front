@@ -50,4 +50,8 @@ export interface Merchant {
   public_profile_enabled?: boolean;
   review_summary_ai?: string | null;
   review_summary_generated_at?: string | null;
+  /** Bible Phase 4h — points awarded to a customer when their review is published (0 = disabled). */
+  points_per_review?: number;
+  /** Bible Phase 4h — points awarded to the referrer when a referral converts (0 = disabled). */
+  points_per_referral?: number;
 }

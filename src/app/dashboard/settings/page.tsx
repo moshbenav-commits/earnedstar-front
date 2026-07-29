@@ -11,6 +11,7 @@ import { IntegrationKeysPanel } from "@/components/dashboard/integration-keys-pa
 import { WidgetEmbedGuide } from "@/components/dashboard/widget-embed-guide";
 import { EmailStatusPanel } from "@/components/dashboard/email-status-panel";
 import { ProfileSeoForm } from "@/components/dashboard/profile-seo-form";
+import { LoyaltySettingsForm } from "@/components/dashboard/loyalty-settings-form";
 import { SeoHealthPanel } from "@/components/dashboard/seo-health-panel";
 import { PlanBadge } from "@/components/ui/plan-badge";
 import type { PlanId } from "@/lib/plans";
@@ -63,6 +64,13 @@ export default async function DashboardSettingsPage() {
             seo_title: profile.seo_title,
             seo_description: profile.seo_description,
             slug: profile.slug,
+          }}
+        />
+
+        <LoyaltySettingsForm
+          initial={{
+            points_per_review: profile.points_per_review,
+            points_per_referral: profile.points_per_referral,
           }}
         />
 

@@ -8,7 +8,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { LayoutDashboard, Star, Send, BarChart2, Layout, Settings, LogOut, Lock, Plug, Share2, Building2, HelpCircle, Users, ScanSearch } from "lucide-react";
+import { LayoutDashboard, Star, Send, BarChart2, Layout, Settings, LogOut, Lock, Plug, Share2, Building2, HelpCircle, Users, ScanSearch, Gift } from "lucide-react";
 import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 import { PlanBadge } from "@/components/ui/plan-badge";
 import type { PlanId } from "@/lib/plans";
@@ -26,6 +26,7 @@ const navItems = [
   { href: "/ops/dashboard", label: "Go Tianguis Ops", icon: ScanSearch },
   { href: "/dashboard/syndication", label: "Syndication", icon: Share2, lockStarter: true, lockGrowth: true },
   { href: "/dashboard/agency", label: "Agency", icon: Building2 },
+  { href: "/dashboard/loyalty", label: "Loyalty & Referrals", icon: Gift, lockStarter: true },
   { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
 
