@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function PublicReviewProfilePage({ params }: PageProps) {
   const { slug } = await params;
-  const { merchant, reviews, qa, profile } = await fetchStorePageData(slug);
+  const { merchant, reviews, qa, profile, translationLanguages } = await fetchStorePageData(slug);
 
   if (!merchant) {
     notFound();
@@ -132,6 +132,7 @@ export default async function PublicReviewProfilePage({ params }: PageProps) {
         qaItems={qa}
         profile={profile}
         slug={slug}
+        translationLanguages={translationLanguages}
       />
       <footer className="border-t border-border bg-surface py-8 text-center text-xs text-text-faint">
         <EarnedStarLogo size={24} showWordmark={false} centerStyle="none" className="mx-auto justify-center" />

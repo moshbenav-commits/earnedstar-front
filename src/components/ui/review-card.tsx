@@ -59,6 +59,11 @@ export function ReviewCard({
         ) : null}
         {review.review_text}
       </p>
+      {review.translated ? (
+        <p className="mt-1 text-xs italic text-text-faint" title="Bible Phase 4h: entry-tier auto-translation, available on every plan">
+          Translated automatically
+        </p>
+      ) : null}
       {review.product_name ? (
         <p className="mt-2 text-xs text-text-faint">Product: {review.product_name}</p>
       ) : null}
