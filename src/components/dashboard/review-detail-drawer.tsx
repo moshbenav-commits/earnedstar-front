@@ -11,7 +11,7 @@ import { StarRating } from "@/components/ui/star-rating";
 import { VerifiedBadge } from "@/components/ui/verified-badge";
 import { FraudBadge } from "@/components/ui/fraud-badge";
 import { Button } from "@/components/ui/button";
-import { moderateReview, respondToReview } from "@/lib/earnedstar-client";
+import { moderateReview, respondToReview, suggestReviewReply } from "@/lib/earnedstar-client";
 import type { Review } from "@/types/review";
 import { cn } from "@/lib/utils";
 
@@ -28,6 +28,7 @@ export function ReviewDetailDrawer({ review, onClose, onUpdated, onResponded }: 
   const [localResponse, setLocalResponse] = useState<string | null>(null);
   const [draftResponse, setDraftResponse] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [suggesting, setSuggesting] = useState(false);
 
   if (!review) return null;
 
@@ -59,6 +60,23 @@ export function ReviewDetailDrawer({ review, onClose, onUpdated, onResponded }: 
   }
 
   const responseText = localResponse ?? review.business_response;
+
+  // Bible Phase 4i — AI-drafted review-reply suggestion. Fills the draft
+  // textarea for the merchant to edit before Save response actually posts
+  // it (see handleRespond above) — never posts on its own.
+  async function handleSuggestReply() {
+    if (!review) return;
+    setSuggesting(true);
+    setError(null);
+    try {
+      const result = await suggestReviewReply(review.id);
+      setDraftResponse(result.draft);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to generate a reply suggestion");
+    } finally {
+      setSuggesting(false);
+    }
+  }
 
   async function handleModerate(next: "published" | "rejected") {
     if (!review) return;
@@ -136,14 +154,25 @@ export function ReviewDetailDrawer({ review, onClose, onUpdated, onResponded }: 
                 value={draftResponse}
                 onChange={(e) => setDraftResponse(e.target.value)}
               />
-              <Button
-                size="sm"
-                disabled={acting || draftResponse.trim().length < 5}
-                onClick={() => void handleRespond()}
-              >
-                {acting ? <Loader2 size={14} className="animate-spin" /> : null}
-                Save response
-              </Button>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  size="sm"
+                  disabled={acting || draftResponse.trim().length < 5}
+                  onClick={() => void handleRespond()}
+                >
+                  {acting ? <Loader2 size={14} className="animate-spin" /> : null}
+                  Save response
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  disabled={suggesting || acting}
+                  onClick={() => void handleSuggestReply()}
+                >
+                  {suggesting ? <Loader2 size={14} className="animate-spin" /> : null}
+                  Suggest AI reply
+                </Button>
+              </div>
             </div>
           )}
 

@@ -60,4 +60,8 @@ export interface Merchant {
   points_per_review?: number;
   /** Bible Phase 4h — points awarded to the referrer when a referral converts (0 = disabled). */
   points_per_referral?: number;
+  /** Bible Phase 4i — B2B/wholesale review collection opt-in. Off by default. */
+  b2b_mode_enabled?: boolean;
+  /** Bible Phase 4i — days to wait after fulfillment before requesting a review on a B2B order (default 30). */
+  b2b_default_delay_days?: number;
 }
