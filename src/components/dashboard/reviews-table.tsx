@@ -57,7 +57,17 @@ export function ReviewsTable({ reviews: initialReviews }: { reviews: Review[] })
                   <tr key={review.id} className="border-b border-border last:border-0 hover:bg-surface-2/40">
                     <td className="px-4 py-3">
                       <div className="font-semibold text-navy">{review.customer_name}</div>
-                      {review.verified_purchase ? <VerifiedBadge size="sm" className="mt-1" /> : null}
+                      <div className="mt-1 flex items-center gap-1.5">
+                        {review.verified_purchase ? <VerifiedBadge size="sm" /> : null}
+                        {review.source === "imported" ? (
+                          <span
+                            className="rounded-full bg-surface-2 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-text-faint"
+                            title={review.import_platform ? `Imported from ${review.import_platform}` : "Imported"}
+                          >
+                            Imported{review.import_platform ? ` · ${review.import_platform}` : ""}
+                          </span>
+                        ) : null}
+                      </div>
                     </td>
                     <td className="px-4 py-3">
                       <StarRating rating={review.rating_overall} size="sm" />
