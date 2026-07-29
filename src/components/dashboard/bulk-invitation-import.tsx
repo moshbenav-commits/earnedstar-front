@@ -83,12 +83,6 @@ export function BulkInvitationImport({
   const [dragOver, setDragOver] = useState(false);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<{ sent: number; failed: number; error?: string } | null>(null);
-  const [segmentType, setSegmentType] = useState<"unsegmented" | "objective_exclusion" | "manual_selection">(
-    "unsegmented",
-  );
-  const [segmentNote, setSegmentNote] = useState("");
-  const [incentiveOffered, setIncentiveOffered] = useState(false);
-  const [incentiveDescription, setIncentiveDescription] = useState("");
 
   const ingestFile = useCallback((file: File) => {
     const reader = new FileReader();
@@ -111,10 +105,6 @@ export function BulkInvitationImport({
         body: JSON.stringify({
           default_channel: defaultChannel,
           default_delay_days: defaultDelayDays,
-          segment_type: segmentType,
-          segment_note: segmentNote || undefined,
-          incentive_offered: incentiveOffered,
-          incentive_description: incentiveOffered ? incentiveDescription || undefined : undefined,
           invitations: rows.map((r) => ({
             order_id: r.order_id,
             customer_name: r.customer_name,
@@ -150,58 +140,6 @@ export function BulkInvitationImport({
           download template
         </button>
       </p>
-
-      <div className="mt-4 space-y-3 rounded-xl border border-border bg-surface-2/40 p-4">
-        <p className="text-xs font-semibold uppercase tracking-wide text-text-faint">
-          Compliance audit (FTC Consumer Review Rule)
-        </p>
-        <label className="block text-xs font-medium text-text-muted">
-          Who is this batch going to?
-          <select
-            value={segmentType}
-            onChange={(e) => setSegmentType(e.target.value as typeof segmentType)}
-            className="mt-1 block w-full rounded-lg border border-border bg-surface px-2 py-1.5 text-sm text-navy"
-          >
-            <option value="unsegmented">Everyone who qualifies (e.g. all recent orders)</option>
-            <option value="objective_exclusion">Most recent orders, minus an objective exclusion (e.g. refunds)</option>
-            <option value="manual_selection">A manually hand-picked subset</option>
-          </select>
-        </label>
-        {segmentType !== "unsegmented" ? (
-          <input
-            type="text"
-            value={segmentNote}
-            onChange={(e) => setSegmentNote(e.target.value)}
-            placeholder="Why this subset? (e.g. excludes refunded orders)"
-            className="block w-full rounded-lg border border-border bg-surface px-3 py-1.5 text-sm text-navy"
-          />
-        ) : null}
-        <label className="flex items-center gap-2 text-xs font-medium text-text-muted">
-          <input
-            type="checkbox"
-            checked={incentiveOffered}
-            onChange={(e) => setIncentiveOffered(e.target.checked)}
-            className="rounded border-border"
-          />
-          Offering a discount or incentive in exchange for this review
-        </label>
-        {incentiveOffered ? (
-          <input
-            type="text"
-            value={incentiveDescription}
-            onChange={(e) => setIncentiveDescription(e.target.value)}
-            placeholder="Incentive details (e.g. 10% off next order)"
-            className="block w-full rounded-lg border border-border bg-surface px-3 py-1.5 text-sm text-navy"
-          />
-        ) : null}
-        {incentiveOffered && segmentType === "manual_selection" ? (
-          <p className="rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-800">
-            Heads up: an incentive paired with a manually curated recipient list is the pattern the FTC&apos;s 2019
-            UrthBox enforcement action targeted. This will be flagged in your compliance log for review — it
-            will still send.
-          </p>
-        ) : null}
-      </div>
 
       <div
         className={cn(
