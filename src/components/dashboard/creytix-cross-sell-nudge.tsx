@@ -28,7 +28,25 @@ type Props = {
  * same mechanism as `EarnedStarTrustBanner`. Gated OFF by default behind
  * `crossSellNudgesEnabled()` (see `@/lib/feature-flags`); flipping it on in
  * production is a deploy (Gate G4 in the plan).
+ *
+ * UTM-tagged by default (plan §6 Phase 1 item 5 — "attributable waitlist signups" is the
+ * only honest funnel metric until suite billing exists, per plan §3c/§6). Every nudge gets
+ * utm_content=<id> automatically so click-through is attributable per-nudge without each
+ * call site having to remember to tag its own link.
  */
+function withUtm(href: string, nudgeId: string): string {
+  try {
+    const url = new URL(href);
+    url.searchParams.set("utm_source", "earnedstar");
+    url.searchParams.set("utm_medium", "nudge");
+    url.searchParams.set("utm_campaign", "cross-sell");
+    url.searchParams.set("utm_content", nudgeId);
+    return url.toString();
+  } catch {
+    return href; // malformed href — fail open to the plain link rather than throw in render
+  }
+}
+
 export function CreytixCrossSellNudge({
   id,
   message,
@@ -38,6 +56,7 @@ export function CreytixCrossSellNudge({
   const [visible, setVisible] = useState(false);
   const enabled = crossSellNudgesEnabled();
   const storageKey = `${STORAGE_PREFIX}${id}-dismissed`;
+  const taggedHref = withUtm(href, id);
 
   useEffect(() => {
     if (!enabled) return;
@@ -64,7 +83,7 @@ export function CreytixCrossSellNudge({
       <p className="flex-1">
         {message}{" "}
         <a
-          href={href}
+          href={taggedHref}
           target="_blank"
           rel="noopener noreferrer"
           className="font-semibold underline underline-offset-2"
