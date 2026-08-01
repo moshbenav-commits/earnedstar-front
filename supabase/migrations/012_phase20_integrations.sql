@@ -47,3 +47,14 @@ CREATE TABLE IF NOT EXISTS es_integration_api_keys (
 
 CREATE INDEX IF NOT EXISTS es_integration_api_keys_business_idx
   ON es_integration_api_keys (business_id, created_at DESC);
+
+-- RLS lockdown (see 014_enable_rls_lockdown.sql): every new public table must
+-- enable RLS in its own migration. Without this, all three tables below are
+-- readable/writable through PostgREST with the anon key that ships in the
+-- browser bundle — including es_webhook_endpoints.secret (webhook signing
+-- secrets) and es_integration_api_keys.key_hash / key_prefix.
+-- No policies are added: deny-by-default for anon/authenticated is the intent.
+-- The NestJS backend is unaffected — it uses SUPABASE_SERVICE_ROLE_KEY (BYPASSRLS).
+alter table public.es_webhook_endpoints enable row level security;
+alter table public.es_webhook_deliveries enable row level security;
+alter table public.es_integration_api_keys enable row level security;
