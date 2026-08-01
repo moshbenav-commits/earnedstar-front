@@ -33,6 +33,15 @@ export interface Review {
   rating_install?: number;
   /** Optional vertical-specific metadata (fitment, size, etc.) */
   metadata?: Record<string, string>;
+  /** "organic" (default) or "imported" via Phase 3f CSV migration. */
+  source?: "organic" | "imported";
+  /** Source platform when source === "imported" (yotpo | loox | judgeme | stamped). */
+  import_platform?: string | null;
+  /** Bible Phase 4h — entry-tier auto-translation (not plan-gated). True when
+   * review_text below is a translated string, not the customer's original. */
+  translated?: boolean;
+  /** The original (pre-translation) review text, present only when translated === true. */
+  review_text_original?: string;
 }
 
 export interface Merchant {
@@ -50,4 +59,14 @@ export interface Merchant {
   public_profile_enabled?: boolean;
   review_summary_ai?: string | null;
   review_summary_generated_at?: string | null;
+  /** Bible Phase 4i — days before re-asking the same customer for a review of the same product (default 90). */
+  review_request_cooldown_days?: number;
+  /** Bible Phase 4h — points awarded to a customer when their review is published (0 = disabled). */
+  points_per_review?: number;
+  /** Bible Phase 4h — points awarded to the referrer when a referral converts (0 = disabled). */
+  points_per_referral?: number;
+  /** Bible Phase 4i — B2B/wholesale review collection opt-in. Off by default. */
+  b2b_mode_enabled?: boolean;
+  /** Bible Phase 4i — days to wait after fulfillment before requesting a review on a B2B order (default 30). */
+  b2b_default_delay_days?: number;
 }

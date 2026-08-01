@@ -8,7 +8,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Copy, Trash2 } from "lucide-react";
-import { formatPlanLimit, isAtCap, limitsFor } from "@/lib/plan-enforcement";
+import { canAccessQa, formatPlanLimit, isAtCap, limitsFor } from "@/lib/plan-enforcement";
 
 export type SavedWidget = {
   id: string;
@@ -25,6 +25,7 @@ const WIDGET_TYPES = [
   { id: "testimonial", label: "Testimonial" },
   { id: "feed", label: "Feed" },
   { id: "floating", label: "Floating bubble" },
+  { id: "qa", label: "Q&A (Pro+)" },
 ] as const;
 
 export function WidgetBuilder({
@@ -45,10 +46,11 @@ export function WidgetBuilder({
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const widgetLimit = limitsFor(plan).widgets;
   const atWidgetLimit = isAtCap(widgets.length, widgetLimit);
+  const qaWidgetLocked = widgetType === "qa" && !canAccessQa(plan);
 
   async function handleCreate(e: React.FormEvent) {
     e.preventDefault();
-    if (atWidgetLimit) return;
+    if (atWidgetLimit || qaWidgetLocked) return;
     setLoading(true);
     setError(null);
     try {
@@ -121,14 +123,19 @@ export function WidgetBuilder({
               className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm"
             >
               {WIDGET_TYPES.map((t) => (
-                <option key={t.id} value={t.id}>
+                <option key={t.id} value={t.id} disabled={t.id === "qa" && !canAccessQa(plan)}>
                   {t.label}
                 </option>
               ))}
             </select>
+            {qaWidgetLocked ? (
+              <span className="mt-1 block text-xs text-amber-700">
+                The Q&amp;A widget requires the Pro plan or higher — upgrade in Settings to enable it.
+              </span>
+            ) : null}
           </label>
           <label className="block text-sm font-medium text-navy">
-            Max reviews
+            {widgetType === "qa" ? "Max questions" : "Max reviews"}
             <input
               type="number"
               min={1}
@@ -139,7 +146,7 @@ export function WidgetBuilder({
             />
           </label>
           <div className="flex items-end">
-            <Button type="submit" disabled={loading || atWidgetLimit}>
+            <Button type="submit" disabled={loading || atWidgetLimit || qaWidgetLocked}>
               {loading ? "Saving…" : "Save widget"}
             </Button>
           </div>

@@ -79,7 +79,11 @@ export function TrustCounterStrip() {
   ];
 
   return (
-    <div className="relative border-t border-white/10 bg-ink-deep/40 backdrop-blur-sm" data-surface="dark">
+    /* Solid ink-deep (not the previous /40 translucent version) — the old
+     * translucent fill composited against the cream page background behind
+     * it into a mid-grey band (~#96979b), which broke contrast for every
+     * text color in this strip that was tuned for a true dark backdrop. */
+    <div className="relative border-t border-white/10 bg-ink-deep" data-surface="dark">
       <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 px-6 py-8 md:grid-cols-4 md:gap-12 sm:px-10 lg:px-14">
         {items.map((item) => (
           <div key={item.label} className="relative">
@@ -89,17 +93,17 @@ export function TrustCounterStrip() {
                 <TickingNumber value={item.value} suffix={item.suffix} />
               </div>
               <div className="smallcaps mt-2.5 text-[9.5px] text-gold-light">{item.label}</div>
-              <div className="mt-1 text-[10px] text-white/35">{item.sub}</div>
+              <div className="mt-1 text-[10px] text-white/60">{item.sub}</div>
             </div>
           </div>
         ))}
       </div>
       <div className="border-t border-white/10">
         <div className="marquee-mask mx-auto flex max-w-[1400px] items-center gap-6 overflow-hidden px-6 py-4 sm:px-10 lg:px-14">
-          <span className="smallcaps shrink-0 text-[10px] text-white/45">As seen in</span>
+          <span className="smallcaps shrink-0 text-[10px] text-white/60">As seen in</span>
           <div className="animate-editorial-ticker flex items-center gap-10 whitespace-nowrap">
             {[...PRESS_LOGOS, ...PRESS_LOGOS].map((name, i) => (
-              <span key={`${name}-${i}`} className="font-heading text-lg italic tracking-tight text-white/45">
+              <span key={`${name}-${i}`} className="font-heading text-lg italic tracking-tight text-white/60">
                 {name}
               </span>
             ))}

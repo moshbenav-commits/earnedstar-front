@@ -11,7 +11,8 @@
   --navy-light: #2a4d8f;
   --navy-pale: #ebf0fa;
   --gold: #f59e0b;
-  --gold-dark: #d97706;
+  /* Deepened 2026-07-26 for WCAG AA text contrast (was #d97706, 2.9:1 on cream) */
+  --gold-dark: #9a4a08;
   --gold-light: #fde68a;
   --gold-pale: #fffbeb;
   --green: #059669;

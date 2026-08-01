@@ -15,7 +15,7 @@ export async function GET(
   const { slug } = await params;
   const sp = req.nextUrl.searchParams;
   const query = new URLSearchParams();
-  for (const key of ["limit", "offset", "page", "sort", "min_rating", "ymm_year", "ymm_make", "ymm_model", "has_photos"]) {
+  for (const key of ["limit", "offset", "page", "sort", "min_rating", "ymm_year", "ymm_make", "ymm_model", "has_photos", "lang"]) {
     const val = sp.get(key);
     if (val) query.set(key, val);
   }
