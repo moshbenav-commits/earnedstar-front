@@ -23,7 +23,7 @@
     "mobile:add:android": "npx cap add android",
     "mobile:ios": "npx cap open ios",
     "mobile:android": "npx cap open android",
-    "test": "node --test"
+    "test": "node --test test/smoke.test.js"
   },
   "dependencies": {
     "@creytix/partner-kit": "file:./vendor/creytix-partner-kit",
