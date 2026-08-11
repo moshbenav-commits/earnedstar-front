@@ -47,3 +47,5 @@ next-env.d.ts
 
 # local agent worktrees
 .claude/
+# added by evalforge fix (env safety)
+.env
