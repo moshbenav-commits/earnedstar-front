@@ -1,0 +1,19 @@
+{
+  "sessionId": "d0d6c795-19ac-453b-a1ff-d450e3fa7402",
+  "machine": "laptop",
+  "thread": "Image lane redirected to style-pack mood stills",
+  "repos": ["expedia-solutions"],
+  "inFlight": [
+    "225 style-kit-mood mflux --generic jobs pending",
+    "Worker finishing last regen-ah flux2-edit then drains kits",
+    "Overnight enqueue agent unloaded; STOP + HOLD-STYLE-KITS.txt"
+  ],
+  "nextStep": "After drain: npm run style-kits:mood-boards:images -- --ingest-lane --wire && npm run style-kits:mood-boards:build -- --refresh-generated. Do not resume overnight-regen until kits complete.",
+  "verify": [
+    "pending mix is mflux generic style-kit only",
+    "com.creytix.image-lane-enqueue unloaded",
+    "com.creytix.image-lane worker still loaded"
+  ],
+  "lane": "media-pipeline",
+  "updatedAt": "2026-08-17T09:40:00-07:00"
+}

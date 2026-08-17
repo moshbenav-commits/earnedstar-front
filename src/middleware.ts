@@ -3,13 +3,19 @@
  * Proprietary and confidential. Unauthorized copying, distribution, or use
  * is strictly prohibited without express written permission.
  */
+/**
+ * Edge `middleware` (not Next 16 `proxy.ts`). OpenNext Cloudflare 1.20.2
+ * hard-exits on Node.js proxy; this file is the Edge path. Restore `src/proxy.ts`
+ * when `@opennextjs/cloudflare` ships proxy.ts support. PRC-023 Wave 2.
+ */
+
 import { NextResponse, type NextRequest } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 import { getSupabaseEnv } from '@/lib/supabase/env';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'https://earnedstar-back.vercel.app/api';
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { url, anonKey, configured } = getSupabaseEnv();
   const devBypass = process.env.EARNEDSTAR_AUTH_DEV_BYPASS === '1';
   let response = NextResponse.next({ request });
