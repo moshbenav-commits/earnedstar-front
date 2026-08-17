@@ -1,3 +1,14 @@
+/* creytix:x-opennext-smoke */
+function __creytixStampOpenNext(res) {
+  if (!res || typeof res !== "object") return res;
+  try {
+    const headers = new Headers(res.headers);
+    headers.set("x-opennext", "1");
+    return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
+  } catch {
+    return res;
+  }
+}
 //@ts-expect-error: Will be resolved by wrangler build
 import { handleCdnCgiImageRequest, handleImageRequest } from "./cloudflare/images.js";
 //@ts-expect-error: Will be resolved by wrangler build
@@ -14,7 +25,7 @@ export { DOShardedTagCache } from "./.build/durable-objects/sharded-tag-cache.js
 export { BucketCachePurge } from "./.build/durable-objects/bucket-cache-purge.js";
 export default {
     async fetch(request, env, ctx) {
-        return runWithCloudflareRequestContext(request, env, ctx, async () => {
+        return __creytixStampOpenNext(await runWithCloudflareRequestContext(request, env, ctx, async () => {
             const response = maybeGetSkewProtectionResponse(request);
             if (response) {
                 return response;
@@ -38,6 +49,6 @@ export default {
             // @ts-expect-error: resolved by wrangler build
             const { handler } = await import("./server-functions/default/handler.mjs");
             return handler(reqOrResp, env, ctx, request.signal);
-        });
+        }));
     },
 };
