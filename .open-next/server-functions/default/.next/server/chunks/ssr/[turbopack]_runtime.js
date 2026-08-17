@@ -1310,7 +1310,8 @@ module.exports = (sourcePath)=>({
 
   async function loadWasmChunk(chunkPath) {
     switch (chunkPath) {
-
+      case "/Users/ricardo/Expedia Solutions/earnedstar/.open-next/server-functions/default/node_modules/next/dist/compiled/@vercel/og/resvg.wasm": return (await import("/Users/ricardo/Expedia Solutions/earnedstar/.open-next/server-functions/default/node_modules/next/dist/compiled/@vercel/og/resvg.wasm")).default;
+      case "/Users/ricardo/Expedia Solutions/earnedstar/.open-next/server-functions/default/node_modules/next/dist/compiled/@vercel/og/yoga.wasm": return (await import("/Users/ricardo/Expedia Solutions/earnedstar/.open-next/server-functions/default/node_modules/next/dist/compiled/@vercel/og/yoga.wasm")).default;
       default:
         throw new Error(`Unknown wasm chunk: ${chunkPath}`);
     }
