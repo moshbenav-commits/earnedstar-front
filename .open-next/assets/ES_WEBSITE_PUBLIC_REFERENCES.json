@@ -1,0 +1,123 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-06-28T23:25:52.099Z",
+  "brand": "earnedstar",
+  "baseUrl": "https://www.expediaparts.com",
+  "indexUrl": "https://www.expediaparts.com/higgsfield/staging/earnedstar",
+  "indexPath": "/higgsfield/staging/earnedstar",
+  "essenceIndexUrl": "https://www.expediaparts.com/higgsfield/essence",
+  "essenceStarUrl": "https://www.expediaparts.com/higgsfield/essence/earnedstar/es-brand-essence/01-origami-star-3d.webp",
+  "doc": "docs/prompts/higgsfield/NANO_BANANA_URL_REFERENCE_WORKFLOW.md",
+  "syncCli": "npm run brand:earnedstar:public-sync",
+  "purpose": "Public HTTPS URLs for OpenAI / ChatGPT image prompts and URL-in-prompt grounding.",
+  "assets": [
+    {
+      "assetId": "ES002",
+      "name": "Gallery — origami lucky star lockup 3D",
+      "prompt": "Edit image one based on the prompt. Preserve exact Japanese origami lucky star geometry from reference — puffy five-point paper fold (折り紙 wishing star), soft crease facets, navy #0F2044 body and gold #F59E0B seam accents, radial paper gradient. NOT military medal, NOT laurel wreath, NOT sharp trophy star, NOT judicial seal. Premium 3D gallery hero: EarnedStar horizontal lockup — origami lucky star mark left, wordmark right, soft studio rim light on navy editorial background, photoreal SaaS marketing still.",
+      "sourcePath": "brand/earnedstar/stills/es002-nano-banana.png",
+      "publicPath": "/higgsfield/staging/earnedstar/es002-gallery-lockup.webp",
+      "publicUrl": "https://www.expediaparts.com/higgsfield/staging/earnedstar/es002-gallery-lockup.webp",
+      "localPublicPath": "expedia-parts-front/public/higgsfield/staging/earnedstar/es002-gallery-lockup.webp",
+      "width": 1024,
+      "height": 682,
+      "bytes": 36436
+    },
+    {
+      "assetId": "ES003",
+      "name": "Gallery — motto plaque 3D",
+      "prompt": "3D engraved motto plaque on dark navy stone: No order, no star. Every review is real. Gold serif lettering, subtle gold dust, premium editorial product shot, centered composition.",
+      "sourcePath": "brand/earnedstar/stills/es003-nano-banana.png",
+      "publicPath": "/higgsfield/staging/earnedstar/es003-motto-plaque.webp",
+      "publicUrl": "https://www.expediaparts.com/higgsfield/staging/earnedstar/es003-motto-plaque.webp",
+      "localPublicPath": "expedia-parts-front/public/higgsfield/staging/earnedstar/es003-motto-plaque.webp",
+      "width": 1024,
+      "height": 682,
+      "bytes": 104940
+    },
+    {
+      "assetId": "ES004",
+      "name": "Brand system board — origami star family",
+      "prompt": "EarnedStar brand board on cream editorial desk: origami lucky star marks in navy and gold, wordmark lockups, color chips #0F2044 and #F59E0B, verified green chip small, top-down product photography, no readable fake URLs.",
+      "sourcePath": "brand/earnedstar/stills/es004-nano-banana.png",
+      "publicPath": "/higgsfield/staging/earnedstar/es004-brand-board.webp",
+      "publicUrl": "https://www.expediaparts.com/higgsfield/staging/earnedstar/es004-brand-board.webp",
+      "localPublicPath": "expedia-parts-front/public/higgsfield/staging/earnedstar/es004-brand-board.webp",
+      "width": 1024,
+      "height": 682,
+      "bytes": 90584
+    },
+    {
+      "assetId": "ES005",
+      "name": "Q1 Leader award badge chrome",
+      "prompt": "Circular award medal badge Q1 Leader — EarnedStar origami star center, machined gold rim, navy enamel, subtle specular sheen, floating on dark gradient, premium SaaS trust badge not sports trophy.",
+      "sourcePath": "brand/earnedstar/stills/es005-nano-banana.png",
+      "publicPath": "/higgsfield/staging/earnedstar/es005-q1-leader-badge.webp",
+      "publicUrl": "https://www.expediaparts.com/higgsfield/staging/earnedstar/es005-q1-leader-badge.webp",
+      "localPublicPath": "expedia-parts-front/public/higgsfield/staging/earnedstar/es005-q1-leader-badge.webp",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 116046
+    },
+    {
+      "assetId": "ES006",
+      "name": "Verified Human trust badge",
+      "prompt": "Verified Human badge — shield with origami star and subtle human silhouette check, emerald verified ring accent only on chip, navy and gold EarnedStar palette, 3D chrome sticker on dark background.",
+      "sourcePath": "brand/earnedstar/stills/es006-nano-banana.png",
+      "publicPath": "/higgsfield/staging/earnedstar/es006-verified-human-badge.webp",
+      "publicUrl": "https://www.expediaparts.com/higgsfield/staging/earnedstar/es006-verified-human-badge.webp",
+      "localPublicPath": "expedia-parts-front/public/higgsfield/staging/earnedstar/es006-verified-human-badge.webp",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 105996
+    },
+    {
+      "assetId": "ES007",
+      "name": "Progressive rating badge chrome",
+      "prompt": "EarnedStar rating badge showing five progressive gold stars 4.8 score, origami star medallion left, machined metal card on navy, subtle glass edge, SaaS review widget chrome not Amazon stars.",
+      "sourcePath": "brand/earnedstar/stills/es007-nano-banana.png",
+      "publicPath": "/higgsfield/staging/earnedstar/es007-rating-badge-48.webp",
+      "publicUrl": "https://www.expediaparts.com/higgsfield/staging/earnedstar/es007-rating-badge-48.webp",
+      "localPublicPath": "expedia-parts-front/public/higgsfield/staging/earnedstar/es007-rating-badge-48.webp",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 74062
+    },
+    {
+      "assetId": "ES009",
+      "name": "OG social image 1200x630",
+      "prompt": "EarnedStar OG card 16:9 — navy editorial background, large origami lucky star left, headline area right: Only verified buyers earn your stars, gold accent line, clean SaaS marketing not automotive.",
+      "sourcePath": "brand/earnedstar/stills/es009-nano-banana.png",
+      "publicPath": "/higgsfield/staging/earnedstar/es009-og-social.webp",
+      "publicUrl": "https://www.expediaparts.com/higgsfield/staging/earnedstar/es009-og-social.webp",
+      "localPublicPath": "expedia-parts-front/public/higgsfield/staging/earnedstar/es009-og-social.webp",
+      "width": 1024,
+      "height": 682,
+      "bytes": 42616
+    },
+    {
+      "assetId": "ES010",
+      "name": "Pricing page hero",
+      "prompt": "EarnedStar pricing hero — split layout SaaS dashboard with verified review metrics and flat pricing cards, navy UI chrome gold CTAs, warm stone page bg bleed, photoreal UI mock not cartoon.",
+      "sourcePath": "brand/earnedstar/stills/es010-nano-banana.png",
+      "publicPath": "/higgsfield/staging/earnedstar/es010-pricing-hero.webp",
+      "publicUrl": "https://www.expediaparts.com/higgsfield/staging/earnedstar/es010-pricing-hero.webp",
+      "localPublicPath": "expedia-parts-front/public/higgsfield/staging/earnedstar/es010-pricing-hero.webp",
+      "width": 1024,
+      "height": 682,
+      "bytes": 100248
+    },
+    {
+      "assetId": "ES011",
+      "name": "Dashboard empty state illustration",
+      "prompt": "Friendly empty state for merchant dashboard — origami star on pedestal waiting for first verified review, soft cream background, minimal line art plus subtle 3D star, encouraging not childish.",
+      "sourcePath": "brand/earnedstar/stills/es011-nano-banana.png",
+      "publicPath": "/higgsfield/staging/earnedstar/es011-dashboard-empty-state.webp",
+      "publicUrl": "https://www.expediaparts.com/higgsfield/staging/earnedstar/es011-dashboard-empty-state.webp",
+      "localPublicPath": "expedia-parts-front/public/higgsfield/staging/earnedstar/es011-dashboard-empty-state.webp",
+      "width": 1024,
+      "height": 682,
+      "bytes": 38260
+    }
+  ]
+}
