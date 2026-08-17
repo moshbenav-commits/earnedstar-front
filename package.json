@@ -23,12 +23,15 @@
     "mobile:add:android": "npx cap add android",
     "mobile:ios": "npx cap open ios",
     "mobile:android": "npx cap open android",
-    "test": "node --test test/smoke.test.js"
+    "test": "node --test test/smoke.test.js",
+    "build:opennext": "next build && node ../scripts/lib/flatten-standalone-for-opennext.mjs --nested=earnedstar,earnedstar-front",
+    "deploy:cf:staging": "node ../scripts/creytix-opennext-staging.mjs --site=earnedstar --deploy"
   },
   "dependencies": {
     "@creytix/partner-kit": "file:./vendor/creytix-partner-kit",
     "@expedia/design-lab": "file:./packages/expedia-design-lab",
     "@expedia/design-system": "file:./packages/expedia-design-system",
+    "@opennextjs/cloudflare": "^1.20.2",
     "@supabase/ssr": "^0.12.0",
     "@supabase/supabase-js": "^2.108.2",
     "clsx": "^2.1.1",
@@ -57,13 +60,17 @@
     "eslint": "^9",
     "eslint-config-next": "^16.2.10",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.123.0"
   },
   "overrides": {
     "sharp": "^0.35.0",
     "postcss": "^8.5.25",
     "tar": "^7.5.22",
     "brace-expansion": "^5.0.9",
+    "minimatch@8": {
+      "brace-expansion": "2.0.2"
+    },
     "esbuild": "^0.28.1",
     "js-yaml": "^5.2.2"
   }
