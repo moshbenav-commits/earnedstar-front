@@ -1,17 +1,9 @@
 {
-  "thread": "House of Bid Local pricing — Neighbor free vs Shop 19 USD/mo proposed",
-  "repos": ["auction-front", "expedia-solutions"],
-  "branch": "auction-front main · workspace laptop-main",
-  "inFlight": [
-    "SSOT auction-front/src/lib/pitch/local-pricing.ts wired on /local /pricing and guide local-marketplace-pickup-only",
-    "Shop 19/mo and bump 3 USD/72h still proposed until Ricardo locks",
-    "Later list #100"
-  ],
-  "nextStep": "Ricardo locks Shop/bump numbers (or another band). Squint http://localhost:3029/local and /pricing. No push/deploy unless asked.",
-  "verify": [
-    "cd \"/Users/ricardo/Expedia Solutions/auction-front\" && npm test"
-  ],
-  "lane": "hold_local",
-  "push": false,
-  "updatedAt": "2026-08-18T14:43:00Z"
+  "thread": "Stand up Creytix Git (Forgejo) on Vultr — loopback only",
+  "repos": ["expedia-solutions"],
+  "inFlight": "Forgejo compose healthy on parts-back-vultr; first-run wizard is the human gate",
+  "nextStep": "Ricardo: ssh -L 3000:127.0.0.1:3000 parts-back-vultr then open http://127.0.0.1:3000/ — Installation + org expedia-solutions. Do not retarget origin or DNS-flip git.creytix.com.",
+  "verify": "ssh parts-back-vultr 'cd /home/deploy/creytix-git && docker compose ps && curl -sI http://127.0.0.1:3000/'",
+  "lane": "creytix-platform",
+  "updatedAt": "2026-08-18T17:39:00Z"
 }
