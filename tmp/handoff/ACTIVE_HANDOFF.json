@@ -1,14 +1,9 @@
 {
-  "thread": "Post-calls EP program A→F",
-  "repos": ["expedia-solutions", "expedia-parts-front", "expedia-parts-back", "creytix-front"],
-  "inFlight": [
-    "A5 LAN PDP ATR3053A-F67 via gamma catalog BFF; cart 500 Nest Postgres not configured",
-    "A6 storefront ENGINE+REMAN unlock proven; associate dock not",
-    "E Content Lake /app/content-lake",
-    "F 3 specified tools mapped; Phone last"
-  ],
-  "nextStep": "Give local expedia-parts-back a non-prod DATABASE_URL (never the Supabase prod pooler) so POST /api/cart/items can add ATR3053A-F67; then sandbox checkout URL → later #8 email to moshbenav@gmail.com. Do not flip NEXT_PUBLIC_PAYMENTS_ENABLED. Do not deploy:prod.",
-  "verify": "curl LAN /api/products/ATR3053A-F67 200; browser PDP title Remanufactured Transmission; POST /api/cart/items with x-session-id still 500 until Nest Postgres",
-  "lane": "post-calls-execution",
-  "updatedAt": "2026-08-18T19:40:00-07:00"
+  "thread": "Creytix public homepage OS revamp",
+  "repos": ["creytix-front", "expedia-solutions"],
+  "inFlight": "feat/creytix-homepage-os-revamp pushed (6c24d50). Workspace canon on laptop-main, not origin/main.",
+  "nextStep": "Ricardo review http://127.0.0.1:3058/ then land creytix-front. Do not deploy:prod.",
+  "verify": "HTTP 200, one H1, no overflow at 1440/390",
+  "lane": "push_only",
+  "updatedAt": "2026-08-18T19:55:00-07:00"
 }
