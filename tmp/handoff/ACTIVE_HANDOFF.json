@@ -1,15 +1,19 @@
 {
-  "thread": "HoB leftover gates — policies, D1/KV, land queue, OpenNext, Arrive CTA",
-  "repos": ["expedia-solutions", "auction-front", "expedia-parts-back"],
-  "branch": "laptop-main",
-  "inFlight": [],
-  "nextStep": "Paste Stripe pk_test_/sk_test_ at http://127.0.0.1:9778 so secrets:family -- stripe --sandbox exits 0 (rec #156). Do not AUCTION_CHECKOUT_LIVE. Do not land laptop-main onto origin/main.",
-  "verify": [
-    "curl -sS 'https://houseofbid.moshbenav.workers.dev/api/listing-comments?host=hob&listingId=isolate-smoke-1787162818' → 200 + persist-across-isolate",
-    "listing-comments tracker phase 6",
-    "OpenNext smoke GET workers.dev HTTP 200 x-opennext: 1"
+  "thread": "AlignHeart rebrand — Phase 4b app-dir rename (aligned-chemistry-front/back -> alignheart-front/back)",
+  "repos": ["expedia-solutions"],
+  "branch": "rebrand/alignheart-phase4a",
+  "inFlight": [
+    "aligned-chemistry-front/ -> alignheart-front/ (git mv on disk, ~1121 D + 182 A, UNCOMMITTED)",
+    "aligned-chemistry-back/ -> alignheart-back/ (~170 D + A, UNCOMMITTED)",
+    "408 modified files repointing imports/tsconfig/paths + brand/docs/scripts",
+    "2124 total working-tree changes not yet committed"
   ],
-  "lane": "push_only",
+  "nextStep": "New session: (1) resume from handoff branch or working tree; (2) finish Phase 4b per docs/creytix/ALIGNHEART_REBRAND_MIGRATION_PLAN.md section 2 — fix imports/tsconfig/vercel config for renamed app dirs, ship public/assets aligned-chemistry URL redirects BEFORE any deploy, rename docs/aligned-chemistry/; (3) verify tsc --noEmit on alignheart-front + node --check changed scripts; (4) commit in small local slices (RT-05: no push/deploy without Ricardo's per-action OK). See docs/creytix/HANDOFF_ALIGNHEART_PHASE4B.md.",
+  "verify": [
+    "test -d alignheart-front && ! test -d aligned-chemistry-front",
+    "rg -l 'aligned-chemistry-front|aligned-chemistry-back' --glob '!docs/**' --glob '!*.md' | head"
+  ],
+  "lane": "hold_local",
   "push": false,
-  "updatedAt": "2026-08-19T18:07:30Z"
+  "updatedAt": "2026-07-22T12:00:00Z"
 }
