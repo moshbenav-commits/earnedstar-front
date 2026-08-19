@@ -2,18 +2,14 @@
   "thread": "HoB leftover gates — policies, D1/KV, land queue, OpenNext, Arrive CTA",
   "repos": ["expedia-solutions", "auction-front", "expedia-parts-back"],
   "branch": "laptop-main",
-  "inFlight": [
-    "OpenNext --site=houseofbid --deploy retry after LotGallery import (PID in Cursor terminals)",
-    "D1 houseofbid-listing-comments + KV LISTING_COMMENTS bound in auction-front/wrangler.jsonc",
-    "listing-comments kit landed on local main 3f3c93f9405c",
-    "Stripe vault still live keys — rec #156 for pk_test_/sk_test_ at :9778"
-  ],
-  "nextStep": "Wait for OpenNext houseofbid deploy; GET/PUT /api/listing-comments on workers.dev across a new isolate; only then bump listing-comments tracker phase 5→6. Do not AUCTION_CHECKOUT_LIVE. Do not land laptop-main onto origin/main.",
+  "inFlight": [],
+  "nextStep": "Paste Stripe pk_test_/sk_test_ at http://127.0.0.1:9778 so secrets:family -- stripe --sandbox exits 0 (rec #156). Do not AUCTION_CHECKOUT_LIVE. Do not land laptop-main onto origin/main.",
   "verify": [
-    "curl -sI https://houseofbid.moshbenav.workers.dev/",
-    "curl -sS https://houseofbid.moshbenav.workers.dev/api/listing-comments?listingId=smoke-1"
+    "curl -sS 'https://houseofbid.moshbenav.workers.dev/api/listing-comments?host=hob&listingId=isolate-smoke-1787162818' → 200 + persist-across-isolate",
+    "listing-comments tracker phase 6",
+    "OpenNext smoke GET workers.dev HTTP 200 x-opennext: 1"
   ],
   "lane": "push_only",
   "push": false,
-  "updatedAt": "2026-08-19T17:58:00Z"
+  "updatedAt": "2026-08-19T18:07:30Z"
 }
