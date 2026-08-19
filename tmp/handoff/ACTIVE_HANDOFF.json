@@ -1,0 +1,9 @@
+{
+  "thread": "Stand up Creytix Git (Forgejo) on Vultr — loopback only",
+  "repos": ["expedia-solutions"],
+  "inFlight": "Forgejo compose healthy on parts-back-vultr; first-run wizard is the human gate",
+  "nextStep": "Ricardo: ssh -L 3000:127.0.0.1:3000 parts-back-vultr then open http://127.0.0.1:3000/ — Installation + org expedia-solutions. Do not retarget origin or DNS-flip git.creytix.com.",
+  "verify": "ssh parts-back-vultr 'cd /home/deploy/creytix-git && docker compose ps && curl -sI http://127.0.0.1:3000/'",
+  "lane": "creytix-platform",
+  "updatedAt": "2026-08-18T17:39:00Z"
+}

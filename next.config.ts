@@ -4,8 +4,13 @@
  * is strictly prohibited without express written permission.
  */
 import type { NextConfig } from "next";
+/** PRC-023 Wave 2 — OpenNext on Workers. Leave Vercel `next build` unchanged. */
+const isOpenNext = process.env.OPENNEXT_BUILD === "1";
+
 
 const nextConfig: NextConfig = {
+  ...(isOpenNext ? { output: "standalone" as const } : {}),
+  ...(isOpenNext ? { serverExternalPackages: ["sharp"] } : {}),
   transpilePackages: ["@expedia/design-system", "@expedia/design-lab"],
   async rewrites() {
     return [
@@ -14,6 +19,7 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    ...(isOpenNext ? { unoptimized: true } : {}),
     remotePatterns: [
       { protocol: "https", hostname: "www.expediaparts.com", pathname: "/**" },
       { protocol: "https", hostname: "expediaparts.com", pathname: "/**" },
