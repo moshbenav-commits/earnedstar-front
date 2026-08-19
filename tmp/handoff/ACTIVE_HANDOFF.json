@@ -2,15 +2,15 @@
   "thread": "Creytix.com visual QA + performance pipeline",
   "repos": ["expedia-solutions", "creytix-front"],
   "inFlight": [
-    "Site Direction Pack VALID; homepage OS live with story-idea.png LCP",
-    "Prior PRC-029 run was offline-only (P2/P3 skipped)",
-    "Live --until-clean + predeploy + browser QA interrupted — resuming"
+    "Direction Pack VALID; H1 locked; LCP is story-idea.webp locally (PNG still on live)",
+    "Contrast + carousel stills + CWV waitUntil=load + scanner brand=creytix",
+    "Live PRC-029 FAIL LCP 12132ms — deploy required before re-measure"
   ],
-  "nextStep": "Finish live creytix:performance --until-clean --url=https://www.creytix.com/, creytix:predeploy:check, desktop+mobile visual QA on /",
+  "nextStep": "On Ricardo deploy ask: ship creytix-front, then creytix:performance --until-clean --url=https://www.creytix.com/",
   "verify": [
-    "tmp/creytix-performance-last.json overall=DONE url=https://www.creytix.com/",
-    "predeploy check on https://www.creytix.com"
+    "npm run design:conformance:scan -- --repo creytix-front (brand=creytix; remaining hex is SVG/picker debt)",
+    "Live LCP after deploy < prior 12s lab (WebP 13KB vs PNG 719KB)"
   ],
   "lane": "creytix-platform",
-  "updatedAt": "2026-08-19T23:07:00Z"
+  "updatedAt": "2026-08-19T23:22:00Z"
 }
