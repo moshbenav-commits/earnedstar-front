@@ -1,19 +1,19 @@
 {
-  "thread": "AlignHeart rebrand — Phase 4b app-dir rename (aligned-chemistry-front/back -> alignheart-front/back)",
-  "repos": ["expedia-solutions"],
-  "branch": "rebrand/alignheart-phase4a",
+  "thread": "HoB leftover gates — policies, D1/KV, land queue, OpenNext, Arrive CTA",
+  "repos": ["expedia-solutions", "auction-front", "expedia-parts-back"],
+  "branch": "laptop-main",
   "inFlight": [
-    "aligned-chemistry-front/ -> alignheart-front/ (git mv on disk, ~1121 D + 182 A, UNCOMMITTED)",
-    "aligned-chemistry-back/ -> alignheart-back/ (~170 D + A, UNCOMMITTED)",
-    "408 modified files repointing imports/tsconfig/paths + brand/docs/scripts",
-    "2124 total working-tree changes not yet committed"
+    "OpenNext --site=houseofbid --deploy retry after LotGallery import (PID in Cursor terminals)",
+    "D1 houseofbid-listing-comments + KV LISTING_COMMENTS bound in auction-front/wrangler.jsonc",
+    "listing-comments kit landed on local main 3f3c93f9405c",
+    "Stripe vault still live keys — rec #156 for pk_test_/sk_test_ at :9778"
   ],
-  "nextStep": "New session: (1) resume from handoff branch or working tree; (2) finish Phase 4b per docs/creytix/ALIGNHEART_REBRAND_MIGRATION_PLAN.md section 2 — fix imports/tsconfig/vercel config for renamed app dirs, ship public/assets aligned-chemistry URL redirects BEFORE any deploy, rename docs/aligned-chemistry/; (3) verify tsc --noEmit on alignheart-front + node --check changed scripts; (4) commit in small local slices (RT-05: no push/deploy without Ricardo's per-action OK). See docs/creytix/HANDOFF_ALIGNHEART_PHASE4B.md.",
+  "nextStep": "Wait for OpenNext houseofbid deploy; GET/PUT /api/listing-comments on workers.dev across a new isolate; only then bump listing-comments tracker phase 5→6. Do not AUCTION_CHECKOUT_LIVE. Do not land laptop-main onto origin/main.",
   "verify": [
-    "test -d alignheart-front && ! test -d aligned-chemistry-front",
-    "rg -l 'aligned-chemistry-front|aligned-chemistry-back' --glob '!docs/**' --glob '!*.md' | head"
+    "curl -sI https://houseofbid.moshbenav.workers.dev/",
+    "curl -sS https://houseofbid.moshbenav.workers.dev/api/listing-comments?listingId=smoke-1"
   ],
-  "lane": "hold_local",
+  "lane": "push_only",
   "push": false,
-  "updatedAt": "2026-07-22T12:00:00Z"
+  "updatedAt": "2026-08-19T17:58:00Z"
 }
