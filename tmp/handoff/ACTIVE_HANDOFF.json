@@ -1,15 +1,1 @@
-{
-  "thread": "Laptop local image lane — Creytix + House of Bid flux2-edit",
-  "repos": ["expedia-solutions"],
-  "inFlight": [
-    "IMAGE_LANE_ROOT=/Volumes/CreytixImages/creytix-image-lane-live (338GB free)",
-    "18 flux2-edit jobs queued (13 Creytix v2 + 5 HoB v2)"
-  ],
-  "nextStep": "Watch npm run image:lane:status until pending drains; review outputs on CreytixImages",
-  "verify": [
-    "queue pending+running+done for the 18 jobs",
-    "/Volumes/CreytixImages/creytix-image-lane-live/outputs/"
-  ],
-  "lane": "media-pipeline",
-  "updatedAt": "2026-08-20T04:02:00Z"
-}
+{"thread":"image-lane creytix+hob promote","status":"done","nextStep":"Ricardo review http://localhost:3025/app/tools/image-lane Results tab","updatedAt":"2026-08-20T07:57:14Z"}
