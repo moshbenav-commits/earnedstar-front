@@ -2,15 +2,16 @@
   "thread": "Creytix.com visual QA + performance pipeline",
   "repos": ["expedia-solutions", "creytix-front"],
   "inFlight": [
-    "Direction Pack VALID; H1 locked; LCP is story-idea.webp locally (PNG still on live)",
-    "Contrast + carousel stills + CWV waitUntil=load + scanner brand=creytix",
-    "Live PRC-029 FAIL LCP 12132ms — deploy required before re-measure"
+    "creytix-front dd6e420 pushed: WebP still refs + /go copy",
+    "deploy:prod running so live LCP/contrast/tap-targets actually change",
+    "Nav 44px, Request a seat CTA, Arrive only on /go already on main (debe829+)"
   ],
-  "nextStep": "On Ricardo deploy ask: ship creytix-front, then creytix:performance --until-clean --url=https://www.creytix.com/",
+  "nextStep": "After Vercel prod finishes: npm run creytix:performance -- --until-clean --url=https://www.creytix.com/ --images-dir=creytix-front/public/creytix/homepage-os then creytix:predeploy:check -- https://www.creytix.com",
   "verify": [
-    "npm run design:conformance:scan -- --repo creytix-front (brand=creytix; remaining hex is SVG/picker debt)",
-    "Live LCP after deploy < prior 12s lab (WebP 13KB vs PNG 719KB)"
+    "Live LCP after deploy << 12132ms (story-idea.webp ~13KB)",
+    "Contrast: Grow/Arrive Continue text-cx-shell on teal",
+    "Tap targets: header nav min-h-11; no sticky Arrive bar on homepage"
   ],
   "lane": "creytix-platform",
-  "updatedAt": "2026-08-19T23:22:00Z"
+  "updatedAt": "2026-08-19T23:35:00Z"
 }
