@@ -1,15 +1,15 @@
 {
-  "thread": "Laptop HF Chrome CDP batch after HoB + Creytix slice",
-  "repos": ["expedia-solutions", "auction-front", "creytix-front"],
+  "thread": "Laptop CDP stills — remaining Creytix v2 (HoB drained)",
+  "repos": ["expedia-solutions"],
   "inFlight": [
-    "HF Chrome submit on laptop with HF_IGNORE_FLEET_MACHINE=1",
-    "CDP :9222 up; Higgsfield tab was missing — submit will reopen composer"
+    "Start Chrome CDP :9222 (Gemini+Qwen, not Higgsfield stills)",
+    "Qwen-only remaining nano-creytix-creytixv2-* stills (7)"
   ],
-  "nextStep": "Watch tmp/hf-chrome-submit.log; if HF_CREDIT_GUARD, flip Unlimited in CDP Chrome then retry",
+  "nextStep": "After CDP is up: npm run qwen:image:web -- --id-prefix nano-creytix-creytixv2- --limit 7",
   "verify": [
-    "Generate must not show a credit number",
-    "Submitted jobs appear in never-stop summary"
+    "brand/VIDEO_STAGING.json those 7 jobs status ingested",
+    "Output PNGs newer than 2026-08-20"
   ],
   "lane": "media-pipeline",
-  "updatedAt": "2026-08-20T00:24:00Z"
+  "updatedAt": "2026-08-20T03:20:00Z"
 }
