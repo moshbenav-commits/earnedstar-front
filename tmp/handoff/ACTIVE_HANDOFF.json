@@ -1,15 +1,15 @@
 {
-  "thread": "Laptop CDP stills — remaining Creytix v2 (HoB drained)",
+  "thread": "Laptop local image lane — Creytix + House of Bid flux2-edit",
   "repos": ["expedia-solutions"],
   "inFlight": [
-    "Start Chrome CDP :9222 (Gemini+Qwen, not Higgsfield stills)",
-    "Qwen-only remaining nano-creytix-creytixv2-* stills (7)"
+    "IMAGE_LANE_ROOT=/Volumes/CreytixImages/creytix-image-lane-live (338GB free)",
+    "18 flux2-edit jobs queued (13 Creytix v2 + 5 HoB v2)"
   ],
-  "nextStep": "After CDP is up: npm run qwen:image:web -- --id-prefix nano-creytix-creytixv2- --limit 7",
+  "nextStep": "Watch npm run image:lane:status until pending drains; review outputs on CreytixImages",
   "verify": [
-    "brand/VIDEO_STAGING.json those 7 jobs status ingested",
-    "Output PNGs newer than 2026-08-20"
+    "queue pending+running+done for the 18 jobs",
+    "/Volumes/CreytixImages/creytix-image-lane-live/outputs/"
   ],
   "lane": "media-pipeline",
-  "updatedAt": "2026-08-20T03:20:00Z"
+  "updatedAt": "2026-08-20T04:02:00Z"
 }
