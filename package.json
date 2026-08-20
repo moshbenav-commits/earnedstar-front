@@ -23,6 +23,7 @@
     "mobile:add:android": "npx cap add android",
     "mobile:ios": "npx cap open ios",
     "mobile:android": "npx cap open android",
+    "test": "node --test test/smoke.test.js",
     "build:opennext": "next build && node ../scripts/lib/flatten-standalone-for-opennext.mjs --nested=earnedstar,earnedstar-front",
     "deploy:cf:staging": "node ../scripts/creytix-opennext-staging.mjs --site=earnedstar --deploy"
   },
