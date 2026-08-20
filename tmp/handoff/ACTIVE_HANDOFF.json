@@ -1,0 +1,15 @@
+{
+  "thread": "Laptop HF Chrome CDP batch after HoB + Creytix slice",
+  "repos": ["expedia-solutions", "auction-front", "creytix-front"],
+  "inFlight": [
+    "HF Chrome submit on laptop with HF_IGNORE_FLEET_MACHINE=1",
+    "CDP :9222 up; Higgsfield tab was missing — submit will reopen composer"
+  ],
+  "nextStep": "Watch tmp/hf-chrome-submit.log; if HF_CREDIT_GUARD, flip Unlimited in CDP Chrome then retry",
+  "verify": [
+    "Generate must not show a credit number",
+    "Submitted jobs appear in never-stop summary"
+  ],
+  "lane": "media-pipeline",
+  "updatedAt": "2026-08-20T00:24:00Z"
+}
