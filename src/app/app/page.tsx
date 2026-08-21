@@ -15,7 +15,7 @@ export default function DistilledAppPage() {
   return (
     <AppShell activePath="/app">
       <header className="mb-2">
-        <p className="text-[10px] font-extrabold uppercase tracking-[0.22em]" style={{ color: "var(--color-orange, #FF7F0A)" }}>
+        <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-gold">
           EarnedStar
         </p>
         <h1 className="text-2xl font-semibold text-white">App</h1>

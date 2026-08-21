@@ -9,6 +9,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { MESHY } from "@/lib/marketing-editorial-data";
+import { ES_GOLD } from "@/lib/earnedstar-palette";
 
 export function HeroSection() {
   const [dateLabel, setDateLabel] = useState("");
@@ -124,7 +125,7 @@ export function HeroSection() {
                 <defs>
                   <linearGradient id="orbit-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#FDE68A" stopOpacity="0.55" />
-                    <stop offset="50%" stopColor="#F59E0B" stopOpacity="0.28" />
+                    <stop offset="50%" stopColor={ES_GOLD} stopOpacity="0.28" />
                     <stop offset="100%" stopColor="#92400E" stopOpacity="0" />
                   </linearGradient>
                 </defs>

@@ -32,7 +32,7 @@ export function AppShell({
         <header className="sticky top-0 z-10 border-b border-white/10 px-4 py-3 backdrop-blur-sm" style={{ backgroundColor: "#0A1628" + 'f2' }}>
           <div className="mx-auto flex max-w-lg items-center gap-3">
             {backHref ? (
-              <Link href={backHref} className="inline-flex min-h-11 min-w-11 items-center justify-center text-sm font-bold" style={{ color: "var(--color-orange, #FF7F0A)" }}>
+              <Link href={backHref} className="inline-flex min-h-11 min-w-11 items-center justify-center text-sm font-bold text-gold">
                 ← {backLabel}
               </Link>
             ) : null}
@@ -50,8 +50,7 @@ export function AppShell({
                 <Link
                   href={tab.href}
                   aria-current={active ? 'page' : undefined}
-                  className={`flex min-h-14 flex-col items-center justify-center text-xs font-bold uppercase tracking-wide ${active ? '' : 'text-gray-400'}`}
-                  style={active ? { color: "var(--color-orange, #FF7F0A)" } : undefined}
+                  className={`flex min-h-14 flex-col items-center justify-center text-xs font-bold uppercase tracking-wide ${active ? 'text-gold' : 'text-gray-400'}`}
                 >
                   {tab.label}
                 </Link>
