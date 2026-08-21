@@ -39,7 +39,7 @@ export default function YotpoRefugeesPage() {
             <div className="lg:col-span-7">
               <span className="smallcaps text-[10px] text-gold-light">For Yotpo refugees</span>
               <h1 className="font-heading mt-4 text-5xl leading-[1.02] tracking-tight text-balance sm:text-6xl lg:text-7xl">
-                Your Email and SMS just got <em className="text-gold-light">deleted</em>.
+                Your Email and SMS just got <span className="text-gold-light italic">deleted</span>.
                 <br />
                 Move them home in one click.
               </h1>
