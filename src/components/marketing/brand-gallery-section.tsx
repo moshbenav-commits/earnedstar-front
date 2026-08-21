@@ -25,7 +25,10 @@ export function BrandGallerySection() {
         </div>
 
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
-          <div className="vellum-card gilded-edge relative overflow-hidden rounded-2xl p-8 md:p-12 lg:col-span-5">
+          <div
+            className="vellum-card gilded-edge relative overflow-hidden rounded-2xl p-8 md:p-12 lg:col-span-5"
+            data-cx-motion="scroll-parallax-layer"
+          >
             <div className="gold-foil absolute -right-12 -top-12 h-64 w-64 rounded-full opacity-10" aria-hidden />
             <div className="smallcaps relative mb-3 text-[10px] text-gold-dark">Primary — Navy / Gold</div>
             <div className="relative flex justify-center">
