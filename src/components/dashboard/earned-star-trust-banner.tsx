@@ -46,7 +46,7 @@ export function EarnedStarTrustBanner() {
 
   return (
     <section
-      className="border-b border-gold/25 bg-gradient-to-br from-navy via-[#0f2044] to-[#0a1628] px-4 py-6 text-white md:px-8"
+      className="border-b border-gold/25 bg-gradient-to-br from-navy via-navy to-dark-bg px-4 py-6 text-white md:px-8"
       aria-labelledby="earnedstar-trust-heading"
       data-surface="dark"
     >

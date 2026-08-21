@@ -35,7 +35,7 @@ export function ComparisonTableSection() {
           <div className="lg:col-span-7">
             <div className="smallcaps mb-3 text-[10px] text-gold-dark">Receipts — vs. theirs</div>
             <h2 className="font-heading text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02] tracking-tight text-balance">
-              Look at the <em className="text-gold-dark">whole</em> table.
+              Look at the <span className="text-gold-dark italic">whole</span> table.
               <br />
               Not the brochure.
             </h2>

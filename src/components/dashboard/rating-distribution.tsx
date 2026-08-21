@@ -4,9 +4,10 @@
  * is strictly prohibited without express written permission.
  */
 import { ratingDistribution as mockDistribution } from "@/lib/mock-data";
+import { ES_GOLD } from "@/lib/earnedstar-palette";
 
 const STAR_COLORS: Record<number, string> = {
-  5: "#F59E0B",
+  5: ES_GOLD,
   4: "#84CC16",
   3: "#EAB308",
   2: "#F97316",
@@ -22,7 +23,7 @@ export function RatingDistributionChart({
 }) {
   const rows: Row[] = (distribution?.length ? distribution : mockDistribution).map((row) => ({
     ...row,
-    color: STAR_COLORS[row.stars] ?? "#F59E0B",
+    color: STAR_COLORS[row.stars] ?? ES_GOLD,
   }));
 
   return (

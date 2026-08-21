@@ -5,11 +5,12 @@
  */
 import type { ReactNode } from "react";
 import { HERO_TAGLINE } from "@/content/earnedstar-trust-copy";
+import { ES_GOLD } from "@/lib/earnedstar-palette";
 
 type BrandImageVariant = "og" | "icon" | "apple";
 
 const NAVY = "#0b1d58";
-const GOLD = "#f59e0b";
+const GOLD = ES_GOLD;
 const CREAM = "#f0ede6";
 
 function StarMark({ size }: { size: number }) {

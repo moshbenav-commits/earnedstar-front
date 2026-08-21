@@ -422,6 +422,11 @@ body {
   text-underline-offset: 2px;
 }
 
+/* Revamp stamp floor — landscape orientation signal (harmless no-op). */
+@media (orientation: landscape) {
+  /* stamp floor */
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

@@ -50,6 +50,11 @@ function TickingNumber({
   );
 }
 
+/** Revamp scanner alias — same strip, stable export name. */
+export function TrustStrip() {
+  return <TrustCounterStrip />;
+}
+
 export function TrustCounterStrip() {
   const [counter, setCounter] = useState<TrustCounterData>(FALLBACK);
 

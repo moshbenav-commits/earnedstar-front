@@ -18,10 +18,12 @@ import { AuditTeaserSection } from "@/components/marketing/audit-teaser-section"
 import { FaqSection } from "@/components/marketing/faq-section";
 import { ClosingImprintSection } from "@/components/marketing/closing-imprint-section";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
+import { ExitIntentPanel } from "@/components/marketing/exit-intent-panel";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-cream text-ink antialiased">
+      <ExitIntentPanel />
       <MarketingNav />
       <main>
         <HeroSection />
