@@ -8,6 +8,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { ES_GOLD } from "@/lib/earnedstar-palette";
 
 const STAR_PATH =
   "M50 5 L61.8 38.2 L97.6 38.2 L68.1 58.5 L79.4 91.8 L50 71 L20.6 91.8 L31.9 58.5 L2.4 38.2 L38.2 38.2 Z";
@@ -18,7 +19,7 @@ const STAR_COLORS: Record<number, string> = {
   2: "#F97316",
   3: "#EAB308",
   4: "#84CC16",
-  5: "#F59E0B",
+  5: ES_GOLD,
 };
 
 const SENTIMENTS: Record<number, { label: string; pill: string }> = {

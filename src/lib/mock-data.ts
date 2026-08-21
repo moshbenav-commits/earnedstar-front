@@ -4,6 +4,7 @@
  * is strictly prohibited without express written permission.
  */
 import type { Review } from "@/types/review";
+import { ES_GOLD } from "@/lib/earnedstar-palette";
 
 export const mockBusiness = {
   id: "1",
@@ -18,7 +19,7 @@ export const mockBusiness = {
 };
 
 export const ratingDistribution = [
-  { stars: 5, count: 2410, pct: 84.6, color: "#F59E0B" },
+  { stars: 5, count: 2410, pct: 84.6, color: ES_GOLD },
   { stars: 4, count: 312, pct: 11.0, color: "#84CC16" },
   { stars: 3, count: 85, pct: 3.0, color: "#EAB308" },
   { stars: 2, count: 28, pct: 1.0, color: "#F97316" },

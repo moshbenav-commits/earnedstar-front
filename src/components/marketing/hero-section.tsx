@@ -9,6 +9,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { MESHY } from "@/lib/marketing-editorial-data";
+import { ES_GOLD } from "@/lib/earnedstar-palette";
 
 export function HeroSection() {
   const [dateLabel, setDateLabel] = useState("");
@@ -61,9 +62,9 @@ export function HeroSection() {
             className="font-heading text-[clamp(3rem,7vw,6.5rem)] leading-[0.95] tracking-tight text-balance text-white"
           >
             Reviews that{" "}
-            <em className="text-gold-light underline-hand">earned</em>
+            <span className="text-gold-light underline-hand italic">earned</span>
             <br />
-            their place — and <em className="text-gold-light underline-hand">prove</em> it.
+            their place — and <span className="text-gold-light underline-hand italic">prove</span> it.
           </motion.h1>
 
           <motion.p
@@ -85,6 +86,7 @@ export function HeroSection() {
           >
             <Link
               href="/signup"
+              data-design-magic-move={3}
               className="group inline-flex items-center gap-2.5 rounded-full px-6 py-3.5 font-bold text-ink shadow-[0_18px_40px_-12px_rgba(245,158,11,0.5)] transition-all gold-foil hover:shadow-[0_24px_50px_-12px_rgba(245,158,11,0.7)]"
             >
               Start free trial
@@ -123,7 +125,7 @@ export function HeroSection() {
                 <defs>
                   <linearGradient id="orbit-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#FDE68A" stopOpacity="0.55" />
-                    <stop offset="50%" stopColor="#F59E0B" stopOpacity="0.28" />
+                    <stop offset="50%" stopColor={ES_GOLD} stopOpacity="0.28" />
                     <stop offset="100%" stopColor="#92400E" stopOpacity="0" />
                   </linearGradient>
                 </defs>

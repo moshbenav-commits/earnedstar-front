@@ -13,6 +13,7 @@ import { ReviewCard } from "@/components/ui/review-card";
 import { Button } from "@/components/ui/button";
 import { submitReview, uploadReviewPhoto } from "@/lib/earnedstar-client";
 import type { InvitationLookup } from "@/lib/earnedstar-server";
+import { ES_CONFETTI } from "@/lib/earnedstar-palette";
 import type { Review } from "@/types/review";
 import { cn } from "@/lib/utils";
 
@@ -191,7 +192,7 @@ export function ReviewSubmitFlow({
       x: Math.random() * canvas.width,
       y: -20,
       r: 4 + Math.random() * 6,
-      c: ["#F59E0B", "#0F2044", "#059669", "#2A4D8F"][Math.floor(Math.random() * 4)]!,
+      c: ES_CONFETTI[Math.floor(Math.random() * ES_CONFETTI.length)]!,
       vy: 2 + Math.random() * 4,
       vx: -2 + Math.random() * 4,
     }));
@@ -454,7 +455,7 @@ export function ReviewSubmitFlow({
           {step === 4 && (
             <div className="text-center">
               <CheckCircle2 size={56} className="mx-auto text-green" />
-              <h1 className="mt-4 text-2xl font-bold text-navy">🎉 Thank you, {name}!</h1>
+              <h1 className="mt-4 text-2xl font-bold text-navy">Thank you, {name}!</h1>
               <p className="mt-2 text-sm text-text-muted">
                 Your verified review is now live on {storeName}&apos;s page.
                 {ymmMake ? ` You're helping other ${ymmMake} owners make better decisions.` : ""}

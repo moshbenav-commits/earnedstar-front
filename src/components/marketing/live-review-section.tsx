@@ -13,7 +13,7 @@ export function LiveReviewSection() {
       <div className="relative mx-auto max-w-lg px-6 sm:px-10 lg:px-14">
         <p className="smallcaps mb-2 text-center text-[10px] text-gold-light">Live review</p>
         <h2 className="mb-8 text-center font-heading text-3xl text-white sm:text-4xl">
-          See why stores trust <em className="text-gold-light">EarnedStar</em>
+          See why stores trust <span className="text-gold-light italic">EarnedStar</span>
         </h2>
         <HeroReviewCard />
       </div>

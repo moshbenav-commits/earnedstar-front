@@ -24,7 +24,7 @@ export function PricingPageHero() {
           <span className="smallcaps text-[10px] text-gold-light">Pricing</span>
           <h1 className="font-heading mt-4 text-4xl leading-[1.05] tracking-tight text-balance sm:text-5xl lg:text-6xl">
             Simple plans.{" "}
-            <em className="text-gold-light">Earned</em> trust at every tier.
+            <span className="text-gold-light italic">Earned</span> trust at every tier.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
             Flat pricing with verified reviews, native email and SMS, and multi-domain included — no

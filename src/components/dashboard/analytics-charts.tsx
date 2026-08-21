@@ -17,10 +17,11 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { ES_GOLD, ES_GREEN, ES_NAVY } from "@/lib/earnedstar-palette";
 
-const NAVY = "#0F2044";
-const GOLD = "#F59E0B";
-const GREEN = "#059669";
+const NAVY = ES_NAVY;
+const GOLD = ES_GOLD;
+const GREEN = ES_GREEN;
 
 export type AnalyticsPayload = {
   invitationTrend: { week: string; sent: number; completed: number }[];

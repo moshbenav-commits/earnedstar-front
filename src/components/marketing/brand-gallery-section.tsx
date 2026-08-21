@@ -13,12 +13,12 @@ export function BrandGallerySection() {
           <div className="lg:col-span-7">
             <div className="smallcaps mb-3 text-[10px] text-gold-dark">The Mark</div>
             <h2 className="cx-style-heading font-heading text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02] tracking-tight text-balance">
-              A trust badge worth <em className="text-gold-dark underline-hand">earning</em>.
+              A trust badge worth <span className="text-gold-dark underline-hand italic">earning</span>.
             </h2>
           </div>
           <div className="lg:col-span-5">
             <p className="text-pretty leading-[1.65] text-ink/65">
-              Padded navy leather. Gold piping. A medallion that holds <em className="italic">your</em> logo —
+              Padded navy leather. Gold piping. A medallion that holds <span className="italic">your</span> logo —
               because every star on the platform points back to a real merchant who earned it.
             </p>
           </div>

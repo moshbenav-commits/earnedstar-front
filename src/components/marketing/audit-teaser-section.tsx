@@ -15,7 +15,7 @@ export function AuditTeaserSection() {
           <h3 className="font-heading mt-4 text-[clamp(2.2rem,4vw,3.6rem)] leading-[1.05] tracking-tight text-balance">
             Paste any Trustpilot or Yotpo profile.
             <br />
-            <em className="text-gold-dark underline-hand">We&apos;ll estimate how many reviews are fake.</em>
+            <span className="text-gold-dark underline-hand italic">We&apos;ll estimate how many reviews are fake.</span>
           </h3>
           <p className="mt-6 max-w-lg text-pretty leading-[1.65] text-ink/65">
             The Review Audit runs an AI forensic scan and returns a shareable PDF report —
