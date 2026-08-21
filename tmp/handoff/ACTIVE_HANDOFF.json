@@ -1,18 +1,19 @@
 {
-  "thread": "Keep creating needed stills (Image Lane)",
+  "thread": "AlignHeart rebrand — Phase 4b app-dir rename (aligned-chemistry-front/back -> alignheart-front/back)",
   "repos": ["expedia-solutions"],
-  "branch": "laptop-main",
+  "branch": "rebrand/alignheart-phase4a",
   "inFlight": [
-    "Image Lane healthy: pending 16 · running creytixv2-r013 (~20m into ~22–34m qwen-edit)",
-    "Promoted c15 / creytix002 / c19 after Gate 8",
-    "Mac Studio still unreachable from laptop"
+    "aligned-chemistry-front/ -> alignheart-front/ (git mv on disk, ~1121 D + 182 A, UNCOMMITTED)",
+    "aligned-chemistry-back/ -> alignheart-back/ (~170 D + A, UNCOMMITTED)",
+    "408 modified files repointing imports/tsconfig/paths + brand/docs/scripts",
+    "2124 total working-tree changes not yet committed"
   ],
-  "nextStep": "Leave Image Lane draining. After r013 finishes, next pending includes creytixv2-r007/r004/r003/r006 then EP/AH/GMI/SC/EP powertrain regens. Review: http://localhost:3025/app/assets/review",
+  "nextStep": "New session: (1) resume from handoff branch or working tree; (2) finish Phase 4b per docs/creytix/ALIGNHEART_REBRAND_MIGRATION_PLAN.md section 2 — fix imports/tsconfig/vercel config for renamed app dirs, ship public/assets aligned-chemistry URL redirects BEFORE any deploy, rename docs/aligned-chemistry/; (3) verify tsc --noEmit on alignheart-front + node --check changed scripts; (4) commit in small local slices (RT-05: no push/deploy without Ricardo's per-action OK). See docs/creytix/HANDOFF_ALIGNHEART_PHASE4B.md.",
   "verify": [
-    "cd \"/Users/ricardo/Expedia Solutions\" && npm run image:lane:status",
-    "tail -f ~/Library/Logs/creytix-image-lane/worker.err.log"
+    "test -d alignheart-front && ! test -d aligned-chemistry-front",
+    "rg -l 'aligned-chemistry-front|aligned-chemistry-back' --glob '!docs/**' --glob '!*.md' | head"
   ],
-  "lane": "push_only",
+  "lane": "hold_local",
   "push": false,
-  "updatedAt": "2026-08-21T01:57:00.000Z"
+  "updatedAt": "2026-07-22T12:00:00Z"
 }
