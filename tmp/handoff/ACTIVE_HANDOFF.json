@@ -1,7 +1,7 @@
 {
   "thread": "Laptop disk critical — reclaim + LaCie protocol",
   "repos": ["expedia-solutions"],
-  "inFlight": "First-pass rsync of ~/Expedia Solutions to /Volumes/LaCie/Expedia Solutions. Heartbeat reclaim + nightly/compress launchd installed. Internal still ~17GB free.",
+  "inFlight": "ditto copy of ~/Expedia Solutions to /Volumes/LaCie/Expedia Solutions (pid in /tmp/expedia-solutions-lacie-rsync.pid). Heartbeat reclaim + nightly/compress launchd installed.",
   "nextStep": "When rsync log shows Number of files transferred: 0 on a second pass, quit Cursor and switch the home path per docs/fleet/LAPTOP_LACIE_WORKSPACE.md.",
   "constraints": ["Do not symlink node_modules/.next. Do not delete the internal copy until the second rsync verify. Do not OmniRoute npm install until tens of GB free."],
   "verify": "df -h /System/Volumes/Data ; tail -20 /tmp/expedia-solutions-lacie-rsync.log",
