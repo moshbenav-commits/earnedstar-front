@@ -1,76 +1,164 @@
 {
-  "brand": "parts",
+  "brand": "earnedstar",
   "repo": "/Users/ricardo/Expedia Solutions/earnedstar-front",
-  "generatedAtNote": "2026-08-21T00:06:06.293Z",
+  "generatedAtNote": "2026-08-21T01:54:27.946Z",
   "summary": {
-    "blockers": 8,
+    "blockers": 19,
     "warnings": 0,
-    "filesScanned": 276
+    "filesScanned": 282
   },
   "findings": [
     {
-      "ruleId": "wrong-brand-color",
-      "severity": "critical",
-      "file": "src/lib/earnedstar-mark.ts",
-      "line": 43,
-      "snippet": "if (c1 === \"#0F2044\" || c1 === \"#1A3566\" || c1 === \"#1F3B72\") return REFINED_ORIGAMI_PALETTES.navy;",
-      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
+      "file": "src/lib/brand-og-image.tsx",
+      "line": 12,
+      "snippet": "const GOLD = \"#f59e0b\";",
+      "fixHint": "Replace hardcoded #F59E0B with var(--color-primary) / the primary design token instead of the raw hex."
     },
     {
-      "ruleId": "wrong-brand-color",
-      "severity": "critical",
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
+      "file": "src/lib/mock-data.ts",
+      "line": 21,
+      "snippet": "{ stars: 5, count: 2410, pct: 84.6, color: \"#F59E0B\" },",
+      "fixHint": "Replace hardcoded #F59E0B with var(--color-primary) / the primary design token instead of the raw hex."
+    },
+    {
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
+      "file": "src/components/ui/progressive-star-rating.tsx",
+      "line": 21,
+      "snippet": "5: \"#F59E0B\",",
+      "fixHint": "Replace hardcoded #F59E0B with var(--color-primary) / the primary design token instead of the raw hex."
+    },
+    {
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
       "file": "src/components/submit/review-submit-flow.tsx",
       "line": 194,
       "snippet": "c: [\"#F59E0B\", \"#0F2044\", \"#059669\", \"#2A4D8F\"][Math.floor(Math.random() * 4)]!,",
-      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+      "fixHint": "Replace hardcoded #F59E0B with var(--color-primary) / the primary design token instead of the raw hex."
     },
     {
-      "ruleId": "wrong-brand-color",
-      "severity": "critical",
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
+      "file": "src/components/submit/review-submit-flow.tsx",
+      "line": 194,
+      "snippet": "c: [\"#F59E0B\", \"#0F2044\", \"#059669\", \"#2A4D8F\"][Math.floor(Math.random() * 4)]!,",
+      "fixHint": "Replace hardcoded #0F2044 with var(--color-primary) / the primary design token instead of the raw hex."
+    },
+    {
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
+      "file": "src/components/submit/review-submit-flow.tsx",
+      "line": 194,
+      "snippet": "c: [\"#F59E0B\", \"#0F2044\", \"#059669\", \"#2A4D8F\"][Math.floor(Math.random() * 4)]!,",
+      "fixHint": "Replace hardcoded #059669 with var(--color-primary) / the primary design token instead of the raw hex."
+    },
+    {
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
+      "file": "src/components/submit/review-submit-flow.tsx",
+      "line": 194,
+      "snippet": "c: [\"#F59E0B\", \"#0F2044\", \"#059669\", \"#2A4D8F\"][Math.floor(Math.random() * 4)]!,",
+      "fixHint": "Replace hardcoded #2A4D8F with var(--color-primary) / the primary design token instead of the raw hex."
+    },
+    {
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
+      "file": "src/components/marketing/hero-section.tsx",
+      "line": 127,
+      "snippet": "<stop offset=\"50%\" stopColor=\"#F59E0B\" stopOpacity=\"0.28\" />",
+      "fixHint": "Replace hardcoded #F59E0B with var(--color-primary) / the primary design token instead of the raw hex."
+    },
+    {
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
       "file": "src/components/dashboard/analytics-charts.tsx",
       "line": 21,
       "snippet": "const NAVY = \"#0F2044\";",
-      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+      "fixHint": "Replace hardcoded #0F2044 with var(--color-primary) / the primary design token instead of the raw hex."
     },
     {
-      "ruleId": "wrong-brand-color",
-      "severity": "critical",
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
+      "file": "src/components/dashboard/analytics-charts.tsx",
+      "line": 22,
+      "snippet": "const GOLD = \"#F59E0B\";",
+      "fixHint": "Replace hardcoded #F59E0B with var(--color-primary) / the primary design token instead of the raw hex."
+    },
+    {
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
+      "file": "src/components/dashboard/analytics-charts.tsx",
+      "line": 23,
+      "snippet": "const GREEN = \"#059669\";",
+      "fixHint": "Replace hardcoded #059669 with var(--color-primary) / the primary design token instead of the raw hex."
+    },
+    {
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
       "file": "src/components/dashboard/earned-star-trust-banner.tsx",
       "line": 49,
       "snippet": "className=\"border-b border-gold/25 bg-gradient-to-br from-navy via-[#0f2044] to-[#0a1628] px-4 py-6 text-white md:px-8\"",
-      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+      "fixHint": "Replace hardcoded #0F2044 with var(--color-primary) / the primary design token instead of the raw hex."
     },
     {
-      "ruleId": "wrong-brand-color",
-      "severity": "critical",
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
       "file": "src/components/dashboard/invitation-qr-code.tsx",
       "line": 29,
       "snippet": "color: { dark: \"#0F2044\", light: \"#FFFFFF\" },",
-      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+      "fixHint": "Replace hardcoded #0F2044 with var(--color-primary) / the primary design token instead of the raw hex."
     },
     {
-      "ruleId": "wrong-brand-color",
-      "severity": "critical",
-      "file": "src/app/globals.css",
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
+      "file": "src/components/dashboard/rating-distribution.tsx",
       "line": 9,
-      "snippet": "--navy: #0f2044;",
-      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+      "snippet": "5: \"#F59E0B\",",
+      "fixHint": "Replace hardcoded #F59E0B with var(--color-primary) / the primary design token instead of the raw hex."
+    },
+    {
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
+      "file": "src/components/dashboard/rating-distribution.tsx",
+      "line": 25,
+      "snippet": "color: STAR_COLORS[row.stars] ?? \"#F59E0B\",",
+      "fixHint": "Replace hardcoded #F59E0B with var(--color-primary) / the primary design token instead of the raw hex."
     },
     {
       "ruleId": "wrong-brand-color",
       "severity": "critical",
-      "file": "src/app/globals.css",
-      "line": 28,
-      "snippet": "--text: #0f2044;",
-      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+      "file": "src/components/app/AppShell.tsx",
+      "line": 35,
+      "snippet": "<Link href={backHref} className=\"inline-flex min-h-11 min-w-11 items-center justify-center text-sm font-bold\" style={{ color: \"var(--color-orange, #FF7F0A)\" }}>",
+      "fixHint": "#FF7F0A is the parts brand color, not earnedstar's — this is a earnedstar repo. Route through var(--color-primary) so it resolves per-brand."
     },
     {
       "ruleId": "wrong-brand-color",
       "severity": "critical",
-      "file": "src/app/design-lab/tokens/page.tsx",
-      "line": 15,
-      "snippet": "{ label: 'Navy', var: '--navy', hex: '#0F2044' },",
-      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+      "file": "src/components/app/AppShell.tsx",
+      "line": 54,
+      "snippet": "style={active ? { color: \"var(--color-orange, #FF7F0A)\" } : undefined}",
+      "fixHint": "#FF7F0A is the parts brand color, not earnedstar's — this is a earnedstar repo. Route through var(--color-primary) so it resolves per-brand."
+    },
+    {
+      "ruleId": "hardcoded-brand-hex",
+      "severity": "high",
+      "file": "src/app/design-lab/shared/page.tsx",
+      "line": 45,
+      "snippet": "<span className='font-mono text-[var(--gold)]'>#F59E0B</span>",
+      "fixHint": "Replace hardcoded #F59E0B with var(--color-primary) / the primary design token instead of the raw hex."
+    },
+    {
+      "ruleId": "wrong-brand-color",
+      "severity": "critical",
+      "file": "src/app/app/page.tsx",
+      "line": 18,
+      "snippet": "<p className=\"text-[10px] font-extrabold uppercase tracking-[0.22em]\" style={{ color: \"var(--color-orange, #FF7F0A)\" }}>",
+      "fixHint": "#FF7F0A is the parts brand color, not earnedstar's — this is a earnedstar repo. Route through var(--color-primary) so it resolves per-brand."
     }
   ]
 }
