@@ -61,9 +61,9 @@ export function HeroSection() {
             className="font-heading text-[clamp(3rem,7vw,6.5rem)] leading-[0.95] tracking-tight text-balance text-white"
           >
             Reviews that{" "}
-            <em className="text-gold-light underline-hand">earned</em>
+            <span className="text-gold-light underline-hand italic">earned</span>
             <br />
-            their place — and <em className="text-gold-light underline-hand">prove</em> it.
+            their place — and <span className="text-gold-light underline-hand italic">prove</span> it.
           </motion.h1>
 
           <motion.p
@@ -85,6 +85,7 @@ export function HeroSection() {
           >
             <Link
               href="/signup"
+              data-design-magic-move={3}
               className="group inline-flex items-center gap-2.5 rounded-full px-6 py-3.5 font-bold text-ink shadow-[0_18px_40px_-12px_rgba(245,158,11,0.5)] transition-all gold-foil hover:shadow-[0_24px_50px_-12px_rgba(245,158,11,0.7)]"
             >
               Start free trial

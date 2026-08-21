@@ -454,7 +454,7 @@ export function ReviewSubmitFlow({
           {step === 4 && (
             <div className="text-center">
               <CheckCircle2 size={56} className="mx-auto text-green" />
-              <h1 className="mt-4 text-2xl font-bold text-navy">🎉 Thank you, {name}!</h1>
+              <h1 className="mt-4 text-2xl font-bold text-navy">Thank you, {name}!</h1>
               <p className="mt-2 text-sm text-text-muted">
                 Your verified review is now live on {storeName}&apos;s page.
                 {ymmMake ? ` You're helping other ${ymmMake} owners make better decisions.` : ""}
