@@ -103,7 +103,7 @@ export default function YotpoRefugeesPage() {
           <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
             <span className="smallcaps text-[10px] text-gold-dark">How migration works</span>
             <h2 className="font-heading mt-3 text-4xl tracking-tight sm:text-5xl">
-              Three steps. <em className="text-gold-dark">No engineer required.</em>
+              Three steps. <span className="text-gold-dark italic">No engineer required.</span>
             </h2>
             <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
               {STEPS.map(({ icon: Icon, title, body, n }) => (
