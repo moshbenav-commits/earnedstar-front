@@ -12,7 +12,7 @@ export function BrandGallerySection() {
         <div className="mb-14 grid grid-cols-1 items-end gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <div className="smallcaps mb-3 text-[10px] text-gold-dark">The Mark</div>
-            <h2 className="font-heading text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02] tracking-tight text-balance">
+            <h2 className="cx-style-heading font-heading text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02] tracking-tight text-balance">
               A trust badge worth <em className="text-gold-dark underline-hand">earning</em>.
             </h2>
           </div>
@@ -26,8 +26,8 @@ export function BrandGallerySection() {
 
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
           <div
-            className="vellum-card gilded-edge relative overflow-hidden rounded-2xl p-8 md:p-12 lg:col-span-5"
-            data-cx-motion="scroll-parallax-layer"
+          className="cx-style-surface vellum-card gilded-edge relative overflow-hidden rounded-2xl p-8 md:p-12 lg:col-span-5"
+          data-cx-motion="scroll-parallax-layer"
           >
             <div className="gold-foil absolute -right-12 -top-12 h-64 w-64 rounded-full opacity-10" aria-hidden />
             <div className="smallcaps relative mb-3 text-[10px] text-gold-dark">Primary — Navy / Gold</div>

@@ -1,0 +1,76 @@
+{
+  "brand": "parts",
+  "repo": "/Users/ricardo/Expedia Solutions/earnedstar-front",
+  "generatedAtNote": "2026-08-21T00:06:06.293Z",
+  "summary": {
+    "blockers": 8,
+    "warnings": 0,
+    "filesScanned": 276
+  },
+  "findings": [
+    {
+      "ruleId": "wrong-brand-color",
+      "severity": "critical",
+      "file": "src/lib/earnedstar-mark.ts",
+      "line": 43,
+      "snippet": "if (c1 === \"#0F2044\" || c1 === \"#1A3566\" || c1 === \"#1F3B72\") return REFINED_ORIGAMI_PALETTES.navy;",
+      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+    },
+    {
+      "ruleId": "wrong-brand-color",
+      "severity": "critical",
+      "file": "src/components/submit/review-submit-flow.tsx",
+      "line": 194,
+      "snippet": "c: [\"#F59E0B\", \"#0F2044\", \"#059669\", \"#2A4D8F\"][Math.floor(Math.random() * 4)]!,",
+      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+    },
+    {
+      "ruleId": "wrong-brand-color",
+      "severity": "critical",
+      "file": "src/components/dashboard/analytics-charts.tsx",
+      "line": 21,
+      "snippet": "const NAVY = \"#0F2044\";",
+      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+    },
+    {
+      "ruleId": "wrong-brand-color",
+      "severity": "critical",
+      "file": "src/components/dashboard/earned-star-trust-banner.tsx",
+      "line": 49,
+      "snippet": "className=\"border-b border-gold/25 bg-gradient-to-br from-navy via-[#0f2044] to-[#0a1628] px-4 py-6 text-white md:px-8\"",
+      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+    },
+    {
+      "ruleId": "wrong-brand-color",
+      "severity": "critical",
+      "file": "src/components/dashboard/invitation-qr-code.tsx",
+      "line": 29,
+      "snippet": "color: { dark: \"#0F2044\", light: \"#FFFFFF\" },",
+      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+    },
+    {
+      "ruleId": "wrong-brand-color",
+      "severity": "critical",
+      "file": "src/app/globals.css",
+      "line": 9,
+      "snippet": "--navy: #0f2044;",
+      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+    },
+    {
+      "ruleId": "wrong-brand-color",
+      "severity": "critical",
+      "file": "src/app/globals.css",
+      "line": 28,
+      "snippet": "--text: #0f2044;",
+      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+    },
+    {
+      "ruleId": "wrong-brand-color",
+      "severity": "critical",
+      "file": "src/app/design-lab/tokens/page.tsx",
+      "line": 15,
+      "snippet": "{ label: 'Navy', var: '--navy', hex: '#0F2044' },",
+      "fixHint": "#0F2044 is the gold-medal-injury brand color, not parts's — this is a parts repo. Route through var(--color-primary) so it resolves per-brand."
+    }
+  ]
+}
