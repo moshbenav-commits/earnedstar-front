@@ -3,19 +3,21 @@
   "repos": [
     "expedia-solutions"
   ],
-  "inFlight": "Configurator 15G restore leftover OFFLOADED to LaCie and removed from SSD. Data ~52Gi free. Cursor still open — do not run cursor-app-support-offload.",
-  "nextStep": "After Cursor.app quits, in Terminal.app: cd \"/Users/ricardo/Expedia Solutions\" && bash scripts/cursor-app-support-offload.sh --now (snapshots 12G + globalStorage 46G). Optional later (ask first): Docker 18G, WhatsApp 13G, Google 11G.",
+  "inFlight": "Prime Video inner-link DONE (64 pkgs on LaCie, app launched). Cursor 56G Application Support still on SSD — offload only after Cursor quits.",
+  "nextStep": "Quit Cursor, then in Terminal.app: cd \"/Users/ricardo/Expedia Solutions\" && bash scripts/cursor-app-support-offload.sh --now",
   "constraints": [
     "Keep LaCie plugged in — Prime Video offline titles live there",
     "Do not use /Volumes/LaCie 1 (Time Machine)",
     "Do not path-switch ~/Expedia Solutions while Cursor has the tree open",
     "Do not run cursor-app-support-offload while Cursor is open",
-    "Do not offload WhatsApp / Google without Ricardo pick"
+    "Do not offload WhatsApp / Google without Ricardo pick",
+    "Do not delete /Volumes/LaCie/offload/PrimeVideo/com.amazon.aiv.AIVApp"
   ],
   "verify": [
-    "test ! -e /Users/ricardo/Library/Containers/com.apple.configurator.xpc.DeviceService/Data/tmp/TemporaryItems/04C81C1B-249C-47EF-93E0-1632E4618899",
-    "du -sh /Volumes/LaCie/offload/ConfiguratorTmp",
-    "df -h / /System/Volumes/Data /Volumes/LaCie"
+    "grep INNER_LINKED /Volumes/LaCie/offload/PrimeVideo/STATUS.txt",
+    "test ! -L /Users/ricardo/Library/Containers/com.amazon.aiv.AIVApp",
+    "pgrep -f '/Applications/Prime Video.app/Contents/MacOS/Prime Video'",
+    "grep DONE /Volumes/LaCie/offload/Cursor/offload.log"
   ],
   "lane": "fleet-disk",
   "waitFor": [
@@ -26,7 +28,14 @@
     }
   ],
   "waitForMode": "any",
-  "paused": false,
-  "awaitingRicardo": false,
-  "updatedAt": "2026-08-22T01:55:40.000Z"
+  "paused": true,
+  "awaitingRicardo": true,
+  "updatedAt": "2026-08-22T02:10:00.000Z",
+  "checkIn": {
+    "afterSec": 0,
+    "nextCheckAt": null,
+    "estimateSec": 0,
+    "plannedAt": "2026-08-22T02:10:00.000Z",
+    "reason": "blocked: Ricardo must quit Cursor before cursor-app-support-offload.sh"
+  }
 }
