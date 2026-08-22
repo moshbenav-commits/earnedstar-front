@@ -1,0 +1,89 @@
+{
+  "version": "1.0.0",
+  "ingestedAt": "2026-06-28T23:45:00.000Z",
+  "source": "ChatGPT manual export — Jun 28 2026",
+  "notes": "11 uploads matched to 9 ES_WEBSITE_NANO_PENDING jobs (ES002–ES011). ES008 already on_disk. Two extras archived under higgsfield-exports/incoming/.",
+  "mappings": [
+    {
+      "assetId": "ES002",
+      "jobId": "nano-earnedstar-es002",
+      "title": "Gallery — origami lucky star lockup 3D",
+      "source": "ChatGPT_Image_Jun_28__2026__04_11_22_PM-deae3cf9-1abe-49a6-be97-cb7266a4d526.png",
+      "output": "brand/earnedstar/stills/es002-nano-banana.png"
+    },
+    {
+      "assetId": "ES003",
+      "jobId": "nano-earnedstar-es003",
+      "title": "Gallery — motto plaque 3D",
+      "source": "ChatGPT_Image_Jun_28__2026__03_59_54_PM-d26a6b80-477b-4c99-9b68-8d8f2ba78698.png",
+      "output": "brand/earnedstar/stills/es003-nano-banana.png"
+    },
+    {
+      "assetId": "ES004",
+      "jobId": "nano-earnedstar-es004",
+      "title": "Brand system board — origami star family",
+      "source": "ChatGPT_Image_Jun_28__2026__04_00_56_PM-04fb3faf-0e2e-4494-b99f-09b4d240151a.png",
+      "output": "brand/earnedstar/stills/es004-nano-banana.png"
+    },
+    {
+      "assetId": "ES005",
+      "jobId": "nano-earnedstar-es005",
+      "title": "Q1 Leader award badge chrome",
+      "source": "ChatGPT_Image_Jun_28__2026__04_11_07_PM-de0406f7-2887-4b11-be83-28d86efbfe26.png",
+      "output": "brand/earnedstar/stills/es005-nano-banana.png"
+    },
+    {
+      "assetId": "ES006",
+      "jobId": "nano-earnedstar-es006",
+      "title": "Verified Human trust badge",
+      "source": "ChatGPT_Image_Jun_28__2026__04_10_58_PM-7def3043-072f-4869-90ec-138ba63aa749.png",
+      "output": "brand/earnedstar/stills/es006-nano-banana.png"
+    },
+    {
+      "assetId": "ES007",
+      "jobId": "nano-earnedstar-es007",
+      "title": "Progressive rating badge chrome",
+      "source": "ChatGPT_Image_Jun_28__2026__04_10_52_PM-c397ac03-2d1f-452b-a550-530d07d2c178.png",
+      "output": "brand/earnedstar/stills/es007-nano-banana.png"
+    },
+    {
+      "assetId": "ES009",
+      "jobId": "nano-earnedstar-es009",
+      "title": "OG social image 1200x630",
+      "source": "ChatGPT_Image_Jun_28__2026__04_25_16_PM-98b1d4c2-e55d-4b96-a296-8541e9f9cce5.png",
+      "output": "brand/earnedstar/stills/es009-nano-banana.png",
+      "note": "OpenAI URL test refresh — star + wordmark + gold curves on navy"
+    },
+    {
+      "assetId": "ES010",
+      "jobId": "nano-earnedstar-es010",
+      "title": "Pricing page hero",
+      "source": "ChatGPT_Image_Jun_28__2026__04_10_40_PM-46fcee5c-dd0d-473f-905e-90b64001f24d.png",
+      "output": "brand/earnedstar/stills/es010-nano-banana.png"
+    },
+    {
+      "assetId": "ES011",
+      "jobId": "nano-earnedstar-es011",
+      "title": "Dashboard empty state illustration",
+      "source": "ChatGPT_Image_Jun_28__2026__04_09_14_PM-385c87fd-6483-4fa1-b153-e30353ea59a8.png",
+      "output": "brand/earnedstar/stills/es011-nano-banana.png"
+    }
+  ],
+  "extras": [
+    {
+      "note": "Duplicate ES002 lockup export (same bytes as 04_11_22)",
+      "source": "ChatGPT_Image_Jun_28__2026__03_58_26_PM-72a00169-e3db-48bf-836b-835da0f66b5d.png",
+      "archived": "brand/earnedstar/higgsfield-exports/incoming/es002-lockup-alt-jun28.png"
+    },
+    {
+      "note": "ES009 OG v1 (star-only decorative)",
+      "source": "ChatGPT_Image_Jun_28__2026__04_10_46_PM-4a8fc3c5-8ba3-40d3-9df9-08b9e57f6f8d.png",
+      "archived": "brand/earnedstar/higgsfield-exports/incoming/es009-og-prev-jun28.png"
+    },
+    {
+      "note": "Laurel emblem variant — not in manifest (prompt bans laurel); kept for workshop review",
+      "source": "ChatGPT_Image_Jun_28__2026__04_11_32_PM-bf8f67e0-211b-437d-acec-4555ba911bbc.png",
+      "archived": "brand/earnedstar/higgsfield-exports/incoming/es-emblem-laurel-jun28.png"
+    }
+  ]
+}

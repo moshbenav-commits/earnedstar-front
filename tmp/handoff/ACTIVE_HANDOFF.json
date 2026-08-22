@@ -1,0 +1,32 @@
+{
+  "thread": "laptop-disk-critical → Prime Video offload + reclaim",
+  "repos": [
+    "expedia-solutions"
+  ],
+  "inFlight": "Configurator 15G restore leftover OFFLOADED to LaCie and removed from SSD. Data ~52Gi free. Cursor still open — do not run cursor-app-support-offload.",
+  "nextStep": "After Cursor.app quits, in Terminal.app: cd \"/Users/ricardo/Expedia Solutions\" && bash scripts/cursor-app-support-offload.sh --now (snapshots 12G + globalStorage 46G). Optional later (ask first): Docker 18G, WhatsApp 13G, Google 11G.",
+  "constraints": [
+    "Keep LaCie plugged in — Prime Video offline titles live there",
+    "Do not use /Volumes/LaCie 1 (Time Machine)",
+    "Do not path-switch ~/Expedia Solutions while Cursor has the tree open",
+    "Do not run cursor-app-support-offload while Cursor is open",
+    "Do not offload WhatsApp / Google without Ricardo pick"
+  ],
+  "verify": [
+    "test ! -e /Users/ricardo/Library/Containers/com.apple.configurator.xpc.DeviceService/Data/tmp/TemporaryItems/04C81C1B-249C-47EF-93E0-1632E4618899",
+    "du -sh /Volumes/LaCie/offload/ConfiguratorTmp",
+    "df -h / /System/Volumes/Data /Volumes/LaCie"
+  ],
+  "lane": "fleet-disk",
+  "waitFor": [
+    {
+      "type": "logContains",
+      "path": "/Volumes/LaCie/offload/Cursor/offload.log",
+      "needle": "DONE"
+    }
+  ],
+  "waitForMode": "any",
+  "paused": false,
+  "awaitingRicardo": false,
+  "updatedAt": "2026-08-22T01:55:40.000Z"
+}

@@ -1,0 +1,29 @@
+{
+  "brandKey": "earnedstar",
+  "brandDisplay": "EarnedStar",
+  "elements": [
+    {
+      "elementName": "ES-Brand-Essence",
+      "tier": "standard",
+      "category": "brand",
+      "status": "ready",
+      "folder": "brand/higgsfield/essence/drop/earnedstar/ES-Brand-Essence",
+      "promptTag": "@ES-Brand-Essence",
+      "description": "EarnedStar origami lucky star 3D hero + SaaS dashboard UI reference — navy #0F2044 · gold #F59E0B.",
+      "medias": [
+        {
+          "slot": 1,
+          "role": "origami-star-3d",
+          "sourcePath": "brand/earnedstar/higgsfield-exports/es-origami-star-3d-nano-banana.png",
+          "dropPath": "brand/higgsfield/essence/drop/earnedstar/ES-Brand-Essence/01-origami-star-3d.png"
+        },
+        {
+          "slot": 2,
+          "role": "dashboard-hero",
+          "sourcePath": "brand/earnedstar/higgsfield-exports/es-marketing-hero-dashboard-nano-banana.png",
+          "dropPath": "brand/higgsfield/essence/drop/earnedstar/ES-Brand-Essence/02-dashboard-hero.png"
+        }
+      ]
+    }
+  ]
+}

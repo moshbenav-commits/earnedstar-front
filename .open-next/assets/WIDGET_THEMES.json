@@ -1,0 +1,92 @@
+{
+  "version": "1.0.0",
+  "description": "EarnedStar embed widget themes — default + per-customer brand sync from Site Forge slug.",
+  "defaultThemeId": "earnedstar-classic",
+  "ssot": "brand/earnedstar/WIDGET_THEMES.json",
+  "embedScript": "https://earnedstar.com/embed/v1/widget.js",
+  "themes": [
+    {
+      "id": "earnedstar-classic",
+      "label": "EarnedStar classic",
+      "summary": "Navy + gold — default product chrome from DESIGN.md",
+      "tokens": {
+        "starFill": "#F59E0B",
+        "starEmpty": "#E5E7EB",
+        "brandText": "#0F2044",
+        "verifiedGreen": "#059669",
+        "cardBg": "#FFFFFF",
+        "cardBorder": "#E5E7EB",
+        "fontFamily": "Plus Jakarta Sans, system-ui, sans-serif"
+      }
+    },
+    {
+      "id": "dark-premium",
+      "label": "Dark premium shell",
+      "summary": "For ExpediaParts-class dark storefronts — cream card on #0D1217",
+      "tokens": {
+        "starFill": "#F59E0B",
+        "starEmpty": "#374151",
+        "brandText": "#F9FAFB",
+        "verifiedGreen": "#34D399",
+        "cardBg": "#1F2937",
+        "cardBorder": "#374151",
+        "fontFamily": "Plus Jakarta Sans, system-ui, sans-serif"
+      }
+    },
+    {
+      "id": "automotive-orange",
+      "label": "Automotive commerce",
+      "summary": "EP / subsidiary — dark shell + orange accent stars optional",
+      "tokens": {
+        "starFill": "#F59E0B",
+        "starEmpty": "#4B5563",
+        "brandText": "#FDF8EE",
+        "verifiedGreen": "#059669",
+        "cardBg": "#0D1217",
+        "cardBorder": "#374151",
+        "accentCta": "#FF7F0A",
+        "fontFamily": "Plus Jakarta Sans, system-ui, sans-serif"
+      }
+    },
+    {
+      "id": "local-trust",
+      "label": "Local / law / restaurant",
+      "summary": "Light editorial — high contrast on cream pages",
+      "tokens": {
+        "starFill": "#F59E0B",
+        "starEmpty": "#D1D5DB",
+        "brandText": "#111827",
+        "verifiedGreen": "#059669",
+        "cardBg": "#FDF8EE",
+        "cardBorder": "#E5E7EB",
+        "fontFamily": "Plus Jakarta Sans, Georgia, serif"
+      }
+    },
+    {
+      "id": "customer-brand-sync",
+      "label": "Sync from site brand manifest",
+      "summary": "Maps tokens from brand/{slug}/SITE_ASSET_MANIFEST.json palette at scaffold time",
+      "bindsFrom": "brand/{slug}/SITE_ASSET_MANIFEST.json",
+      "tokenMap": {
+        "starFill": "palette.gold",
+        "brandText": "palette.navy",
+        "cardBg": "palette.cream",
+        "accentCta": "palette.orange"
+      },
+      "fallbackThemeId": "earnedstar-classic"
+    }
+  ],
+  "layouts": [
+    { "id": "carousel", "label": "Carousel", "slots": ["pdp-below-fold", "homepage-trust"] },
+    { "id": "grid", "label": "Review grid", "slots": ["reviews-page"] },
+    { "id": "compact", "label": "Compact stars", "slots": ["pdp-sidebar", "mobile-bar"] },
+    { "id": "badge", "label": "Verified badge", "slots": ["trust-strip", "footer"] }
+  ],
+  "forgeThemePickRules": [
+    { "industryId": "automotive-commerce", "themeId": "automotive-orange" },
+    { "industryId": "marketplace", "themeId": "automotive-orange" },
+    { "industryId": "law-professional", "themeId": "local-trust" },
+    { "industryId": "restaurant-local", "themeId": "local-trust" },
+    { "industryId": "blog-content", "themeId": null }
+  ]
+}
