@@ -5,7 +5,7 @@
     "creytix-front"
   ],
   "inFlight": "Prime Video inner-link VERIFIED (INNER_LINKED 19:22:16 pkgs=65 Dhc9Tq+reOMCB, leftover real dirs=0). Cursor wait-script alive pid=43268 STATUS=WAITING_FOR_CURSOR_QUIT. Success token is DONE (script does not write LINKED).",
-  "nextStep": "Cmd+Q Cursor (full quit). Terminal wait-script already running: bash scripts/cursor-app-support-offload.sh. Success: /Volumes/LaCie/offload/Cursor/STATUS.txt shows LINKED (not WAITING/FAILED). Keep LaCie plugged in. Operator: http://localhost:3025/app/maccare/offload",
+  "nextStep": "Cmd+Q Cursor (full quit). Terminal wait-script is already running (pid 43268, tty s003). Keep that window open and LaCie plugged in. Success: /Volumes/LaCie/offload/Cursor/STATUS.txt starts with DONE.",
   "constraints": [
     "Keep LaCie plugged in — Prime Video offline titles live there",
     "Do not use /Volumes/LaCie 1 (Time Machine)",
