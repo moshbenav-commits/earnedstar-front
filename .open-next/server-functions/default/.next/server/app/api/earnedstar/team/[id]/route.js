@@ -1,0 +1,8 @@
+var R=require("../../../../../chunks/[turbopack]_runtime.js")("server/app/api/earnedstar/team/[id]/route.js")
+R.c("server/chunks/[root-of-the-server]__0eltszm._.js")
+R.c("server/chunks/0-xc_next_0fvgz6n._.js")
+R.c("server/chunks/[root-of-the-server]__1co06m-._.js")
+R.c("server/chunks/earnedstar_0nsy492._.js")
+R.c("server/chunks/197b__next-internal_server_app_api_earnedstar_team_[id]_route_actions_0fn8d75.js")
+R.m(23820)
+module.exports=R.m(23820).exports
