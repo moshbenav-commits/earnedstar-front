@@ -1,0 +1,54 @@
+{
+  "wiredAt": "2026-06-30T01:48:47.191Z",
+  "phase": 20,
+  "slug": "earnedstar",
+  "displayName": "EarnedStar",
+  "placeholders": {
+    "siteName": "EarnedStar",
+    "contactEmail": "legal@earnedstar.com",
+    "effectiveDate": "2026-06-30",
+    "domain": "https://earnedstar.com"
+  },
+  "pageTreeAdded": [
+    "/privacy",
+    "/terms",
+    "/accessibility"
+  ],
+  "templates": [
+    {
+      "route": "/privacy",
+      "template": "brand/earnedstar/wired/legal/privacy-policy.mdx",
+      "page": "earnedstar/src/app/privacy/page.tsx"
+    },
+    {
+      "route": "/terms",
+      "template": "brand/earnedstar/wired/legal/terms-of-service.mdx",
+      "page": "earnedstar/src/app/terms/page.tsx"
+    },
+    {
+      "route": "/accessibility",
+      "template": "brand/earnedstar/wired/legal/accessibility-statement.mdx",
+      "page": "earnedstar/src/app/accessibility/page.tsx"
+    }
+  ],
+  "pagesWritten": [
+    "earnedstar/src/app/privacy/page.tsx",
+    "earnedstar/src/app/terms/page.tsx",
+    "earnedstar/src/app/accessibility/page.tsx"
+  ],
+  "skipped": [],
+  "footerLinks": [
+    {
+      "route": "/privacy",
+      "label": "Privacy"
+    },
+    {
+      "route": "/terms",
+      "label": "Terms"
+    },
+    {
+      "route": "/accessibility",
+      "label": "Accessibility"
+    }
+  ]
+}

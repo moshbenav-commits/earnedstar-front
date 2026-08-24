@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "earnedstar-front",
+  "compatibility_date": "2026-08-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "vars": {
+    // Next 16 getMiddlewareManifest() dynamic-requires middleware-manifest.json.
+    // Workers cannot do that; minimal mode skips it (OpenNext issue 1232).
+    "NEXT_PRIVATE_MINIMAL_MODE": "1",
+    "NEXT_PUBLIC_SITE_URL": "https://earnedstar-front.moshbenav.workers.dev"
+  },
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "earnedstar-front"
+    }
+  ]
+}

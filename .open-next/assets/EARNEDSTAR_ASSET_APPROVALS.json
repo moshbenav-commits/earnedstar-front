@@ -1,0 +1,87 @@
+{
+  "version": "1.0.0",
+  "siteSlug": "earnedstar",
+  "pipelineId": "earnedstar-saas",
+  "promptFamily": "earnedstar-saas",
+  "manifestPath": "brand/earnedstar/ES_WEBSITE_ASSET_MANIFEST.json",
+  "updatedAt": "2026-07-06T21:25:59.477Z",
+  "items": {
+    "ES001": {
+      "status": "approved",
+      "output": "brand/earnedstar/higgsfield-exports/es-origami-star-3d-nano-banana.png",
+      "approvedAt": "2026-07-06T21:17:06.533Z",
+      "rejectNotes": null,
+      "goldPromptPath": "docs/prompts/higgsfield/approved-prompt-gold/ES001.json"
+    },
+    "ES002": {
+      "status": "approved",
+      "output": "brand/earnedstar/stills/es002-nano-banana.png",
+      "approvedAt": "2026-07-06T21:25:20.037Z",
+      "rejectNotes": null,
+      "goldPromptPath": "docs/prompts/higgsfield/approved-prompt-gold/ES002.json"
+    },
+    "ES003": {
+      "status": "approved",
+      "output": "brand/earnedstar/stills/es003-nano-banana.png",
+      "approvedAt": "2026-07-06T21:25:31.922Z",
+      "rejectNotes": null,
+      "goldPromptPath": "docs/prompts/higgsfield/approved-prompt-gold/ES003.json"
+    },
+    "ES004": {
+      "status": "approved",
+      "output": "brand/earnedstar/stills/es004-nano-banana.png",
+      "approvedAt": "2026-07-06T21:25:35.894Z",
+      "rejectNotes": null,
+      "goldPromptPath": "docs/prompts/higgsfield/approved-prompt-gold/ES004.json"
+    },
+    "ES005": {
+      "status": "approved",
+      "output": "brand/earnedstar/stills/es005-nano-banana.png",
+      "approvedAt": "2026-07-06T21:25:39.318Z",
+      "rejectNotes": null,
+      "goldPromptPath": "docs/prompts/higgsfield/approved-prompt-gold/ES005.json"
+    },
+    "ES006": {
+      "status": "approved",
+      "output": "brand/earnedstar/stills/es006-nano-banana.png",
+      "approvedAt": "2026-07-06T21:25:42.730Z",
+      "rejectNotes": null,
+      "goldPromptPath": "docs/prompts/higgsfield/approved-prompt-gold/ES006.json"
+    },
+    "ES007": {
+      "status": "approved",
+      "output": "brand/earnedstar/stills/es007-nano-banana.png",
+      "approvedAt": "2026-07-06T21:25:46.193Z",
+      "rejectNotes": null,
+      "goldPromptPath": "docs/prompts/higgsfield/approved-prompt-gold/ES007.json"
+    },
+    "ES008": {
+      "status": "approved",
+      "output": "brand/earnedstar/higgsfield-exports/es-marketing-hero-dashboard-nano-banana.png",
+      "approvedAt": "2026-07-06T21:25:49.689Z",
+      "rejectNotes": null,
+      "goldPromptPath": "docs/prompts/higgsfield/approved-prompt-gold/ES008.json"
+    },
+    "ES009": {
+      "status": "approved",
+      "output": "brand/earnedstar/stills/es009-nano-banana.png",
+      "approvedAt": "2026-07-06T21:25:53.233Z",
+      "rejectNotes": null,
+      "goldPromptPath": "docs/prompts/higgsfield/approved-prompt-gold/ES009.json"
+    },
+    "ES010": {
+      "status": "approved",
+      "output": "brand/earnedstar/stills/es010-nano-banana.png",
+      "approvedAt": "2026-07-06T21:25:56.267Z",
+      "rejectNotes": null,
+      "goldPromptPath": "docs/prompts/higgsfield/approved-prompt-gold/ES010.json"
+    },
+    "ES011": {
+      "status": "approved",
+      "output": "brand/earnedstar/stills/es011-nano-banana.png",
+      "approvedAt": "2026-07-06T21:25:59.477Z",
+      "rejectNotes": null,
+      "goldPromptPath": "docs/prompts/higgsfield/approved-prompt-gold/ES011.json"
+    }
+  }
+}

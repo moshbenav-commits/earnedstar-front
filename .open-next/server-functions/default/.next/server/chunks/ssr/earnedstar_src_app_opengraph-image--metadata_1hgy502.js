@@ -1,0 +1,3 @@
+module.exports=[65490,a=>{"use strict";a.i(77197),a.i(89449),a.i(44955);var b=a.i(39498);let c={alt:"EarnedStar — verified reviews platform",contentType:"image/png",size:{width:1200,height:630}};async function d(a){let{__metadata_id__:d,...e}=await a.params,f=(0,b.fillMetadataSegment)("/",e,"opengraph-image",!1);return[function(a){let b={alt:a.alt,type:a.contentType||"image/png",url:f+"?7b7297363cfc33f1"},{size:c}=a;return c&&(b.width=c.width,b.height=c.height),b}(c)]}a.s(["default",0,d],65490)},6773,a=>{a.n(a.i(65490))}];
+
+//# sourceMappingURL=earnedstar_src_app_opengraph-image--metadata_1hgy502.js.map

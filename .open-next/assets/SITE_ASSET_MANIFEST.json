@@ -1,0 +1,65 @@
+{
+  "version": "1.0.0",
+  "brand": "earnedstar",
+  "displayName": "EarnedStar",
+  "productName": "EarnedStar",
+  "domain": "https://earnedstar.com",
+  "tagline": "Only verified buyers earn your stars.",
+  "siteType": "saas",
+  "createdAt": "2026-06-28",
+  "status": "production-mvp",
+  "codebase": "earnedstar/",
+  "backend": "earnedstar/backend/",
+  "websiteManifest": "brand/earnedstar/ES_WEBSITE_ASSET_MANIFEST.json",
+  "higgsfieldQueue": "brand/higgsfield/staging/ES_WEBSITE_NANO_PENDING.json",
+  "iosApp": "earnedstar-ios/",
+  "widgetThemes": "brand/earnedstar/WIDGET_THEMES.json",
+  "forgeIntegration": "brand/EARNEDSTAR_FORGE_INTEGRATION.json",
+  "palette": {
+    "navy": "#0F2044",
+    "gold": "#F59E0B",
+    "verifiedGreen": "#059669",
+    "pageBg": "#FAFAF9"
+  },
+  "tiers": {
+    "tier0_brand": {
+      "status": "on_disk",
+      "notes": "Origami star mark, wordmark — docs/prompts/earnedstar/DESIGN.md"
+    },
+    "tier1_chrome": {
+      "status": "partial",
+      "notes": "Verified badge, trust marquee assets"
+    },
+    "tier2_marketing": {
+      "status": "partial",
+      "notes": "Landing hero, bento feature stills"
+    },
+    "tier3_page_heroes": {
+      "status": "partial",
+      "routeClasses": ["landing", "pricing", "dashboard-empty"]
+    },
+    "tier4_icons": {
+      "status": "partial",
+      "notes": "Feature icons, empty states"
+    },
+    "tier5_motion": {
+      "status": "planned",
+      "notes": "Product demo loops"
+    },
+    "tier6_seo": {
+      "status": "shipped",
+      "notes": "Review profile JSON-LD, sitemap, IndexNow — AI_EARNEDSTAR_SEO_SPEC.md"
+    },
+    "tier7_widget": {
+      "status": "in_progress",
+      "notes": "WIDGET_THEMES.json — per-customer sync from Site Forge; embed v1 script",
+      "slots": ["carousel", "grid", "compact", "badge"],
+      "backlog": [
+        "cdn.earnedstar.com embed host",
+        "Shopify theme app block",
+        "Photo review carousel",
+        "Automotive fitment attribute bars"
+      ]
+    }
+  }
+}
