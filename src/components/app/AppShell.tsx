@@ -44,7 +44,7 @@ export function AppShell({
       )}
       <div className="mx-auto max-w-lg px-4 pb-28 pt-4">{children}</div>
       <nav aria-label="App" className="fixed inset-x-0 bottom-0 z-20 border-t border-white/10 pb-[env(safe-area-inset-bottom)] backdrop-blur-sm" style={{ backgroundColor: "#0A1628" + 'f2' }}>
-        <ul className="mx-auto grid max-w-lg grid-cols-4">
+        <ul className="mx-auto grid max-w-lg grid-cols-3">
           {TABS.map((tab) => {
             const active = tab.match(activePath);
             return (
