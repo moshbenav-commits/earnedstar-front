@@ -23,7 +23,7 @@ export default function DistilledAppPage() {
       <p className="text-sm text-gray-400">Thumb-first product surface — not the marketing site</p>
       <nav className="mt-6 grid gap-3" aria-label="Shortcuts">
         <AppJobLink
-          href="/reviews"
+          href="/dashboard/reviews"
           title="Reviews"
           description="See and manage your reviews"
         />
