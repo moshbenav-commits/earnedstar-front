@@ -6,11 +6,13 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
+/** Real EarnedStar jobs (reviews, seller dashboard) -- the generator's
+ * first draft shipped generic commerce tabs (Shop/Cart/Account) pointing
+ * at routes that don't exist on this B2B SaaS reviews site. */
 const TABS = [
-  { href: '/app', label: 'Home', match: (p: string) => p === '/app' || p === '/app/' || p.startsWith('/app/track') },
-  { href: '/app/shop', label: 'Shop', match: (p: string) => p.startsWith('/app/shop') },
-  { href: '/cart', label: 'Cart', match: (p: string) => p.startsWith('/cart') },
-  { href: '/account', label: 'Account', match: (p: string) => p.startsWith('/account') },
+  { href: '/app', label: 'Home', match: (p: string) => p === '/app' || p === '/app/' },
+  { href: '/dashboard/reviews', label: 'Reviews', match: (p: string) => p.startsWith('/dashboard/reviews') },
+  { href: '/dashboard', label: 'Dashboard', match: (p: string) => p.startsWith('/dashboard') && !p.startsWith('/dashboard/reviews') },
 ] as const;
 
 export function AppShell({
