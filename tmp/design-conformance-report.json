@@ -1,20 +1,11 @@
 {
   "brand": "earnedstar",
   "repo": "/Users/ricardo/Expedia Solutions/earnedstar-front",
-  "generatedAtNote": "2026-08-27T21:19:53.950Z",
+  "generatedAtNote": "2026-08-27T21:28:19.125Z",
   "summary": {
-    "blockers": 1,
+    "blockers": 0,
     "warnings": 0,
     "filesScanned": 274
   },
-  "findings": [
-    {
-      "ruleId": "wrong-brand-color",
-      "severity": "critical",
-      "file": "src/components/ui/progressive-star-rating.tsx",
-      "line": 17,
-      "snippet": "0: \"#E5E7EB\",",
-      "fixHint": "#E5E7EB is the truestar brand color, not earnedstar's — this is a earnedstar repo. Route through var(--color-primary) so it resolves per-brand."
-    }
-  ]
+  "findings": []
 }
