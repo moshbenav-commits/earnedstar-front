@@ -1,0 +1,41 @@
+EarnedStar — OpenAI / ChatGPT prompts now auto-include brand essence URLs
+============================================================================
+
+Every EarnedStar Nano job built via `npm run brand:site-nano:build` or patched via
+`npm run video:flow:elements-audit -- --apply` embeds public @imageN URLs in `params.prompt`.
+
+Brand essence index:
+https://www.expediaparts.com/higgsfield/essence
+
+@image1 — origami star 3D (@ES-Brand-Essence):
+https://www.expediaparts.com/higgsfield/essence/earnedstar/es-brand-essence/01-origami-star-3d.webp
+
+@image2 — dashboard hero (@ES-Brand-Essence):
+https://www.expediaparts.com/higgsfield/essence/earnedstar/es-brand-essence/02-dashboard-hero.webp
+
+Website still gallery (optional scene refs):
+https://www.expediaparts.com/higgsfield/staging/earnedstar
+
+=== Single-image OpenAI test (copy params.prompt from any lab job) ===
+
+Edit image one based on the prompt. Match identity from @image1 through @image2 using the exact URLs below.
+
+Brand reference index: https://www.expediaparts.com/higgsfield/essence
+Use these exact reference assets (@imageN maps to attached file order):
+@image1 — origami-star-3d (@ES-Brand-Essence): https://www.expediaparts.com/higgsfield/essence/earnedstar/es-brand-essence/01-origami-star-3d.webp
+  → origami-star-3d reference for @ES-Brand-Essence
+@image2 — dashboard-hero (@ES-Brand-Essence): https://www.expediaparts.com/higgsfield/essence/earnedstar/es-brand-essence/02-dashboard-hero.webp
+  → dashboard-hero reference for @ES-Brand-Essence
+
+Premium 3D gallery hero: EarnedStar horizontal lockup — origami lucky star mark left, wordmark right, navy #0F2044 + gold #F59E0B. NEVER laurel wreath · NEVER Expedia Parts branding.
+
+OpenAI API image_urls:
+[
+  "https://www.expediaparts.com/higgsfield/essence/earnedstar/es-brand-essence/01-origami-star-3d.webp",
+  "https://www.expediaparts.com/higgsfield/essence/earnedstar/es-brand-essence/02-dashboard-hero.webp"
+]
+
+Local dev (before deploy):
+http://guest.localhost:3000/higgsfield/essence/earnedstar/es-brand-essence/01-origami-star-3d.webp
+
+SSOT: brand/earnedstar/ES_WEBSITE_PUBLIC_REFERENCES.json · brand/higgsfield/ESSENCE_PUBLIC_REFERENCES.json
