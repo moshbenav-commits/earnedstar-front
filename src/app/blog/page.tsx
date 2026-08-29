@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 
 import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
+import { RelatedArticles } from "@/components/marketing/related-articles";
 import { getAllArticles } from "@/lib/blog/loader";
 
 export const metadata: Metadata = {
@@ -63,6 +64,8 @@ export default function BlogIndexPage() {
             ))}
           </ul>
         )}
+
+        <RelatedArticles articles={articles.slice(0, 4)} title="Featured articles" />
       </main>
       <MarketingFooter />
     </div>
