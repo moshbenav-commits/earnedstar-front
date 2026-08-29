@@ -33,7 +33,7 @@ export function ContactForm() {
     };
 
     try {
-      const res = await fetch(`${CRM_API_URL}/crm/forms/${CRM_FORM_SLUG}/submit`, {
+      const res = await fetch(`${CRM_API_URL}/api/crm/forms/${CRM_FORM_SLUG}/submit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
