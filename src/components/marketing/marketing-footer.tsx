@@ -31,6 +31,7 @@ export const FOOTER_COLUMNS = [
       { href: "/yotpo-refugees", label: "Yotpo Refugees" },
       { href: "/help", label: "Help Guides" },
       { href: "/support", label: "Support" },
+      { href: "/contact", label: "Contact" },
     ],
   },
   {
