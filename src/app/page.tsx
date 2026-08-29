@@ -16,6 +16,7 @@ import { TestimonialsSection } from "@/components/marketing/testimonials-section
 import { PricingSection } from "@/components/marketing/pricing-section";
 import { AuditTeaserSection } from "@/components/marketing/audit-teaser-section";
 import { FaqSection } from "@/components/marketing/faq-section";
+import { FeaturedArticles } from "@/components/marketing/featured-articles-section";
 import { ClosingImprintSection } from "@/components/marketing/closing-imprint-section";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { ExitIntentPanel } from "@/components/marketing/exit-intent-panel";
@@ -40,6 +41,7 @@ export default function HomePage() {
         <PricingSection />
         <AuditTeaserSection />
         <FaqSection />
+        <FeaturedArticles />
         <ClosingImprintSection />
       </main>
       <MarketingFooter />
