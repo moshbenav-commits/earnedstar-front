@@ -6,6 +6,7 @@
 import { Plus_Jakarta_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@/components/seo/google-analytics";
+import { CreytixTrackBoot } from "@/components/creytix/consent-banner";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { VisitorPulse } from "@/components/VisitorPulse";
 import "./globals.css";
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="cx-scroll-progress" aria-hidden="true" data-cx-scroll="page" />
         <GoogleAnalytics />
         <VisitorPulse />
+        <CreytixTrackBoot />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
