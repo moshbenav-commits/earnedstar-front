@@ -54,7 +54,7 @@ export function AuditPageClient() {
         <div className="relative mx-auto max-w-3xl px-6 text-center sm:px-10 lg:px-14">
           <span className="smallcaps text-[10px] text-gold-light">Public tool · No login</span>
           <h1 className="font-heading mt-4 text-5xl leading-[1.02] tracking-tight text-balance sm:text-6xl">
-            The Review <em className="text-gold-light underline-hand">Audit</em>
+            The Review <span className="text-gold-light underline-hand italic">Audit</span>
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/72">
             Paste a Trustpilot or Yotpo profile URL. We run an AI forensic scan and estimate

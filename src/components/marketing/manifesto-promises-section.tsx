@@ -13,7 +13,7 @@ export function ManifestoPromisesSection() {
         <div className="self-start lg:sticky lg:top-24 lg:col-span-4">
           <div className="smallcaps text-[10px] text-gold-dark">The Manifesto</div>
           <h2 className="font-heading mt-4 text-[clamp(2.5rem,4.5vw,4rem)] leading-[1.02] tracking-tight text-balance">
-            Four promises. <em className="text-gold-dark underline-hand">Publicly</em>.
+            Four promises. <span className="text-gold-dark underline-hand italic">Publicly</span>.
           </h2>
           <p className="mt-6 max-w-md text-base leading-[1.6] text-ink/65">
             No platform in this category has ever committed to truth publicly. We are. Every promise below
