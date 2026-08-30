@@ -31,7 +31,7 @@ export default async function OpsReviewPage() {
 
       <p className="text-sm text-[#F5EBE0]/60">
         Drag tasks to <strong>In review</strong> on the{" "}
-        <Link href="/ops/tasks" className="text-[#C45C26] hover:underline">
+        <Link href="/ops/tasks" className="text-[#D97742] hover:underline">
           Action Console board
         </Link>
         .

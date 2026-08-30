@@ -103,7 +103,9 @@ html.dark {
   --border-strong: rgba(255, 255, 255, 0.18);
   --text: #e8ecf8;
   --text-muted: #a8b4c8;
-  --text-faint: #6b7a90;
+  /* Lightened 2026-08-30 from #6b7a90 (4.06:1 on --surface — failed AA);
+     4.8:1 on surface-2, 5.8:1 on surface, still visibly dimmer than muted. */
+  --text-faint: #8494ab;
   --navy-pale: rgba(48, 96, 184, 0.18);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.2);
   --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.25);
@@ -476,6 +478,9 @@ body {
    The scoped rules add the gold accent + card polish those sections use that
    the token mapping alone doesn't carry. */
 .es-reviews-rail[data-ctx-section="reviews-rail"] {
+  /* The vendored ReviewsRail maps but never paints its background token —
+     without this the white-on-ink text sits directly on the cream page. */
+  background: var(--ctx-color-background);
   --ctx-color-background: var(--ink);
   --ctx-color-surface: var(--ink-soft);
   --ctx-color-border: rgba(255, 255, 255, 0.1);

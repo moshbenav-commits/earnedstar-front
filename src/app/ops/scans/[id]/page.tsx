@@ -26,7 +26,7 @@ export default async function OpsScanDetailPage({ params }: { params: Promise<{ 
     return (
       <div className="mx-auto max-w-3xl space-y-4">
         <p className="text-[#F5EBE0]/70">Scan not found.</p>
-        <Link href="/ops/scanner" className="text-[#C45C26] hover:underline">
+        <Link href="/ops/scanner" className="text-[#D97742] hover:underline">
           ← Scanner
         </Link>
       </div>
@@ -42,7 +42,7 @@ export default async function OpsScanDetailPage({ params }: { params: Promise<{ 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
       <header>
-        <Link href="/ops/scanner" className="text-sm text-[#C45C26] hover:underline">
+        <Link href="/ops/scanner" className="text-sm text-[#D97742] hover:underline">
           ← Scanner
         </Link>
         <h1 className="mt-2 text-2xl font-semibold text-[#E8A54B]">Scan {run.id.slice(0, 8)}…</h1>
@@ -74,7 +74,7 @@ export default async function OpsScanDetailPage({ params }: { params: Promise<{ 
 
       <Link
         href="/ops/scanner"
-        className="inline-block rounded-lg bg-[#C45C26] px-4 py-2 text-sm font-semibold text-white hover:bg-[#a84d1f]"
+        className="inline-block rounded-lg bg-[#B5501F] px-4 py-2 text-sm font-semibold text-white hover:bg-[#a84d1f]"
       >
         View all findings
       </Link>

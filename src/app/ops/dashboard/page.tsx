@@ -54,7 +54,7 @@ export default async function OpsDashboardPage() {
           <h2 className="text-sm font-semibold uppercase tracking-wide text-[#E8A54B]">
             Tasks due soon ({dash.tasksDueSoon ?? 0})
           </h2>
-          <Link href="/ops/tasks" className="text-sm text-[#C45C26] hover:underline">
+          <Link href="/ops/tasks" className="text-sm text-[#D97742] hover:underline">
             Action Console →
           </Link>
         </div>
@@ -79,7 +79,7 @@ export default async function OpsDashboardPage() {
       <section className="rounded-xl border border-[#2a1f16] bg-[#1A120C] p-5">
         <div className="flex items-center justify-between">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-[#E8A54B]">Recent scans</h2>
-          <Link href="/ops/scanner" className="text-sm text-[#C45C26] hover:underline">
+          <Link href="/ops/scanner" className="text-sm text-[#D97742] hover:underline">
             Run scan →
           </Link>
         </div>

@@ -30,7 +30,7 @@ export default async function OpsTasksPage() {
       </header>
 
       <p className="text-sm text-[#F5EBE0]/60">
-        <Link href="/ops/review" className="text-[#C45C26] hover:underline">
+        <Link href="/ops/review" className="text-[#D97742] hover:underline">
           Review queue
         </Link>
         {" · drag cards on Board view to change status"}
