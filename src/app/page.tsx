@@ -13,7 +13,6 @@ import { FeaturesSection } from "@/components/marketing/features-section";
 import { HowItWorksSection } from "@/components/marketing/how-it-works-section";
 import { ComparisonTableSection } from "@/components/marketing/comparison-table-section";
 import { YotpoExodusSection } from "@/components/marketing/yotpo-exodus-section";
-import { TestimonialsSection } from "@/components/marketing/testimonials-section";
 import { PricingSection } from "@/components/marketing/pricing-section";
 import { AuditTeaserSection } from "@/components/marketing/audit-teaser-section";
 import { FaqSection } from "@/components/marketing/faq-section";
@@ -39,7 +38,6 @@ export default function HomePage() {
         <HowItWorksSection />
         <ComparisonTableSection />
         <YotpoExodusSection />
-        <TestimonialsSection />
         <PricingSection />
         <AuditTeaserSection />
         <FaqSection />

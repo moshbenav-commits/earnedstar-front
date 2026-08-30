@@ -13,7 +13,7 @@ import { EarnedStarMark } from "@/components/brand/earnedstar-mark";
 import { PasswordInput } from "@/components/auth/PasswordInput";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { HERO_TAGLINE } from "@/content/earnedstar-trust-copy";
+import { HERO_TAGLINE, TRUST_HEADLINE, TRUST_SUBHEAD } from "@/content/earnedstar-trust-copy";
 
 type Tab = "signin" | "signup";
 
@@ -95,11 +95,10 @@ export function AuthPanel({ defaultTab = "signin" }: { defaultTab?: Tab }) {
       >
         <EarnedStarLogo variant="light" size={32} showBadge={false} />
         <p className="mt-8 max-w-sm text-lg text-white/80">{HERO_TAGLINE}</p>
-        <blockquote className="mt-8 border-l-2 border-gold pl-4 text-sm italic text-white/70">
-          &ldquo;Setup took 22 minutes. Google stars in our ads within 4 days.&rdquo;
-          <footer className="mt-2 not-italic text-white/50">— Amelia W., EuroParts Chicago</footer>
-        </blockquote>
-        <p className="mt-6 text-sm font-semibold text-gold">4.9 ★ · 2,847 verified reviews</p>
+        <div className="mt-8 max-w-sm border-l-2 border-gold pl-4">
+          <p className="text-sm font-semibold text-white/85">{TRUST_HEADLINE}</p>
+          <p className="mt-2 text-sm text-white/55">{TRUST_SUBHEAD}</p>
+        </div>
         <EarnedStarMark size={48} centerStyle="none" className="mt-8 opacity-90" />
       </div>
 
