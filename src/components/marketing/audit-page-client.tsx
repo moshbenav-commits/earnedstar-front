@@ -63,7 +63,7 @@ export function AuditPageClient() {
         </div>
       </section>
 
-      <section className="relative -mt-16 pb-24">
+      <section className="relative -mt-16 pb-24" data-scroll-theme="light">
         <div className="mx-auto max-w-xl px-6 sm:px-10">
           <form onSubmit={handleScan} className="vellum-card gilded-edge rounded-2xl p-8">
             <label htmlFor="audit-url" className="smallcaps text-[10px] text-gold-dark">
@@ -127,7 +127,7 @@ export function AuditPageClient() {
         </div>
       </section>
 
-      <section className="border-t border-ink/8 bg-vellum py-24 paper-grain">
+      <section className="border-t border-ink/8 bg-vellum py-24 paper-grain" data-scroll-theme="light">
         <div className="mx-auto max-w-4xl px-6 sm:px-10 lg:px-14">
           <div className="flex items-center gap-3">
             <Shield className="text-gold-dark" size={22} />

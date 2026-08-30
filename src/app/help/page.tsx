@@ -20,7 +20,7 @@ export default function HelpIndexPage() {
   const previewing = guides.some((guide) => guide.isDraftPreview);
 
   return (
-    <div className="min-h-screen bg-cream text-ink antialiased">
+    <div className="min-h-screen bg-cream text-ink antialiased" data-scroll-theme="light">
       <MarketingNav />
       <main className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
         <h1 className="text-4xl font-bold text-navy">Help Guides</h1>

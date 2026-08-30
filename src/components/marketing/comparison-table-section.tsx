@@ -41,7 +41,7 @@ export function ComparisonTableSection() {
             </h2>
           </div>
           <div className="lg:col-span-5 lg:col-start-8">
-            <p className="text-pretty text-sm leading-[1.65] text-ink/55">
+            <p className="text-pretty text-sm leading-[1.65] text-ink/70">
               Sourced from competitor docs, G2, and merchant complaint threads on Reddit (2026).
               Updated continuously. We&apos;ll correct any line within 24 hours if you flag it — that&apos;s a public
               promise, not a button.

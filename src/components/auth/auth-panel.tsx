@@ -191,7 +191,7 @@ export function AuthPanel({ defaultTab = "signin" }: { defaultTab?: Tab }) {
                     )}
                   />
                 </div>
-                <p className="mt-1 text-xs text-text-faint">Strength: {strength.label}</p>
+                <p className="mt-1 text-xs text-text-muted">Strength: {strength.label}</p>
               </div>
               <PasswordInput
                 required

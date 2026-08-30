@@ -22,7 +22,7 @@ export default function BlogIndexPage() {
   const previewing = articles.some((article) => article.isDraftPreview);
 
   return (
-    <div className="min-h-screen bg-cream text-ink antialiased">
+    <div className="min-h-screen bg-cream text-ink antialiased" data-scroll-theme="light">
       <MarketingNav />
       <main className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
         <h1 className="text-4xl font-bold text-navy">Blog</h1>

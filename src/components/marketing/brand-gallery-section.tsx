@@ -26,7 +26,7 @@ export function BrandGallerySection() {
 
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
           <div
-          className="cx-style-surface vellum-card gilded-edge relative overflow-hidden rounded-2xl p-8 md:p-12 lg:col-span-5"
+          className="vellum-card gilded-edge relative overflow-hidden rounded-2xl p-8 md:p-12 lg:col-span-5"
           data-cx-motion="scroll-parallax-layer"
           >
             <div className="gold-foil absolute -right-12 -top-12 h-64 w-64 rounded-full opacity-10" aria-hidden />
@@ -46,7 +46,7 @@ export function BrandGallerySection() {
           <div className="vellum-card relative overflow-hidden rounded-2xl p-8 md:p-10 lg:col-span-7">
             <div className="mb-5 flex items-center justify-between">
               <div className="smallcaps text-[10px] text-gold-dark">Brand System · Edition I</div>
-              <div className="font-num smallcaps text-[10px] text-ink/40">Vol. 01 · 2026</div>
+              <div className="font-num smallcaps text-[10px] text-ink/70">Vol. 01 · 2026</div>
             </div>
             <Image
               src={MESHY.brandSystem}

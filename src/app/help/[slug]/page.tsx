@@ -45,7 +45,7 @@ export default async function HelpGuidePage({ params }: PageProps) {
   if (!guide) notFound();
 
   return (
-    <div className="min-h-screen bg-cream text-ink antialiased">
+    <div className="min-h-screen bg-cream text-ink antialiased" data-scroll-theme="light">
       <MarketingNav />
       <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         {guide.isDraftPreview ? (

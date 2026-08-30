@@ -424,7 +424,7 @@ export function EarnedStarWordmark({
       style={{ fontSize }}
     >
       <span className={onDark ? "text-white" : "text-navy"}>Earned</span>
-      <span className="text-gold">Star</span>
+      <span className={onDark ? "text-gold" : "text-gold-dark"}>Star</span>
     </span>
   );
 }
