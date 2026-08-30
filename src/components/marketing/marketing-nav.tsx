@@ -44,10 +44,11 @@ export function MarketingNav() {
         "fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl transition duration-200",
         isHome
           ? "border-white/10 bg-ink/55"
-          : "border-ink/10 bg-cream/75",
+          : "border-ink/10 bg-cream/95",
         scrolled && "shadow-lg",
       )}
       data-surface={isHome ? "dark" : undefined}
+      data-scroll-theme={isHome ? undefined : "light"}
     >
       <nav className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6 sm:px-10 lg:px-14">
         <Link href="/" className="rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold">
@@ -63,7 +64,7 @@ export function MarketingNav() {
                 "text-[13px] font-semibold tracking-tight transition-colors",
                 isActive(link.href, link.exact)
                   ? isHome ? "text-white" : "text-ink"
-                  : isHome ? "text-white/65 hover:text-white" : "text-ink/60 hover:text-ink",
+                  : isHome ? "text-white/65 hover:text-white" : "text-ink/70 hover:text-ink",
               )}
             >
               {link.label}
