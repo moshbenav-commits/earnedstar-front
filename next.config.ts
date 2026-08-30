@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  transpilePackages: ["@expedia/design-system", "@expedia/design-lab"],
+  transpilePackages: ["@expedia/design-system", "@expedia/design-lab", "@expedia/creytix-sections"],
   async rewrites() {
     return [
       { source: "/embed/v1/widget.js", destination: "/widget/v1/widget.js" },
