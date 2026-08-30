@@ -31,7 +31,7 @@ export function CategoryScoreGrid({ scores }: { scores: Record<string, number> }
           </div>
           <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-[#2a1f16]">
             <div
-              className="h-full rounded-full bg-[#C45C26] transition-all"
+              className="h-full rounded-full bg-[#B5501F] transition-all"
               style={{ width: `${Math.min(100, Math.max(0, score))}%` }}
             />
           </div>

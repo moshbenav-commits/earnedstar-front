@@ -67,7 +67,7 @@ export function ReviewQueuePanel({ tasks }: { tasks: ReviewTask[] }) {
                 type="button"
                 disabled={busyId === t.id}
                 onClick={() => void decide(t.id, "completed")}
-                className="rounded-lg bg-[#C45C26] px-3 py-1.5 text-sm font-medium text-white hover:bg-[#C45C26]/90 disabled:opacity-50"
+                className="rounded-lg bg-[#B5501F] px-3 py-1.5 text-sm font-medium text-white hover:bg-[#a84d1f] disabled:opacity-50"
               >
                 Approve
               </button>

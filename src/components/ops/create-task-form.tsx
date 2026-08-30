@@ -60,7 +60,7 @@ export function CreateTaskForm() {
         <button
           type="submit"
           disabled={loading || !title.trim()}
-          className="rounded-lg bg-[#C45C26] px-4 py-2 text-sm font-semibold text-white hover:bg-[#a84d1f] disabled:opacity-50"
+          className="rounded-lg bg-[#B5501F] px-4 py-2 text-sm font-semibold text-white hover:bg-[#a84d1f] disabled:opacity-50"
         >
           {loading ? "Creating…" : "Create task"}
         </button>

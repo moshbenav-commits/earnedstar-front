@@ -106,7 +106,7 @@ export function FindingsPanel({ findings }: { findings: FindingRow[] }) {
               type="button"
               onClick={() => void bulkCreateTasks()}
               disabled={bulkLoading}
-              className="rounded-lg bg-[#C45C26] px-3 py-1 text-xs font-semibold text-white disabled:opacity-50"
+              className="rounded-lg bg-[#B5501F] px-3 py-1 text-xs font-semibold text-white disabled:opacity-50"
             >
               {bulkLoading ? "Creating…" : `Create ${selected.size} tasks`}
             </button>
