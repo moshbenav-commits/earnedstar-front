@@ -1,0 +1,17 @@
+{
+  "name": "@expedia/creytix-sections",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Versioned, token-consuming React marketing sections extracted from the fleet fronts — the reuse engine for the wireframe-to-code pipeline (G8 / docs/creytix/CREYTIX_WIREFRAME_TO_CODE_SPEC.md, section library)",
+  "type": "module",
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "react": "^19.2.4"
+  },
+  "exports": {
+    "./reviews-rail": "./src/reviews-rail.tsx"
+  }
+}

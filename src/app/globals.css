@@ -433,3 +433,27 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* @expedia/creytix-sections/reviews-rail, consumed by
+   src/components/marketing/earnedstar-reviews-rail.tsx. The rail is
+   presentational-only and reads its colors from --ctx-color-*, mapped once
+   here to this site's own ink/gold palette (mirrors the dark testimonial
+   sections above it on the homepage — LiveReviewSection, TestimonialsSection).
+   The scoped rules add the gold accent + card polish those sections use that
+   the token mapping alone doesn't carry. */
+.es-reviews-rail[data-ctx-section="reviews-rail"] {
+  --ctx-color-background: var(--ink);
+  --ctx-color-surface: var(--ink-soft);
+  --ctx-color-border: rgba(255, 255, 255, 0.1);
+  --ctx-color-primary-text: #ffffff;
+  --ctx-color-muted-text: rgba(255, 255, 255, 0.55);
+  --ctx-color-brand-accent: var(--gold-light);
+  --ctx-font-body: var(--font-jakarta);
+  --ctx-font-display: var(--font-instrument);
+}
+
+.es-reviews-rail[data-ctx-section="reviews-rail"] li > article {
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.35),
+    0 20px 44px rgba(0, 0, 0, 0.4);
+}

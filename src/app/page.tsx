@@ -8,6 +8,7 @@ import { FoundersQuoteSection } from "@/components/marketing/founders-quote-sect
 import { ManifestoPromisesSection } from "@/components/marketing/manifesto-promises-section";
 import { BrandGallerySection } from "@/components/marketing/brand-gallery-section";
 import { LiveReviewSection } from "@/components/marketing/live-review-section";
+import { EarnedStarReviewsRail } from "@/components/marketing/earnedstar-reviews-rail";
 import { FeaturesSection } from "@/components/marketing/features-section";
 import { HowItWorksSection } from "@/components/marketing/how-it-works-section";
 import { ComparisonTableSection } from "@/components/marketing/comparison-table-section";
@@ -33,6 +34,7 @@ export default function HomePage() {
         <ManifestoPromisesSection />
         <BrandGallerySection />
         <LiveReviewSection />
+        <EarnedStarReviewsRail />
         <FeaturesSection />
         <HowItWorksSection />
         <ComparisonTableSection />
