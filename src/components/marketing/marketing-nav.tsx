@@ -72,7 +72,7 @@ export function MarketingNav() {
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
-          <span className={cn("smallcaps hidden text-[10px] lg:inline", isHome ? "text-white/40" : "text-ink/40")}>
+          <span className={cn("smallcaps hidden text-[10px] lg:inline", isHome ? "text-white/60" : "text-ink/70")}>
             Vol. 01 · 2026
           </span>
           <Link

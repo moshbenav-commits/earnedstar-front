@@ -183,7 +183,7 @@ export function HeroReviewCard() {
                   <p className={cn("text-sm font-bold", isDark ? "text-white" : "text-navy")}>
                     Sarah M.
                   </p>
-                  <p className={cn("text-xs", isDark ? "text-white/45" : "text-text-faint")}>
+                  <p className={cn("text-xs", isDark ? "text-white/60" : "text-text-faint")}>
                     Verified purchase · December 2024
                   </p>
                 </div>

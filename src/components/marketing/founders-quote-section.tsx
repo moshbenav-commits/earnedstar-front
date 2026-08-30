@@ -12,7 +12,7 @@ export function FoundersQuoteSection() {
         <div className="mb-10 flex items-center gap-4">
           <span className="smallcaps text-[10px] text-gold-dark">Editor&apos;s Note</span>
           <span className="magazine-rule flex-1 text-ink/20" />
-          <span className="smallcaps text-[10px] text-ink/40">Chapter 01</span>
+          <span className="smallcaps text-[10px] text-ink/70">Chapter 01</span>
         </div>
 
         <div className="relative pl-12 md:pl-20">
@@ -29,9 +29,9 @@ export function FoundersQuoteSection() {
             </div>
             <div>
               <div className="font-bold tracking-tight text-ink">M. Benav</div>
-              <div className="text-xs text-ink/50">Founder & CEO — EarnedStar</div>
+              <div className="text-xs text-ink/70">Founder & CEO — EarnedStar</div>
             </div>
-            <div className="font-num ml-6 hidden text-[10px] text-ink/40 smallcaps tabular-nums md:block">
+            <div className="font-num ml-6 hidden text-[10px] text-ink/70 smallcaps tabular-nums md:block">
               № 001 · 2026
             </div>
           </div>

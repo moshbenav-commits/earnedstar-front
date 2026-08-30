@@ -68,7 +68,7 @@ export function MarketingFooter() {
           </div>
           {FOOTER_COLUMNS.map((column) => (
             <nav key={column.heading} aria-label={column.heading}>
-              <p className="smallcaps text-[11px] font-semibold text-white/40">{column.heading}</p>
+              <p className="smallcaps text-[11px] font-semibold text-white/60">{column.heading}</p>
               <ul className="mt-4 flex flex-col gap-2 text-sm">
                 {column.links.map((link) => (
                   <li key={link.href}>
@@ -84,7 +84,7 @@ export function MarketingFooter() {
         <div className="mt-10 border-t border-white/10 pt-8">
           <CreytixPartnerLockup partnerName="EarnedStar" partnerInitial="E" size="sm" surface="dark" />
         </div>
-        <p className="mt-4 text-xs text-white/40">© 2026 EarnedStar, Inc. · Los Angeles, CA</p>
+        <p className="mt-4 text-xs text-white/60">© 2026 EarnedStar, Inc. · Los Angeles, CA</p>
       </div>
     </footer>
   );

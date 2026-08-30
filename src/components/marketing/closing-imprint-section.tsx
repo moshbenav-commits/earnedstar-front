@@ -13,7 +13,7 @@ export function ClosingImprintSection() {
         </p>
         <div className="mt-8 flex items-center justify-center gap-3">
           <span className="h-px w-12 bg-gold/50" />
-          <span className="smallcaps text-[10px] text-white/40">Volume I · Edition 2026</span>
+          <span className="smallcaps text-[10px] text-white/60">Volume I · Edition 2026</span>
           <span className="h-px w-12 bg-gold/50" />
         </div>
       </div>
