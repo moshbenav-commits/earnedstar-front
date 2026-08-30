@@ -21,6 +21,26 @@ interface ReviewCardProps {
   className?: string;
 }
 
+/**
+ * CKV_BUILD_PLAN_EARNEDSTAR_REVIEW_IMPORT.md Slice 3 — provenance is visible:
+ * every imported review shows its origin. Badge copy (VerifiedBadge) is
+ * unchanged and speaks only for verified reviews; this is a separate,
+ * additional label.
+ */
+const IMPORT_ORIGIN_LABELS: Record<string, string> = {
+  google: "Google",
+  trustpilot: "Trustpilot",
+  facebook: "Facebook",
+  yotpo: "Yotpo",
+  loox: "Loox",
+  judgeme: "Judge.me",
+  stamped: "Stamped.io",
+};
+
+function importOriginLabel(importPlatform: string): string {
+  return IMPORT_ORIGIN_LABELS[importPlatform] ?? importPlatform;
+}
+
 export function ReviewCard({
   review,
   showResponse = false,
@@ -62,6 +82,13 @@ export function ReviewCard({
       {review.translated ? (
         <p className="mt-1 text-xs italic text-text-faint" title="Bible Phase 4h: entry-tier auto-translation, available on every plan">
           Translated automatically
+        </p>
+      ) : null}
+      {review.import_platform ? (
+        <p className="mt-1 text-xs italic text-text-faint">
+          {review.import_platform === "csv"
+            ? "Imported review"
+            : `via ${importOriginLabel(review.import_platform)}`}
         </p>
       ) : null}
       {review.product_name ? (
