@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import QRCode from "qrcode";
 import { Download } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ES_NAVY } from "@/lib/earnedstar-palette";
 
 export function InvitationQrCode({
   url,
@@ -26,7 +27,7 @@ export function InvitationQrCode({
     QRCode.toCanvas(canvasRef.current, url, {
       width: 200,
       margin: 2,
-      color: { dark: "#0F2044", light: "#FFFFFF" },
+      color: { dark: ES_NAVY, light: "#FFFFFF" },
     }).catch((err: unknown) => {
       setError(err instanceof Error ? err.message : "Could not render QR code");
     });

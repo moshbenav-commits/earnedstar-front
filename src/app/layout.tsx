@@ -31,6 +31,8 @@ const jetbrains = JetBrains_Mono({
 });
 
 import { HERO_META_DESCRIPTION, HERO_TAGLINE } from "@/content/earnedstar-trust-copy";
+import "../styles/cx-style-presets.css";
+import "../styles/cx-motion-scroll.css";
 
 const siteUrl = "https://earnedstar.com";
 const title = `EarnedStar — ${HERO_TAGLINE}`;
@@ -65,7 +67,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${instrument.variable} ${jetbrains.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${jakarta.variable} ${instrument.variable} ${jetbrains.variable}`} suppressHydrationWarning data-cx-style="dark-mode-luxury" data-cx-mood="japandi">
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -74,6 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-screen antialiased">
+        <div className="cx-scroll-progress" aria-hidden="true" data-cx-scroll="page" />
         <GoogleAnalytics />
         <VisitorPulse />
         <ThemeProvider>{children}</ThemeProvider>

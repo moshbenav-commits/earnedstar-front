@@ -11,6 +11,7 @@ import {
 } from '@expedia/design-lab';
 import { DsButton, colors } from '@expedia/design-system';
 import { EARNEDSTAR_DESIGN_LAB_NAV } from '../nav';
+import { ES_GOLD } from '@/lib/earnedstar-palette';
 
 export default function EarnedStarDesignLabSharedPage() {
   return (
@@ -42,7 +43,7 @@ export default function EarnedStarDesignLabSharedPage() {
           <p className='text-center text-sm text-gray-300'>
             <span className='font-mono text-[var(--color-orange)]'>{colors.orange}</span>
             <span className='mx-2 text-gray-500'>·</span>
-            <span className='font-mono text-[var(--gold)]'>#F59E0B</span>
+            <span className='font-mono text-[var(--gold)]'>{ES_GOLD}</span>
           </p>
         </DesignLabCard>
       </DesignLabSection>

@@ -35,6 +35,8 @@ export function StarRating({ rating, size = "md", interactive = false, onChange,
             key={star}
             type="button"
             disabled={!interactive}
+            aria-hidden={!interactive || undefined}
+            tabIndex={interactive ? undefined : -1}
             className={cn(interactive && "cursor-pointer rounded p-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-navy", !interactive && "cursor-default")}
             onMouseEnter={() => interactive && setHover(star)}
             onMouseLeave={() => interactive && setHover(0)}

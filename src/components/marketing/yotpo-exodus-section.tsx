@@ -34,7 +34,7 @@ export function YotpoExodusSection() {
             <span className="smallcaps text-[10px] text-gold-light">The Yotpo Exodus</span>
           </div>
           <h2 className="font-heading text-[clamp(2.5rem,5vw,4.8rem)] leading-[0.98] tracking-tight text-balance">
-            Yotpo killed Email & SMS on <em className="text-gold-light underline-hand">Dec 31, 2025</em>.
+            Yotpo killed Email & SMS on <span className="text-gold-light underline-hand italic">Dec 31, 2025</span>.
             <br className="hidden sm:block" /> We built the replacement.
           </h2>
           <p className="mt-8 max-w-2xl text-lg leading-[1.55] text-pretty text-white/72">
