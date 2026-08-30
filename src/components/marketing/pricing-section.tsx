@@ -105,7 +105,7 @@ export function PricingSection({ showHeader = true }: { showHeader?: boolean }) 
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-light">Pricing</p>
             <h2 className="mt-3 text-3xl font-bold text-navy sm:text-4xl">
               Simple plans.{" "}
-              <span className="font-display italic text-gold">Earned</span> trust at every tier.
+              <span className="font-display italic text-gold-dark">Earned</span> trust at every tier.
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-text-muted">
               {paymentsEnabled()
@@ -130,7 +130,7 @@ export function PricingSection({ showHeader = true }: { showHeader?: boolean }) 
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
               className={cn(
-                "relative flex flex-col overflow-hidden rounded-2xl border bg-white shadow-[0_4px_12px_rgba(15,32,68,0.08),0_16px_40px_rgba(15,32,68,0.06)]",
+                "relative flex flex-col rounded-2xl border bg-white shadow-[0_4px_12px_rgba(15,32,68,0.08),0_16px_40px_rgba(15,32,68,0.06)]",
                 plan.popular
                   ? "border-gold/40 shadow-[0_0_0_1px_rgba(245,158,11,0.2),0_20px_48px_rgba(245,158,11,0.12)] xl:-translate-y-2"
                   : "border-border",
@@ -138,7 +138,7 @@ export function PricingSection({ showHeader = true }: { showHeader?: boolean }) 
             >
               <div
                 className={cn(
-                  "h-1",
+                  "h-1 rounded-t-2xl",
                   plan.popular
                     ? "bg-gradient-to-r from-navy via-gold to-navy"
                     : "bg-gradient-to-r from-navy/20 via-border to-navy/20",
@@ -151,7 +151,7 @@ export function PricingSection({ showHeader = true }: { showHeader?: boolean }) 
                     className={cn(
                       "absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-0.5 text-xs font-semibold tracking-wide",
                       plan.popular
-                        ? "bg-gold text-white shadow-md"
+                        ? "bg-gold text-ink shadow-md"
                         : "border border-gold/30 bg-gold-pale text-gold-dark",
                     )}
                   >
@@ -168,7 +168,7 @@ export function PricingSection({ showHeader = true }: { showHeader?: boolean }) 
 
                 <p className="mt-2 text-3xl font-extrabold tracking-tight text-navy">
                   ${PLAN_LIMITS[plan.id].price}
-                  <span className="text-sm font-normal text-text-faint">/mo</span>
+                  <span className="text-sm font-normal text-text-muted">/mo</span>
                 </p>
                 <p className="mt-2 text-sm text-text-muted">{plan.tagline}</p>
 
@@ -176,18 +176,15 @@ export function PricingSection({ showHeader = true }: { showHeader?: boolean }) 
                   {plan.features.map((f) => (
                     <li
                       key={f.text}
-                      className={cn(
-                        "flex gap-2.5 text-sm",
-                        "comingSoon" in f && f.comingSoon ? "text-text-faint" : "text-text-muted",
-                      )}
+                      className="flex gap-2.5 text-sm text-text-muted"
                     >
-                      <span className="mt-0.5 text-gold" aria-hidden>
+                      <span className="mt-0.5 text-gold-dark" aria-hidden>
                         ★
                       </span>
                       <span>
                         {f.text}
                         {"comingSoon" in f && f.comingSoon ? (
-                          <span className="ml-1.5 rounded-full bg-surface-offset px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-text-faint">
+                          <span className="ml-1.5 rounded-full bg-navy-pale px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-navy-light">
                             Coming soon
                           </span>
                         ) : null}
@@ -212,7 +209,7 @@ export function PricingSection({ showHeader = true }: { showHeader?: boolean }) 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-10 text-center text-xs text-text-faint"
+          className="mt-10 text-center text-xs text-text-muted"
         >
           Every plan includes the EarnedStar badge · Verified by Purchase on every review
         </motion.p>
