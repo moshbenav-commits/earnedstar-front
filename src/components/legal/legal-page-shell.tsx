@@ -10,7 +10,7 @@ type LegalPageShellProps = {
 
 export function LegalPageShell({ bundleId, children }: LegalPageShellProps) {
   return (
-    <div className="min-h-screen bg-cream text-ink antialiased">
+    <div className="min-h-screen bg-cream text-ink antialiased" data-scroll-theme="light">
       <MarketingNav />
       <LegalReviewBanner />
       <main className="mx-auto max-w-3xl px-4 py-12 sm:py-16">

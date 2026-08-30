@@ -121,6 +121,14 @@ html.dark .bg-white {
   background-color: var(--surface);
 }
 
+/* gold-dark is the AA gold for light backgrounds; on surfaces that flip dark
+   with the theme (card-surface, bg-surface) it drops to 2.8:1 — swap to plain
+   gold there. Untagged cream/vellum sections keep gold-dark. */
+html.dark .card-surface .text-gold-dark,
+html.dark .bg-surface .text-gold-dark {
+  color: var(--gold);
+}
+
 /* Inside a light-declared surface the navy remaps above must not apply. */
 html.dark [data-scroll-theme="light"] {
   color-scheme: light;
@@ -137,6 +145,10 @@ html.dark [data-scroll-theme="light"] .text-navy-light {
 
 html.dark [data-scroll-theme="light"] .bg-white {
   background-color: #ffffff;
+}
+
+html.dark [data-scroll-theme="light"] .text-gold-dark {
+  color: var(--gold-dark);
 }
 
 html.dark .section-warm,

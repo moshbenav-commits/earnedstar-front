@@ -30,7 +30,7 @@ const STEPS = [
 
 export default function YotpoRefugeesPage() {
   return (
-    <div className="min-h-screen bg-cream text-ink antialiased">
+    <div className="min-h-screen bg-cream text-ink antialiased" data-scroll-theme="light">
       <MarketingNav />
       <main>
         <section className="relative overflow-hidden bg-ink pb-32 pt-24 text-white" data-surface="dark">
@@ -66,7 +66,7 @@ export default function YotpoRefugeesPage() {
                 <h3 className="font-heading mt-2 text-3xl">Then → Now</h3>
                 <table className="mt-5 w-full text-sm">
                   <thead>
-                    <tr className="text-xs uppercase tracking-[0.18em] text-ink/45">
+                    <tr className="text-xs uppercase tracking-[0.18em] text-ink/70">
                       <th className="py-2 text-left font-bold">Tool</th>
                       <th className="py-2 text-right font-bold">Yotpo era</th>
                       <th className="py-2 text-right font-bold">EarnedStar</th>
@@ -76,7 +76,7 @@ export default function YotpoRefugeesPage() {
                     {COMPARE_ROWS.map(([label, before, after]) => (
                       <tr key={label} className="border-t border-ink/8">
                         <td className="py-2.5 text-ink/70">{label}</td>
-                        <td className="py-2.5 text-right text-ink/45">{before}</td>
+                        <td className="py-2.5 text-right text-ink/70">{before}</td>
                         <td className="py-2.5 text-right font-bold">{after}</td>
                       </tr>
                     ))}
@@ -110,7 +110,7 @@ export default function YotpoRefugeesPage() {
                 <div key={title} className="rounded-2xl border border-ink/10 bg-white p-7 transition-shadow hover:shadow-md">
                   <div className="flex items-center justify-between">
                     <Icon className="text-gold-dark" size={26} strokeWidth={1.6} />
-                    <span className="text-xs font-bold tracking-[0.24em] text-ink/40">STEP · {n}</span>
+                    <span className="text-xs font-bold tracking-[0.24em] text-ink/70">STEP · {n}</span>
                   </div>
                   <h3 className="font-heading mt-4 text-3xl italic">{title}</h3>
                   <p className="mt-3 leading-relaxed text-ink/65">{body}</p>

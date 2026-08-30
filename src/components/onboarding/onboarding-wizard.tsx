@@ -66,7 +66,7 @@ export function OnboardingWizard() {
           <section className="card-surface gold-seam p-8">
             <h1 className="text-2xl font-bold text-navy">Name your business</h1>
             <p className="mt-2 text-sm text-text-muted">{TRUST_ONBOARDING_BLURB}</p>
-            <p className="mt-2 text-xs text-text-faint">About 3 minutes — you&apos;ll be ready to send invitations.</p>
+            <p className="mt-2 text-xs text-text-muted">About 3 minutes — you&apos;ll be ready to send invitations.</p>
             <div className="mt-6 space-y-4">
               <input
                 placeholder="Business name"
