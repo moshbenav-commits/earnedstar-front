@@ -1,5 +1,5 @@
 /**
- * ReviewsRail — creytix-sections/reviews-rail@1.0.0
+ * ReviewsRail — creytix-sections/reviews-rail@1.0.1
  *
  * Consolidates the fleet's three separate reviews forks named in
  * docs/creytix/contracts/CONTRACT_REVIEWS_RAIL_CONSOLIDATION.md — "reviews"
@@ -172,6 +172,7 @@ export function ReviewsRail({
         padding: "var(--ctx-space-10, 2.5rem) var(--ctx-space-5, 1.25rem)",
         fontFamily: "var(--ctx-font-body)",
         color: "var(--ctx-color-primary-text)",
+        background: "var(--ctx-color-background)",
       }}
     >
       <div

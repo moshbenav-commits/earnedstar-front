@@ -478,9 +478,6 @@ body {
    The scoped rules add the gold accent + card polish those sections use that
    the token mapping alone doesn't carry. */
 .es-reviews-rail[data-ctx-section="reviews-rail"] {
-  /* The vendored ReviewsRail maps but never paints its background token —
-     without this the white-on-ink text sits directly on the cream page. */
-  background: var(--ctx-color-background);
   --ctx-color-background: var(--ink);
   --ctx-color-surface: var(--ink-soft);
   --ctx-color-border: rgba(255, 255, 255, 0.1);
