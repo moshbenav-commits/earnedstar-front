@@ -98,6 +98,30 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/app": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/app",
+      "dataRoute": "/app.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/apple-icon": {
       "initialHeaders": {
         "cache-control": "public, max-age=0, must-revalidate",
@@ -334,6 +358,30 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/design-lab/tokens",
       "dataRoute": "/design-lab/tokens.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/features": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/features",
+      "dataRoute": "/features.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -834,8 +882,8 @@
   },
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "7f86df11c3f9c268857656d714155474",
-    "previewModeSigningKey": "5510c890cd71dbfc185dccfbe69539675fcaa79ffc7222c9b07bffd0532158ed",
-    "previewModeEncryptionKey": "c9d68cb7733a0989a6c61359213e10697c86d457b8d769ffa73d9655feb17147"
+    "previewModeId": "8c2e10b8cd91dc27a48646a357e0d191",
+    "previewModeSigningKey": "84deca46f254ab6af8c132e4c879a49a594e014b9006f00769ffe9535c38ddcc",
+    "previewModeEncryptionKey": "7783080806965b919dc880a9c18e9f9b93bec72399a613e28e1b93bce702f971"
   }
 }

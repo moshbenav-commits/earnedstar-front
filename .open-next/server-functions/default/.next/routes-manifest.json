@@ -494,6 +494,12 @@
       "namedRegex": "^/api/visitor\\-pulse/track(?:/)?$"
     },
     {
+      "page": "/app",
+      "regex": "^/app(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/app(?:/)?$"
+    },
+    {
       "page": "/apple-icon",
       "regex": "^/apple\\-icon(?:/)?$",
       "routeKeys": {},
@@ -630,6 +636,12 @@
       "regex": "^/design\\-lab/tokens(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/design\\-lab/tokens(?:/)?$"
+    },
+    {
+      "page": "/features",
+      "regex": "^/features(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/features(?:/)?$"
     },
     {
       "page": "/forgot-password",
