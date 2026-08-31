@@ -49,3 +49,5 @@ next-env.d.ts
 .claude/
 # added by evalforge fix (env safety)
 .env
+
+.analytics/

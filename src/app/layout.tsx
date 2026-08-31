@@ -7,7 +7,7 @@ import { Plus_Jakarta_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/g
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@/components/seo/google-analytics";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { VisitorPulse } from "@/components/VisitorPulse";
+import { CreytixTrackBoot } from "@/components/creytix/consent-banner";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -78,7 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen antialiased">
         <div className="cx-scroll-progress" aria-hidden="true" data-cx-scroll="page" />
         <GoogleAnalytics />
-        <VisitorPulse />
+        <CreytixTrackBoot />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
