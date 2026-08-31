@@ -5,7 +5,11 @@
  */
 @import "tailwindcss";
 
-:root {
+/* Light-declared surfaces (data-scroll-theme="light") re-pin the full light token
+   set even when the app shell is html.dark — a light section must never inherit
+   dark-surface text tokens (near-invisible #e8ecf8-on-cream class of failure). */
+:root,
+html.dark [data-scroll-theme="light"] {
   --navy: #0f2044;
   --navy-mid: #1a3566;
   --navy-light: #2a4d8f;
@@ -99,7 +103,9 @@ html.dark {
   --border-strong: rgba(255, 255, 255, 0.18);
   --text: #e8ecf8;
   --text-muted: #a8b4c8;
-  --text-faint: #6b7a90;
+  /* Lightened 2026-08-30 from #6b7a90 (4.06:1 on --surface — failed AA);
+     4.8:1 on surface-2, 5.8:1 on surface, still visibly dimmer than muted. */
+  --text-faint: #8494ab;
   --navy-pale: rgba(48, 96, 184, 0.18);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.2);
   --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.25);
@@ -115,6 +121,36 @@ html.dark .text-navy-light {
 
 html.dark .bg-white {
   background-color: var(--surface);
+}
+
+/* gold-dark is the AA gold for light backgrounds; on surfaces that flip dark
+   with the theme (card-surface, bg-surface) it drops to 2.8:1 — swap to plain
+   gold there. Untagged cream/vellum sections keep gold-dark. */
+html.dark .card-surface .text-gold-dark,
+html.dark .bg-surface .text-gold-dark {
+  color: var(--gold);
+}
+
+/* Inside a light-declared surface the navy remaps above must not apply. */
+html.dark [data-scroll-theme="light"] {
+  color-scheme: light;
+  color: var(--text);
+}
+
+html.dark [data-scroll-theme="light"] .text-navy {
+  color: var(--navy);
+}
+
+html.dark [data-scroll-theme="light"] .text-navy-light {
+  color: var(--navy-light);
+}
+
+html.dark [data-scroll-theme="light"] .bg-white {
+  background-color: #ffffff;
+}
+
+html.dark [data-scroll-theme="light"] .text-gold-dark {
+  color: var(--gold-dark);
 }
 
 html.dark .section-warm,
@@ -432,4 +468,28 @@ body {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* @expedia/creytix-sections/reviews-rail, consumed by
+   src/components/marketing/earnedstar-reviews-rail.tsx. The rail is
+   presentational-only and reads its colors from --ctx-color-*, mapped once
+   here to this site's own ink/gold palette (mirrors the dark testimonial
+   sections above it on the homepage — LiveReviewSection, TestimonialsSection).
+   The scoped rules add the gold accent + card polish those sections use that
+   the token mapping alone doesn't carry. */
+.es-reviews-rail[data-ctx-section="reviews-rail"] {
+  --ctx-color-background: var(--ink);
+  --ctx-color-surface: var(--ink-soft);
+  --ctx-color-border: rgba(255, 255, 255, 0.1);
+  --ctx-color-primary-text: #ffffff;
+  --ctx-color-muted-text: rgba(255, 255, 255, 0.55);
+  --ctx-color-brand-accent: var(--gold-light);
+  --ctx-font-body: var(--font-jakarta);
+  --ctx-font-display: var(--font-instrument);
+}
+
+.es-reviews-rail[data-ctx-section="reviews-rail"] li > article {
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.35),
+    0 20px 44px rgba(0, 0, 0, 0.4);
 }

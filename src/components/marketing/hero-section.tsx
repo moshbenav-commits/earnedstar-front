@@ -36,7 +36,7 @@ export function HeroSection() {
       />
 
       <div className="relative border-b border-white/10">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-3 text-[10px] text-white/40 sm:px-10 lg:px-14">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-3 text-[10px] text-white/60 sm:px-10 lg:px-14">
           <span className="smallcaps">Manifesto · Edition I</span>
           <span className="hidden sm:inline">EarnedStar — A Trust Manifesto for E-Commerce</span>
           <span className="font-num tabular-nums">{dateLabel}</span>
@@ -101,7 +101,7 @@ export function HeroSection() {
             </Link>
           </motion.div>
 
-          <div className="flex items-center gap-4 pt-6 text-[11px] text-white/40">
+          <div className="flex items-center gap-4 pt-6 text-[11px] text-white/60">
             <span className="smallcaps">Trusted by merchants in</span>
             <div className="font-num flex items-center gap-3 tabular-nums">
               <span>14 verticals</span>

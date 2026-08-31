@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3050",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@creytix/partner-kit": "file:./vendor/creytix-partner-kit",
+    "@expedia/creytix-sections": "file:./vendor/creytix-sections",
     "@expedia/design-lab": "file:./packages/expedia-design-lab",
     "@expedia/design-system": "file:./packages/expedia-design-system",
     "@opennextjs/cloudflare": "1.20.2",

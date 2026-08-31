@@ -3,5 +3,9 @@ import { PartneredWithCreytixView, partnerPageMetadata } from "@creytix/partner-
 export const metadata = partnerPageMetadata("earnedstar");
 
 export default function Page() {
-  return <PartneredWithCreytixView slug="earnedstar" />;
+  return (
+    <div data-scroll-theme="light">
+      <PartneredWithCreytixView slug="earnedstar" />
+    </div>
+  );
 }

@@ -39,7 +39,7 @@ export function ApplyPlaybookButton({ playbook }: { playbook: Playbook }) {
         type="button"
         disabled={busy}
         onClick={() => void apply()}
-        className="rounded-lg bg-[#C45C26] px-4 py-2 text-sm font-medium text-white hover:bg-[#C45C26]/90 disabled:opacity-50"
+        className="rounded-lg bg-[#B5501F] px-4 py-2 text-sm font-medium text-white hover:bg-[#a84d1f] disabled:opacity-50"
       >
         {busy ? "Applying…" : "Apply playbook → tasks"}
       </button>

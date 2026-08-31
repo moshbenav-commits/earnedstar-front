@@ -8,14 +8,15 @@ import { FoundersQuoteSection } from "@/components/marketing/founders-quote-sect
 import { ManifestoPromisesSection } from "@/components/marketing/manifesto-promises-section";
 import { BrandGallerySection } from "@/components/marketing/brand-gallery-section";
 import { LiveReviewSection } from "@/components/marketing/live-review-section";
+import { EarnedStarReviewsRail } from "@/components/marketing/earnedstar-reviews-rail";
 import { FeaturesSection } from "@/components/marketing/features-section";
 import { HowItWorksSection } from "@/components/marketing/how-it-works-section";
 import { ComparisonTableSection } from "@/components/marketing/comparison-table-section";
 import { YotpoExodusSection } from "@/components/marketing/yotpo-exodus-section";
-import { TestimonialsSection } from "@/components/marketing/testimonials-section";
 import { PricingSection } from "@/components/marketing/pricing-section";
 import { AuditTeaserSection } from "@/components/marketing/audit-teaser-section";
 import { FaqSection } from "@/components/marketing/faq-section";
+import { FeaturedArticles } from "@/components/marketing/featured-articles-section";
 import { ClosingImprintSection } from "@/components/marketing/closing-imprint-section";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
 import { ExitIntentPanel } from "@/components/marketing/exit-intent-panel";
@@ -32,14 +33,15 @@ export default function HomePage() {
         <ManifestoPromisesSection />
         <BrandGallerySection />
         <LiveReviewSection />
+        <EarnedStarReviewsRail />
         <FeaturesSection />
         <HowItWorksSection />
         <ComparisonTableSection />
         <YotpoExodusSection />
-        <TestimonialsSection />
         <PricingSection />
         <AuditTeaserSection />
         <FaqSection />
+        <FeaturedArticles />
         <ClosingImprintSection />
       </main>
       <MarketingFooter />

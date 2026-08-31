@@ -6,8 +6,8 @@
 import { Plus_Jakarta_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@/components/seo/google-analytics";
-import { ThemeProvider } from "@/components/theme/theme-provider";
 import { CreytixTrackBoot } from "@/components/creytix/consent-banner";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({

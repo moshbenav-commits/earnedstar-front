@@ -7,7 +7,6 @@ import { StoreProfile } from "@/components/store/store-profile";
 import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 import { DEFAULT_SHARE_IMAGE_URL } from "@/lib/brand-assets";
 import { fetchStorePageData } from "@/lib/earnedstar-server";
-import { mockBusiness, mockReviews } from "@/lib/mock-data";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -17,8 +16,16 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const { merchant, profile } = await fetchStorePageData(slug);
-  const business = merchant ?? { ...mockBusiness, slug, name: slug.replace(/-/g, " ") };
+  const { merchant } = await fetchStorePageData(slug);
+
+  if (!merchant) {
+    return {
+      title: "Store Not Found | EarnedStar",
+      description: "This store page could not be found.",
+    };
+  }
+
+  const business = merchant;
   const total = business.review_count;
   const title =
     business.seo_title?.trim() ||
@@ -59,7 +66,7 @@ export default async function PublicReviewProfilePage({ params }: PageProps) {
   }
 
   const business = merchant;
-  const list = reviews.length > 0 ? reviews : mockReviews.filter((r) => r.status === "published");
+  const list = reviews;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -123,11 +130,7 @@ export default async function PublicReviewProfilePage({ params }: PageProps) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       ) : null}
       <StoreProfile
-        business={{
-          ...business,
-          response_rate: 68,
-          joined_year: 2026,
-        }}
+        business={business}
         reviews={list}
         qaItems={qa}
         profile={profile}

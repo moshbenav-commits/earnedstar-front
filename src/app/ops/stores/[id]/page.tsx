@@ -34,7 +34,7 @@ export default async function OpsStoreDetailPage({ params }: { params: Promise<{
     return (
       <div className="mx-auto max-w-3xl p-6">
         <p className="text-[#F5EBE0]/70">Store not found.</p>
-        <Link href="/ops/stores" className="mt-4 inline-block text-[#C45C26] hover:underline">
+        <Link href="/ops/stores" className="mt-4 inline-block text-[#D97742] hover:underline">
           ← Stores
         </Link>
       </div>
@@ -46,7 +46,7 @@ export default async function OpsStoreDetailPage({ params }: { params: Promise<{
   return (
     <div className="mx-auto max-w-4xl space-y-6">
       <header>
-        <Link href="/ops/stores" className="text-sm text-[#C45C26] hover:underline">
+        <Link href="/ops/stores" className="text-sm text-[#D97742] hover:underline">
           ← Stores
         </Link>
         <h1 className="mt-2 text-2xl font-semibold text-[#E8A54B]">{store.display_name ?? store.shop}</h1>

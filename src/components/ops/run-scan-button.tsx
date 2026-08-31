@@ -22,7 +22,7 @@ export function RunScanButton({ storeId, shop }: { storeId: string; shop: string
       type="button"
       onClick={() => void runScan()}
       disabled={loading}
-      className="rounded-lg bg-[#C45C26] px-4 py-2 text-sm font-semibold text-white hover:bg-[#a84d1f] disabled:opacity-50"
+      className="rounded-lg bg-[#B5501F] px-4 py-2 text-sm font-semibold text-white hover:bg-[#a84d1f] disabled:opacity-50"
     >
       {loading ? "Scanning…" : `Run scan · ${shop}`}
     </button>

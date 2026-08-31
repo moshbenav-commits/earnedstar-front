@@ -32,7 +32,7 @@ export default async function OpsTaskDetailPage({ params }: { params: Promise<{ 
     return (
       <div className="mx-auto max-w-3xl p-6">
         <p className="text-[#F5EBE0]/70">Task not found.</p>
-        <Link href="/ops/tasks" className="mt-4 inline-block text-[#C45C26] hover:underline">
+        <Link href="/ops/tasks" className="mt-4 inline-block text-[#D97742] hover:underline">
           ← Back to tasks
         </Link>
       </div>
@@ -44,7 +44,7 @@ export default async function OpsTaskDetailPage({ params }: { params: Promise<{ 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <header>
-        <Link href="/ops/tasks" className="text-sm text-[#C45C26] hover:underline">
+        <Link href="/ops/tasks" className="text-sm text-[#D97742] hover:underline">
           ← Action Console
         </Link>
         <h1 className="mt-2 text-2xl font-semibold text-[#E8A54B]">{task.title}</h1>

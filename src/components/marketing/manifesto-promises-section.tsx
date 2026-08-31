@@ -19,7 +19,7 @@ export function ManifestoPromisesSection() {
             No platform in this category has ever committed to truth publicly. We are. Every promise below
             becomes a feature you can audit, share, and hold us to — in the open.
           </p>
-          <div className="smallcaps mt-8 flex items-center gap-3 text-[10px] text-ink/40">
+          <div className="smallcaps mt-8 flex items-center gap-3 text-[10px] text-ink/70">
             <span className="h-px w-8 bg-ink/20" /> est. January 2026
           </div>
         </div>

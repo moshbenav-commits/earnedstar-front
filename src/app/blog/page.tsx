@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 
 import { MarketingNav } from "@/components/marketing/marketing-nav";
 import { MarketingFooter } from "@/components/marketing/marketing-footer";
+import { RelatedArticles } from "@/components/marketing/related-articles";
 import { getAllArticles } from "@/lib/blog/loader";
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ export default function BlogIndexPage() {
   const previewing = articles.some((article) => article.isDraftPreview);
 
   return (
-    <div className="min-h-screen bg-cream text-ink antialiased">
+    <div className="min-h-screen bg-cream text-ink antialiased" data-scroll-theme="light">
       <MarketingNav />
       <main className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
         <h1 className="text-4xl font-bold text-navy">Blog</h1>
@@ -63,6 +64,8 @@ export default function BlogIndexPage() {
             ))}
           </ul>
         )}
+
+        <RelatedArticles articles={articles.slice(0, 4)} title="Featured articles" />
       </main>
       <MarketingFooter />
     </div>

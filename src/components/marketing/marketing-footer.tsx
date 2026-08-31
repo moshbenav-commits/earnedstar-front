@@ -9,6 +9,45 @@ import { EarnedStarLogo } from "@/components/brand/earnedstar-logo";
 import { LEGAL_FOOTER_LINKS } from "@/lib/legal/config";
 import { CreytixPartnerLockup } from "@creytix/partner-kit";
 
+/**
+ * Audience-grouped footer nav — pulls from the same real routes the primary
+ * nav (`marketing-nav.tsx` `navLinks`) and legal SSOT (`LEGAL_FOOTER_LINKS`)
+ * already point to. No invented destinations.
+ */
+export const FOOTER_COLUMNS = [
+  {
+    heading: "Product",
+    links: [
+      { href: "/pricing", label: "Pricing" },
+      { href: "/features", label: "Features" },
+      { href: "/audit", label: "The Audit" },
+      { href: "/reviews/expedia-parts", label: "Live Store" },
+    ],
+  },
+  {
+    heading: "Resources",
+    links: [
+      { href: "/blog", label: "Blog" },
+      { href: "/yotpo-refugees", label: "Yotpo Refugees" },
+      { href: "/help", label: "Help Guides" },
+      { href: "/support", label: "Support" },
+      { href: "/contact", label: "Contact" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { href: "/partnered-with-creytix", label: "Partnered with Creytix" },
+      { href: "/design-lab/brand", label: "Brand" },
+      { href: "/signup", label: "Start free" },
+    ],
+  },
+  {
+    heading: "Legal",
+    links: LEGAL_FOOTER_LINKS.map((link) => ({ href: link.href, label: link.label })),
+  },
+] as const;
+
 export function MarketingFooter() {
   return (
     <footer className="border-t border-border bg-navy text-white" data-scroll-theme="dark">
@@ -20,19 +59,32 @@ export function MarketingFooter() {
         </div>
       </section>
       <div className="mx-auto max-w-7xl border-t border-white/10 px-4 py-12">
-        <EarnedStarLogo variant="light" size={40} showBadge={false} />
-        <p className="mt-4 max-w-md text-sm text-white/60">Verified reviews for e-commerce stores that take trust seriously.</p>
-        <nav aria-label="Legal" className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-          {LEGAL_FOOTER_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className="text-white/55 underline-offset-2 hover:text-white hover:underline">
-              {link.label}
-            </Link>
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
+          <div>
+            <EarnedStarLogo variant="light" size={40} showBadge={false} />
+            <p className="mt-4 max-w-xs text-sm text-white/60">
+              Verified reviews for e-commerce stores that take trust seriously.
+            </p>
+          </div>
+          {FOOTER_COLUMNS.map((column) => (
+            <nav key={column.heading} aria-label={column.heading}>
+              <p className="smallcaps text-[11px] font-semibold text-white/60">{column.heading}</p>
+              <ul className="mt-4 flex flex-col gap-2 text-sm">
+                {column.links.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-white/55 underline-offset-2 hover:text-white hover:underline">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           ))}
-        </nav>
-        <div className="mt-8">
+        </div>
+        <div className="mt-10 border-t border-white/10 pt-8">
           <CreytixPartnerLockup partnerName="EarnedStar" partnerInitial="E" size="sm" surface="dark" />
         </div>
-        <p className="mt-4 text-xs text-white/40">© 2026 EarnedStar, Inc. · Los Angeles, CA</p>
+        <p className="mt-4 text-xs text-white/60">© 2026 EarnedStar, Inc. · Los Angeles, CA</p>
       </div>
     </footer>
   );

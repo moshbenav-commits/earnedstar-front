@@ -33,9 +33,10 @@ export interface Review {
   rating_install?: number;
   /** Optional vertical-specific metadata (fitment, size, etc.) */
   metadata?: Record<string, string>;
-  /** "organic" (default) or "imported" via Phase 3f CSV migration. */
-  source?: "organic" | "imported";
-  /** Source platform when source === "imported" (yotpo | loox | judgeme | stamped). */
+  /** "organic" (default), "imported" via review migration, or "seed" (demo content). */
+  source?: "organic" | "imported" | "seed";
+  /** Origin platform when source === "imported": yotpo | loox | judgeme | stamped |
+   * trustpilot | google | facebook | csv (generic). Never present for organic/seed rows. */
   import_platform?: string | null;
   /** Bible Phase 4h — entry-tier auto-translation (not plan-gated). True when
    * review_text below is a translated string, not the customer's original. */
