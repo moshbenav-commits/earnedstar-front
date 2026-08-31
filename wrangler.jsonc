@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "earnedstar-front",
+  "compatibility_date": "2026-08-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "vars": {
+    // Next 16 getMiddlewareManifest() dynamic-requires middleware-manifest.json.
+    // Workers cannot do that; minimal mode skips it (OpenNext issue 1232).
+    "NEXT_PRIVATE_MINIMAL_MODE": "1",
+    "NEXT_PUBLIC_SITE_URL": "https://earnedstar-front.moshbenav.workers.dev",
+    // Creytix Data Lake Bronze ingest (Phase 1). Pairs with the
+    // LAKE_INGEST_SECRET worker secret (wrangler secret put — never in vars).
+    "LAKE_INGEST_URL": "https://api.expediaparts.com/api/marketing/lake/events"
+  },
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "earnedstar-front"
+    }
+  ]
+}

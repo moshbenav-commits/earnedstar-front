@@ -4,8 +4,12 @@
  * is strictly prohibited without express written permission.
  */
 import type { NextConfig } from "next";
+/** PRC-023 Wave 2 — OpenNext on Workers. Leave Vercel `next build` unchanged. */
+const isOpenNext = process.env.OPENNEXT_BUILD === "1";
 
 const nextConfig: NextConfig = {
+  ...(isOpenNext ? { output: "standalone" as const } : {}),
+  ...(isOpenNext ? { serverExternalPackages: ["sharp"] } : {}),
   // P11 trust/security baseline (site-audit securityHeaders). No CSP here —
   // a blanket CSP would break inline scripts/styles on a site we haven't
   // CSP-audited.
@@ -30,6 +34,7 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    ...(isOpenNext ? { unoptimized: true } : {}),
     remotePatterns: [
       { protocol: "https", hostname: "www.expediaparts.com", pathname: "/**" },
       { protocol: "https", hostname: "expediaparts.com", pathname: "/**" },
