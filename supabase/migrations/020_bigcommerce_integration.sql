@@ -57,3 +57,13 @@ CREATE TABLE IF NOT EXISTS bigcommerce_webhook_events (
 
 CREATE INDEX IF NOT EXISTS idx_bigcommerce_webhook_events_store
   ON bigcommerce_webhook_events (store_hash, received_at DESC);
+
+-- Supabase security advisor lockdown (see 014_enable_rls_lockdown.sql): every new
+-- public-schema table must enable RLS. No policies added — deny-by-default for
+-- anon/authenticated via PostgREST; the NestJS backend uses
+-- SUPABASE_SERVICE_ROLE_KEY (BYPASSRLS) so backend access is unaffected.
+-- bigcommerce_connections.access_token is a live merchant API credential — this
+-- table was committed with zero RLS (2026-08-31 sweep finding), caught before
+-- this migration was ever applied.
+ALTER TABLE bigcommerce_connections ENABLE ROW LEVEL SECURITY;
+ALTER TABLE bigcommerce_webhook_events ENABLE ROW LEVEL SECURITY;

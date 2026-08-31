@@ -40,3 +40,13 @@ CREATE TABLE IF NOT EXISTS woocommerce_webhook_events (
 
 CREATE INDEX IF NOT EXISTS idx_woocommerce_webhook_events_merchant
   ON woocommerce_webhook_events (merchant_slug, received_at DESC);
+
+-- Supabase security advisor lockdown (see 014_enable_rls_lockdown.sql): every new
+-- public-schema table must enable RLS. No policies added — deny-by-default for
+-- anon/authenticated via PostgREST; the NestJS backend uses
+-- SUPABASE_SERVICE_ROLE_KEY (BYPASSRLS) so backend access is unaffected.
+-- woocommerce_stores.webhook_secret is a live per-merchant secret — this table
+-- was committed with zero RLS (2026-08-31 sweep finding), caught before this
+-- migration was ever applied.
+ALTER TABLE woocommerce_stores ENABLE ROW LEVEL SECURITY;
+ALTER TABLE woocommerce_webhook_events ENABLE ROW LEVEL SECURITY;
