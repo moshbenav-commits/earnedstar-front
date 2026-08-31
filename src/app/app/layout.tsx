@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0A1628",
+  themeColor: '#0a1628', // --dark-bg (globals.css) — viewport meta requires a literal color, not a CSS var
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
