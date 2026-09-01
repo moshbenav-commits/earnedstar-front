@@ -8,11 +8,13 @@ import type { ReactNode } from 'react';
 
 /** Real EarnedStar jobs (reviews, seller dashboard) -- the generator's
  * first draft shipped generic commerce tabs (Shop/Cart/Account) pointing
- * at routes that don't exist on this B2B SaaS reviews site. */
+ * at routes that don't exist on this B2B SaaS reviews site. Each tab lands
+ * on a distilled /app screen, which links into the full /dashboard/* routes
+ * for editing. */
 const TABS = [
   { href: '/app', label: 'Home', match: (p: string) => p === '/app' || p === '/app/' },
-  { href: '/dashboard/reviews', label: 'Reviews', match: (p: string) => p.startsWith('/dashboard/reviews') },
-  { href: '/dashboard', label: 'Dashboard', match: (p: string) => p.startsWith('/dashboard') && !p.startsWith('/dashboard/reviews') },
+  { href: '/app/reviews', label: 'Reviews', match: (p: string) => p.startsWith('/app/reviews') },
+  { href: '/app/seller-dashboard', label: 'Seller', match: (p: string) => p.startsWith('/app/seller-dashboard') },
 ] as const;
 
 export function AppShell({
@@ -29,9 +31,12 @@ export function AppShell({
   backLabel?: string;
 }) {
   return (
-    <div className="min-h-screen text-gray-100" style={{ backgroundColor: "#0A1628" }} data-surface="dark">
+    <div className="min-h-screen text-gray-100" style={{ backgroundColor: 'var(--dark-bg)' }} data-surface="dark">
       {(title || backHref) && (
-        <header className="sticky top-0 z-10 border-b border-white/10 px-4 py-3 backdrop-blur-sm" style={{ backgroundColor: "#0A1628" + 'f2' }}>
+        <header
+          className="sticky top-0 z-10 border-b border-white/10 px-4 py-3 backdrop-blur-sm"
+          style={{ backgroundColor: 'color-mix(in oklab, var(--dark-bg) 95%, black)' }}
+        >
           <div className="mx-auto flex max-w-lg items-center gap-3">
             {backHref ? (
               <Link href={backHref} className="inline-flex min-h-11 min-w-11 items-center justify-center text-sm font-bold text-gold">
@@ -43,7 +48,11 @@ export function AppShell({
         </header>
       )}
       <div className="mx-auto max-w-lg px-4 pb-28 pt-4">{children}</div>
-      <nav aria-label="App" className="fixed inset-x-0 bottom-0 z-20 border-t border-white/10 pb-[env(safe-area-inset-bottom)] backdrop-blur-sm" style={{ backgroundColor: "#0A1628" + 'f2' }}>
+      <nav
+        aria-label="App"
+        className="fixed inset-x-0 bottom-0 z-20 border-t border-white/10 pb-[env(safe-area-inset-bottom)] backdrop-blur-sm"
+        style={{ backgroundColor: 'color-mix(in oklab, var(--dark-bg) 95%, black)' }}
+      >
         <ul className="mx-auto grid max-w-lg grid-cols-3">
           {TABS.map((tab) => {
             const active = tab.match(activePath);
