@@ -191,7 +191,7 @@ export function ReviewsRail({
             <p
               style={{
                 margin: 0,
-                fontSize: "12px",
+                fontSize: "var(--ctx-fs-xs, 12px)",
                 fontWeight: 600,
                 textTransform: "uppercase",
                 letterSpacing: "0.16em",
@@ -206,7 +206,7 @@ export function ReviewsRail({
               style={{
                 margin: "var(--ctx-space-2, 0.5rem) 0 0",
                 fontFamily: "var(--ctx-font-display)",
-                fontSize: "30px",
+                fontSize: "var(--ctx-fs-2xl, 30px)",
                 color: "var(--ctx-color-primary-text)",
               }}
             >
@@ -219,11 +219,11 @@ export function ReviewsRail({
         </div>
         {summary ? (
           <div style={{ display: "flex", alignItems: "baseline", gap: "var(--ctx-space-3, 0.75rem)" }}>
-            <span style={{ fontFamily: "var(--ctx-font-display)", fontSize: "30px", fontWeight: 600 }}>
+            <span style={{ fontFamily: "var(--ctx-font-display)", fontSize: "var(--ctx-fs-2xl, 30px)", fontWeight: 600 }}>
               {summary.averageRating.toFixed(1)}
             </span>
             <Stars rating={summary.averageRating} label={label(summary.averageRating)} />
-            <span style={{ fontSize: "14px", color: "var(--ctx-color-muted-text)" }}>
+            <span style={{ fontSize: "var(--ctx-fs-sm, 14px)", color: "var(--ctx-color-muted-text)" }}>
               {countLabel(summary.reviewCount)}
             </span>
           </div>
@@ -277,7 +277,7 @@ export function ReviewsRail({
                       borderRadius: "999px",
                       border: "1px solid var(--ctx-color-border)",
                       padding: "2px 8px",
-                      fontSize: "10px",
+                      fontSize: "var(--ctx-fs-xs, 10px)",
                       fontWeight: 600,
                       textTransform: "uppercase",
                       letterSpacing: "0.1em",
@@ -292,17 +292,17 @@ export function ReviewsRail({
                 <p style={{ margin: 0, fontWeight: 600, color: "var(--ctx-color-primary-text)" }}>{item.title}</p>
               ) : null}
               {item.body ? (
-                <p style={{ margin: 0, fontSize: "14px", lineHeight: 1.5, color: "var(--ctx-color-muted-text)" }}>
+                <p style={{ margin: 0, fontSize: "var(--ctx-fs-sm, 14px)", lineHeight: 1.5, color: "var(--ctx-color-muted-text)" }}>
                   {item.body}
                 </p>
               ) : null}
               <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", gap: "2px" }}>
                 {item.contextLabel ? (
-                  <span style={{ fontSize: "12px", fontWeight: 600, color: "var(--ctx-color-brand-accent)" }}>
+                  <span style={{ fontSize: "var(--ctx-fs-xs, 12px)", fontWeight: 600, color: "var(--ctx-color-brand-accent)" }}>
                     {item.contextLabel}
                   </span>
                 ) : null}
-                <span style={{ fontSize: "12px", color: "var(--ctx-color-muted-text)" }}>
+                <span style={{ fontSize: "var(--ctx-fs-xs, 12px)", color: "var(--ctx-color-muted-text)" }}>
                   {item.authorName || anonymousAuthor}
                   {date ? ` · ${date}` : ""}
                 </span>
