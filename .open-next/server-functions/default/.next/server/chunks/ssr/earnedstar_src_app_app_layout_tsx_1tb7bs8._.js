@@ -1,0 +1,3 @@
+module.exports=[68875,a=>{"use strict";a.s(["default",0,function({children:a}){return a},"metadata",0,{title:{default:"App",template:"%s | EarnedStar"},appleWebApp:{capable:!0,title:"EarnedStar",statusBarStyle:"black-translucent"}},"viewport",0,{themeColor:"#0A1628",width:"device-width",initialScale:1,viewportFit:"cover"}])},34995,a=>{a.n(a.i(68875))}];
+
+//# sourceMappingURL=earnedstar_src_app_app_layout_tsx_1tb7bs8._.js.map
