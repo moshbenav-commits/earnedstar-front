@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 3050",
+    "blog:index": "node ../scripts/lib/build-blog-index.mjs --dir .",
+    "prebuild": "npm run blog:index",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -24,7 +26,7 @@
     "mobile:ios": "npx cap open ios",
     "mobile:android": "npx cap open android",
     "test": "node --test test/smoke.test.js",
-    "build:opennext": "next build && node ../scripts/lib/flatten-standalone-for-opennext.mjs --nested=earnedstar,earnedstar-front",
+    "build:opennext": "npm run blog:index && next build && node ../scripts/lib/flatten-standalone-for-opennext.mjs --nested=earnedstar,earnedstar-front",
     "deploy:cf:staging": "node ../scripts/creytix-opennext-staging.mjs --site=earnedstar --deploy"
   },
   "dependencies": {
