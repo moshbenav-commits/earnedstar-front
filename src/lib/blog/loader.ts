@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import prebuiltIndex from '@/data/blog-articles.json';
+
 import type { BlogArticle, BlogFaq, BlogInternalLink, BlogStatus } from './types';
 
 /**
@@ -234,7 +236,11 @@ function readDir(dir: string, isDraftPreview: boolean): BlogArticle[] {
     .filter((a): a is BlogArticle => a !== null);
 }
 
-export function getAllArticles(): BlogArticle[] {
+/**
+ * Disk reader — the single parser. Used directly in development and by
+ * `npm run blog:index` (scripts/lib/build-blog-index.mjs) at build time.
+ */
+export function readArticlesFromDisk(): BlogArticle[] {
   let articles = readDir(SITE_CONTENT_DIR, false);
 
   if (!articles.length && isDev) {
@@ -243,6 +249,19 @@ export function getAllArticles(): BlogArticle[] {
 
   // Newest first — the atom id carries the YYYY-MM-DD prefix.
   return articles.sort((a, b) => b.atomId.localeCompare(a.atomId));
+}
+
+/**
+ * Production serves the index frozen at build time (src/data/blog-articles.json,
+ * written by `npm run blog:index` from prebuild / build:opennext). A Cloudflare
+ * Worker has no filesystem at request time — until 2026-09-04 this function read
+ * content/blog with fs in production and every article 404'd on the live site.
+ * Development keeps reading disk so authors see edits without a rebuild.
+ */
+export function getAllArticles(): BlogArticle[] {
+  const frozen = (prebuiltIndex as { articles?: BlogArticle[] }).articles;
+  if (!isDev && Array.isArray(frozen) && frozen.length) return frozen;
+  return readArticlesFromDisk();
 }
 
 export function getArticleBySlug(slug: string): BlogArticle | undefined {
