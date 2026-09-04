@@ -61,6 +61,8 @@
   "/api/gt-ops/[...path]/route": "/api/gt-ops/[...path]",
   "/api/track/route": "/api/track",
   "/app/page": "/app",
+  "/app/reviews/page": "/app/reviews",
+  "/app/seller-dashboard/page": "/app/seller-dashboard",
   "/apple-icon/route": "/apple-icon",
   "/audit/page": "/audit",
   "/blog/[slug]/page": "/blog/[slug]",

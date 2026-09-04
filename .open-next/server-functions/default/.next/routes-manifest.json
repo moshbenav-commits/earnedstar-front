@@ -531,6 +531,18 @@
       "namedRegex": "^/app(?:/)?$"
     },
     {
+      "page": "/app/reviews",
+      "regex": "^/app/reviews(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/app/reviews(?:/)?$"
+    },
+    {
+      "page": "/app/seller-dashboard",
+      "regex": "^/app/seller\\-dashboard(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/app/seller\\-dashboard(?:/)?$"
+    },
+    {
       "page": "/apple-icon",
       "regex": "^/apple\\-icon(?:/)?$",
       "routeKeys": {},

@@ -61,6 +61,8 @@
   "/api/gt-ops/[...path]/route": "app/api/gt-ops/[...path]/route.js",
   "/api/track/route": "app/api/track/route.js",
   "/app/page": "app/app/page.js",
+  "/app/reviews/page": "app/app/reviews/page.js",
+  "/app/seller-dashboard/page": "app/app/seller-dashboard/page.js",
   "/apple-icon/route": "app/apple-icon/route.js",
   "/audit/page": "app/audit/page.js",
   "/blog/[slug]/page": "app/blog/[slug]/page.js",
