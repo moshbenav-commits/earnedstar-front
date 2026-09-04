@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev --port 3050",
     "build": "next build",
+    "prebuild": "npm run blog:index",
+    "blog:index": "node \"../Expedia Solutions/scripts/lib/build-blog-index.mjs\" --dir .",
     "start": "next start",
     "lint": "eslint",
     "smoke": "bash scripts/smoke.sh",
@@ -24,7 +26,7 @@
     "mobile:ios": "npx cap open ios",
     "mobile:android": "npx cap open android",
     "test": "node --test test/smoke.test.js",
-    "build:opennext": "next build && node ../scripts/lib/flatten-standalone-for-opennext.mjs --nested=earnedstar,earnedstar-front",
+    "build:opennext": "npm run blog:index && next build && node ../scripts/lib/flatten-standalone-for-opennext.mjs --nested=earnedstar,earnedstar-front",
     "deploy:cf:staging": "node ../scripts/creytix-opennext-staging.mjs --site=earnedstar --deploy"
   },
   "dependencies": {
