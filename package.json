@@ -73,6 +73,9 @@
       "brace-expansion": "^2.1.4"
     },
     "esbuild": "^0.28.1",
-    "js-yaml": "^5.2.2"
+    "js-yaml": "^5.2.2",
+    "@xmldom/xmldom": ">=0.9.12",
+    "qs": ">=6.16.0",
+    "browserslist": ">=4.28.7"
   }
 }
