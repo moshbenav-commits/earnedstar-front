@@ -13,7 +13,18 @@ const NAVY = "#0b1d58";
 const GOLD = ES_GOLD;
 const CREAM = "#f0ede6";
 
-function StarMark({ size }: { size: number }) {
+/**
+ * `bold`: the default navy-on-navy gradient star (subtle by design for the
+ * large og/apple-touch images) collapses into unreadable blobs at favicon
+ * size — confirmed visually (rendered PNG inspected at true pixel size, not
+ * just read from source): only one point survives as a faint streak, two
+ * render as solid black wedges, the sides vanish. There isn't enough
+ * resolution at 32px for that subtlety to resolve. `bold` swaps the
+ * gradient for a single solid, saturated fill so the star silhouette reads
+ * unambiguously at tiny sizes — used for the `icon` favicon variant only;
+ * apple-icon (120px+) keeps the original, already-verified-correct gradient.
+ */
+function StarMark({ size, bold = false }: { size: number; bold?: boolean }) {
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
       <defs>
@@ -25,15 +36,15 @@ function StarMark({ size }: { size: number }) {
       </defs>
       <path
         d="M50 6 L61 35 L91 35 L68 54 L77 82 L50 65 L23 82 L32 54 L9 35 L39 35 Z"
-        fill="url(#g)"
+        fill={bold ? GOLD : "url(#g)"}
       />
-      <path d="M50 6 L61 35 L50 65 Z" fill="rgba(255,255,255,0.14)" />
+      {!bold && <path d="M50 6 L61 35 L50 65 Z" fill="rgba(255,255,255,0.14)" />}
       <circle cx="50" cy="50" r="17" fill="#fff" />
-      <circle cx="50" cy="50" r="17" stroke={GOLD} strokeWidth="2.5" fill="none" />
+      <circle cx="50" cy="50" r="17" stroke={bold ? NAVY : GOLD} strokeWidth="2.5" fill="none" />
       <path
         d="M41 50 L47 56 L59 44"
         fill="none"
-        stroke={GOLD}
+        stroke={bold ? NAVY : GOLD}
         strokeWidth="3.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -104,7 +115,7 @@ export function BrandShareImage({ variant }: { variant: BrandImageVariant }): Re
         borderRadius: variant === "icon" ? 6 : 36,
       }}
     >
-      <StarMark size={starSize} />
+      <StarMark size={starSize} bold={variant === "icon"} />
     </div>
   );
 }
