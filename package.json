@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "eslint",
     "smoke": "bash scripts/smoke.sh",
-    "preflight": "node ../scripts/earnedstar-preflight.mjs --skip-build",
+    "preflight": "node ../scripts/creytix-opennext-production.mjs --site=earnedstar --check",
     "smoke:prod": "SMOKE_FRONT_URL=https://earnedstar.vercel.app SMOKE_CUSTOM_DOMAIN=https://earnedstar.com SMOKE_API_URL=https://earnedstar-back.vercel.app/api bash scripts/smoke.sh",
     "audit:vercel-billing": "node scripts/vercel-billing-guard.mjs",
     "audit:vercel-billing:ci": "node scripts/vercel-billing-guard.mjs --ci",
@@ -27,7 +27,7 @@
     "mobile:android": "npx cap open android",
     "test": "node --test test/smoke.test.js",
     "build:opennext": "npm run blog:index && next build && node ../scripts/lib/flatten-standalone-for-opennext.mjs --nested=earnedstar,earnedstar-front",
-    "deploy:cf:staging": "node ../scripts/creytix-opennext-staging.mjs --site=earnedstar --deploy"
+    "deploy:cf:staging": "node ../scripts/creytix-opennext-production.mjs --site=earnedstar --deploy"
   },
   "dependencies": {
     "@creytix/partner-kit": "file:./vendor/creytix-partner-kit",
