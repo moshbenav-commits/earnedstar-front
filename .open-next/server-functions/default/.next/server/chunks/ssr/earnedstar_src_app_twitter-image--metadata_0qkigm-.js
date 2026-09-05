@@ -1,0 +1,3 @@
+module.exports=[19755,a=>{"use strict";a.i(77197),a.i(89449),a.i(44955);var b=a.i(39498);let c={alt:"EarnedStar — verified reviews platform",contentType:"image/png",size:{width:1200,height:630}};async function d(a){let{__metadata_id__:d,...e}=await a.params,f=(0,b.fillMetadataSegment)("/",e,"twitter-image",!1);return[function(a){let b={alt:a.alt,type:a.contentType||"image/png",url:f+"?38ef973629c5db62"},{size:c}=a;return c&&(b.width=c.width,b.height=c.height),b}(c)]}a.s(["default",0,d],19755)},96103,a=>{a.n(a.i(19755))}];
+
+//# sourceMappingURL=earnedstar_src_app_twitter-image--metadata_0qkigm-.js.map

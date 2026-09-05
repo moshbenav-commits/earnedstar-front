@@ -1,0 +1,3 @@
+module.exports=[80901,a=>{"use strict";var b=a.i(88280),c=a.i(60568);a.s(["SparklesBackground",0,function({count:a=40}){let[d,e]=(0,c.useState)([]);return(0,c.useEffect)(()=>{e(Array.from({length:a},(a,b)=>({id:b,left:`${100*Math.random()}%`,top:`${100*Math.random()}%`,delay:`${4*Math.random()}s`,size:2+3*Math.random()})))},[a]),(0,b.jsx)("div",{className:"pointer-events-none absolute inset-0 overflow-hidden","aria-hidden":!0,children:d.map(a=>(0,b.jsx)("span",{className:"sparkle-dot absolute rounded-full bg-gold",style:{left:a.left,top:a.top,width:a.size,height:a.size,animationDelay:a.delay}},a.id))})}])}];
+
+//# sourceMappingURL=earnedstar_src_components_ui_sparkles-background_tsx_0r41vwg._.js.map
