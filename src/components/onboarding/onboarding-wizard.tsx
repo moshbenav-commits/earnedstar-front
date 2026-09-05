@@ -122,7 +122,7 @@ export function OnboardingWizard() {
                 after setup.
               </p>
               <pre className="overflow-x-auto rounded-lg bg-bg-elevated p-3 text-xs">
-                {`POST https://earnedstar-back.vercel.app/api/earnedstar/webhooks/order-fulfilled
+                {`POST https://api-vultr.earnedstar.com/api/earnedstar/webhooks/order-fulfilled
 Header: x-earnedstar-secret: YOUR_SECRET
 Body: { "order_id", "customer_email", "merchant_slug" }`}
               </pre>
