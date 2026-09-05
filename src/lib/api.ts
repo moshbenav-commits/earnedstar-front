@@ -8,7 +8,7 @@ export function getApiBase(): string {
   return (
     process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') ??
     (process.env.NODE_ENV === 'production'
-      ? 'https://earnedstar-back.vercel.app/api'
+      ? 'https://api-vultr.earnedstar.com/api'
       : 'http://localhost:8081/api')
   );
 }
