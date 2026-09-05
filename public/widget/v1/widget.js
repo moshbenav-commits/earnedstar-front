@@ -9,7 +9,7 @@
  *   data-widget="carousel"
  *   data-theme="earnedstar-classic"
  *   data-max="6"
- *   data-api="https://earnedstar-back.vercel.app/api"></script>
+ *   data-api="https://api-vultr.earnedstar.com/api"></script>
  *
  * data-widget: carousel | grid | feed | testimonial | floating
  * data-theme: earnedstar-classic | dark-premium | automotive-orange | local-trust
@@ -25,7 +25,7 @@
   if (!SCRIPT) return;
 
   var API_BASE =
-    SCRIPT.getAttribute("data-api") || "https://earnedstar-back.vercel.app/api";
+    SCRIPT.getAttribute("data-api") || "https://api-vultr.earnedstar.com/api";
   var config = {
     key: SCRIPT.getAttribute("data-key") || "demo",
     widget: SCRIPT.getAttribute("data-widget") || "carousel",
