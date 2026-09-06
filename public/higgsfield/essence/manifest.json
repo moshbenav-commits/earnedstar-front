@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-09-04T22:48:13.905Z",
+  "updatedAt": "2026-09-06T03:42:45.637Z",
   "baseUrl": "https://earnedstar.com",
   "indexUrl": "https://earnedstar.com/higgsfield/essence",
   "indexPath": "/higgsfield/essence",
@@ -27,38 +27,7 @@
       "elementUrl": "https://earnedstar.com/higgsfield/essence#es-brand-essence",
       "hostSiteRepo": "earnedstar-front",
       "hostOrigin": "https://earnedstar.com",
-      "medias": [
-        {
-          "role": "origami-star-3d",
-          "slot": 1,
-          "publicPath": "/higgsfield/essence/earnedstar/es-brand-essence/01-origami-star-3d.webp",
-          "publicUrl": "https://earnedstar.com/higgsfield/essence/earnedstar/es-brand-essence/01-origami-star-3d.webp",
-          "localPublicPath": "earnedstar-front/public/higgsfield/essence/earnedstar/es-brand-essence/01-origami-star-3d.webp",
-          "hostSiteRepo": "earnedstar-front",
-          "hostOrigin": "https://earnedstar.com",
-          "uploadPath": "brand/higgsfield/essence/upload/earnedstar/es-brand-essence/01-origami-star-3d.png",
-          "width": 1024,
-          "height": 1024,
-          "bytes": 63874,
-          "maxLongEdge": 2048,
-          "sourcePath": "brand/earnedstar/higgsfield-exports/es-origami-star-3d-nano-banana.png"
-        },
-        {
-          "role": "dashboard-hero",
-          "slot": 2,
-          "publicPath": "/higgsfield/essence/earnedstar/es-brand-essence/02-dashboard-hero.webp",
-          "publicUrl": "https://earnedstar.com/higgsfield/essence/earnedstar/es-brand-essence/02-dashboard-hero.webp",
-          "localPublicPath": "earnedstar-front/public/higgsfield/essence/earnedstar/es-brand-essence/02-dashboard-hero.webp",
-          "hostSiteRepo": "earnedstar-front",
-          "hostOrigin": "https://earnedstar.com",
-          "uploadPath": "brand/higgsfield/essence/upload/earnedstar/es-brand-essence/02-dashboard-hero.png",
-          "width": 2048,
-          "height": 1143,
-          "bytes": 131478,
-          "maxLongEdge": 2048,
-          "sourcePath": "brand/earnedstar/higgsfield-exports/es-marketing-hero-dashboard-nano-banana.png"
-        }
-      ]
+      "medias": []
     }
   ],
   "siteBrandKey": "earnedstar",
