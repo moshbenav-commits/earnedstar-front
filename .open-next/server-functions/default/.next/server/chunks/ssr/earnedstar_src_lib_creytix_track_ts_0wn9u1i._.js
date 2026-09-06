@@ -1,0 +1,3 @@
+module.exports=[44444,a=>{"use strict";function b(a,b,c){}let c=/email|name|phone|password|token|user_?id/i;a.s(["initCreytixTrack",0,function(){},"marketingConsentGranted",0,function(){try{let a=window.localStorage.getItem("cx-consent");return!!a&&!0===JSON.parse(a).marketing}catch{return!1}},"trackAuth",0,function(a,d){let e={};for(let[a,b]of Object.entries(d??{}))c.test(a)||(e[a]=b);b(a,e)},"trackClick",0,function(a,c){b("click",{...c,label:a})},"trackEvent",0,b,"trackPageView",0,function(a){}])}];
+
+//# sourceMappingURL=earnedstar_src_lib_creytix_track_ts_0wn9u1i._.js.map
