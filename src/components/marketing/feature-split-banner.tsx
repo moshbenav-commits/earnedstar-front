@@ -213,7 +213,7 @@ export function FeatureSplitBanner() {
               </ul>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button variant="primary" href="/signup">
+                <Button variant="primary" href="/signup" data-cx-click="merchant-get-started">
                   Get Started
                 </Button>
                 <Button variant="ghost" href="#how-it-works">

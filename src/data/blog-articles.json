@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "generatedAt": "2026-09-04T23:14:55.718Z",
+=======
+  "generatedAt": "2026-09-04T23:12:20.908Z",
+>>>>>>> 4935c31505d08165d025dc45dac779e04e70fd4e
   "generatedBy": "scripts/lib/build-blog-index.mjs",
   "count": 7,
   "articles": [

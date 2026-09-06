@@ -4,14 +4,21 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 3050",
+    "blog:index": "node ../scripts/lib/build-blog-index.mjs --dir .",
+    "prebuild": "npm run blog:index",
     "build": "next build",
     "prebuild": "npm run blog:index",
     "blog:index": "node scripts/ws.mjs scripts/lib/build-blog-index.mjs --dir .",
     "start": "next start",
     "lint": "eslint",
     "smoke": "bash scripts/smoke.sh",
+<<<<<<< HEAD
     "preflight": "node scripts/ws.mjs scripts/creytix-opennext-production.mjs --site=earnedstar --check",
     "smoke:prod": "SMOKE_FRONT_URL=https://earnedstar.vercel.app SMOKE_CUSTOM_DOMAIN=https://earnedstar.com SMOKE_API_URL=https://earnedstar-back.vercel.app/api bash scripts/smoke.sh",
+=======
+    "preflight": "node ../scripts/creytix-opennext-production.mjs --site=earnedstar --check",
+    "smoke:prod": "SMOKE_FRONT_URL=https://earnedstar.vercel.app SMOKE_CUSTOM_DOMAIN=https://earnedstar.com SMOKE_API_URL=https://api-vultr.earnedstar.com/api bash scripts/smoke.sh",
+>>>>>>> 4935c31505d08165d025dc45dac779e04e70fd4e
     "audit:vercel-billing": "node scripts/vercel-billing-guard.mjs",
     "audit:vercel-billing:ci": "node scripts/vercel-billing-guard.mjs --ci",
     "deploy:prod": "bash scripts/deploy-vercel.sh",
@@ -26,9 +33,14 @@
     "mobile:ios": "npx cap open ios",
     "mobile:android": "npx cap open android",
     "test": "node --test test/smoke.test.js",
+<<<<<<< HEAD
     "build:opennext": "npm run blog:index && next build && node scripts/ws.mjs scripts/lib/flatten-standalone-for-opennext.mjs --nested=earnedstar,earnedstar-front",
     "deploy:cf:staging": "node -e \"console.error('EarnedStar deploys from the earnedstar/ checkout (OPENNEXT_PRODUCTION_SITES.json repo=earnedstar), not from earnedstar-front. From the workspace: npm run creytix:opennext:production -- --site=earnedstar --deploy'); process.exit(1)\"",
     "ws": "node scripts/ws.mjs"
+=======
+    "build:opennext": "npm run blog:index && next build && node ../scripts/lib/flatten-standalone-for-opennext.mjs --nested=earnedstar,earnedstar-front",
+    "deploy:cf:staging": "node ../scripts/creytix-opennext-production.mjs --site=earnedstar --deploy"
+>>>>>>> 4935c31505d08165d025dc45dac779e04e70fd4e
   },
   "dependencies": {
     "@creytix/partner-kit": "file:./vendor/creytix-partner-kit",

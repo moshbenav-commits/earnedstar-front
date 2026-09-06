@@ -1,11 +1,11 @@
 {
   "brand": "earnedstar",
   "repo": "/Users/ricardo/Expedia Solutions/earnedstar-front",
-  "generatedAtNote": "2026-09-03T00:22:53.254Z",
+  "generatedAtNote": "2026-08-27T23:08:17.345Z",
   "summary": {
     "blockers": 0,
     "warnings": 0,
-    "filesScanned": 284
+    "filesScanned": 274
   },
   "findings": []
 }

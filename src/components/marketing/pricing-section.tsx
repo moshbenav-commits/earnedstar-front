@@ -197,6 +197,7 @@ export function PricingSection({ showHeader = true }: { showHeader?: boolean }) 
                   variant={plan.popular ? "gold" : "primary"}
                   className="mt-8 w-full"
                   href={plan.id === "agency" ? "/contact" : paymentsEnabled() ? "/signup" : "/contact"}
+                  data-cx-click={`plan-select-${plan.id}`}
                 >
                   {paymentsEnabled() ? plan.cta : "Contact us"}
                 </Button>
