@@ -33,6 +33,7 @@ export function PricingPageHero() {
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/signup"
+              data-cx-click="merchant-get-started"
               className="group inline-flex items-center gap-2 rounded-full px-6 py-3.5 font-bold text-ink shadow-xl gold-foil"
             >
               Start free trial

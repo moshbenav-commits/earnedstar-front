@@ -78,6 +78,7 @@ export function MarketingNav() {
           </span>
           <Link
             href="/signup"
+            data-cx-click="merchant-get-started"
             className="rounded-full px-4 py-2 text-[13px] font-bold text-ink shadow-sm transition-shadow gold-foil hover:shadow-md"
           >
             Start free
@@ -108,6 +109,7 @@ export function MarketingNav() {
           ))}
           <Link
             href="/signup"
+            data-cx-click="merchant-get-started"
             className="mt-4 block rounded-full py-3 text-center text-sm font-bold text-ink gold-foil"
             onClick={() => setMobileOpen(false)}
           >

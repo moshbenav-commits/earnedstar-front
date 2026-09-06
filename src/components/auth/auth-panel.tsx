@@ -14,6 +14,7 @@ import { PasswordInput } from "@/components/auth/PasswordInput";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { HERO_TAGLINE, TRUST_HEADLINE, TRUST_SUBHEAD } from "@/content/earnedstar-trust-copy";
+import { trackAuth } from "@/lib/creytix/track";
 
 type Tab = "signin" | "signup";
 
@@ -53,9 +54,11 @@ export function AuthPanel({ defaultTab = "signin" }: { defaultTab?: Tab }) {
       });
       const data = await res.json();
       if (!res.ok) throw new Error((data as { error?: string }).error ?? "Sign in failed");
+      trackAuth("login", { method: "password", ok: true });
       router.push(next);
       router.refresh();
     } catch (err) {
+      trackAuth("login", { method: "password", ok: false });
       setError(err instanceof Error ? err.message : "Sign in failed");
     } finally {
       setLoading(false);
@@ -78,9 +81,11 @@ export function AuthPanel({ defaultTab = "signin" }: { defaultTab?: Tab }) {
       });
       const data = await res.json();
       if (!res.ok) throw new Error((data as { error?: string }).error ?? "Signup failed");
+      trackAuth("signup", { method: "password", ok: true });
       router.push(next);
       router.refresh();
     } catch (err) {
+      trackAuth("signup", { method: "password", ok: false });
       setError(err instanceof Error ? err.message : "Signup failed");
     } finally {
       setLoading(false);
@@ -204,7 +209,7 @@ export function AuthPanel({ defaultTab = "signin" }: { defaultTab?: Tab }) {
                 <input type="checkbox" required className="mt-0.5" />
                 I agree to the Terms &amp; Privacy Policy
               </label>
-              <Button type="submit" className="w-full" disabled={loading}>
+              <Button type="submit" className="w-full" disabled={loading} data-cx-click="merchant-signup-submit">
                 {loading ? "Creating…" : "Create Account — 14-day trial"}
               </Button>
             </form>

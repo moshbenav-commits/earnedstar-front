@@ -117,6 +117,7 @@ export function AuditPageClient() {
               <p className="mt-6 text-sm leading-relaxed text-ink/70">{result.audit.recommendation}</p>
               <Link
                 href="/signup"
+                data-cx-click="merchant-get-started"
                 className="group mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white hover:bg-ink-soft"
               >
                 Build a verified profile instead
