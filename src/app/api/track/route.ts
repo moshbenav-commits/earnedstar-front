@@ -12,6 +12,13 @@
  * a lake failure never affects the visitor response or the JSONL sink. On
  * Cloudflare Workers the local disk is ephemeral, so the lake IS the durable
  * sink there. The secret stays server-side (worker secret), never in the page.
+ *
+ * Visitor address (x-visitor-ip): forwarded server-to-server only, alongside
+ * the event, so the backend can keep a salted hash of it — never the raw
+ * address — to answer "did this email/RFQ come from an address that visited"
+ * (Site Pulse visitor intel). The raw IP is never stored on either side. `geo`
+ * is the coarse city/region/country label the lake plan already permits, read
+ * from CDN/host headers rather than an IP lookup.
  */
 import { appendFile, mkdir } from "node:fs/promises";
 import path from "node:path";
@@ -33,6 +40,8 @@ type TrackRecord = {
   ua?: string;
 };
 
+type CoarseGeo = { country?: string; region?: string; city?: string };
+
 /** page_view → the shared pulse.pageview taxonomy; other events namespace under pulse.* */
 function lakeEventType(event: string): string {
   if (event === "page_view") return "pulse.pageview";
@@ -40,15 +49,61 @@ function lakeEventType(event: string): string {
   return `pulse.${slug}`;
 }
 
-async function forwardToLake(record: TrackRecord): Promise<void> {
+/** First non-empty visitor address from CDN/proxy headers, trimmed and capped. Never stored raw. */
+function visitorIp(request: Request): string | null {
+  const direct =
+    request.headers.get("cf-connecting-ip") ??
+    request.headers.get("x-real-ip") ??
+    request.headers.get("x-vercel-forwarded-for");
+  const candidate = direct ?? request.headers.get("x-forwarded-for")?.split(",")[0] ?? null;
+  const trimmed = candidate?.trim();
+  return trimmed ? trimmed.slice(0, 64) : null;
+}
+
+/** Coarse city/region/country from CDN headers — never an IP geolocation lookup. */
+function coarseGeo(request: Request): CoarseGeo | null {
+  const rawCountry =
+    request.headers.get("cf-ipcountry") ?? request.headers.get("x-vercel-ip-country");
+  const country =
+    rawCountry && rawCountry !== "XX" && rawCountry !== "T1" ? rawCountry : undefined;
+
+  const rawRegion =
+    request.headers.get("cf-region") ?? request.headers.get("x-vercel-ip-country-region");
+  let region: string | undefined;
+  if (rawRegion) {
+    try {
+      region = decodeURIComponent(rawRegion);
+    } catch {
+      region = rawRegion;
+    }
+  }
+
+  const rawCity = request.headers.get("cf-ipcity") ?? request.headers.get("x-vercel-ip-city");
+  let city: string | undefined;
+  if (rawCity) {
+    try {
+      city = decodeURIComponent(rawCity);
+    } catch {
+      city = rawCity;
+    }
+  }
+
+  if (!country && !region && !city) return null;
+  return { country, region, city };
+}
+
+async function forwardToLake(record: TrackRecord, request: Request): Promise<void> {
   const url = process.env.LAKE_INGEST_URL;
   const secret = process.env.LAKE_INGEST_SECRET;
   if (!url || !secret) return;
+  const ip = visitorIp(request);
+  const geo = coarseGeo(request);
   await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "x-lake-ingest-secret": secret,
+      ...(ip ? { "x-visitor-ip": ip } : {}),
     },
     body: JSON.stringify({
       sourceSite: SOURCE_SITE,
@@ -59,6 +114,7 @@ async function forwardToLake(record: TrackRecord): Promise<void> {
         path: record.path,
         referrer: record.referrer,
         ...(record.props ? { props: record.props } : {}),
+        ...(geo ? { geo } : {}),
       },
       producer: `${SOURCE_SITE}-front`,
     }),
@@ -85,7 +141,7 @@ export async function POST(request: Request): Promise<Response> {
     };
     // Awaited: Workers may cancel dangling promises once the response returns.
     try {
-      await forwardToLake(record);
+      await forwardToLake(record, request);
     } catch {
       /* lake is fail-open — JSONL sink and the 204 still happen */
     }
