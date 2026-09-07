@@ -50,3 +50,7 @@ next-env.d.ts
 # added by evalforge fix (env safety)
 .env
 .analytics/
+
+# Local build/scratch output — never part of a deploy
+.open-next/
+.wrangler/
