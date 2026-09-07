@@ -8,7 +8,7 @@
  *   data-key="YOUR_API_KEY"
  *   data-theme="earnedstar-classic"
  *   data-max="10"
- *   data-api="https://earnedstar-back.vercel.app/api"></script>
+ *   data-api="https://api-vultr.earnedstar.com/api"></script>
  *
  * Shows previously-answered questions for the merchant and lets a shopper
  * submit a new question (moderated — it lands in the merchant's Q&A
@@ -32,7 +32,7 @@
   if (!SCRIPT) return;
 
   var API_BASE =
-    SCRIPT.getAttribute("data-api") || "https://earnedstar-back.vercel.app/api";
+    SCRIPT.getAttribute("data-api") || "https://api-vultr.earnedstar.com/api";
   var config = {
     key: SCRIPT.getAttribute("data-key") || "demo",
     theme: SCRIPT.getAttribute("data-theme") || "earnedstar-classic",

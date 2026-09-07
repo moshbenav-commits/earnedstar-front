@@ -93,7 +93,7 @@ export function ShopifyConnectPanel() {
           <li>
             URL:{" "}
             <code className="rounded bg-surface-2 px-1 text-xs">
-              {status?.webhookUrl ?? "https://earnedstar-back.vercel.app/api/earnedstar/webhooks/order-fulfilled"}
+              {status?.webhookUrl ?? "https://api-vultr.earnedstar.com/api/earnedstar/webhooks/order-fulfilled"}
             </code>
           </li>
           <li>

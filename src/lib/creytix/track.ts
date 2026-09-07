@@ -85,7 +85,53 @@ export function trackEvent(
   send({ site: SITE, event, path: window.location.pathname, visitorId: visitorId(), props, at: Date.now() });
 }
 
-/** Boot: first view + SPA navigations (History API patch, popstate). */
+/**
+ * Click event — first-party product analytics (same legitimate-interest
+ * basis as page_view, NOT marketing-gated), still suppressed by DNT/GPC.
+ */
+export function trackClick(label: string, props?: Record<string, string | number | boolean>): void {
+  trackEvent("click", { ...props, label });
+}
+
+/** Keys that must never reach trackAuth — identifying values are stripped, not sent. */
+const AUTH_PII_KEY_RE = /email|name|phone|password|token|user_?id/i;
+
+/**
+ * Auth event (login/signup) — first-party product analytics. MUST NOT carry
+ * any identifying value: this data crosses into the Bronze lake, which
+ * enforces a PII denylist at ingest (expedia-parts-back/src/marketing/lake/
+ * lake-pii-denylist.util.ts) — stripping here keeps the client honest about
+ * what it sends rather than relying on the lake to catch it downstream.
+ */
+export function trackAuth(kind: "login" | "signup", props?: Record<string, string | number | boolean>): void {
+  const safeProps: Record<string, string | number | boolean> = {};
+  for (const [key, value] of Object.entries(props ?? {})) {
+    if (AUTH_PII_KEY_RE.test(key)) continue;
+    safeProps[key] = value;
+  }
+  trackEvent(kind, safeProps);
+}
+
+/** Delegated click capture: only elements that opt in, never field contents. */
+function bindClickCapture(): void {
+  document.addEventListener(
+    "click",
+    (e) => {
+      try {
+        const target = e.target as Element | null;
+        const el = target?.closest?.("[data-cx-click], a[data-cx-track], button[data-cx-track]");
+        if (!el) return;
+        const label = el.getAttribute("data-cx-click") || el.textContent?.trim().slice(0, 64) || "unlabeled";
+        trackClick(label);
+      } catch {
+        /* analytics must never break the page */
+      }
+    },
+    { capture: true, passive: true },
+  );
+}
+
+/** Boot: first view + SPA navigations (History API patch, popstate) + click capture. */
 export function initCreytixTrack(): void {
   if (typeof window === "undefined") return;
   const w = window as Window & { __cxTrackBooted?: boolean };
@@ -97,4 +143,5 @@ export function initCreytixTrack(): void {
   window.history.pushState = function (...args) { pushState.apply(this, args); emit(); };
   window.history.replaceState = function (...args) { replaceState.apply(this, args); emit(); };
   window.addEventListener("popstate", emit);
+  bindClickCapture();
 }

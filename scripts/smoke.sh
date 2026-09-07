@@ -3,7 +3,7 @@ set -euo pipefail
 
 FRONT="${SMOKE_FRONT_URL:-https://earnedstar.vercel.app}"
 DOMAIN="${SMOKE_CUSTOM_DOMAIN:-https://earnedstar.com}"
-API="${SMOKE_API_URL:-https://earnedstar-back.vercel.app/api}"
+API="${SMOKE_API_URL:-https://api-vultr.earnedstar.com/api}"
 
 check() {
   local url="$1"

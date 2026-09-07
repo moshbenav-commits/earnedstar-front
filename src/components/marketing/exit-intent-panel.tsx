@@ -103,6 +103,7 @@ export function ExitIntentPanel() {
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href="/signup"
+            data-cx-click="merchant-get-started"
             className="inline-flex min-h-11 items-center rounded-full gold-foil px-5 py-2 text-sm font-bold text-ink no-underline"
             onClick={() => setOpen(false)}
           >

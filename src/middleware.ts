@@ -13,7 +13,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 import { getSupabaseEnv } from '@/lib/supabase/env';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'https://earnedstar-back.vercel.app/api';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'https://api-vultr.earnedstar.com/api';
 
 export async function middleware(request: NextRequest) {
   const { url, anonKey, configured } = getSupabaseEnv();

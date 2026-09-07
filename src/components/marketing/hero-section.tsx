@@ -87,6 +87,7 @@ export function HeroSection() {
             <Link
               href="/signup"
               data-design-magic-move={3}
+              data-cx-click="merchant-get-started"
               className="group inline-flex items-center gap-2.5 rounded-full px-6 py-3.5 font-bold text-ink shadow-[0_18px_40px_-12px_rgba(245,158,11,0.5)] transition-all gold-foil hover:shadow-[0_24px_50px_-12px_rgba(245,158,11,0.7)]"
             >
               Start free trial

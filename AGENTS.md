@@ -9,7 +9,7 @@ repo (sibling directory), not bundled here.
 | Repo | Path | Deploy | URL |
 |------|------|--------|-----|
 | **Front** (this repo) | `earnedstar-front/` | Vercel project `earnedstar` | `https://earnedstar.com` |
-| **Back** | `../earnedstar-back/` | Vercel project `earnedstar-back` | `https://earnedstar-back.vercel.app/api` |
+| **Back** | `../earnedstar-back/` | Vultr `earnedstar-back-nest` (:8094) | `https://api-vultr.earnedstar.com/api` |
 
 Front ↔ back is HTTP only (BFF → `NEXT_PUBLIC_API_URL`); the front imports no
 backend TypeScript. GitHub: `github.com/moshbenav-commits/earnedstar-front`.
@@ -56,13 +56,13 @@ cd ../earnedstar-back && npm run start:dev
 # Front (earnedstar.com)
 npm run deploy:prod
 
-# API (earnedstar-back.vercel.app) — deploy from the backend repo
+# API (api-vultr.earnedstar.com) — deploy from the backend repo
 cd ../earnedstar-back && bash scripts/deploy-vercel.sh
 ```
 
 `vercel.json` sets `git.deploymentEnabled: false` — use scripts above.
 
-| Env (production front) | `NEXT_PUBLIC_API_URL=https://earnedstar-back.vercel.app/api` |
+| Env (production front) | `NEXT_PUBLIC_API_URL=https://api-vultr.earnedstar.com/api` |
 
 ## API wiring
 

@@ -115,6 +115,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
+        data-cx-click="contact-sales"
         className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-bold text-ink disabled:opacity-60 gold-foil"
       >
         {status === "loading" ? "Sending…" : "Send message"}

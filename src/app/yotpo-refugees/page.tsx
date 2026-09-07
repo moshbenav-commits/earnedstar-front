@@ -48,7 +48,7 @@ export default function YotpoRefugeesPage() {
                 reviews, email, SMS, and loyalty on one $99/month plan — and ports your data in one click.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
-                <Link href="/signup" className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-bold text-ink shadow-xl gold-foil">
+                <Link href="/signup" data-cx-click="merchant-get-started" className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-bold text-ink shadow-xl gold-foil">
                   Migrate in 1 click <ArrowRight size={16} />
                 </Link>
                 <Link href="/audit" className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white hover:bg-white/10">

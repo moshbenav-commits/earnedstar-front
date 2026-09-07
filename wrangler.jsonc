@@ -8,7 +8,7 @@
     // Next 16 getMiddlewareManifest() dynamic-requires middleware-manifest.json.
     // Workers cannot do that; minimal mode skips it (OpenNext issue 1232).
     "NEXT_PRIVATE_MINIMAL_MODE": "1",
-    "NEXT_PUBLIC_SITE_URL": "https://earnedstar-front.moshbenav.workers.dev",
+    "NEXT_PUBLIC_SITE_URL": "https://earnedstar.com",
     // Creytix Data Lake Bronze ingest (Phase 1). Pairs with the
     // LAKE_INGEST_SECRET worker secret (wrangler secret put — never in vars).
     "LAKE_INGEST_URL": "https://api.expediaparts.com/api/marketing/lake/events"

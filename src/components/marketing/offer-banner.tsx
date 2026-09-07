@@ -41,7 +41,7 @@ export function OfferBanner() {
                 so buyers researching your store know what was earned.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-4">
-                <Button variant="gold" size="lg" href="/signup">
+                <Button variant="gold" size="lg" href="/signup" data-cx-click="merchant-get-started">
                   Start Free Trial
                 </Button>
                 <span className="text-sm text-white/45">Setup in under 30 minutes</span>
