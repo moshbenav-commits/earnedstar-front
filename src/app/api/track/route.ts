@@ -113,6 +113,13 @@ async function forwardToLake(record: TrackRecord, request: Request): Promise<voi
       payload: {
         path: record.path,
         referrer: record.referrer,
+        // Sent so ingest can classify crawler vs human. The lake does NOT keep it:
+        // lake-envelope-assembler reduces it to a boolean and drops the string, so
+        // no fingerprintable user-agent is retained. Without this every headless
+        // crawler counted as a brand-new "visitor" — visitorId is a localStorage
+        // UUID, so a client with no storage mints a fresh one on every page load,
+        // turning one bot crawling N pages into N unique visitors.
+        ua: record.ua,
         ...(record.props ? { props: record.props } : {}),
         ...(geo ? { geo } : {}),
       },
