@@ -45,6 +45,11 @@ export const metadata: Metadata = {
   },
   description,
   metadataBase: new URL(siteUrl),
+  // Self-referencing canonical. "./" resolves per-route against metadataBase, so
+  // each page canonicalises to itself; a literal "/" would tell crawlers every
+  // page IS the homepage, which is worse than emitting nothing. Verified live on
+  // houseofbid.com: /discover -> /discover, not -> /.
+  alternates: { canonical: "./" },
   manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
